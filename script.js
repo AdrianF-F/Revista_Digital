@@ -1,12 +1,12 @@
-/* =====================================
+/* ==================================================
    CONFIGURAÇÃO DO SUPABASE
-===================================== */
+================================================== */
 
-// COLOQUE AQUI OS DADOS DO SEU PROJETO
+// COLOQUE OS DADOS DO SEU PROJETO AQUI
 
-const SUPABASE_URL = "https://tcertncsuhrtldeojqfx.supabase.co";
+const SUPABASE_URL = "COLE_SUA_URL_AQUI";
 
-const SUPABASE_KEY = "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
+const SUPABASE_KEY = "COLE_SUA_CHAVE_ANON_AQUI";
 
 
 const supabaseClient =
@@ -16,9 +16,10 @@ const supabaseClient =
     );
 
 
-/* =====================================
+
+/* ==================================================
    ELEMENTOS
-===================================== */
+================================================== */
 
 const addWorkButton =
     document.getElementById("addWorkButton");
@@ -53,74 +54,188 @@ const publishButton =
 const worksArea =
     document.getElementById("worksArea");
 
-const emptyState =
-    document.getElementById("emptyState");
 
+
+/* ==================================================
+   VARIÁVEIS
+================================================== */
 
 let selectedType = null;
 
 
-/* =====================================
-   ABRIR FORMULÁRIO
-===================================== */
 
-addWorkButton.addEventListener("click", () => {
+/* ==================================================
+   MENU ESQUERDO
+================================================== */
 
-    workForm.classList.toggle("visible");
+const navButtons =
+    document.querySelectorAll(".nav-button");
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            navButtons.forEach(item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+    );
 
 });
 
 
-/* =====================================
+
+/* ==================================================
+   MENU DIREITO
+================================================== */
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-button"
+    );
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            filterButtons.forEach(item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+});
+
+
+
+/* ==================================================
+   ABRIR / FECHAR FORMULÁRIO
+================================================== */
+
+addWorkButton.addEventListener(
+    "click",
+    () => {
+
+        workForm.classList.toggle(
+            "visible"
+        );
+
+    }
+);
+
+
+
+/* ==================================================
    ESCOLHER TIPO
-===================================== */
+================================================== */
 
 typeButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
-
-        typeButtons.forEach(item => {
-
-            item.classList.remove("selected");
-
-        });
+    button.addEventListener(
+        "click",
+        () => {
 
 
-        button.classList.add("selected");
+            /* Remove seleção anterior */
+
+            typeButtons.forEach(item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            });
 
 
-        selectedType =
-            button.dataset.type;
+            /* Seleciona botão */
+
+            button.classList.add(
+                "selected"
+            );
 
 
-        workFields.classList.add("visible");
+            /* Guarda tipo */
+
+            selectedType =
+                button.dataset.type;
 
 
-        if (selectedType === "texto") {
+            /* Mostra campos */
 
-            textField.classList.add("visible");
+            workFields.classList.add(
+                "visible"
+            );
 
-            videoField.classList.remove("visible");
+
+            /* TEXTO */
+
+            if (
+                selectedType === "texto"
+            ) {
+
+                textField.classList.add(
+                    "visible"
+                );
+
+                videoField.classList.remove(
+                    "visible"
+                );
+
+            }
+
+
+            /* VÍDEO */
+
+            if (
+                selectedType === "video"
+            ) {
+
+                videoField.classList.add(
+                    "visible"
+                );
+
+                textField.classList.remove(
+                    "visible"
+                );
+
+            }
 
         }
-
-
-        if (selectedType === "video") {
-
-            videoField.classList.add("visible");
-
-            textField.classList.remove("visible");
-
-        }
-
-    });
+    );
 
 });
 
 
-/* =====================================
+
+/* ==================================================
    PUBLICAR
-===================================== */
+================================================== */
 
 publishButton.addEventListener(
     "click",
@@ -128,11 +243,13 @@ publishButton.addEventListener(
 );
 
 
+
 async function publicarTrabalho() {
 
-    const nome =
-        studentName.value;
 
+    /* =========================
+       VALIDAR TIPO
+    ========================== */
 
     if (!selectedType) {
 
@@ -142,6 +259,15 @@ async function publicarTrabalho() {
 
         return;
     }
+
+
+
+    /* =========================
+       VALIDAR NOME
+    ========================== */
+
+    const nome =
+        studentName.value;
 
 
     if (!nome) {
@@ -154,12 +280,22 @@ async function publicarTrabalho() {
     }
 
 
-    let conteudo = null;
+
+    /* =========================
+       CONTEÚDO
+    ========================== */
+
+    let conteudo = "";
 
 
-    /* TRABALHO DE TEXTO */
 
-    if (selectedType === "texto") {
+    /* =========================
+       TEXTO
+    ========================== */
+
+    if (
+        selectedType === "texto"
+    ) {
 
         conteudo =
             textContent.value.trim();
@@ -177,9 +313,14 @@ async function publicarTrabalho() {
     }
 
 
-    /* TRABALHO DE VÍDEO */
 
-    if (selectedType === "video") {
+    /* =========================
+       VÍDEO
+    ========================== */
+
+    if (
+        selectedType === "video"
+    ) {
 
         conteudo =
             videoUrl.value.trim();
@@ -196,8 +337,12 @@ async function publicarTrabalho() {
 
 
         if (
-            !conteudo.includes("youtube.com") &&
-            !conteudo.includes("youtu.be")
+            !conteudo.includes(
+                "youtube.com"
+            ) &&
+            !conteudo.includes(
+                "youtu.be"
+            )
         ) {
 
             alert(
@@ -210,42 +355,74 @@ async function publicarTrabalho() {
     }
 
 
+
+    /* =========================
+       BOTÃO
+    ========================== */
+
     publishButton.disabled = true;
 
     publishButton.textContent =
         "Publicando...";
 
 
-    const { error } =
-        await supabaseClient
-            .from("trabalhos")
-            .insert({
 
-                nome: nome,
+    /* =========================
+       ENVIAR PARA SUPABASE
+    ========================== */
 
-                tipo: selectedType,
+    const {
+        error
+    } = await supabaseClient
+        .from("trabalhos")
+        .insert({
 
-                conteudo: conteudo
+            nome:
+                nome,
 
-            });
+            tipo:
+                selectedType,
 
+            conteudo:
+                conteudo
+
+        });
+
+
+
+    /* =========================
+       ERRO
+    ========================== */
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "Erro ao publicar:",
+            error
+        );
+
 
         alert(
             "Não foi possível publicar o trabalho."
         );
 
-        publishButton.disabled = false;
+
+        publishButton.disabled =
+            false;
+
 
         publishButton.textContent =
             "Publicar Trabalho";
 
+
         return;
     }
 
+
+
+    /* =========================
+       SUCESSO
+    ========================== */
 
     alert(
         "Trabalho publicado com sucesso!"
@@ -258,7 +435,10 @@ async function publicarTrabalho() {
     await carregarTrabalhos();
 
 
-    publishButton.disabled = false;
+
+    publishButton.disabled =
+        false;
+
 
     publishButton.textContent =
         "Publicar Trabalho";
@@ -266,19 +446,29 @@ async function publicarTrabalho() {
 }
 
 
-/* =====================================
+
+/* ==================================================
    LIMPAR FORMULÁRIO
-===================================== */
+================================================== */
 
 function limparFormulario() {
 
-    studentName.value = "";
 
-    textContent.value = "";
+    studentName.value =
+        "";
 
-    videoUrl.value = "";
 
-    selectedType = null;
+    textContent.value =
+        "";
+
+
+    videoUrl.value =
+        "";
+
+
+    selectedType =
+        null;
+
 
 
     typeButtons.forEach(button => {
@@ -288,6 +478,7 @@ function limparFormulario() {
         );
 
     });
+
 
 
     workFields.classList.remove(
@@ -307,173 +498,266 @@ function limparFormulario() {
 }
 
 
-/* =====================================
+
+/* ==================================================
    CARREGAR TRABALHOS
-===================================== */
+================================================== */
 
 async function carregarTrabalhos() {
 
-    const { data, error } =
-        await supabaseClient
-            .from("trabalhos")
-            .select("*")
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("trabalhos")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
+
 
 
     if (error) {
 
-        console.error(error);
-
-        return;
-    }
-
-
-    renderizarTrabalhos(data);
-
-}
-
-
-/* =====================================
-   MOSTRAR TRABALHOS
-===================================== */
-
-function renderizarTrabalhos(trabalhos) {
-
-    worksArea.innerHTML = "";
-
-
-    if (!trabalhos || trabalhos.length === 0) {
-
-        worksArea.appendChild(
-            criarEstadoVazio()
+        console.error(
+            "Erro ao carregar trabalhos:",
+            error
         );
 
         return;
     }
 
 
-    trabalhos.forEach(trabalho => {
 
-        const card =
-            document.createElement("article");
+    renderizarTrabalhos(
+        data
+    );
 
-
-        card.className =
-            "work-card";
+}
 
 
-        const data =
-            new Date(
-                trabalho.created_at
-            );
+
+/* ==================================================
+   RENDERIZAR TRABALHOS
+================================================== */
+
+function renderizarTrabalhos(
+    trabalhos
+) {
 
 
-        const dataFormatada =
-            data.toLocaleString(
-                "pt-BR",
-                {
-                    dateStyle: "short",
-                    timeStyle: "short"
-                }
-            );
+    worksArea.innerHTML =
+        "";
 
 
-        card.innerHTML = `
 
-            <div class="work-header">
+    /* =========================
+       NENHUM TRABALHO
+    ========================== */
 
-                <div>
+    if (
+        !trabalhos ||
+        trabalhos.length === 0
+    ) {
 
-                    <div class="work-author">
-                        ${escaparHTML(trabalho.nome)}
-                    </div>
+        worksArea.innerHTML = `
 
-                    <div class="work-date">
-                        ${dataFormatada}
-                    </div>
+            <div class="empty-state">
 
-                </div>
+                <h1>
+                    Trabalhos postados
+                </h1>
 
-                <div class="work-type">
-
-                    ${
-                        trabalho.tipo === "texto"
-                        ? "📝 Texto"
-                        : "▶️ Vídeo"
-                    }
-
-                </div>
+                <p>
+                    Os trabalhos aparecerão aqui.
+                </p>
 
             </div>
 
         `;
 
-
-        if (trabalho.tipo === "texto") {
-
-            const texto =
-                document.createElement("div");
+        return;
+    }
 
 
-            texto.className =
-                "work-text";
 
+    /* =========================
+       CRIAR CARDS
+    ========================== */
 
-            texto.textContent =
-                trabalho.conteudo;
+    trabalhos.forEach(
+        trabalho => {
 
-
-            card.appendChild(texto);
-
-        }
-
-
-        if (trabalho.tipo === "video") {
-
-            const iframe =
-                document.createElement("iframe");
-
-
-            iframe.className =
-                "work-video";
-
-
-            iframe.src =
-                transformarYoutubeUrl(
-                    trabalho.conteudo
+            const card =
+                document.createElement(
+                    "article"
                 );
 
 
-            iframe.allow =
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            card.className =
+                "work-card";
 
 
-            iframe.allowFullscreen =
-                true;
+
+            /* DATA */
+
+            const data =
+                new Date(
+                    trabalho.created_at
+                );
 
 
-            card.appendChild(iframe);
+            const dataFormatada =
+                data.toLocaleString(
+                    "pt-BR",
+                    {
+                        dateStyle:
+                            "short",
+
+                        timeStyle:
+                            "short"
+                    }
+                );
+
+
+
+            /* CABEÇALHO */
+
+            card.innerHTML = `
+
+                <div class="work-header">
+
+                    <div>
+
+                        <div class="work-author">
+
+                            ${escaparHTML(
+                                trabalho.nome
+                            )}
+
+                        </div>
+
+                        <div class="work-date">
+
+                            ${dataFormatada}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-type">
+
+                        ${
+                            trabalho.tipo === "texto"
+                                ? "📝 Texto"
+                                : "▶️ Vídeo"
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+
+            /* =========================
+               TEXTO
+            ========================== */
+
+            if (
+                trabalho.tipo === "texto"
+            ) {
+
+                const texto =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                texto.className =
+                    "work-text";
+
+
+                texto.textContent =
+                    trabalho.conteudo;
+
+
+                card.appendChild(
+                    texto
+                );
+
+            }
+
+
+
+            /* =========================
+               VÍDEO
+            ========================== */
+
+            if (
+                trabalho.tipo === "video"
+            ) {
+
+                const iframe =
+                    document.createElement(
+                        "iframe"
+                    );
+
+
+                iframe.className =
+                    "work-video";
+
+
+                iframe.src =
+                    transformarYoutubeUrl(
+                        trabalho.conteudo
+                    );
+
+
+                iframe.title =
+                    "Vídeo do trabalho";
+
+
+                iframe.allow =
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+
+
+                iframe.allowFullscreen =
+                    true;
+
+
+                card.appendChild(
+                    iframe
+                );
+
+            }
+
+
+
+            worksArea.appendChild(
+                card
+            );
 
         }
-
-
-        worksArea.appendChild(card);
-
-    });
+    );
 
 }
 
 
-/* =====================================
-   YOUTUBE
-===================================== */
 
-function transformarYoutubeUrl(url) {
+/* ==================================================
+   TRANSFORMAR URL DO YOUTUBE
+================================================== */
+
+function transformarYoutubeUrl(
+    url
+) {
 
     try {
 
@@ -481,8 +765,12 @@ function transformarYoutubeUrl(url) {
             new URL(url);
 
 
-        let id = "";
+        let id =
+            "";
 
+
+
+        /* youtu.be */
 
         if (
             endereco.hostname.includes(
@@ -491,10 +779,15 @@ function transformarYoutubeUrl(url) {
         ) {
 
             id =
-                endereco.pathname.substring(1);
+                endereco.pathname.substring(
+                    1
+                );
 
         }
 
+
+
+        /* youtube.com */
 
         if (
             endereco.hostname.includes(
@@ -510,11 +803,15 @@ function transformarYoutubeUrl(url) {
         }
 
 
+
+        /* Caso não consiga encontrar */
+
         if (!id) {
 
             return url;
 
         }
+
 
 
         return `https://www.youtube.com/embed/${id}`;
@@ -530,14 +827,19 @@ function transformarYoutubeUrl(url) {
 }
 
 
-/* =====================================
-   SEGURANÇA BÁSICA
-===================================== */
 
-function escaparHTML(texto) {
+/* ==================================================
+   PROTEÇÃO CONTRA HTML
+================================================== */
+
+function escaparHTML(
+    texto
+) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     div.textContent =
@@ -549,40 +851,9 @@ function escaparHTML(texto) {
 }
 
 
-/* =====================================
-   ESTADO VAZIO
-===================================== */
 
-function criarEstadoVazio() {
-
-    const div =
-        document.createElement("div");
-
-
-    div.className =
-        "empty-state";
-
-
-    div.innerHTML = `
-
-        <h1>
-            Trabalhos postados
-        </h1>
-
-        <p>
-            Os trabalhos aparecerão aqui.
-        </p>
-
-    `;
-
-
-    return div;
-
-}
-
-
-/* =====================================
-   INICIALIZAÇÃO
-===================================== */
+/* ==================================================
+   CARREGAR AO ABRIR O SITE
+================================================== */
 
 carregarTrabalhos();
