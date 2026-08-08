@@ -1094,30 +1094,46 @@
 
             <!-- FORMULÁRIO -->
 
-            <div class="comment-form">
+<div class="comment-form">
 
-                <input
-                    type="text"
-                    id="commentName"
-                    maxlength="50"
-                    placeholder="Seu nome"
-                >
+    <input
+        type="text"
+        id="commentName"
+        maxlength="50"
+        placeholder="Seu nome"
+    >
 
-                <textarea
-                    id="commentContent"
-                    maxlength="1000"
-                    rows="4"
-                    placeholder="Escreva seu comentário..."
-                ></textarea>
+    <textarea
+        id="commentContent"
+        maxlength="1000"
+        rows="4"
+        placeholder="Escreva seu comentário..."
+    ></textarea>
 
-                <button
-                    onclick="adicionarComentario()"
-                >
-                    Publicar comentário
-                </button>
+    <label class="image-input">
 
-            </div>
+        🖼️ Adicionar imagem
 
+        <input
+            type="file"
+            id="commentImage"
+            accept="image/jpeg,image/png,image/gif,image/webp"
+        >
+
+    </label>
+
+    <div
+        id="imagePreview"
+        class="image-preview"
+    ></div>
+
+    <button
+        onclick="adicionarComentario()"
+    >
+        Publicar comentário
+    </button>
+
+</div>
 
             <br>
 
