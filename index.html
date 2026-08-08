@@ -17,6 +17,16 @@
 
     <style>
 
+        .comment-image {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
+    margin-top: 12px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
         .image-input {
 
     display: block;
@@ -1435,113 +1445,144 @@ async function carregarComentarios() {
    CRIAR ELEMENTO DO COMENTÁRIO
 ================================================== */
 
-function criarComentarioElemento(
-    comentario
-) {
+function criarComentarioElemento(comentario) {
 
-    const div =
-        document.createElement("div");
+    const div = document.createElement("div");
 
+    div.className = "comment";
 
-    div.className =
-        "comment";
+    const data = new Date(comentario.created_at);
 
+    const dataFormatada = data.toLocaleString(
+        "pt-BR",
+        {
+            dateStyle: "short",
+            timeStyle: "short"
+        }
+    );
 
-    const data =
-        new Date(
-            comentario.created_at
-        );
+    // Cabeçalho
+    const header = document.createElement("div");
 
+    header.className = "comment-header";
 
-    const dataFormatada =
-        data.toLocaleString(
-            "pt-BR",
-            {
-                dateStyle: "short",
-                timeStyle: "short"
-            }
-        );
+    header.innerHTML = `
+        <span class="comment-author">
+            ${escaparHTML(comentario.name)}
+        </span>
 
-
-    div.innerHTML = `
-
-        <div class="comment-header">
-
-            <span class="comment-author">
-                ${escaparHTML(comentario.name)}
-            </span>
-
-            <span class="comment-date">
-                ${dataFormatada}
-            </span>
-
-        </div>
-
-        <div
-            class="comment-text"
-            id="text-${comentario.id}"
-        >
-            ${escaparHTML(comentario.content)}
-        </div>
-
+        <span class="comment-date">
+            ${dataFormatada}
+        </span>
     `;
 
-
-    /* Verifica se é o autor */
-
-    supabaseClient
-        .auth
-        .getUser()
-        .then(({ data }) => {
-
-            const usuario =
-                data.user;
+    div.appendChild(header);
 
 
-            if (
-                usuario &&
-                usuario.id === comentario.user_id
-            ) {
+    // Texto
+    if (comentario.content) {
 
-                const actions =
-                    document.createElement(
-                        "div"
-                    );
+        const texto = document.createElement("div");
 
+        texto.className = "comment-text";
 
-                actions.className =
-                    "comment-actions";
+        texto.id = `text-${comentario.id}`;
 
+        texto.textContent = comentario.content;
 
-                actions.innerHTML = `
-
-                    <button
-                        class="edit-button"
-                        onclick="editarComentario(
-                            '${comentario.id}',
-                            '${escaparJS(comentario.content)}'
-                        )"
-                    >
-                        ✏️ Editar
-                    </button>
-
-                    <button
-                        class="delete-button"
-                        onclick="apagarComentario(
-                            '${comentario.id}'
-                        )"
-                    >
-                        🗑️ Apagar
-                    </button>
-
-                `;
+        div.appendChild(texto);
+    }
 
 
-                div.appendChild(actions);
+    // IMAGEM
+    if (comentario.image_url) {
 
-            }
+        const imagem = document.createElement("img");
 
-        });
+        imagem.className = "comment-image";
+
+        imagem.src = comentario.image_url;
+
+        imagem.alt = "Imagem do comentário";
+
+        imagem.loading = "lazy";
+
+        imagem.onerror = function () {
+
+            console.error(
+                "Não foi possível carregar a imagem:",
+                comentario.image_url
+            );
+
+            imagem.alt = "Erro ao carregar imagem";
+
+        };
+
+        div.appendChild(imagem);
+    }
+
+
+    // Botões do autor
+    supabaseClient.auth.getUser().then(({ data }) => {
+
+        const usuario = data.user;
+
+        if (
+            usuario &&
+            usuario.id === comentario.user_id
+        ) {
+
+            const actions =
+                document.createElement("div");
+
+            actions.className =
+                "comment-actions";
+
+            const editar =
+                document.createElement("button");
+
+            editar.className =
+                "edit-button";
+
+            editar.textContent =
+                "✏️ Editar";
+
+            editar.onclick = function () {
+
+                editarComentario(
+                    comentario.id,
+                    comentario.content || ""
+                );
+
+            };
+
+
+            const apagar =
+                document.createElement("button");
+
+            apagar.className =
+                "delete-button";
+
+            apagar.textContent =
+                "🗑️ Apagar";
+
+            apagar.onclick = function () {
+
+                apagarComentario(
+                    comentario.id
+                );
+
+            };
+
+
+            actions.appendChild(editar);
+
+            actions.appendChild(apagar);
+
+            div.appendChild(actions);
+        }
+
+    });
 
 
     return div;
