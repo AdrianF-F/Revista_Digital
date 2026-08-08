@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>BlueGreen</title>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -24,9 +34,12 @@
         ========================= */
 
         header {
+
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
             height: 64px;
 
@@ -37,53 +50,107 @@
             );
 
             display: flex;
+
             align-items: center;
+
             padding: 0 22px;
 
             color: white;
+
             z-index: 1000;
 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .logo {
+
             font-size: 25px;
+
             font-weight: bold;
+
             width: 250px;
         }
 
         .search {
+
             width: 320px;
             height: 38px;
 
             border: none;
+
             border-radius: 20px;
 
             padding: 0 18px;
 
             outline: none;
+
             font-size: 14px;
         }
 
-        .profile {
+        .header-buttons {
+
             margin-left: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .comments-top {
+
+            border: none;
+
+            background: white;
+
+            color: #0866c6;
+
             font-weight: bold;
+
+            padding: 10px 16px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .comments-top:hover {
+
+            background: #e8fff7;
+
+            color: #07805e;
+        }
+
+        .profile {
+
+            font-weight: bold;
+
+            margin-left: 5px;
         }
 
         /* =========================
-           LAYOUT PRINCIPAL
+           LAYOUT
         ========================= */
 
         .layout {
+
             display: grid;
 
-            grid-template-columns: 250px minmax(400px, 700px) 250px;
+            grid-template-columns:
+                250px
+                minmax(400px, 700px)
+                250px;
 
             justify-content: center;
 
             gap: 25px;
 
             padding-top: 90px;
+
             padding-bottom: 30px;
         }
 
@@ -92,7 +159,9 @@
         ========================= */
 
         .sidebar {
+
             position: sticky;
+
             top: 90px;
 
             height: fit-content;
@@ -103,19 +172,25 @@
 
             padding: 15px;
 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.08);
         }
 
         .sidebar h3 {
+
             color: #0866c6;
+
             margin-bottom: 15px;
+
             padding-left: 10px;
         }
 
         .menu-button {
+
             width: 100%;
 
             border: none;
+
             background: transparent;
 
             padding: 13px 12px;
@@ -125,6 +200,7 @@
             text-align: left;
 
             font-size: 15px;
+
             font-weight: bold;
 
             cursor: pointer;
@@ -135,129 +211,164 @@
         }
 
         .menu-button:hover {
+
             background: #e7f5f2;
+
             color: #079b72;
         }
 
         .menu-button.active {
+
             background: #dff2ec;
+
             color: #07805e;
         }
 
         /* =========================
-           CONTEÚDO CENTRAL
+           FEED
         ========================= */
 
         .feed {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 18px;
 
-            max-height: calc(100vh - 110px);
+            max-height:
+                calc(100vh - 110px);
 
             overflow-y: auto;
 
             padding-right: 8px;
         }
 
-        /* Barra de rolagem */
-
         .feed::-webkit-scrollbar {
+
             width: 9px;
         }
 
         .feed::-webkit-scrollbar-track {
+
             background: #dce8ea;
+
             border-radius: 10px;
         }
 
         .feed::-webkit-scrollbar-thumb {
-            background: linear-gradient(
-                #0866c6,
-                #079b72
-            );
+
+            background:
+                linear-gradient(
+                    #0866c6,
+                    #079b72
+                );
 
             border-radius: 10px;
         }
 
         /* =========================
-           CARTÕES
+           CARDS
         ========================= */
 
         .card {
+
             background: white;
 
             border-radius: 12px;
 
             padding: 22px;
 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.08);
 
             scroll-margin-top: 80px;
         }
 
         .card h2 {
+
             color: #0866c6;
+
             margin-bottom: 12px;
         }
 
         .card h3 {
+
             color: #079b72;
+
             margin-bottom: 10px;
         }
 
         .card p {
+
             line-height: 1.6;
+
             color: #46545f;
         }
 
+        /* =========================
+           POSTS
+        ========================= */
+
         .post-header {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
 
             margin-bottom: 15px;
         }
 
         .avatar {
+
             width: 42px;
             height: 42px;
 
             border-radius: 50%;
 
-            background: linear-gradient(
-                135deg,
-                #0866c6,
-                #079b72
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #0866c6,
+                    #079b72
+                );
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             color: white;
+
             font-weight: bold;
         }
 
         .post-info strong {
+
             display: block;
+
             color: #263746;
         }
 
         .post-info small {
+
             color: #82909b;
         }
 
         /* =========================
-           BOTÕES DO POST
+           AÇÕES
         ========================= */
 
         .post-actions {
+
             display: flex;
 
             margin-top: 18px;
 
-            border-top: 1px solid #e5e9eb;
+            border-top:
+                1px solid #e5e9eb;
 
             padding-top: 12px;
 
@@ -265,6 +376,7 @@
         }
 
         .action {
+
             flex: 1;
 
             border: none;
@@ -285,8 +397,236 @@
         }
 
         .action:hover {
+
             background: #e5f5f1;
+
             color: #07805e;
+        }
+
+        /* =========================
+           COMENTÁRIOS
+        ========================= */
+
+        .comments-section {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        .comment-form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+
+            width: 100%;
+
+            border: 1px solid #d7e0e3;
+
+            border-radius: 8px;
+
+            padding: 12px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            resize: vertical;
+        }
+
+        .comment-form input:focus,
+        .comment-form textarea:focus {
+
+            border-color: #079b72;
+        }
+
+        .comment-form button {
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0866c6,
+                    #079b72
+                );
+
+            color: white;
+
+            padding: 11px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+
+            opacity: 0.9;
+        }
+
+        .comment {
+
+            border-left: 4px solid #079b72;
+
+            background: #f2f8f7;
+
+            border-radius: 8px;
+
+            padding: 13px;
+        }
+
+        .comment-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .comment-author {
+
+            font-weight: bold;
+
+            color: #0866c6;
+        }
+
+        .comment-date {
+
+            color: #89969d;
+
+            font-size: 12px;
+        }
+
+        .comment-text {
+
+            margin-top: 7px;
+
+            color: #46545f;
+
+            white-space: pre-wrap;
+        }
+
+        .comment-actions {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 10px;
+        }
+
+        .comment-actions button {
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            padding: 5px 8px;
+
+            border-radius: 5px;
+        }
+
+        .edit-button {
+
+            color: #0866c6;
+        }
+
+        .delete-button {
+
+            color: #d64545;
+        }
+
+        .comment-actions button:hover {
+
+            background: #e4eeee;
+        }
+
+        .edit-area {
+
+            margin-top: 10px;
+        }
+
+        .edit-area textarea {
+
+            width: 100%;
+
+            min-height: 70px;
+
+            resize: vertical;
+
+            padding: 9px;
+
+            border: 1px solid #079b72;
+
+            border-radius: 7px;
+
+            outline: none;
+        }
+
+        .edit-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 7px;
+        }
+
+        .edit-buttons button {
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .save-edit {
+
+            background: #079b72;
+
+            color: white;
+        }
+
+        .cancel-edit {
+
+            background: #dfe7e9;
+
+            color: #34495e;
+        }
+
+        .loading {
+
+            text-align: center;
+
+            color: #6d7c83;
+
+            padding: 15px;
         }
 
         /* =========================
@@ -294,7 +634,9 @@
         ========================= */
 
         .right-panel {
+
             position: sticky;
+
             top: 90px;
 
             height: fit-content;
@@ -305,20 +647,25 @@
 
             padding: 18px;
 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.08);
         }
 
         .right-panel h3 {
+
             color: #0866c6;
+
             margin-bottom: 15px;
         }
 
         .info {
+
             padding: 12px;
 
             background: #edf8f5;
 
-            border-left: 4px solid #079b72;
+            border-left:
+                4px solid #079b72;
 
             border-radius: 6px;
 
@@ -334,14 +681,19 @@
         @media (max-width: 1000px) {
 
             .layout {
-                grid-template-columns: 220px minmax(400px, 1fr);
+
+                grid-template-columns:
+                    220px
+                    minmax(400px, 1fr);
             }
 
             .right-panel {
+
                 display: none;
             }
 
             .logo {
+
                 width: 220px;
             }
         }
@@ -349,435 +701,1169 @@
         @media (max-width: 700px) {
 
             header {
+
                 padding: 0 12px;
             }
 
             .logo {
+
                 width: auto;
+
                 font-size: 20px;
             }
 
             .search {
+
+                display: none;
+            }
+
+            .profile {
+
                 display: none;
             }
 
             .layout {
+
                 display: block;
-                padding: 80px 12px 20px;
+
+                padding:
+                    80px 12px 20px;
             }
 
             .sidebar {
+
                 position: static;
 
                 display: flex;
+
                 overflow-x: auto;
 
                 margin-bottom: 15px;
             }
 
             .sidebar h3 {
+
                 display: none;
             }
 
             .menu-button {
+
                 min-width: 120px;
             }
 
             .feed {
+
                 max-height: none;
+
                 overflow-y: visible;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         CABEÇALHO
-    ========================== -->
 
-    <header>
+<!-- =========================
+     CABEÇALHO
+========================= -->
 
-        <div class="logo">
-            BlueGreen
-        </div>
+<header>
 
-        <input
-            class="search"
-            type="text"
-            placeholder="Pesquisar..."
+    <div class="logo">
+        BlueGreen
+    </div>
+
+    <input
+        class="search"
+        type="text"
+        placeholder="Pesquisar..."
+    >
+
+    <div class="header-buttons">
+
+        <button
+            class="comments-top"
+            onclick="irParaComentarios()"
         >
+            💬 Comentários
+        </button>
 
         <div class="profile">
             👤 Usuário
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- =========================
-         LAYOUT
-    ========================== -->
+<!-- =========================
+     LAYOUT
+========================= -->
 
-    <main class="layout">
-
-
-        <!-- =====================
-             MENU
-        ====================== -->
-
-        <aside class="sidebar">
-
-            <h3>Menu</h3>
-
-            <button
-                class="menu-button active"
-                onclick="irPara('inicio', this)"
-            >
-                🏠 Início
-            </button>
-
-            <button
-                class="menu-button"
-                onclick="irPara('sobre', this)"
-            >
-                ℹ️ Sobre
-            </button>
-
-            <button
-                class="menu-button"
-                onclick="irPara('noticias', this)"
-            >
-                📰 Notícias
-            </button>
-
-            <button
-                class="menu-button"
-                onclick="irPara('comunidade', this)"
-            >
-                👥 Comunidade
-            </button>
-
-            <button
-                class="menu-button"
-                onclick="irPara('projetos', this)"
-            >
-                📁 Projetos
-            </button>
-
-            <button
-                class="menu-button"
-                onclick="irPara('contato', this)"
-            >
-                ✉️ Contato
-            </button>
-
-        </aside>
+<main class="layout">
 
 
-        <!-- =====================
-             FEED CENTRAL
-        ====================== -->
+    <!-- MENU ESQUERDO -->
 
-        <section class="feed" id="feed">
+    <aside class="sidebar">
+
+        <h3>Menu</h3>
+
+        <button
+            class="menu-button active"
+            onclick="irPara('inicio', this)"
+        >
+            🏠 Início
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="irPara('sobre', this)"
+        >
+            ℹ️ Sobre
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="irPara('noticias', this)"
+        >
+            📰 Notícias
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="irPara('comunidade', this)"
+        >
+            👥 Comunidade
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="irPara('projetos', this)"
+        >
+            📁 Projetos
+        </button>
+
+        <button
+            class="menu-button"
+            onclick="irPara('contato', this)"
+        >
+            ✉️ Contato
+        </button>
+
+    </aside>
 
 
-            <!-- INÍCIO -->
+    <!-- FEED -->
 
-            <article class="card" id="inicio">
+    <section class="feed" id="feed">
 
-                <div class="post-header">
 
-                    <div class="avatar">
-                        BG
-                    </div>
+        <!-- INÍCIO -->
 
-                    <div class="post-info">
-                        <strong>BlueGreen</strong>
-                        <small>Agora</small>
-                    </div>
+        <article
+            class="card"
+            id="inicio"
+        >
+
+            <div class="post-header">
+
+                <div class="avatar">
+                    BG
+                </div>
+
+                <div class="post-info">
+
+                    <strong>
+                        BlueGreen
+                    </strong>
+
+                    <small>
+                        Agora
+                    </small>
 
                 </div>
 
-                <h2>Bem-vindo!</h2>
+            </div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.
-                </p>
+            <h2>
+                Bem-vindo!
+            </h2>
 
-                <div class="post-actions">
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua.
+            </p>
 
-                    <button class="action">
-                        👍 Curtir
-                    </button>
+            <div class="post-actions">
 
-                    <button class="action">
-                        💬 Comentar
-                    </button>
+                <button class="action">
+                    👍 Curtir
+                </button>
 
-                    <button class="action">
-                        ↗ Compartilhar
-                    </button>
+                <button
+                    class="action"
+                    onclick="irParaComentarios()"
+                >
+                    💬 Comentar
+                </button>
 
+                <button class="action">
+                    ↗ Compartilhar
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- SOBRE -->
+
+        <article
+            class="card"
+            id="sobre"
+        >
+
+            <h2>
+                Sobre
+            </h2>
+
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Integer nec odio. Praesent libero.
+                Sed cursus ante dapibus diam.
+            </p>
+
+            <br>
+
+            <p>
+                Sed nisi. Nulla quis sem at nibh
+                elementum imperdiet. Duis sagittis
+                ipsum. Praesent mauris.
+            </p>
+
+        </article>
+
+
+        <!-- NOTÍCIAS -->
+
+        <article
+            class="card"
+            id="noticias"
+        >
+
+            <h2>
+                Notícias
+            </h2>
+
+            <h3>
+                Lorem Ipsum News
+            </h3>
+
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Donec quam felis, ultricies nec,
+                pellentesque eu.
+            </p>
+
+            <br>
+
+            <h3>
+                Nova atualização
+            </h3>
+
+            <p>
+                Maecenas tempus, tellus eget
+                condimentum rhoncus, sem quam
+                semper libero.
+            </p>
+
+        </article>
+
+
+        <!-- COMUNIDADE -->
+
+        <article
+            class="card"
+            id="comunidade"
+        >
+
+            <h2>
+                Comunidade
+            </h2>
+
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Aenean commodo ligula eget dolor.
+            </p>
+
+        </article>
+
+
+        <!-- PROJETOS -->
+
+        <article
+            class="card"
+            id="projetos"
+        >
+
+            <h2>
+                Projetos
+            </h2>
+
+            <h3>
+                Projeto Alpha
+            </h3>
+
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Cras dapibus. Vivamus elementum
+                semper nisi.
+            </p>
+
+            <br>
+
+            <h3>
+                Projeto Beta
+            </h3>
+
+            <p>
+                Etiam sit amet orci eget eros
+                faucibus tincidunt. Duis leo.
+                Sed fringilla mauris sit amet nibh.
+            </p>
+
+        </article>
+
+
+        <!-- CONTATO -->
+
+        <article
+            class="card"
+            id="contato"
+        >
+
+            <h2>
+                Contato
+            </h2>
+
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Fusce vulputate eleifend sapien.
+            </p>
+
+            <br>
+
+            <p>
+                Email: exemplo@email.com
+            </p>
+
+        </article>
+
+
+        <!-- =========================
+             COMENTÁRIOS
+        ========================== -->
+
+        <article
+            class="card"
+            id="comentarios"
+        >
+
+            <h2>
+                💬 Comentários
+            </h2>
+
+            <p style="margin-bottom: 18px;">
+                Deixe um comentário para os
+                visitantes da página.
+            </p>
+
+
+            <!-- FORMULÁRIO -->
+
+            <div class="comment-form">
+
+                <input
+                    type="text"
+                    id="commentName"
+                    maxlength="50"
+                    placeholder="Seu nome"
+                >
+
+                <textarea
+                    id="commentContent"
+                    maxlength="1000"
+                    rows="4"
+                    placeholder="Escreva seu comentário..."
+                ></textarea>
+
+                <button
+                    onclick="adicionarComentario()"
+                >
+                    Publicar comentário
+                </button>
+
+            </div>
+
+
+            <br>
+
+
+            <!-- COMENTÁRIOS -->
+
+            <div
+                id="commentsList"
+                class="comments-section"
+            >
+
+                <div class="loading">
+                    Carregando comentários...
                 </div>
 
-            </article>
-
-
-            <!-- SOBRE -->
-
-            <article class="card" id="sobre">
-
-                <h2>Sobre</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Integer nec odio. Praesent
-                    libero. Sed cursus ante dapibus diam.
-                </p>
-
-                <br>
-
-                <p>
-                    Sed nisi. Nulla quis sem at nibh elementum
-                    imperdiet. Duis sagittis ipsum. Praesent
-                    mauris.
-                </p>
-
-            </article>
-
-
-            <!-- NOTÍCIAS -->
-
-            <article class="card" id="noticias">
-
-                <h2>Notícias</h2>
-
-                <h3>Lorem Ipsum News</h3>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Donec quam felis,
-                    ultricies nec, pellentesque eu.
-                </p>
-
-                <br>
-
-                <h3>Nova atualização</h3>
-
-                <p>
-                    Maecenas tempus, tellus eget condimentum
-                    rhoncus, sem quam semper libero.
-                </p>
-
-            </article>
-
-
-            <!-- COMUNIDADE -->
-
-            <article class="card" id="comunidade">
-
-                <h2>Comunidade</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Aenean commodo ligula
-                    eget dolor.
-                </p>
-
-                <br>
-
-                <p>
-                    Aenean massa. Cum sociis natoque penatibus
-                    et magnis dis parturient montes.
-                </p>
-
-            </article>
-
-
-            <!-- PROJETOS -->
-
-            <article class="card" id="projetos">
-
-                <h2>Projetos</h2>
-
-                <h3>Projeto Alpha</h3>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Cras dapibus. Vivamus
-                    elementum semper nisi.
-                </p>
-
-                <br>
-
-                <h3>Projeto Beta</h3>
-
-                <p>
-                    Etiam sit amet orci eget eros faucibus
-                    tincidunt. Duis leo. Sed fringilla mauris
-                    sit amet nibh.
-                </p>
-
-            </article>
-
-
-            <!-- CONTATO -->
-
-            <article class="card" id="contato">
-
-                <h2>Contato</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Fusce vulputate eleifend
-                    sapien.
-                </p>
-
-                <br>
-
-                <p>
-                    Email: exemplo@email.com
-                </p>
-
-            </article>
-
-
-            <!-- CONTEÚDO EXTRA PARA TESTAR A ROLAGEM -->
-
-            <article class="card">
-
-                <h2>Conteúdo adicional</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Pellentesque habitant
-                    morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas.
-                </p>
-
-                <br>
-
-                <p>
-                    Vestibulum tortor quam, feugiat vitae,
-                    ultricies eget, tempor sit amet, ante.
-                    Donec eu libero sit amet quam egestas
-                    semper.
-                </p>
-
-            </article>
-
-
-        </section>
-
-
-        <!-- =====================
-             PAINEL DIREITO
-        ====================== -->
-
-        <aside class="right-panel">
-
-            <h3>Informações</h3>
-
-            <div class="info">
-                🟢 Sistema online
             </div>
 
-            <div class="info">
-                👥 1.245 usuários
-            </div>
-
-            <div class="info">
-                📢 12 novidades
-            </div>
-
-            <div class="info">
-                🌎 Comunidade ativa
-            </div>
-
-        </aside>
-
-    </main>
+        </article>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+        <!-- CONTEÚDO EXTRA -->
 
-    <script>
+        <article class="card">
 
-        function irPara(id, botao) {
+            <h2>
+                Conteúdo adicional
+            </h2>
 
-            const destino = document.getElementById(id);
+            <p>
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit.
+                Pellentesque habitant morbi
+                tristique senectus et netus et
+                malesuada fames ac turpis egestas.
+            </p>
 
-            if (!destino) return;
+            <br>
 
-            destino.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            <p>
+                Vestibulum tortor quam,
+                feugiat vitae, ultricies eget,
+                tempor sit amet, ante.
+            </p>
 
-            document
-                .querySelectorAll(".menu-button")
-                .forEach(button => {
-                    button.classList.remove("active");
-                });
+        </article>
 
-            botao.classList.add("active");
+
+    </section>
+
+
+    <!-- PAINEL DIREITO -->
+
+    <aside class="right-panel">
+
+        <h3>
+            Informações
+        </h3>
+
+        <div class="info">
+            🟢 Sistema online
+        </div>
+
+        <div class="info">
+            👥 Comunidade ativa
+        </div>
+
+        <div class="info">
+            💬 Comentários públicos
+        </div>
+
+        <div class="info">
+            🌎 Todos podem participar
+        </div>
+
+    </aside>
+
+
+</main>
+
+
+<script>
+
+/* ==================================================
+   CONFIGURAÇÃO DO SUPABASE
+================================================== */
+
+
+/*
+    COLOQUE AQUI OS DADOS DO SEU PROJETO.
+
+    Supabase:
+    Project Settings
+    → API
+*/
+
+
+const SUPABASE_URL =
+    "COLOQUE_AQUI_A_URL_DO_SEU_SUPABASE";
+
+
+const SUPABASE_ANON_KEY =
+    "COLOQUE_AQUI_A_SUA_CHAVE_ANON_PUBLIC";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* ==================================================
+   LOGIN ANÔNIMO
+================================================== */
+
+async function iniciarUsuario() {
+
+    let {
+        data: {
+            session
+        }
+    } = await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (!session) {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .auth
+            .signInAnonymously();
+
+
+        if (error) {
+
+            console.error(
+                "Erro ao iniciar usuário:",
+                error
+            );
+
+            return null;
         }
 
+        return data.user;
+    }
 
-        /*
-         * Detecta automaticamente qual
-         * seção está sendo visualizada.
-         */
 
-        const feed = document.getElementById("feed");
+    return session.user;
+}
 
-        const secoes = document.querySelectorAll(
-            ".feed .card[id]"
+
+/* ==================================================
+   CARREGAR COMENTÁRIOS
+================================================== */
+
+async function carregarComentarios() {
+
+    const lista =
+        document.getElementById(
+            "commentsList"
         );
 
-        feed.addEventListener("scroll", () => {
 
-            let atual = "";
+    lista.innerHTML =
+        `<div class="loading">
+            Carregando comentários...
+        </div>`;
 
-            secoes.forEach(secao => {
 
-                const distancia =
-                    secao.offsetTop - feed.scrollTop;
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("comments")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
 
-                if (distancia <= 150) {
-                    atual = secao.id;
-                }
 
-            });
+    if (error) {
 
-            if (atual) {
+        console.error(error);
 
-                document
-                    .querySelectorAll(".menu-button")
-                    .forEach(button => {
+        lista.innerHTML =
+            `<div class="loading">
+                Não foi possível carregar
+                os comentários.
+            </div>`;
 
-                        button.classList.remove("active");
+        return;
+    }
 
-                        if (
-                            button.getAttribute("onclick")
-                                ?.includes("'" + atual + "'")
-                        ) {
-                            button.classList.add("active");
-                        }
 
-                    });
+    if (!data || data.length === 0) {
+
+        lista.innerHTML =
+            `<div class="loading">
+                Ainda não há comentários.
+                Seja o primeiro!
+            </div>`;
+
+        return;
+    }
+
+
+    lista.innerHTML = "";
+
+
+    for (const comentario of data) {
+
+        lista.appendChild(
+            criarComentarioElemento(
+                comentario
+            )
+        );
+
+    }
+}
+
+
+/* ==================================================
+   CRIAR ELEMENTO DO COMENTÁRIO
+================================================== */
+
+function criarComentarioElemento(
+    comentario
+) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.className =
+        "comment";
+
+
+    const data =
+        new Date(
+            comentario.created_at
+        );
+
+
+    const dataFormatada =
+        data.toLocaleString(
+            "pt-BR",
+            {
+                dateStyle: "short",
+                timeStyle: "short"
+            }
+        );
+
+
+    div.innerHTML = `
+
+        <div class="comment-header">
+
+            <span class="comment-author">
+                ${escaparHTML(comentario.name)}
+            </span>
+
+            <span class="comment-date">
+                ${dataFormatada}
+            </span>
+
+        </div>
+
+        <div
+            class="comment-text"
+            id="text-${comentario.id}"
+        >
+            ${escaparHTML(comentario.content)}
+        </div>
+
+    `;
+
+
+    /* Verifica se é o autor */
+
+    supabaseClient
+        .auth
+        .getUser()
+        .then(({ data }) => {
+
+            const usuario =
+                data.user;
+
+
+            if (
+                usuario &&
+                usuario.id === comentario.user_id
+            ) {
+
+                const actions =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                actions.className =
+                    "comment-actions";
+
+
+                actions.innerHTML = `
+
+                    <button
+                        class="edit-button"
+                        onclick="editarComentario(
+                            '${comentario.id}',
+                            '${escaparJS(comentario.content)}'
+                        )"
+                    >
+                        ✏️ Editar
+                    </button>
+
+                    <button
+                        class="delete-button"
+                        onclick="apagarComentario(
+                            '${comentario.id}'
+                        )"
+                    >
+                        🗑️ Apagar
+                    </button>
+
+                `;
+
+
+                div.appendChild(actions);
 
             }
 
         });
 
-    </script>
+
+    return div;
+}
+
+
+/* ==================================================
+   ADICIONAR COMENTÁRIO
+================================================== */
+
+async function adicionarComentario() {
+
+    const nome =
+        document
+            .getElementById("commentName")
+            .value
+            .trim();
+
+
+    const conteudo =
+        document
+            .getElementById("commentContent")
+            .value
+            .trim();
+
+
+    if (!nome) {
+
+        alert(
+            "Digite seu nome."
+        );
+
+        return;
+    }
+
+
+    if (!conteudo) {
+
+        alert(
+            "Digite um comentário."
+        );
+
+        return;
+    }
+
+
+    if (nome.length > 50) {
+
+        alert(
+            "O nome é muito grande."
+        );
+
+        return;
+    }
+
+
+    if (conteudo.length > 1000) {
+
+        alert(
+            "O comentário é muito grande."
+        );
+
+        return;
+    }
+
+
+    const usuario =
+        await iniciarUsuario();
+
+
+    if (!usuario) {
+
+        alert(
+            "Não foi possível identificar você."
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("comments")
+        .insert({
+
+            user_id:
+                usuario.id,
+
+            name:
+                nome,
+
+            content:
+                conteudo
+        });
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Erro ao publicar o comentário."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById("commentName")
+        .value = "";
+
+
+    document
+        .getElementById("commentContent")
+        .value = "";
+
+
+    await carregarComentarios();
+
+}
+
+
+/* ==================================================
+   EDITAR COMENTÁRIO
+================================================== */
+
+async function editarComentario(
+    id,
+    textoAtual
+) {
+
+    const elemento =
+        document.getElementById(
+            `text-${id}`
+        );
+
+
+    if (!elemento) return;
+
+
+    const area =
+        document.createElement(
+            "div"
+        );
+
+
+    area.className =
+        "edit-area";
+
+
+    area.innerHTML = `
+
+        <textarea
+            id="edit-${id}"
+            maxlength="1000"
+        >${escaparHTML(textoAtual)}</textarea>
+
+        <div class="edit-buttons">
+
+            <button
+                class="save-edit"
+                onclick="salvarEdicao('${id}')"
+            >
+                Salvar
+            </button>
+
+            <button
+                class="cancel-edit"
+                onclick="carregarComentarios()"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+    `;
+
+
+    elemento.replaceWith(area);
+}
+
+
+/* ==================================================
+   SALVAR EDIÇÃO
+================================================== */
+
+async function salvarEdicao(id) {
+
+    const textarea =
+        document.getElementById(
+            `edit-${id}`
+        );
+
+
+    if (!textarea) return;
+
+
+    const novoTexto =
+        textarea.value.trim();
+
+
+    if (!novoTexto) {
+
+        alert(
+            "O comentário não pode ficar vazio."
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("comments")
+        .update({
+            content: novoTexto
+        })
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Não foi possível editar o comentário."
+        );
+
+        return;
+    }
+
+
+    await carregarComentarios();
+}
+
+
+/* ==================================================
+   APAGAR COMENTÁRIO
+================================================== */
+
+async function apagarComentario(id) {
+
+    const confirmar =
+        confirm(
+            "Tem certeza que deseja apagar este comentário?"
+        );
+
+
+    if (!confirmar) return;
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("comments")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            "Não foi possível apagar o comentário."
+        );
+
+        return;
+    }
+
+
+    await carregarComentarios();
+}
+
+
+/* ==================================================
+   SEGURANÇA CONTRA HTML
+================================================== */
+
+function escaparHTML(texto) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        texto;
+
+
+    return div.innerHTML;
+}
+
+
+/* ==================================================
+   ESCAPAR TEXTO PARA JAVASCRIPT
+================================================== */
+
+function escaparJS(texto) {
+
+    return texto
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r");
+}
+
+
+/* ==================================================
+   NAVEGAÇÃO
+================================================== */
+
+function irPara(
+    id,
+    botao
+) {
+
+    const destino =
+        document.getElementById(id);
+
+
+    if (!destino) return;
+
+
+    destino.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+
+    document
+        .querySelectorAll(
+            ".menu-button"
+        )
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    if (botao) {
+
+        botao.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   BOTÃO DE COMENTÁRIOS
+================================================== */
+
+function irParaComentarios() {
+
+    const comentarios =
+        document.getElementById(
+            "comentarios"
+        );
+
+
+    comentarios.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+/* ==================================================
+   INICIALIZAÇÃO
+================================================== */
+
+async function iniciarSite() {
+
+    await iniciarUsuario();
+
+    await carregarComentarios();
+
+}
+
+
+iniciarSite();
+
+</script>
+
 
 </body>
+
 </html>
