@@ -67,6 +67,26 @@ const publishButton =
 const worksArea =
     document.getElementById("worksArea");
 
+let isAdmin = false;
+
+const adminButton =
+    document.getElementById("adminButton");
+
+const adminModal =
+    document.getElementById("adminModal");
+
+const adminEmail =
+    document.getElementById("adminEmail");
+
+const adminPassword =
+    document.getElementById("adminPassword");
+
+const confirmAdminLogin =
+    document.getElementById("confirmAdminLogin");
+
+const cancelAdminLogin =
+    document.getElementById("cancelAdminLogin");
+
 
 
 /* ==================================================
@@ -416,18 +436,12 @@ async function publicarTrabalho() {
             error
         } = await supabaseClient
             .from("trabalhos")
-            .insert({
-
-                nome:
-                    nome,
-
-                tipo:
-                    selectedType,
-
-                conteudo:
-                    conteudo
-
-            });
+          .insert({
+    nome: nome,
+    tipo: selectedType,
+    conteudo: conteudo,
+    aprovado: false
+});
 
 
 
@@ -553,47 +567,22 @@ function limparFormulario() {
 
 async function carregarTrabalhos() {
 
-    if (!supabaseClient) {
+   let query =
+    supabaseClient
+        .from("trabalhos")
+        .select("*");
 
-        console.warn(
-            "Supabase não está disponível."
-        );
+if (!isAdmin) {
 
-        return;
-    }
+    query =
+        query.eq("aprovado", true);
 
+}
 
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-            .from("trabalhos")
-            .select("*")
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
-
-
-        if (error) {
-
-            console.error(
-                "Erro ao carregar trabalhos:",
-                error
-            );
-
-            return;
-        }
-
-
-        renderizarTrabalhos(
-            data
-        );
-
+const { data, error } =
+    await query.order("id", {
+        ascending: false
+    });
     }
 
 
@@ -801,7 +790,109 @@ function renderizarTrabalhos(
 
             }
 
+if (isAdmin) {
 
+    const controls =
+        document.createElement("div");
+
+    controls.className =
+        "admin-controls";
+
+    if (!trabalho.aprovado) {
+
+        const approve =
+            document.createElement("button");
+
+        approve.className =
+            "approve-button";
+
+        approve.textContent =
+            "Aprovar";
+
+        approve.onclick = async () => {
+
+            await supabaseClient
+                .from("trabalhos")
+                .update({
+                    aprovado: true
+                })
+                .eq("id", trabalho.id);
+
+            carregarTrabalhos();
+
+        };
+
+        controls.appendChild(approve);
+
+    }
+
+    const edit =
+        document.createElement("button");
+
+    edit.className =
+        "edit-button";
+
+    edit.textContent =
+        "Editar";
+
+    edit.onclick = async () => {
+
+        const novo =
+            prompt(
+                "Editar conteúdo:",
+                trabalho.conteudo
+            );
+
+        if (novo !== null) {
+
+            await supabaseClient
+                .from("trabalhos")
+                .update({
+                    conteudo: novo
+                })
+                .eq("id", trabalho.id);
+
+            carregarTrabalhos();
+
+        }
+
+    };
+
+    const del =
+        document.createElement("button");
+
+    del.className =
+        "delete-button";
+
+    del.textContent =
+        "Apagar";
+
+    del.onclick = async () => {
+
+        if (
+            confirm(
+                "Apagar este trabalho?"
+            )
+        ) {
+
+            await supabaseClient
+                .from("trabalhos")
+                .delete()
+                .eq("id", trabalho.id);
+
+            carregarTrabalhos();
+
+        }
+
+    };
+
+    controls.appendChild(edit);
+    controls.appendChild(del);
+
+    card.appendChild(controls);
+
+}
+           
             worksArea.appendChild(
                 card
             );
@@ -912,7 +1003,59 @@ function escaparHTML(
 
 }
 
+adminButton.addEventListener("click", async () => {
 
+    if (isAdmin) {
+
+        await supabaseClient.auth.signOut();
+
+        isAdmin = false;
+
+        adminButton.textContent =
+            "Entrar como administrador";
+
+        carregarTrabalhos();
+
+        return;
+    }
+
+    adminModal.classList.add("visible");
+
+});
+
+
+cancelAdminLogin.addEventListener("click", () => {
+
+    adminModal.classList.remove("visible");
+
+});
+
+
+confirmAdminLogin.addEventListener("click", async () => {
+
+    const { error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: adminEmail.value,
+            password: adminPassword.value
+        });
+
+    if (error) {
+
+        alert("Login inválido.");
+
+        return;
+    }
+
+    isAdmin = true;
+
+    adminButton.textContent =
+        "Sair do administrador";
+
+    adminModal.classList.remove("visible");
+
+    carregarTrabalhos();
+
+});
 
 /* ==================================================
    INICIAR SITE
