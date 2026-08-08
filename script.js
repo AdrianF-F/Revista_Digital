@@ -2,14 +2,18 @@
 // MENU PRINCIPAL
 // =========================
 
-const navButtons = document.querySelectorAll(".nav-button");
+const navButtons =
+    document.querySelectorAll(".nav-button");
+
 
 navButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
         navButtons.forEach(item => {
+
             item.classList.remove("active");
+
         });
 
         button.classList.add("active");
@@ -17,7 +21,6 @@ navButtons.forEach(button => {
     });
 
 });
-
 
 
 // =========================
@@ -33,7 +36,9 @@ filterButtons.forEach(button => {
     button.addEventListener("click", () => {
 
         filterButtons.forEach(item => {
+
             item.classList.remove("active");
+
         });
 
         button.classList.add("active");
@@ -43,17 +48,15 @@ filterButtons.forEach(button => {
 });
 
 
-
 // =========================
-// FUTURO
+// FUTURAMENTE
 // =========================
-
+//
 // Login de administrador
-// Sistema de trabalhos
+// Adicionar trabalhos
 // Estatísticas
 // Instruções
-// Upload de arquivos
+// Filtros reais
 // Banco de dados
 // Permissões
 //
-// Serão implementados posteriormente.
