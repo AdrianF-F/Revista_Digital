@@ -2,18 +2,31 @@
    CONFIGURAÇÃO DO SUPABASE
 ================================================== */
 
-// COLOQUE OS DADOS DO SEU PROJETO AQUI
+const SUPABASE_URL =
+    "https://tcertncsuhrtldeojqfx.supabase.co";
 
-const SUPABASE_URL = "https://tcertncsuhrtldeojqfx.supabase.co";
+const SUPABASE_KEY =
+    "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
 
-const SUPABASE_KEY = "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
+
+let supabaseClient = null;
 
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+/* Inicia o Supabase */
+
+if (
+    window.supabase &&
+    SUPABASE_URL &&
+    SUPABASE_KEY
+) {
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+}
 
 
 
@@ -65,11 +78,28 @@ let selectedType = null;
 
 
 /* ==================================================
+   VERIFICAÇÃO DOS ELEMENTOS
+================================================== */
+
+console.log(
+    "Sistema carregado."
+);
+
+console.log(
+    "Botão adicionar:",
+    addWorkButton
+);
+
+
+
+/* ==================================================
    MENU ESQUERDO
 ================================================== */
 
 const navButtons =
-    document.querySelectorAll(".nav-button");
+    document.querySelectorAll(
+        ".nav-button"
+    );
 
 
 navButtons.forEach(button => {
@@ -85,7 +115,6 @@ navButtons.forEach(button => {
                 );
 
             });
-
 
             button.classList.add(
                 "active"
@@ -122,7 +151,6 @@ filterButtons.forEach(button => {
 
             });
 
-
             button.classList.add(
                 "active"
             );
@@ -135,19 +163,23 @@ filterButtons.forEach(button => {
 
 
 /* ==================================================
-   ABRIR / FECHAR FORMULÁRIO
+   BOTÃO ADICIONAR TRABALHO
 ================================================== */
 
-addWorkButton.addEventListener(
-    "click",
-    () => {
+if (addWorkButton) {
 
-        workForm.classList.toggle(
-            "visible"
-        );
+    addWorkButton.addEventListener(
+        "click",
+        () => {
 
-    }
-);
+            workForm.classList.toggle(
+                "visible"
+            );
+
+        }
+    );
+
+}
 
 
 
@@ -161,8 +193,7 @@ typeButtons.forEach(button => {
         "click",
         () => {
 
-
-            /* Remove seleção anterior */
+            /* Remove seleção */
 
             typeButtons.forEach(item => {
 
@@ -173,7 +204,7 @@ typeButtons.forEach(button => {
             });
 
 
-            /* Seleciona botão */
+            /* Seleciona */
 
             button.classList.add(
                 "selected"
@@ -237,19 +268,34 @@ typeButtons.forEach(button => {
    PUBLICAR
 ================================================== */
 
-publishButton.addEventListener(
-    "click",
-    publicarTrabalho
-);
+if (publishButton) {
+
+    publishButton.addEventListener(
+        "click",
+        publicarTrabalho
+    );
+
+}
 
 
 
 async function publicarTrabalho() {
 
 
-    /* =========================
-       VALIDAR TIPO
-    ========================== */
+    /* Verifica Supabase */
+
+    if (!supabaseClient) {
+
+        alert(
+            "O sistema de banco de dados não foi carregado."
+        );
+
+        return;
+    }
+
+
+
+    /* Verifica tipo */
 
     if (!selectedType) {
 
@@ -262,9 +308,7 @@ async function publicarTrabalho() {
 
 
 
-    /* =========================
-       VALIDAR NOME
-    ========================== */
+    /* Verifica nome */
 
     const nome =
         studentName.value;
@@ -281,17 +325,15 @@ async function publicarTrabalho() {
 
 
 
-    /* =========================
-       CONTEÚDO
-    ========================== */
+    /* Conteúdo */
 
     let conteudo = "";
 
 
 
-    /* =========================
+    /* ==================================================
        TEXTO
-    ========================== */
+    ================================================== */
 
     if (
         selectedType === "texto"
@@ -314,9 +356,9 @@ async function publicarTrabalho() {
 
 
 
-    /* =========================
+    /* ==================================================
        VÍDEO
-    ========================== */
+    ================================================== */
 
     if (
         selectedType === "video"
@@ -356,92 +398,103 @@ async function publicarTrabalho() {
 
 
 
-    /* =========================
-       BOTÃO
-    ========================== */
+    /* ==================================================
+       PUBLICANDO
+    ================================================== */
 
-    publishButton.disabled = true;
+    publishButton.disabled =
+        true;
 
     publishButton.textContent =
         "Publicando...";
 
 
 
-    /* =========================
-       ENVIAR PARA SUPABASE
-    ========================== */
+    try {
 
-    const {
-        error
-    } = await supabaseClient
-        .from("trabalhos")
-        .insert({
+        const {
+            error
+        } = await supabaseClient
+            .from("trabalhos")
+            .insert({
 
-            nome:
-                nome,
+                nome:
+                    nome,
 
-            tipo:
-                selectedType,
+                tipo:
+                    selectedType,
 
-            conteudo:
-                conteudo
+                conteudo:
+                    conteudo
 
-        });
+            });
 
 
 
-    /* =========================
-       ERRO
-    ========================== */
+        /* ==================================================
+           ERRO
+        ================================================== */
 
-    if (error) {
+        if (error) {
+
+            console.error(
+                "Erro do Supabase:",
+                error
+            );
+
+
+            alert(
+                "Não foi possível publicar o trabalho.\n\n" +
+                error.message
+            );
+
+
+            return;
+        }
+
+
+
+        /* ==================================================
+           SUCESSO
+        ================================================== */
+
+        alert(
+            "Trabalho publicado com sucesso!"
+        );
+
+
+        limparFormulario();
+
+
+        await carregarTrabalhos();
+
+    }
+
+
+    catch (error) {
 
         console.error(
-            "Erro ao publicar:",
+            "Erro:",
             error
         );
 
 
         alert(
-            "Não foi possível publicar o trabalho."
+            "Ocorreu um erro ao publicar o trabalho."
         );
 
+    }
+
+
+    finally {
 
         publishButton.disabled =
             false;
 
-
         publishButton.textContent =
             "Publicar Trabalho";
 
-
-        return;
     }
-
-
-
-    /* =========================
-       SUCESSO
-    ========================== */
-
-    alert(
-        "Trabalho publicado com sucesso!"
-    );
-
-
-    limparFormulario();
-
-
-    await carregarTrabalhos();
-
-
-
-    publishButton.disabled =
-        false;
-
-
-    publishButton.textContent =
-        "Publicar Trabalho";
 
 }
 
@@ -453,14 +506,11 @@ async function publicarTrabalho() {
 
 function limparFormulario() {
 
-
     studentName.value =
         "";
 
-
     textContent.value =
         "";
-
 
     videoUrl.value =
         "";
@@ -470,7 +520,6 @@ function limparFormulario() {
         null;
 
 
-
     typeButtons.forEach(button => {
 
         button.classList.remove(
@@ -478,7 +527,6 @@ function limparFormulario() {
         );
 
     });
-
 
 
     workFields.classList.remove(
@@ -505,37 +553,58 @@ function limparFormulario() {
 
 async function carregarTrabalhos() {
 
+    if (!supabaseClient) {
 
-    const {
-        data,
-        error
-    } = await supabaseClient
-        .from("trabalhos")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
-
-
-
-    if (error) {
-
-        console.error(
-            "Erro ao carregar trabalhos:",
-            error
+        console.warn(
+            "Supabase não está disponível."
         );
 
         return;
     }
 
 
+    try {
 
-    renderizarTrabalhos(
-        data
-    );
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("trabalhos")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Erro ao carregar trabalhos:",
+                error
+            );
+
+            return;
+        }
+
+
+        renderizarTrabalhos(
+            data
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Erro:",
+            error
+        );
+
+    }
 
 }
 
@@ -549,15 +618,11 @@ function renderizarTrabalhos(
     trabalhos
 ) {
 
-
     worksArea.innerHTML =
         "";
 
 
-
-    /* =========================
-       NENHUM TRABALHO
-    ========================== */
+    /* Nenhum trabalho */
 
     if (
         !trabalhos ||
@@ -585,9 +650,7 @@ function renderizarTrabalhos(
 
 
 
-    /* =========================
-       CRIAR CARDS
-    ========================== */
+    /* Criar cards */
 
     trabalhos.forEach(
         trabalho => {
@@ -603,7 +666,7 @@ function renderizarTrabalhos(
 
 
 
-            /* DATA */
+            /* Data */
 
             const data =
                 new Date(
@@ -625,7 +688,7 @@ function renderizarTrabalhos(
 
 
 
-            /* CABEÇALHO */
+            /* Cabeçalho */
 
             card.innerHTML = `
 
@@ -666,9 +729,9 @@ function renderizarTrabalhos(
 
 
 
-            /* =========================
+            /* ==================================================
                TEXTO
-            ========================== */
+            ================================================== */
 
             if (
                 trabalho.tipo === "texto"
@@ -696,9 +759,9 @@ function renderizarTrabalhos(
 
 
 
-            /* =========================
+            /* ==================================================
                VÍDEO
-            ========================== */
+            ================================================== */
 
             if (
                 trabalho.tipo === "video"
@@ -739,7 +802,6 @@ function renderizarTrabalhos(
             }
 
 
-
             worksArea.appendChild(
                 card
             );
@@ -752,7 +814,7 @@ function renderizarTrabalhos(
 
 
 /* ==================================================
-   TRANSFORMAR URL DO YOUTUBE
+   YOUTUBE
 ================================================== */
 
 function transformarYoutubeUrl(
@@ -804,8 +866,6 @@ function transformarYoutubeUrl(
 
 
 
-        /* Caso não consiga encontrar */
-
         if (!id) {
 
             return url;
@@ -813,8 +873,10 @@ function transformarYoutubeUrl(
         }
 
 
-
-        return `https://www.youtube.com/embed/${id}`;
+        return (
+            "https://www.youtube.com/embed/" +
+            id
+        );
 
     }
 
@@ -829,7 +891,7 @@ function transformarYoutubeUrl(
 
 
 /* ==================================================
-   PROTEÇÃO CONTRA HTML
+   SEGURANÇA
 ================================================== */
 
 function escaparHTML(
@@ -853,7 +915,7 @@ function escaparHTML(
 
 
 /* ==================================================
-   CARREGAR AO ABRIR O SITE
+   INICIAR SITE
 ================================================== */
 
 carregarTrabalhos();
