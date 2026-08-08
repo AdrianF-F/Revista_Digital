@@ -4,9 +4,9 @@
 
 // COLOQUE AQUI OS DADOS DO SEU PROJETO
 
-const SUPABASE_URL = "COLE_SUA_URL_AQUI";
+const SUPABASE_URL = "https://tcertncsuhrtldeojqfx.supabase.co";
 
-const SUPABASE_KEY = "COLE_SUA_CHAVE_ANON_AQUI";
+const SUPABASE_KEY = "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
 
 
 const supabaseClient =
