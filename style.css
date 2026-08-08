@@ -1,84 +1,91 @@
-/* =========================
-   RESET
-========================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
- 
-
-/* =========================
-   CORES
-========================= */
+/* ==================================================
+   VARIÁVEIS
+================================================== */
 
 :root {
 
-    --background: #1D2223;
+    --blue: #0878d1;
+
+    --blue-light: #6aa8ff;
+
+    --green: #00a889;
+
+    --green-dark: #007d70;
+
+    --background: #202526;
+
+    --background-dark: #111313;
 
     --card: #111111;
 
-    --card-hover: #181818;
+    --card-light: #181919;
 
-    --blue: #68A0FF;
+    --border: #343a3b;
 
-    --blue-dark: #087CC2;
+    --text: #d4e0eb;
 
-    --blue-light: #6DB5D4;
+    --text-muted: #8996a2;
 
-    --green: #43B98D;
+    --danger: #b53a3a;
 
-    --green-dark: #00A57C;
-
-    --text: #F1F3F5;
-
-    --text-secondary: #AEBECD;
-
-    --border: #35393A;
+    --warning: #f0b429;
 
 }
 
 
-/* =========================
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+
+/* ==================================================
    BODY
-========================= */
+================================================== */
 
 body {
 
     min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(8, 120, 209, 0.08),
+            transparent 35%
+        ),
+        var(--background);
+
+    color: var(--text);
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    background:
-        var(--background);
-
-    color:
-        var(--text);
 }
 
 
 
-/* =========================
+/* ==================================================
    TOPO
-========================= */
+================================================== */
 
 .topbar {
 
     width: 100%;
 
-    height: 86px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #087CC2,
-            #078FAE,
-            #00A57C
-        );
+    height: 105px;
 
     display: flex;
 
@@ -86,54 +93,56 @@ body {
 
     justify-content: space-between;
 
-    padding:
-        0 28px;
+    padding: 12px 5%;
 
-    position: sticky;
+    background:
+        linear-gradient(
+            110deg,
+            #0878d1,
+            #0796ad,
+            #00a889
+        );
 
-    top: 0;
+    border-bottom: 1px solid
+        rgba(255,255,255,.08);
 
-    z-index: 10;
 }
 
 
 
-/* =========================
+/* ==================================================
    LOGO
-========================= */
+================================================== */
 
 .school-logo {
 
-    height: 78px;
-
-    width: 220px;
+    height: 82px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: flex-start;
-
-    overflow: hidden;
 }
+
 
 
 .school-logo img {
 
-    width: 90px;
+    height: 78px;
 
-    height: 90px;
+    width: auto;
+
+    max-width: 250px;
 
     object-fit: contain;
 
-    display: block;
 }
 
 
 
-/* =========================
-   ADMINISTRADOR
-========================= */
+/* ==================================================
+   BOTÃO ADMIN
+================================================== */
 
 .admin-button {
 
@@ -141,1212 +150,1456 @@ body {
 
     border-radius: 30px;
 
-    background:
-        #111111;
+    padding: 15px 26px;
 
-    color:
-        var(--green);
+    background: #101313;
 
-    padding:
-        13px 22px;
+    color: #00c59e;
 
-    font-size:
-        14px;
+    font-size: 16px;
 
-    font-weight:
-        700;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        0.2s;
+        transform .2s,
+        background .2s,
+        color .2s;
+
 }
+
 
 
 .admin-button:hover {
 
-    background:
-        #191919;
+    transform: translateY(-2px);
 
-    transform:
-        translateY(-1px);
+    background: #080909;
+
+    color: #5ee6c4;
+
 }
 
 
 
-/* =========================
-   LAYOUT
-========================= */
+/* ==================================================
+   LAYOUT PRINCIPAL
+================================================== */
 
-.page-layout {
+.layout {
 
-    max-width:
-        1500px;
+    width: 100%;
 
-    margin:
-        0 auto;
+    max-width: 1500px;
 
-    min-height:
-        calc(100vh - 86px);
+    margin: 0 auto;
 
-    display:
-        grid;
+    padding: 30px;
+
+    display: grid;
 
     grid-template-columns:
-        210px
+        190px
         minmax(0, 1fr)
-        230px;
+        190px;
 
-    gap:
-        20px;
+    gap: 25px;
 
-    padding:
-        24px 20px;
 }
 
 
 
-/* =========================
+/* ==================================================
    MENU ESQUERDO
-========================= */
+================================================== */
 
 .left-sidebar {
 
-    padding-top:
-        4px;
+    padding-top: 10px;
+
 }
 
 
-.main-nav {
 
-    display:
-        flex;
+.main-navigation {
 
-    flex-direction:
-        column;
+    display: flex;
 
-    gap:
-        8px;
+    flex-direction: column;
+
+    gap: 12px;
+
 }
+
 
 
 .nav-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    border:
-        none;
+    padding: 16px 12px;
 
-    border-radius:
-        12px;
+    border: none;
 
-    background:
-        transparent;
+    border-radius: 12px;
 
-    color:
-        var(--text-secondary);
+    background: transparent;
 
-    padding:
-        14px 16px;
+    color: #aebdca;
 
-    text-align:
-        left;
+    font-size: 16px;
 
-    font-size:
-        15px;
+    font-weight: bold;
 
-    font-weight:
-        600;
+    text-align: left;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        0.2s;
+        background .2s,
+        color .2s,
+        transform .2s;
+
 }
+
 
 
 .nav-button:hover {
 
-    background:
-        #171919;
+    background: rgba(
+        0,
+        168,
+        137,
+        .12
+    );
 
-    color:
-        var(--text);
+    color: white;
+
 }
+
 
 
 .nav-button.active {
 
     background:
-        #19342E;
+        rgba(
+            0,
+            168,
+            137,
+            .20
+        );
 
-    color:
-        var(--green);
+    color: #52d5b8;
+
 }
 
 
 
-/* =========================
-   CONTEÚDO
-========================= */
+/* ==================================================
+   CONTEÚDO CENTRAL
+================================================== */
 
-.content {
+.main-content {
 
-    min-width:
-        0;
+    min-width: 0;
+
 }
 
 
 
-/* =========================
-   ÁREA ADICIONAR
-========================= */
-
-.add-work-area {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        center;
-
-    margin-bottom:
-        18px;
-}
-
-
-
-/* =========================
+/* ==================================================
    BOTÃO ADICIONAR
-========================= */
+================================================== */
 
 .add-work-button {
 
-    border:
-        none;
+    width: 100%;
 
-    border-radius:
-        12px;
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 18px;
 
     background:
         linear-gradient(
-            110deg,
-            #087CC2,
-            #00A57C
+            100deg,
+            var(--blue),
+            var(--green)
         );
 
-    color:
-        white;
+    color: white;
 
-    padding:
-        15px 25px;
+    font-size: 18px;
 
-    font-size:
-        16px;
+    font-weight: bold;
 
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
+    cursor: pointer;
 
     box-shadow:
-        0 4px 15px
-        rgba(0, 165, 124, 0.20);
+        0 8px 25px
+        rgba(0, 130, 170, .15);
 
     transition:
-        0.2s;
+        transform .2s,
+        filter .2s;
+
 }
+
 
 
 .add-work-button:hover {
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
-    box-shadow:
-        0 6px 20px
-        rgba(0, 165, 124, 0.30);
-}
+    filter: brightness(1.08);
 
-
-.plus {
-
-    font-size:
-        20px;
-
-    margin-right:
-        7px;
 }
 
 
 
-/* =========================
+/* ==================================================
    FORMULÁRIO
-========================= */
+================================================== */
 
 .work-form {
 
-    width:
-        100%;
+    display: none;
 
-    max-width:
-        650px;
+    margin-top: 18px;
 
-    margin-top:
-        15px;
+    padding: 25px;
 
-    padding:
-        25px;
+    background: var(--card);
 
-    background:
-        var(--card);
+    border: 1px solid
+        var(--border);
 
-    border-radius:
-        16px;
+    border-radius: 18px;
 
-    border:
-        1px solid #202323;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0, 0, 0, 0.20);
-
-    display:
-        none;
 }
+
 
 
 .work-form.visible {
 
-    display:
-        block;
+    display: block;
+
 }
+
 
 
 .work-form h2 {
 
-    color:
-        var(--blue);
+    margin-bottom: 22px;
 
-    font-size:
-        21px;
+    color: var(--blue-light);
 
-    margin-bottom:
-        22px;
+    font-size: 24px;
+
 }
 
 
 
-/* =========================
+/* ==================================================
    SEÇÕES DO FORMULÁRIO
-========================= */
+================================================== */
 
 .form-section {
 
-    margin-bottom:
-        18px;
+    margin-bottom: 20px;
+
 }
+
 
 
 .form-section label {
 
-    display:
-        block;
+    display: block;
 
-    color:
-        var(--text-secondary);
+    margin-bottom: 8px;
 
-    font-size:
-        14px;
+    color: #b8c8d7;
 
-    font-weight:
-        600;
+    font-size: 14px;
 
-    margin-bottom:
-        8px;
+    font-weight: bold;
+
 }
 
 
 
-/* =========================
-   TIPOS
-========================= */
+/* ==================================================
+   BOTÕES DE TIPO
+================================================== */
 
 .type-buttons {
 
-    display:
-        flex;
+    display: grid;
 
-    gap:
-        10px;
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 12px;
+
 }
+
 
 
 .type-button {
 
-    flex:
-        1;
+    border: 1px solid
+        var(--border);
 
-    padding:
-        13px;
+    border-radius: 10px;
 
-    border:
-        1px solid var(--border);
+    padding: 15px;
 
-    border-radius:
-        10px;
+    background: var(--card-light);
 
-    background:
-        #181919;
+    color: #b7c6d4;
 
-    color:
-        var(--text-secondary);
+    font-size: 16px;
 
-    font-size:
-        15px;
+    font-weight: bold;
 
-    font-weight:
-        600;
-
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        0.2s;
+        border .2s,
+        background .2s,
+        color .2s;
+
 }
+
 
 
 .type-button:hover {
 
-    background:
-        #202222;
+    border-color:
+        var(--green);
 
-    color:
-        var(--text);
 }
+
 
 
 .type-button.selected {
 
     background:
-        #19342E;
+        rgba(
+            0,
+            168,
+            137,
+            .18
+        );
 
     border-color:
-        var(--green);
+        #00c7a5;
 
-    color:
-        var(--green);
+    color: #4edabd;
+
 }
 
 
 
-/* =========================
+/* ==================================================
    CAMPOS
-========================= */
+================================================== */
 
 .work-fields {
 
-    display:
-        none;
+    display: none;
+
 }
+
 
 
 .work-fields.visible {
 
-    display:
-        block;
+    display: block;
+
 }
 
 
 
-/* =========================
-   INPUTS
-========================= */
-
-.form-section select,
-.form-section input,
-.form-section textarea {
-
-    width:
-        100%;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        9px;
-
-    background:
-        #181919;
-
-    color:
-        var(--text);
-
-    padding:
-        12px;
-
-    font-family:
-        inherit;
-
-    font-size:
-        14px;
-
-    outline:
-        none;
-}
-
-
-.form-section select:focus,
-.form-section input:focus,
-.form-section textarea:focus {
-
-    border-color:
-        var(--green);
-}
-
-
-.form-section textarea {
-
-    min-height:
-        180px;
-
-    resize:
-        vertical;
-}
-
-
-
-/* =========================
-   CAMPOS ESPECÍFICOS
-========================= */
+/* ==================================================
+   TEXTO E VÍDEO
+================================================== */
 
 #textField,
 #videoField {
 
-    display:
-        none;
+    display: none;
+
 }
+
 
 
 #textField.visible,
 #videoField.visible {
 
-    display:
-        block;
+    display: block;
+
 }
 
 
 
-/* =========================
-   PUBLICAR
-========================= */
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    border: 1px solid
+        var(--border);
+
+    border-radius: 9px;
+
+    background:
+        #181919;
+
+    color: white;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+        border .2s,
+        box-shadow .2s;
+
+}
+
+
+
+input,
+select {
+
+    height: 46px;
+
+    padding: 0 13px;
+
+}
+
+
+
+textarea {
+
+    min-height: 180px;
+
+    padding: 13px;
+
+    resize: vertical;
+
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(
+            8,
+            120,
+            209,
+            .15
+        );
+
+}
+
+
+
+/* ==================================================
+   SELECT
+================================================== */
+
+select {
+
+    cursor: pointer;
+
+}
+
+
+
+select option {
+
+    background: #181919;
+
+    color: white;
+
+}
+
+
+
+/* ==================================================
+   BOTÃO PUBLICAR
+================================================== */
 
 .publish-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        10px;
+    border-radius: 10px;
 
-    padding:
-        14px;
+    padding: 14px;
 
     background:
         linear-gradient(
-            110deg,
-            #087CC2,
-            #00A57C
+            100deg,
+            #0878d1,
+            #00a889
         );
 
-    color:
-        white;
+    color: white;
 
-    font-size:
-        15px;
+    font-size: 16px;
 
-    font-weight:
-        700;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
-        0.2s;
+        filter .2s,
+        transform .2s;
+
 }
+
 
 
 .publish-button:hover {
 
-    transform:
-        translateY(-1px);
+    filter: brightness(1.08);
 
-    box-shadow:
-        0 5px 15px
-        rgba(0, 165, 124, 0.25);
+    transform: translateY(-1px);
+
 }
+
 
 
 .publish-button:disabled {
 
-    opacity:
-        0.6;
+    opacity: .6;
 
-    cursor:
-        wait;
+    cursor: wait;
 
-    transform:
-        none;
+    transform: none;
+
 }
 
 
 
-/* =========================
+/* ==================================================
    ÁREA DOS TRABALHOS
-========================= */
+================================================== */
 
-.works-area {
+.works-section {
 
-    min-height:
-        500px;
+    margin-top: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+
+
+/* ==================================================
+   CARD DE TRABALHO
+================================================== */
+
+.work-card {
 
     background:
         var(--card);
 
-    border:
-        1px solid #202323;
+    border: 1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
 
-    border-radius:
-        16px;
+    border-radius: 18px;
 
-    padding:
-        28px;
+    padding: 25px;
 
     box-shadow:
         0 5px 20px
-        rgba(0, 0, 0, 0.15);
+        rgba(0,0,0,.12);
+
 }
 
 
 
-/* =========================
+/* ==================================================
+   CABEÇALHO DO CARD
+================================================== */
+
+.work-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+}
+
+
+
+.work-author {
+
+    color: #dbe8f4;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+
+.work-date {
+
+    margin-top: 5px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 13px;
+
+}
+
+
+
+.work-type {
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            8,
+            120,
+            209,
+            .15
+        );
+
+    color:
+        #78baff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* ==================================================
+   TEXTO DO TRABALHO
+================================================== */
+
+.work-text {
+
+    color: #c2d0dc;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+}
+
+
+
+/* ==================================================
+   VÍDEO
+================================================== */
+
+.work-video {
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #000;
+
+}
+
+
+
+/* ==================================================
    ESTADO VAZIO
-========================= */
+================================================== */
 
 .empty-state {
 
-    min-height:
-        440px;
+    padding: 50px 25px;
 
-    display:
-        flex;
+    text-align: center;
 
-    align-items:
-        center;
+    background:
+        var(--card);
 
-    justify-content:
-        center;
+    border-radius: 18px;
 
-    flex-direction:
-        column;
+    border: 1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
 
-    text-align:
-        center;
 }
+
 
 
 .empty-state h1 {
 
-    font-size:
-        21px;
-
-    margin-bottom:
-        8px;
-
     color:
-        var(--blue);
+        var(--blue-light);
+
+    font-size: 25px;
+
+    margin-bottom: 12px;
+
 }
+
 
 
 .empty-state p {
 
     color:
-        var(--text-secondary);
+        var(--text-muted);
 
-    font-size:
-        14px;
+    font-size: 16px;
+
 }
 
 
 
-/* =========================
-   CARD DE TRABALHO
-========================= */
-
-.work-card {
-
-    background:
-        #111111;
-
-    border-radius:
-        16px;
-
-    padding:
-        25px;
-
-    margin-bottom:
-        18px;
-
-    border:
-        1px solid #202323;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0, 0, 0, 0.15);
-}
-
-
-.work-card:last-child {
-
-    margin-bottom:
-        0;
-}
-
-
-.work-header {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        15px;
-
-    margin-bottom:
-        18px;
-}
-
-
-.work-author {
-
-    color:
-        var(--text);
-
-    font-size:
-        17px;
-
-    font-weight:
-        700;
-}
-
-
-.work-type {
-
-    color:
-        var(--green);
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-    white-space:
-        nowrap;
-}
-
-
-.work-date {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        12px;
-
-    margin-top:
-        4px;
-}
-
-
-.work-text {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        16px;
-
-    line-height:
-        1.7;
-
-    white-space:
-        pre-wrap;
-
-    overflow-wrap:
-        anywhere;
-}
-
-
-
-/* =========================
-   VÍDEO
-========================= */
-
-.work-video {
-
-    width:
-        100%;
-
-    aspect-ratio:
-        16 / 9;
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    margin-top:
-        8px;
-}
-
-
-
-/* =========================
+/* ==================================================
    MENU DIREITO
-========================= */
+================================================== */
 
 .right-sidebar {
 
-    padding-top:
-        4px;
+    padding-top: 10px;
+
 }
 
 
-.organize-title {
 
-    color:
-        var(--text-secondary);
+.filter-title {
 
-    font-size:
-        13px;
+    color: #aebdca;
 
-    font-weight:
-        700;
+    font-size: 14px;
 
-    text-transform:
-        uppercase;
+    font-weight: bold;
 
-    margin:
-        0 0 10px 5px;
+    margin-bottom: 12px;
+
 }
 
-
-.organize-nav {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        8px;
-}
 
 
 .filter-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        12px;
+    border-radius: 10px;
 
-    background:
-        transparent;
+    padding: 14px 10px;
 
-    color:
-        var(--text-secondary);
+    margin-bottom: 8px;
 
-    padding:
-        14px 16px;
+    background: transparent;
 
-    text-align:
-        left;
+    color: #aebdca;
 
-    font-size:
-        15px;
+    font-size: 14px;
 
-    font-weight:
-        600;
+    font-weight: bold;
 
-    cursor:
-        pointer;
+    text-align: left;
+
+    cursor: pointer;
 
     transition:
-        0.2s;
+        background .2s,
+        color .2s;
+
 }
+
 
 
 .filter-button:hover {
 
     background:
-        #171919;
+        rgba(
+            8,
+            120,
+            209,
+            .12
+        );
 
-    color:
-        var(--text);
+    color: white;
+
 }
+
 
 
 .filter-button.active {
 
     background:
-        #19342E;
+        rgba(
+            0,
+            168,
+            137,
+            .18
+        );
 
     color:
-        var(--green);
-
-    box-shadow:
-        0 3px 8px
-        rgba(67, 185, 141, 0.10);
-}
-
-
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-@media (max-width: 900px) {
-
-    .page-layout {
-
-        grid-template-columns:
-            170px
-            minmax(0, 1fr);
-    }
-
-
-    .right-sidebar {
-
-        grid-column:
-            1 / -1;
-
-        order:
-            3;
-    }
-
-
-    .organize-nav {
-
-        flex-direction:
-            row;
-
-        flex-wrap:
-            wrap;
-    }
-
-
-    .filter-button {
-
-        width:
-            auto;
-    }
+        #4edabd;
 
 }
 
 
 
-/* =========================
-   CELULAR
-========================= */
-
-@media (max-width: 650px) {
-
-    .topbar {
-
-        height:
-            auto;
-
-        min-height:
-            68px;
-
-        padding:
-            6px 14px;
-
-        gap:
-            10px;
-    }
-
-
-    .school-logo {
-
-        width:
-            100px;
-
-        height:
-            60px;
-    }
-
-
-    .school-logo img {
-
-        width:
-            65px;
-
-        height:
-            65px;
-    }
-
-
-    .admin-button {
-
-        padding:
-            10px 15px;
-
-        font-size:
-            12px;
-    }
-
-
-    .page-layout {
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        padding:
-            14px;
-
-        gap:
-            14px;
-    }
-
-
-    .left-sidebar {
-
-        order:
-            1;
-    }
-
-
-    .content {
-
-        order:
-            2;
-    }
-
-
-    .right-sidebar {
-
-        order:
-            3;
-    }
-
-
-    .main-nav {
-
-        flex-direction:
-            row;
-    }
-
-
-    .nav-button {
-
-        text-align:
-            center;
-
-        padding:
-            11px 7px;
-
-        font-size:
-            13px;
-    }
-
-
-    .works-area {
-
-        padding:
-            18px;
-
-        border-radius:
-            14px;
-    }
-
-
-    .work-form {
-
-        padding:
-            18px;
-    }
-
-
-    .type-buttons {
-
-        flex-direction:
-            column;
-    }
-
-
-    .work-header {
-
-        align-items:
-            flex-start;
-
-        flex-direction:
-            column;
-    }
-
-}
-
-/* =========================
-   LOGIN ADMIN
-========================= */
+/* ==================================================
+   MODAL DO ADMINISTRADOR
+================================================== */
 
 .admin-modal {
-    position: fixed;
-    inset: 0;
 
-    background: rgba(0,0,0,.7);
+    position: fixed;
+
+    inset: 0;
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
-    z-index: 100;
+    padding: 20px;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            .72
+        );
+
+    z-index: 1000;
+
 }
+
+
 
 .admin-modal.visible {
+
     display: flex;
+
 }
+
+
 
 .admin-modal-box {
-    width: 360px;
 
-    background: var(--card);
+    width: 100%;
 
-    border: 1px solid var(--border);
+    max-width: 400px;
 
-    border-radius: 16px;
+    padding: 28px;
 
-    padding: 24px;
+    background:
+        #111313;
 
-    display: flex;
-    flex-direction: column;
+    border: 1px solid
+        var(--border);
 
-    gap: 14px;
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.5);
+
 }
+
+
 
 .admin-modal-box h2 {
-    color: var(--blue);
+
+    color:
+        var(--blue-light);
+
+    font-size: 24px;
+
+    margin-bottom: 8px;
+
 }
+
+
+
+.admin-login-description {
+
+    color:
+        var(--text-muted);
+
+    font-size: 14px;
+
+    margin-bottom: 22px;
+
+}
+
+
+
+.admin-modal-box label {
+
+    display: block;
+
+    margin-top: 13px;
+
+    margin-bottom: 7px;
+
+    color: #b8c8d7;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
 
 .admin-modal-box input {
-    background: #181919;
 
-    border: 1px solid var(--border);
+    width: 100%;
 
-    border-radius: 9px;
+    height: 46px;
 
-    color: white;
+    padding: 0 13px;
 
-    padding: 12px;
 }
 
+
+
+/* ==================================================
+   BOTÕES DO MODAL
+================================================== */
+
 .admin-modal-buttons {
+
     display: flex;
 
     gap: 10px;
+
+    margin-top: 22px;
+
 }
 
+
+
 .admin-modal-buttons button {
+
     flex: 1;
 
     border: none;
 
     border-radius: 9px;
 
-    padding: 12px;
+    padding: 13px;
+
+    font-size: 14px;
+
+    font-weight: bold;
 
     cursor: pointer;
+
 }
+
+
+
+#cancelAdminLogin {
+
+    background:
+        #272b2c;
+
+    color:
+        #b7c3cc;
+
+}
+
+
+
+#cancelAdminLogin:hover {
+
+    background:
+        #323738;
+
+}
+
+
 
 #confirmAdminLogin {
-    background: var(--green);
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--blue),
+            var(--green)
+        );
 
     color: white;
+
 }
 
 
-/* =========================
+
+#confirmAdminLogin:hover {
+
+    filter: brightness(1.08);
+
+}
+
+
+
+/* ==================================================
    CONTROLES DO ADMIN
-========================= */
+================================================== */
 
 .admin-controls {
+
     display: flex;
+
+    flex-wrap: wrap;
 
     gap: 8px;
 
-    margin-top: 18px;
+    margin-top: 20px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid
+        var(--border);
+
 }
 
+
+
 .admin-controls button {
+
     border: none;
 
     border-radius: 8px;
 
-    padding: 10px 14px;
+    padding: 10px 15px;
+
+    font-size: 13px;
+
+    font-weight: bold;
 
     cursor: pointer;
 
-    font-weight: bold;
+    transition:
+        transform .15s,
+        filter .15s;
+
 }
+
+
+
+.admin-controls button:hover {
+
+    transform: translateY(-1px);
+
+    filter: brightness(1.1);
+
+}
+
+
 
 .approve-button {
-    background: var(--green);
+
+    background:
+        #008f76;
 
     color: white;
+
 }
+
+
 
 .edit-button {
-    background: var(--blue);
+
+    background:
+        #0878d1;
 
     color: white;
+
 }
+
+
 
 .delete-button {
-    background: #b53a3a;
+
+    background:
+        var(--danger);
 
     color: white;
+
 }
 
+
+
+/* ==================================================
+   STATUS PENDENTE
+================================================== */
+
 .pending-badge {
-    color: #f0b429;
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(
+            240,
+            180,
+            41,
+            .10
+        );
+
+    color:
+        var(--warning);
+
+    font-size: 13px;
 
     font-weight: bold;
 
-    font-size: 13px;
+}
+
+
+
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+@media (
+    max-width: 900px
+) {
+
+    .layout {
+
+        grid-template-columns:
+            150px
+            minmax(0, 1fr)
+            150px;
+
+        gap: 15px;
+
+        padding: 20px;
+
+    }
+
+    .school-logo img {
+
+        max-width: 190px;
+
+    }
+
+    .admin-button {
+
+        padding: 12px 18px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+
+/* ==================================================
+   TABLET / CELULAR
+================================================== */
+
+@media (
+    max-width: 700px
+) {
+
+    .topbar {
+
+        height: auto;
+
+        min-height: 90px;
+
+        padding: 10px 18px;
+
+        gap: 12px;
+
+    }
+
+
+    .school-logo {
+
+        height: 65px;
+
+    }
+
+
+    .school-logo img {
+
+        height: 60px;
+
+        max-width: 150px;
+
+    }
+
+
+    .admin-button {
+
+        padding: 11px 15px;
+
+        font-size: 12px;
+
+    }
+
+
+    .layout {
+
+        display: flex;
+
+        flex-direction: column;
+
+        padding: 15px;
+
+    }
+
+
+    /* MENU ESQUERDO */
+
+    .left-sidebar {
+
+        order: 1;
+
+        padding: 0;
+
+    }
+
+
+    .main-navigation {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 7px;
+
+    }
+
+
+    .nav-button {
+
+        padding: 13px 6px;
+
+        font-size: 13px;
+
+        text-align: center;
+
+    }
+
+
+    /* CONTEÚDO */
+
+    .main-content {
+
+        order: 2;
+
+    }
+
+
+    /* MENU DIREITO */
+
+    .right-sidebar {
+
+        order: 3;
+
+        padding: 0;
+
+    }
+
+
+    .filter-title {
+
+        margin-top: 5px;
+
+    }
+
+
+    .right-sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 7px;
+
+    }
+
+
+    .filter-title {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .filter-button {
+
+        margin: 0;
+
+        text-align: center;
+
+        font-size: 12px;
+
+    }
+
+
+    .work-card {
+
+        padding: 18px;
+
+    }
+
+
+    .work-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .work-type {
+
+        align-self: flex-start;
+
+    }
+
+
+    .type-buttons {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (
+    max-width: 450px
+) {
+
+    .topbar {
+
+        flex-direction: column;
+
+        justify-content: center;
+
+    }
+
+
+    .school-logo img {
+
+        max-width: 180px;
+
+    }
+
+
+    .admin-button {
+
+        width: 100%;
+
+    }
+
+
+    .work-form {
+
+        padding: 18px;
+
+    }
+
+
+    .admin-modal-box {
+
+        padding: 20px;
+
+    }
+
+
+    .admin-controls {
+
+        flex-direction: column;
+
+    }
+
+
+    .admin-controls button {
+
+        width: 100%;
+
+    }
+
 }
