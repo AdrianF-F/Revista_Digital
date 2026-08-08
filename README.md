@@ -1,1 +1,0 @@
-# Revista_Digital
