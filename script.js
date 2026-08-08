@@ -9,29 +9,16 @@ const SUPABASE_KEY =
     "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
 
 
-let supabaseClient = null;
-
-
-/* Inicia o Supabase */
-
-if (
-    window.supabase &&
-    SUPABASE_URL &&
-    SUPABASE_KEY
-) {
-
-    supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-}
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 
 /* ==================================================
-   ELEMENTOS
+   ELEMENTOS - ADICIONAR TRABALHO
 ================================================== */
 
 const addWorkButton =
@@ -67,7 +54,11 @@ const publishButton =
 const worksArea =
     document.getElementById("worksArea");
 
-let isAdmin = false;
+
+
+/* ==================================================
+   ELEMENTOS - ADMINISTRADOR
+================================================== */
 
 const adminButton =
     document.getElementById("adminButton");
@@ -95,19 +86,19 @@ const cancelAdminLogin =
 
 let selectedType = null;
 
+let isAdmin = false;
+
 
 
 /* ==================================================
-   VERIFICAÇÃO DOS ELEMENTOS
+   VERIFICAÇÃO INICIAL
 ================================================== */
 
-console.log(
-    "Sistema carregado."
-);
+console.log("Sistema carregado.");
 
 console.log(
-    "Botão adicionar:",
-    addWorkButton
+    "Supabase:",
+    supabaseClient
 );
 
 
@@ -175,6 +166,15 @@ filterButtons.forEach(button => {
                 "active"
             );
 
+
+            /*
+                Por enquanto os botões
+                apenas mudam visualmente.
+
+                Depois implementaremos
+                a organização real.
+            */
+
         }
     );
 
@@ -183,7 +183,7 @@ filterButtons.forEach(button => {
 
 
 /* ==================================================
-   BOTÃO ADICIONAR TRABALHO
+   BOTÃO "ADICIONAR TRABALHO"
 ================================================== */
 
 if (addWorkButton) {
@@ -204,7 +204,7 @@ if (addWorkButton) {
 
 
 /* ==================================================
-   ESCOLHER TIPO
+   ESCOLHER TIPO DE TRABALHO
 ================================================== */
 
 typeButtons.forEach(button => {
@@ -213,7 +213,7 @@ typeButtons.forEach(button => {
         "click",
         () => {
 
-            /* Remove seleção */
+            /* Remove seleção anterior */
 
             typeButtons.forEach(item => {
 
@@ -224,14 +224,14 @@ typeButtons.forEach(button => {
             });
 
 
-            /* Seleciona */
+            /* Seleciona o botão */
 
             button.classList.add(
                 "selected"
             );
 
 
-            /* Guarda tipo */
+            /* Guarda o tipo */
 
             selectedType =
                 button.dataset.type;
@@ -244,7 +244,9 @@ typeButtons.forEach(button => {
             );
 
 
-            /* TEXTO */
+            /* =========================
+               TEXTO
+            ========================== */
 
             if (
                 selectedType === "texto"
@@ -261,7 +263,9 @@ typeButtons.forEach(button => {
             }
 
 
-            /* VÍDEO */
+            /* =========================
+               VÍDEO
+            ========================== */
 
             if (
                 selectedType === "video"
@@ -285,7 +289,7 @@ typeButtons.forEach(button => {
 
 
 /* ==================================================
-   PUBLICAR
+   PUBLICAR TRABALHO
 ================================================== */
 
 if (publishButton) {
@@ -302,20 +306,9 @@ if (publishButton) {
 async function publicarTrabalho() {
 
 
-    /* Verifica Supabase */
-
-    if (!supabaseClient) {
-
-        alert(
-            "O sistema de banco de dados não foi carregado."
-        );
-
-        return;
-    }
-
-
-
-    /* Verifica tipo */
+    /* =========================
+       VERIFICAR TIPO
+    ========================== */
 
     if (!selectedType) {
 
@@ -328,7 +321,9 @@ async function publicarTrabalho() {
 
 
 
-    /* Verifica nome */
+    /* =========================
+       VERIFICAR NOME
+    ========================== */
 
     const nome =
         studentName.value;
@@ -345,15 +340,17 @@ async function publicarTrabalho() {
 
 
 
-    /* Conteúdo */
+    /* =========================
+       CONTEÚDO
+    ========================== */
 
     let conteudo = "";
 
 
 
-    /* ==================================================
-       TEXTO
-    ================================================== */
+    /* =========================
+       TRABALHO EM TEXTO
+    ========================== */
 
     if (
         selectedType === "texto"
@@ -376,9 +373,9 @@ async function publicarTrabalho() {
 
 
 
-    /* ==================================================
-       VÍDEO
-    ================================================== */
+    /* =========================
+       TRABALHO EM VÍDEO
+    ========================== */
 
     if (
         selectedType === "video"
@@ -418,9 +415,9 @@ async function publicarTrabalho() {
 
 
 
-    /* ==================================================
-       PUBLICANDO
-    ================================================== */
+    /* =========================
+       DESABILITAR BOTÃO
+    ========================== */
 
     publishButton.disabled =
         true;
@@ -432,27 +429,46 @@ async function publicarTrabalho() {
 
     try {
 
+
+        /* =========================
+           INSERIR NO BANCO
+        ========================== */
+
         const {
             error
         } = await supabaseClient
             .from("trabalhos")
-          .insert({
-    nome: nome,
-    tipo: selectedType,
-    conteudo: conteudo,
-    aprovado: false
-});
+            .insert({
+
+                nome:
+                    nome,
+
+                tipo:
+                    selectedType,
+
+                conteudo:
+                    conteudo,
+
+                /*
+                    Todo trabalho começa
+                    como NÃO aprovado.
+                */
+
+                aprovado:
+                    false
+
+            });
 
 
 
-        /* ==================================================
-           ERRO
-        ================================================== */
+        /* =========================
+           VERIFICAR ERRO
+        ========================== */
 
         if (error) {
 
             console.error(
-                "Erro do Supabase:",
+                "Erro ao publicar:",
                 error
             );
 
@@ -468,12 +484,12 @@ async function publicarTrabalho() {
 
 
 
-        /* ==================================================
+        /* =========================
            SUCESSO
-        ================================================== */
+        ========================== */
 
         alert(
-            "Trabalho publicado com sucesso!"
+            "Trabalho enviado para aprovação!"
         );
 
 
@@ -562,27 +578,357 @@ function limparFormulario() {
 
 
 /* ==================================================
+   LOGIN DO ADMINISTRADOR
+================================================== */
+
+if (adminButton) {
+
+    adminButton.addEventListener(
+        "click",
+        abrirLoginAdmin
+    );
+
+}
+
+
+
+function abrirLoginAdmin() {
+
+
+    /*
+       Se já estiver logado,
+       o botão funciona como
+       botão de sair.
+    */
+
+    if (isAdmin) {
+
+        sairAdministrador();
+
+        return;
+    }
+
+
+    adminModal.classList.add(
+        "visible"
+    );
+
+
+    adminEmail.focus();
+
+}
+
+
+
+/* ==================================================
+   CANCELAR LOGIN
+================================================== */
+
+if (cancelAdminLogin) {
+
+    cancelAdminLogin.addEventListener(
+        "click",
+        () => {
+
+            adminModal.classList.remove(
+                "visible"
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   LOGIN
+================================================== */
+
+if (confirmAdminLogin) {
+
+    confirmAdminLogin.addEventListener(
+        "click",
+        fazerLoginAdmin
+    );
+
+}
+
+
+
+async function fazerLoginAdmin() {
+
+
+    const email =
+        adminEmail.value.trim();
+
+    const senha =
+        adminPassword.value;
+
+
+
+    /* =========================
+       VALIDAR CAMPOS
+    ========================== */
+
+    if (!email || !senha) {
+
+        alert(
+            "Digite o e-mail e a senha."
+        );
+
+        return;
+    }
+
+
+
+    confirmAdminLogin.disabled =
+        true;
+
+    confirmAdminLogin.textContent =
+        "Entrando...";
+
+
+
+    try {
+
+
+        /* =========================
+           LOGIN SUPABASE
+        ========================== */
+
+        const {
+            data,
+            error
+        } = await supabaseClient.auth
+            .signInWithPassword({
+
+                email:
+                    email,
+
+                password:
+                    senha
+
+            });
+
+
+
+        /* =========================
+           ERRO
+        ========================== */
+
+        if (error) {
+
+            console.error(
+                "Erro de login:",
+                error
+            );
+
+
+            alert(
+                "E-mail ou senha incorretos."
+            );
+
+
+            return;
+        }
+
+
+
+        /* =========================
+           LOGIN REALIZADO
+        ========================== */
+
+        if (data.session) {
+
+            isAdmin =
+                true;
+
+
+            adminModal.classList.remove(
+                "visible"
+            );
+
+
+            adminEmail.value =
+                "";
+
+            adminPassword.value =
+                "";
+
+
+            adminButton.textContent =
+                "Sair do administrador";
+
+
+            await carregarTrabalhos();
+
+        }
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Não foi possível realizar o login."
+        );
+
+    }
+
+
+    finally {
+
+        confirmAdminLogin.disabled =
+            false;
+
+        confirmAdminLogin.textContent =
+            "Entrar";
+
+    }
+
+}
+
+
+
+/* ==================================================
+   SAIR DO ADMINISTRADOR
+================================================== */
+
+async function sairAdministrador() {
+
+    await supabaseClient.auth.signOut();
+
+
+    isAdmin =
+        false;
+
+
+    adminButton.textContent =
+        "Entrar como administrador";
+
+
+    await carregarTrabalhos();
+
+}
+
+
+
+/* ==================================================
+   VERIFICAR LOGIN EXISTENTE
+================================================== */
+
+async function verificarSessao() {
+
+    const {
+        data
+    } = await supabaseClient.auth.getSession();
+
+
+    if (data.session) {
+
+        isAdmin =
+            true;
+
+
+        adminButton.textContent =
+            "Sair do administrador";
+
+    }
+
+}
+
+
+
+/* ==================================================
    CARREGAR TRABALHOS
 ================================================== */
 
 async function carregarTrabalhos() {
 
-   let query =
-    supabaseClient
-        .from("trabalhos")
-        .select("*");
 
-if (!isAdmin) {
+    try {
 
-    query =
-        query.eq("aprovado", true);
 
-}
+        /*
+            Administrador:
+            vê todos.
 
-const { data, error } =
-    await query.order("id", {
-        ascending: false
-    });
+            Visitante:
+            vê somente aprovados.
+        */
+
+        let query =
+            supabaseClient
+                .from("trabalhos")
+                .select("*");
+
+
+        if (!isAdmin) {
+
+            query =
+                query.eq(
+                    "aprovado",
+                    true
+                );
+
+        }
+
+
+        /*
+            Usamos "id" porque,
+            pela sua tabela atual,
+            ela possui:
+
+            id
+            nome
+            tipo
+            conteudo
+            aprovado
+        */
+
+        query =
+            query.order(
+                "id",
+                {
+                    ascending:
+                        false
+                }
+            );
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+
+        /* =========================
+           ERRO
+        ========================== */
+
+        if (error) {
+
+            console.error(
+                "Erro ao carregar trabalhos:",
+                error
+            );
+
+            return;
+        }
+
+
+
+        renderizarTrabalhos(
+            data
+        );
+
     }
 
 
@@ -607,42 +953,75 @@ function renderizarTrabalhos(
     trabalhos
 ) {
 
+
     worksArea.innerHTML =
         "";
 
 
-    /* Nenhum trabalho */
+
+    /* =========================
+       NENHUM TRABALHO
+    ========================== */
 
     if (
         !trabalhos ||
         trabalhos.length === 0
     ) {
 
-        worksArea.innerHTML = `
 
-            <div class="empty-state">
+        if (isAdmin) {
 
-                <h1>
-                    Trabalhos postados
-                </h1>
+            worksArea.innerHTML = `
 
-                <p>
-                    Os trabalhos aparecerão aqui.
-                </p>
+                <div class="empty-state">
 
-            </div>
+                    <h1>
+                        Nenhum trabalho encontrado
+                    </h1>
 
-        `;
+                    <p>
+                        Não existem trabalhos publicados ou pendentes.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+            worksArea.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h1>
+                        Trabalhos postados
+                    </h1>
+
+                    <p>
+                        Os trabalhos aprovados aparecerão aqui.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
 
         return;
     }
 
 
 
-    /* Criar cards */
+    /* =========================
+       CRIAR CARDS
+    ========================== */
 
     trabalhos.forEach(
         trabalho => {
+
 
             const card =
                 document.createElement(
@@ -655,72 +1034,156 @@ function renderizarTrabalhos(
 
 
 
-            /* Data */
+            /* =========================
+               CABEÇALHO
+            ========================== */
 
-            const data =
-                new Date(
-                    trabalho.created_at
+            const header =
+                document.createElement(
+                    "div"
                 );
 
 
-            const dataFormatada =
-                data.toLocaleString(
-                    "pt-BR",
-                    {
-                        dateStyle:
-                            "short",
+            header.className =
+                "work-header";
 
-                        timeStyle:
-                            "short"
-                    }
+
+
+            /* =========================
+               INFORMAÇÕES
+            ========================== */
+
+            const info =
+                document.createElement(
+                    "div"
                 );
 
 
 
-            /* Cabeçalho */
-
-            card.innerHTML = `
-
-                <div class="work-header">
-
-                    <div>
-
-                        <div class="work-author">
-
-                            ${escaparHTML(
-                                trabalho.nome
-                            )}
-
-                        </div>
-
-                        <div class="work-date">
-
-                            ${dataFormatada}
-
-                        </div>
-
-                    </div>
+            const author =
+                document.createElement(
+                    "div"
+                );
 
 
-                    <div class="work-type">
+            author.className =
+                "work-author";
 
-                        ${
-                            trabalho.tipo === "texto"
-                                ? "📝 Texto"
-                                : "▶️ Vídeo"
-                        }
 
-                    </div>
-
-                </div>
-
-            `;
+            author.textContent =
+                trabalho.nome;
 
 
 
-            /* ==================================================
-               TEXTO
-            ================================================== */
+            const date =
+                document.createElement(
+                    "div"
+                );
+
+
+            date.className =
+                "work-date";
+
+
+            date.textContent =
+                "ID do trabalho: #" +
+                trabalho.id;
+
+
+
+            info.appendChild(
+                author
+            );
+
+
+            info.appendChild(
+                date
+            );
+
+
+
+            /* =========================
+               TIPO
+            ========================== */
+
+            const type =
+                document.createElement(
+                    "div"
+                );
+
+
+            type.className =
+                "work-type";
+
+
+            if (
+                trabalho.tipo === "texto"
+            ) {
+
+                type.textContent =
+                    "📝 Texto";
+
+            }
+
+            else {
+
+                type.textContent =
+                    "▶️ Vídeo";
+
+            }
+
+
+
+            header.appendChild(
+                info
+            );
+
+
+            header.appendChild(
+                type
+            );
+
+
+            card.appendChild(
+                header
+            );
+
+
+
+            /* =========================
+               STATUS ADMIN
+            ========================== */
+
+            if (
+                isAdmin &&
+                !trabalho.aprovado
+            ) {
+
+                const status =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                status.className =
+                    "pending-badge";
+
+
+                status.textContent =
+                    "⏳ Aguardando aprovação";
+
+
+                card.appendChild(
+                    status
+                );
+
+            }
+
+
+
+            /* =========================
+               TRABALHO DE TEXTO
+            ========================== */
 
             if (
                 trabalho.tipo === "texto"
@@ -748,9 +1211,9 @@ function renderizarTrabalhos(
 
 
 
-            /* ==================================================
-               VÍDEO
-            ================================================== */
+            /* =========================
+               TRABALHO DE VÍDEO
+            ========================== */
 
             if (
                 trabalho.tipo === "video"
@@ -790,109 +1253,23 @@ function renderizarTrabalhos(
 
             }
 
-if (isAdmin) {
 
-    const controls =
-        document.createElement("div");
 
-    controls.className =
-        "admin-controls";
+            /* =========================
+               CONTROLES DO ADMIN
+            ========================== */
 
-    if (!trabalho.aprovado) {
+            if (isAdmin) {
 
-        const approve =
-            document.createElement("button");
+                criarControlesAdmin(
+                    card,
+                    trabalho
+                );
 
-        approve.className =
-            "approve-button";
+            }
 
-        approve.textContent =
-            "Aprovar";
 
-        approve.onclick = async () => {
 
-            await supabaseClient
-                .from("trabalhos")
-                .update({
-                    aprovado: true
-                })
-                .eq("id", trabalho.id);
-
-            carregarTrabalhos();
-
-        };
-
-        controls.appendChild(approve);
-
-    }
-
-    const edit =
-        document.createElement("button");
-
-    edit.className =
-        "edit-button";
-
-    edit.textContent =
-        "Editar";
-
-    edit.onclick = async () => {
-
-        const novo =
-            prompt(
-                "Editar conteúdo:",
-                trabalho.conteudo
-            );
-
-        if (novo !== null) {
-
-            await supabaseClient
-                .from("trabalhos")
-                .update({
-                    conteudo: novo
-                })
-                .eq("id", trabalho.id);
-
-            carregarTrabalhos();
-
-        }
-
-    };
-
-    const del =
-        document.createElement("button");
-
-    del.className =
-        "delete-button";
-
-    del.textContent =
-        "Apagar";
-
-    del.onclick = async () => {
-
-        if (
-            confirm(
-                "Apagar este trabalho?"
-            )
-        ) {
-
-            await supabaseClient
-                .from("trabalhos")
-                .delete()
-                .eq("id", trabalho.id);
-
-            carregarTrabalhos();
-
-        }
-
-    };
-
-    controls.appendChild(edit);
-    controls.appendChild(del);
-
-    card.appendChild(controls);
-
-}
-           
             worksArea.appendChild(
                 card
             );
@@ -905,7 +1282,467 @@ if (isAdmin) {
 
 
 /* ==================================================
-   YOUTUBE
+   CONTROLES DO ADMINISTRADOR
+================================================== */
+
+function criarControlesAdmin(
+    card,
+    trabalho
+) {
+
+
+    const controls =
+        document.createElement(
+            "div"
+        );
+
+
+    controls.className =
+        "admin-controls";
+
+
+
+    /* =========================
+       APROVAR
+    ========================== */
+
+    if (
+        !trabalho.aprovado
+    ) {
+
+        const approveButton =
+            document.createElement(
+                "button"
+            );
+
+
+        approveButton.className =
+            "approve-button";
+
+
+        approveButton.textContent =
+            "Aprovar";
+
+
+        approveButton.addEventListener(
+            "click",
+            async () => {
+
+                await aprovarTrabalho(
+                    trabalho.id
+                );
+
+            }
+        );
+
+
+        controls.appendChild(
+            approveButton
+        );
+
+    }
+
+
+
+    /* =========================
+       EDITAR
+    ========================== */
+
+    const editButton =
+        document.createElement(
+            "button"
+        );
+
+
+    editButton.className =
+        "edit-button";
+
+
+    editButton.textContent =
+        "Editar";
+
+
+    editButton.addEventListener(
+        "click",
+        async () => {
+
+            await editarTrabalho(
+                trabalho
+            );
+
+        }
+    );
+
+
+    controls.appendChild(
+        editButton
+    );
+
+
+
+    /* =========================
+       APAGAR
+    ========================== */
+
+    const deleteButton =
+        document.createElement(
+            "button"
+        );
+
+
+    deleteButton.className =
+        "delete-button";
+
+
+    deleteButton.textContent =
+        "Apagar";
+
+
+    deleteButton.addEventListener(
+        "click",
+        async () => {
+
+            await apagarTrabalho(
+                trabalho.id
+            );
+
+        }
+    );
+
+
+    controls.appendChild(
+        deleteButton
+    );
+
+
+
+    card.appendChild(
+        controls
+    );
+
+}
+
+
+
+/* ==================================================
+   APROVAR TRABALHO
+================================================== */
+
+async function aprovarTrabalho(
+    id
+) {
+
+
+    const confirmar =
+        confirm(
+            "Deseja aprovar este trabalho?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+    }
+
+
+
+    try {
+
+        const {
+            error
+        } = await supabaseClient
+            .from("trabalhos")
+            .update({
+
+                aprovado:
+                    true
+
+            })
+            .eq(
+                "id",
+                id
+            );
+
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Não foi possível aprovar o trabalho."
+            );
+
+
+            return;
+        }
+
+
+        await carregarTrabalhos();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Ocorreu um erro."
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   EDITAR TRABALHO
+================================================== */
+
+async function editarTrabalho(
+    trabalho
+) {
+
+
+    /* =========================
+       EDITAR NOME
+    ========================== */
+
+    const novoNome =
+        prompt(
+            "Nome do aluno:",
+            trabalho.nome
+        );
+
+
+    if (
+        novoNome === null
+    ) {
+
+        return;
+    }
+
+
+    if (
+        novoNome.trim() === ""
+    ) {
+
+        alert(
+            "O nome não pode ficar vazio."
+        );
+
+        return;
+    }
+
+
+
+    /* =========================
+       EDITAR CONTEÚDO
+    ========================== */
+
+    const novoConteudo =
+        prompt(
+            trabalho.tipo === "video"
+                ? "URL do vídeo do YouTube:"
+                : "Conteúdo do trabalho:",
+            trabalho.conteudo
+        );
+
+
+    if (
+        novoConteudo === null
+    ) {
+
+        return;
+    }
+
+
+    if (
+        novoConteudo.trim() === ""
+    ) {
+
+        alert(
+            "O conteúdo não pode ficar vazio."
+        );
+
+        return;
+    }
+
+
+
+    /* =========================
+       VALIDAR VÍDEO
+    ========================== */
+
+    if (
+        trabalho.tipo === "video" &&
+        !novoConteudo.includes(
+            "youtube.com"
+        ) &&
+        !novoConteudo.includes(
+            "youtu.be"
+        )
+    ) {
+
+        alert(
+            "Digite uma URL válida do YouTube."
+        );
+
+        return;
+    }
+
+
+
+    /* =========================
+       ATUALIZAR
+    ========================== */
+
+    try {
+
+        const {
+            error
+        } = await supabaseClient
+            .from("trabalhos")
+            .update({
+
+                nome:
+                    novoNome.trim(),
+
+                conteudo:
+                    novoConteudo.trim()
+
+            })
+            .eq(
+                "id",
+                trabalho.id
+            );
+
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Não foi possível editar o trabalho."
+            );
+
+
+            return;
+        }
+
+
+        alert(
+            "Trabalho editado com sucesso!"
+        );
+
+
+        await carregarTrabalhos();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Ocorreu um erro ao editar."
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   APAGAR TRABALHO
+================================================== */
+
+async function apagarTrabalho(
+    id
+) {
+
+
+    const confirmar =
+        confirm(
+            "Tem certeza que deseja apagar este trabalho?\n\nEssa ação não pode ser desfeita."
+        );
+
+
+    if (!confirmar) {
+
+        return;
+    }
+
+
+
+    try {
+
+        const {
+            error
+        } = await supabaseClient
+            .from("trabalhos")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
+
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Não foi possível apagar o trabalho."
+            );
+
+
+            return;
+        }
+
+
+        await carregarTrabalhos();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Ocorreu um erro ao apagar."
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   TRANSFORMAR URL DO YOUTUBE
 ================================================== */
 
 function transformarYoutubeUrl(
@@ -923,7 +1760,9 @@ function transformarYoutubeUrl(
 
 
 
-        /* youtu.be */
+        /* =========================
+           youtu.be
+        ========================== */
 
         if (
             endereco.hostname.includes(
@@ -940,7 +1779,9 @@ function transformarYoutubeUrl(
 
 
 
-        /* youtube.com */
+        /* =========================
+           youtube.com
+        ========================== */
 
         if (
             endereco.hostname.includes(
@@ -953,9 +1794,34 @@ function transformarYoutubeUrl(
                     "v"
                 );
 
+
+            /*
+                Também suporta:
+                /shorts/ID
+            */
+
+            if (
+                !id &&
+                endereco.pathname.startsWith(
+                    "/shorts/"
+                )
+            ) {
+
+                id =
+                    endereco.pathname
+                        .split(
+                            "/"
+                        )[2];
+
+            }
+
         }
 
 
+
+        /* =========================
+           NÃO ENCONTROU ID
+        ========================== */
 
         if (!id) {
 
@@ -964,12 +1830,14 @@ function transformarYoutubeUrl(
         }
 
 
+
         return (
             "https://www.youtube.com/embed/" +
             id
         );
 
     }
+
 
     catch {
 
@@ -982,83 +1850,23 @@ function transformarYoutubeUrl(
 
 
 /* ==================================================
-   SEGURANÇA
+   INICIAR SISTEMA
 ================================================== */
 
-function escaparHTML(
-    texto
-) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
+async function iniciarSistema() {
 
 
-    div.textContent =
-        texto;
+    await verificarSessao();
 
 
-    return div.innerHTML;
+    await carregarTrabalhos();
 
 }
 
-adminButton.addEventListener("click", async () => {
 
-    if (isAdmin) {
-
-        await supabaseClient.auth.signOut();
-
-        isAdmin = false;
-
-        adminButton.textContent =
-            "Entrar como administrador";
-
-        carregarTrabalhos();
-
-        return;
-    }
-
-    adminModal.classList.add("visible");
-
-});
-
-
-cancelAdminLogin.addEventListener("click", () => {
-
-    adminModal.classList.remove("visible");
-
-});
-
-
-confirmAdminLogin.addEventListener("click", async () => {
-
-    const { error } =
-        await supabaseClient.auth.signInWithPassword({
-            email: adminEmail.value,
-            password: adminPassword.value
-        });
-
-    if (error) {
-
-        alert("Login inválido.");
-
-        return;
-    }
-
-    isAdmin = true;
-
-    adminButton.textContent =
-        "Sair do administrador";
-
-    adminModal.classList.remove("visible");
-
-    carregarTrabalhos();
-
-});
 
 /* ==================================================
-   INICIAR SITE
+   INICIAR
 ================================================== */
 
-carregarTrabalhos();
+iniciarSistema();
