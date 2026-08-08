@@ -1220,3 +1220,133 @@ body {
     }
 
 }
+
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+.admin-modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.7);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.admin-modal.visible {
+    display: flex;
+}
+
+.admin-modal-box {
+    width: 360px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.admin-modal-box h2 {
+    color: var(--blue);
+}
+
+.admin-modal-box input {
+    background: #181919;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    color: white;
+
+    padding: 12px;
+}
+
+.admin-modal-buttons {
+    display: flex;
+
+    gap: 10px;
+}
+
+.admin-modal-buttons button {
+    flex: 1;
+
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 12px;
+
+    cursor: pointer;
+}
+
+#confirmAdminLogin {
+    background: var(--green);
+
+    color: white;
+}
+
+
+/* =========================
+   CONTROLES DO ADMIN
+========================= */
+
+.admin-controls {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.admin-controls button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 14px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.approve-button {
+    background: var(--green);
+
+    color: white;
+}
+
+.edit-button {
+    background: var(--blue);
+
+    color: white;
+}
+
+.delete-button {
+    background: #b53a3a;
+
+    color: white;
+}
+
+.pending-badge {
+    color: #f0b429;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
