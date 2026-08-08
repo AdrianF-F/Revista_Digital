@@ -12,23 +12,34 @@
 
 <body>
 
-    <!-- TOPO -->
+    <!-- =========================
+         TOPO
+    ========================== -->
+
     <header class="topbar">
 
         <div class="school-logo">
             <img src="Logo da escola.png" alt="Logo da escola">
         </div>
 
-        <button class="admin-button">
+        <button class="admin-button" id="adminButton">
             Entrar como administrador
         </button>
 
     </header>
 
 
+    <!-- =========================
+         ESTRUTURA PRINCIPAL
+    ========================== -->
+
     <div class="page-layout">
 
-        <!-- MENU ESQUERDO -->
+
+        <!-- =========================
+             MENU ESQUERDO
+        ========================== -->
+
         <aside class="left-sidebar">
 
             <nav class="main-nav">
@@ -50,10 +61,18 @@
         </aside>
 
 
-        <!-- CONTEÚDO CENTRAL -->
+
+        <!-- =========================
+             CONTEÚDO CENTRAL
+        ========================== -->
+
         <main class="content">
 
-            <!-- ADICIONAR TRABALHO -->
+
+            <!-- =========================
+                 ADICIONAR TRABALHO
+            ========================== -->
+
             <section class="add-work-area">
 
                 <button
@@ -68,21 +87,25 @@
 
 
                 <!-- FORMULÁRIO -->
+
                 <div
                     class="work-form"
                     id="workForm">
+
 
                     <h2>
                         Adicionar Trabalho
                     </h2>
 
 
-                    <!-- TIPO -->
+                    <!-- TIPO DO TRABALHO -->
+
                     <div class="form-section">
 
                         <label>
                             Tipo de trabalho
                         </label>
+
 
                         <div class="type-buttons">
 
@@ -93,6 +116,7 @@
                                 📝 Texto
 
                             </button>
+
 
                             <button
                                 class="type-button"
@@ -107,18 +131,22 @@
                     </div>
 
 
-                    <!-- CAMPOS QUE APARECEM APÓS ESCOLHER O TIPO -->
+
+                    <!-- CAMPOS DO TRABALHO -->
+
                     <div
                         class="work-fields"
                         id="workFields">
 
 
                         <!-- NOME -->
+
                         <div class="form-section">
 
                             <label for="studentName">
                                 Seu nome
                             </label>
+
 
                             <select id="studentName">
 
@@ -158,7 +186,9 @@
                         </div>
 
 
+
                         <!-- TEXTO -->
+
                         <div
                             class="form-section"
                             id="textField">
@@ -167,15 +197,17 @@
                                 Trabalho
                             </label>
 
+
                             <textarea
                                 id="textContent"
-                                placeholder="Digite seu trabalho aqui...">
-                            </textarea>
+                                placeholder="Digite seu trabalho aqui..."></textarea>
 
                         </div>
 
 
+
                         <!-- VÍDEO -->
+
                         <div
                             class="form-section"
                             id="videoField">
@@ -183,6 +215,7 @@
                             <label for="videoUrl">
                                 URL do vídeo no YouTube
                             </label>
+
 
                             <input
                                 type="url"
@@ -192,7 +225,9 @@
                         </div>
 
 
+
                         <!-- PUBLICAR -->
+
                         <button
                             class="publish-button"
                             id="publishButton">
@@ -208,10 +243,15 @@
             </section>
 
 
-            <!-- FEED -->
+
+            <!-- =========================
+                 FEED DE TRABALHOS
+            ========================== -->
+
             <section
                 class="works-area"
                 id="worksArea">
+
 
                 <div
                     class="empty-state"
@@ -227,17 +267,24 @@
 
                 </div>
 
+
             </section>
 
         </main>
 
 
-        <!-- MENU DIREITO -->
+
+        <!-- =========================
+             MENU DIREITO
+        ========================== -->
+
         <aside class="right-sidebar">
+
 
             <div class="organize-title">
                 Organizar trabalhos
             </div>
+
 
             <nav class="organize-nav">
 
@@ -249,6 +296,7 @@
 
                 </button>
 
+
                 <button
                     class="filter-button"
                     data-filter="person">
@@ -256,6 +304,7 @@
                     Por pessoa
 
                 </button>
+
 
                 <button
                     class="filter-button"
@@ -272,8 +321,15 @@
     </div>
 
 
-    <!-- SUPABASE -->
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- JAVASCRIPT DO SITE -->
 
     <script src="script.js"></script>
 
