@@ -1,79 +1,262 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* =====================================
+   FORMULÁRIO DE TRABALHO
+===================================== */
+
+.add-work-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
-/* =========================
-   PALETA BLUEGREEN
-========================= */
+.work-form {
 
-:root {
+    width: 100%;
+    max-width: 650px;
 
-    --background: #1D2223;
+    margin-top: 15px;
 
-    --card: #111111;
+    padding: 25px;
 
-    --card-hover: #181818;
+    background: var(--card);
 
-    --blue: #68A0FF;
+    border-radius: 16px;
 
-    --blue-dark: #087CC2;
+    border: 1px solid #202323;
 
-    --blue-light: #6DB5D4;
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.20);
 
-    --green: #43B98D;
-
-    --green-dark: #00A57C;
-
-    --text: #F1F3F5;
-
-    --text-secondary: #AEBECD;
-
-    --border: #35393A;
-
+    display: none;
 }
 
 
-/* =========================
-   GERAL
-========================= */
-
-body {
-
-    min-height: 100vh;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        var(--background);
-
-    color:
-        var(--text);
+.work-form.visible {
+    display: block;
 }
 
 
-/* =========================
-   TOPO
-========================= */
+.work-form h2 {
 
-.topbar {
+    color: var(--blue);
+
+    font-size: 21px;
+
+    margin-bottom: 22px;
+}
+
+
+/* SEÇÕES */
+
+.form-section {
+
+    margin-bottom: 18px;
+}
+
+
+.form-section label {
+
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+/* TIPOS */
+
+.type-buttons {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.type-button {
+
+    flex: 1;
+
+    padding: 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: #181919;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.type-button:hover {
+
+    background: #202222;
+
+    color: var(--text);
+}
+
+
+.type-button.selected {
+
+    background: #19342E;
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+/* INPUTS */
+
+.form-section select,
+.form-section input,
+.form-section textarea {
 
     width: 100%;
 
-    height: 86px;
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: #181919;
+
+    color: var(--text);
+
+    padding: 12px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.form-section select:focus,
+.form-section input:focus,
+.form-section textarea:focus {
+
+    border-color: var(--green);
+}
+
+
+.form-section textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
+}
+
+
+/* CAMPOS */
+
+.work-fields {
+
+    display: none;
+}
+
+
+.work-fields.visible {
+
+    display: block;
+}
+
+
+/* TEXTO / VÍDEO */
+
+#textField,
+#videoField {
+
+    display: none;
+}
+
+
+#textField.visible,
+#videoField.visible {
+
+    display: block;
+}
+
+
+/* PUBLICAR */
+
+.publish-button {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 14px;
 
     background:
         linear-gradient(
             110deg,
             #087CC2,
-            #078FAE,
             #00A57C
         );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.publish-button:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 165, 124, 0.25);
+}
+
+
+/* =====================================
+   CARDS DOS TRABALHOS
+===================================== */
+
+.work-card {
+
+    background: #111111;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #202323;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.work-header {
 
     display: flex;
 
@@ -81,630 +264,61 @@ body {
 
     justify-content: space-between;
 
-    padding:
-        0 28px;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 10;
+    margin-bottom: 18px;
 }
 
 
-/* =========================
-   LOGO
-========================= */
+.work-author {
 
-.school-logo {
+    color: var(--text);
 
-    height: 78px;
+    font-size: 17px;
 
-    width: 220px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-start;
-
-    overflow: hidden;
+    font-weight: 700;
 }
 
 
-.school-logo img {
+.work-type {
 
-    width: 90px;
+    color: var(--green);
 
-    height: 90px;
+    font-size: 13px;
 
-    object-fit: contain;
-
-    display: block;
+    font-weight: 700;
 }
 
 
-/* =========================
-   BOTÃO ADMINISTRADOR
-========================= */
+.work-date {
 
-.admin-button {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+
+.work-text {
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+
+.work-video {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
 
     border: none;
 
-    border-radius: 30px;
+    border-radius: 10px;
 
-    background:
-        #111111;
-
-    color:
-        var(--green);
-
-    padding:
-        13px 22px;
-
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-
-    transition:
-        0.2s;
-}
-
-
-.admin-button:hover {
-
-    background:
-        #191919;
-
-    transform:
-        translateY(-1px);
-}
-
-
-
-/* =========================
-   ESTRUTURA
-========================= */
-
-.page-layout {
-
-    max-width:
-        1500px;
-
-    margin:
-        0 auto;
-
-    min-height:
-        calc(100vh - 86px);
-
-    display:
-        grid;
-
-    grid-template-columns:
-        210px
-        minmax(0, 1fr)
-        230px;
-
-    gap:
-        20px;
-
-    padding:
-        24px 20px;
-}
-
-
-
-/* =========================
-   MENU ESQUERDO
-========================= */
-
-.left-sidebar {
-
-    padding-top:
-        4px;
-}
-
-
-.main-nav {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        8px;
-}
-
-
-.nav-button {
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    border-radius:
-        12px;
-
-    background:
-        transparent;
-
-    color:
-        var(--text-secondary);
-
-    padding:
-        14px 16px;
-
-    text-align:
-        left;
-
-    font-size:
-        15px;
-
-    font-weight:
-        600;
-
-    cursor:
-        pointer;
-
-    transition:
-        0.2s;
-}
-
-
-.nav-button:hover {
-
-    background:
-        #171919;
-
-    color:
-        var(--text);
-}
-
-
-.nav-button.active {
-
-    background:
-        #19342E;
-
-    color:
-        var(--green);
-}
-
-
-
-/* =========================
-   CONTEÚDO CENTRAL
-========================= */
-
-.content {
-
-    min-width:
-        0;
-}
-
-
-/* =========================
-   ADICIONAR TRABALHO
-========================= */
-
-.add-work-area {
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    margin-bottom:
-        18px;
-}
-
-
-.add-work-button {
-
-    border:
-        none;
-
-    border-radius:
-        12px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #087CC2,
-            #00A57C
-        );
-
-    color:
-        white;
-
-    padding:
-        15px 25px;
-
-    font-size:
-        16px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0, 165, 124, 0.20);
-
-    transition:
-        0.2s;
-}
-
-
-.add-work-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 6px 20px
-        rgba(0, 165, 124, 0.30);
-}
-
-
-.plus {
-
-    font-size:
-        20px;
-
-    margin-right:
-        7px;
-}
-
-
-
-/* =========================
-   ÁREA DOS TRABALHOS
-========================= */
-
-.works-area {
-
-    min-height:
-        500px;
-
-    background:
-        var(--card);
-
-    border:
-        1px solid #151515;
-
-    border-radius:
-        16px;
-
-    padding:
-        28px;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0, 0, 0, 0.15);
-}
-
-
-.empty-state {
-
-    min-height:
-        440px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    flex-direction:
-        column;
-
-    text-align:
-        center;
-}
-
-
-.empty-state h1 {
-
-    font-size:
-        21px;
-
-    margin-bottom:
-        8px;
-
-    color:
-        var(--blue);
-}
-
-
-.empty-state p {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        14px;
-}
-
-
-
-/* =========================
-   MENU DIREITO
-========================= */
-
-.right-sidebar {
-
-    padding-top:
-        4px;
-}
-
-
-.organize-title {
-
-    color:
-        var(--text-secondary);
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-    text-transform:
-        uppercase;
-
-    margin:
-        0 0 10px 5px;
-}
-
-
-.organize-nav {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        8px;
-}
-
-
-.filter-button {
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    border-radius:
-        12px;
-
-    background:
-        transparent;
-
-    color:
-        var(--text-secondary);
-
-    padding:
-        14px 16px;
-
-    text-align:
-        left;
-
-    font-size:
-        15px;
-
-    font-weight:
-        600;
-
-    cursor:
-        pointer;
-
-    transition:
-        0.2s;
-}
-
-
-.filter-button:hover {
-
-    background:
-        #171919;
-
-    color:
-        var(--text);
-}
-
-
-.filter-button.active {
-
-    background:
-        #19342E;
-
-    color:
-        var(--green);
-}
-
-
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-@media (max-width: 900px) {
-
-    .page-layout {
-
-        grid-template-columns:
-            170px
-            minmax(0, 1fr);
-    }
-
-
-    .right-sidebar {
-
-        grid-column:
-            1 / -1;
-
-        order:
-            3;
-    }
-
-
-    .organize-nav {
-
-        flex-direction:
-            row;
-
-        flex-wrap:
-            wrap;
-    }
-
-
-    .filter-button {
-
-        width:
-            auto;
-    }
-
-}
-
-
-
-/* =========================
-   CELULAR
-========================= */
-
-@media (max-width: 650px) {
-
-    .topbar {
-
-        height:
-            auto;
-
-        min-height:
-            68px;
-
-        padding:
-            6px 14px;
-
-        gap:
-            10px;
-    }
-
-
-    .school-logo {
-
-        width:
-            100px;
-
-        height:
-            60px;
-    }
-
-
-    .school-logo img {
-
-        width:
-            65px;
-
-        height:
-            65px;
-    }
-
-
-    .admin-button {
-
-        padding:
-            10px 15px;
-
-        font-size:
-            12px;
-    }
-
-
-    .page-layout {
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        padding:
-            14px;
-
-        gap:
-            14px;
-    }
-
-
-    .left-sidebar {
-
-        order:
-            1;
-    }
-
-
-    .content {
-
-        order:
-            2;
-    }
-
-
-    .right-sidebar {
-
-        order:
-            3;
-    }
-
-
-    .main-nav {
-
-        flex-direction:
-            row;
-    }
-
-
-    .nav-button {
-
-        text-align:
-            center;
-
-        padding:
-            11px 7px;
-
-        font-size:
-            13px;
-    }
-
-
-    .works-area {
-
-        padding:
-            18px;
-
-        border-radius:
-            14px;
-    }
-
+    margin-top: 8px;
 }
