@@ -6,34 +6,33 @@
 
 
 /* =========================
-   CORES DA ESCOLA
+   PALETA BLUEGREEN
 ========================= */
 
 :root {
 
-    /* Azul escuro da logo */
-    --blue-dark: #173d91;
+    --background: #1D2223;
 
-    /* Azul principal */
-    --blue: #2455a6;
+    --card: #111111;
 
-    /* Azul claro da logo */
-    --blue-light: #65afd0;
+    --card-hover: #181818;
 
-    /* Verde da logo */
-    --green: #00c83c;
+    --blue: #68A0FF;
 
-    /* Verde mais escuro para hover */
-    --green-dark: #00a832;
+    --blue-dark: #087CC2;
 
-    /* Cores neutras */
-    --background: #f5f7fa;
-    --white: #ffffff;
+    --blue-light: #6DB5D4;
 
-    --border: #dce1e7;
+    --green: #43B98D;
 
-    --text: #172033;
-    --muted: #687386;
+    --green-dark: #00A57C;
+
+    --text: #F1F3F5;
+
+    --text-secondary: #AEBECD;
+
+    --border: #35393A;
+
 }
 
 
@@ -69,10 +68,12 @@ body {
     height: 86px;
 
     background:
-        var(--white);
-
-    border-bottom:
-        3px solid var(--blue-light);
+        linear-gradient(
+            110deg,
+            #087CC2,
+            #078FAE,
+            #00A57C
+        );
 
     display: flex;
 
@@ -91,7 +92,9 @@ body {
 }
 
 
-/* LOGO */
+/* =========================
+   LOGO
+========================= */
 
 .school-logo {
 
@@ -111,9 +114,9 @@ body {
 
 .school-logo img {
 
-    width: 82px;
+    width: 90px;
 
-    height: 82px;
+    height: 90px;
 
     object-fit: contain;
 
@@ -129,16 +132,16 @@ body {
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 30px;
 
     background:
-        var(--blue-dark);
+        #111111;
 
     color:
-        white;
+        var(--green);
 
     padding:
-        12px 19px;
+        13px 22px;
 
     font-size:
         14px;
@@ -150,23 +153,23 @@ body {
         pointer;
 
     transition:
-        background 0.2s,
-        transform 0.2s;
+        0.2s;
 }
 
 
 .admin-button:hover {
 
     background:
-        var(--blue);
+        #191919;
 
     transform:
         translateY(-1px);
 }
 
 
+
 /* =========================
-   ESTRUTURA PRINCIPAL
+   ESTRUTURA
 ========================= */
 
 .page-layout {
@@ -194,6 +197,7 @@ body {
     padding:
         24px 20px;
 }
+
 
 
 /* =========================
@@ -229,16 +233,16 @@ body {
         none;
 
     border-radius:
-        9px;
+        12px;
 
     background:
         transparent;
 
     color:
-        var(--text);
+        var(--text-secondary);
 
     padding:
-        13px 15px;
+        14px 16px;
 
     text-align:
         left;
@@ -253,30 +257,29 @@ body {
         pointer;
 
     transition:
-        background 0.2s,
-        color 0.2s;
+        0.2s;
 }
 
 
 .nav-button:hover {
 
     background:
-        #e5edf8;
+        #171919;
+
+    color:
+        var(--text);
 }
 
 
 .nav-button.active {
 
     background:
-        var(--blue-dark);
+        #19342E;
 
     color:
-        white;
-
-    box-shadow:
-        0 3px 8px
-        rgba(23, 61, 145, 0.20);
+        var(--green);
 }
+
 
 
 /* =========================
@@ -290,7 +293,9 @@ body {
 }
 
 
-/* BOTÃO ADICIONAR */
+/* =========================
+   ADICIONAR TRABALHO
+========================= */
 
 .add-work-area {
 
@@ -311,10 +316,14 @@ body {
         none;
 
     border-radius:
-        10px;
+        12px;
 
     background:
-        var(--green);
+        linear-gradient(
+            110deg,
+            #087CC2,
+            #00A57C
+        );
 
     color:
         white;
@@ -332,22 +341,22 @@ body {
         pointer;
 
     box-shadow:
-        0 4px 12px
-        rgba(0, 200, 60, 0.25);
+        0 4px 15px
+        rgba(0, 165, 124, 0.20);
 
     transition:
-        transform 0.2s,
-        background 0.2s;
+        0.2s;
 }
 
 
 .add-work-button:hover {
 
-    background:
-        var(--green-dark);
-
     transform:
         translateY(-2px);
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 165, 124, 0.30);
 }
 
 
@@ -361,6 +370,7 @@ body {
 }
 
 
+
 /* =========================
    ÁREA DOS TRABALHOS
 ========================= */
@@ -371,20 +381,20 @@ body {
         500px;
 
     background:
-        var(--white);
+        var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid #151515;
 
     border-radius:
-        12px;
+        16px;
 
     padding:
         28px;
 
     box-shadow:
-        0 2px 7px
-        rgba(20, 40, 70, 0.04);
+        0 5px 20px
+        rgba(0, 0, 0, 0.15);
 }
 
 
@@ -413,24 +423,25 @@ body {
 .empty-state h1 {
 
     font-size:
-        20px;
+        21px;
 
     margin-bottom:
-        7px;
+        8px;
 
     color:
-        var(--blue-dark);
+        var(--blue);
 }
 
 
 .empty-state p {
 
     color:
-        var(--muted);
+        var(--text-secondary);
 
     font-size:
         14px;
 }
+
 
 
 /* =========================
@@ -447,7 +458,7 @@ body {
 .organize-title {
 
     color:
-        var(--blue-dark);
+        var(--text-secondary);
 
     font-size:
         13px;
@@ -485,16 +496,16 @@ body {
         none;
 
     border-radius:
-        9px;
+        12px;
 
     background:
         transparent;
 
     color:
-        var(--text);
+        var(--text-secondary);
 
     padding:
-        13px 15px;
+        14px 16px;
 
     text-align:
         left;
@@ -509,30 +520,29 @@ body {
         pointer;
 
     transition:
-        background 0.2s,
-        color 0.2s;
+        0.2s;
 }
 
 
 .filter-button:hover {
 
     background:
-        #e5edf8;
+        #171919;
+
+    color:
+        var(--text);
 }
 
 
 .filter-button.active {
 
     background:
-        var(--blue-light);
+        #19342E;
 
     color:
-        white;
-
-    box-shadow:
-        0 3px 8px
-        rgba(101, 175, 208, 0.25);
+        var(--green);
 }
+
 
 
 /* =========================
@@ -578,6 +588,7 @@ body {
 }
 
 
+
 /* =========================
    CELULAR
 ========================= */
@@ -613,17 +624,17 @@ body {
     .school-logo img {
 
         width:
-            60px;
+            65px;
 
         height:
-            60px;
+            65px;
     }
 
 
     .admin-button {
 
         padding:
-            10px 12px;
+            10px 15px;
 
         font-size:
             12px;
@@ -691,6 +702,9 @@ body {
 
         padding:
             18px;
+
+        border-radius:
+            14px;
     }
 
 }
