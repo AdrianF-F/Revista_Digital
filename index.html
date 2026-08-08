@@ -26,7 +26,6 @@
     </header>
 
 
-    <!-- ESTRUTURA PRINCIPAL -->
     <div class="page-layout">
 
         <!-- MENU ESQUERDO -->
@@ -54,21 +53,169 @@
         <!-- CONTEÚDO CENTRAL -->
         <main class="content">
 
-            <!-- BOTÃO ADICIONAR -->
+            <!-- ADICIONAR TRABALHO -->
             <section class="add-work-area">
 
-                <button class="add-work-button">
+                <button
+                    class="add-work-button"
+                    id="addWorkButton">
+
                     <span class="plus">+</span>
+
                     Adicionar Trabalho
+
                 </button>
+
+
+                <!-- FORMULÁRIO -->
+                <div
+                    class="work-form"
+                    id="workForm">
+
+                    <h2>
+                        Adicionar Trabalho
+                    </h2>
+
+
+                    <!-- TIPO -->
+                    <div class="form-section">
+
+                        <label>
+                            Tipo de trabalho
+                        </label>
+
+                        <div class="type-buttons">
+
+                            <button
+                                class="type-button"
+                                data-type="texto">
+
+                                📝 Texto
+
+                            </button>
+
+                            <button
+                                class="type-button"
+                                data-type="video">
+
+                                ▶️ Vídeo
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAMPOS QUE APARECEM APÓS ESCOLHER O TIPO -->
+                    <div
+                        class="work-fields"
+                        id="workFields">
+
+
+                        <!-- NOME -->
+                        <div class="form-section">
+
+                            <label for="studentName">
+                                Seu nome
+                            </label>
+
+                            <select id="studentName">
+
+                                <option value="">
+                                    Selecione seu nome
+                                </option>
+
+                                <option>Aluno A</option>
+                                <option>Aluno B</option>
+                                <option>Aluno C</option>
+                                <option>Aluno D</option>
+                                <option>Aluno E</option>
+                                <option>Aluno F</option>
+                                <option>Aluno G</option>
+                                <option>Aluno H</option>
+                                <option>Aluno I</option>
+                                <option>Aluno J</option>
+                                <option>Aluno K</option>
+                                <option>Aluno L</option>
+                                <option>Aluno M</option>
+                                <option>Aluno N</option>
+                                <option>Aluno O</option>
+                                <option>Aluno P</option>
+                                <option>Aluno Q</option>
+                                <option>Aluno R</option>
+                                <option>Aluno S</option>
+                                <option>Aluno T</option>
+                                <option>Aluno U</option>
+                                <option>Aluno V</option>
+                                <option>Aluno W</option>
+                                <option>Aluno X</option>
+                                <option>Aluno Y</option>
+                                <option>Aluno Z</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TEXTO -->
+                        <div
+                            class="form-section"
+                            id="textField">
+
+                            <label for="textContent">
+                                Trabalho
+                            </label>
+
+                            <textarea
+                                id="textContent"
+                                placeholder="Digite seu trabalho aqui...">
+                            </textarea>
+
+                        </div>
+
+
+                        <!-- VÍDEO -->
+                        <div
+                            class="form-section"
+                            id="videoField">
+
+                            <label for="videoUrl">
+                                URL do vídeo no YouTube
+                            </label>
+
+                            <input
+                                type="url"
+                                id="videoUrl"
+                                placeholder="https://www.youtube.com/watch?v=...">
+
+                        </div>
+
+
+                        <!-- PUBLICAR -->
+                        <button
+                            class="publish-button"
+                            id="publishButton">
+
+                            Publicar Trabalho
+
+                        </button>
+
+                    </div>
+
+                </div>
 
             </section>
 
 
-            <!-- TRABALHOS -->
-            <section class="works-area">
+            <!-- FEED -->
+            <section
+                class="works-area"
+                id="worksArea">
 
-                <div class="empty-state">
+                <div
+                    class="empty-state"
+                    id="emptyState">
 
                     <h1>
                         Trabalhos postados
@@ -94,16 +241,28 @@
 
             <nav class="organize-nav">
 
-                <button class="filter-button active">
+                <button
+                    class="filter-button active"
+                    data-filter="time">
+
                     Por tempo
+
                 </button>
 
-                <button class="filter-button">
+                <button
+                    class="filter-button"
+                    data-filter="person">
+
                     Por pessoa
+
                 </button>
 
-                <button class="filter-button">
+                <button
+                    class="filter-button"
+                    data-filter="type">
+
                     Por tipo de trabalho
+
                 </button>
 
             </nav>
@@ -112,6 +271,9 @@
 
     </div>
 
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="script.js"></script>
 
