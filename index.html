@@ -17,6 +17,76 @@
 
     <style>
 
+        .image-input {
+
+    display: block;
+
+    padding: 12px;
+
+    border: 2px dashed #079b72;
+
+    border-radius: 8px;
+
+    color: #07805e;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    background: #f2faf7;
+}
+
+.image-input:hover {
+
+    background: #e5f5f0;
+}
+
+.image-input input {
+
+    display: none;
+}
+
+.image-preview {
+
+    display: none;
+
+    max-width: 100%;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.image-preview img {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 300px;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+}
+
+.comment-image {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 400px;
+
+    margin-top: 12px;
+
+    border-radius: 8px;
+
+    object-fit: contain;
+}
+
         * {
             margin: 0;
             padding: 0;
@@ -1482,6 +1552,34 @@ function criarComentarioElemento(
    ADICIONAR COMENTÁRIO
 ================================================== */
 
+document
+    .getElementById("commentImage")
+    .addEventListener("change", function () {
+
+        const arquivo = this.files[0];
+
+        const preview =
+            document.getElementById("imagePreview");
+
+        preview.innerHTML = "";
+
+        if (!arquivo) {
+
+            preview.style.display = "none";
+
+            return;
+        }
+
+        const url =
+            URL.createObjectURL(arquivo);
+
+        preview.innerHTML = `
+            <img src="${url}" alt="Pré-visualização">
+        `;
+
+        preview.style.display = "block";
+    });
+    
 async function adicionarComentario() {
 
     const nome =
@@ -1490,28 +1588,38 @@ async function adicionarComentario() {
             .value
             .trim();
 
-
     const conteudo =
         document
             .getElementById("commentContent")
             .value
             .trim();
 
+    const arquivo =
+        document
+            .getElementById("commentImage")
+            .files[0];
+
+
+    /*
+     * É permitido publicar:
+     *
+     * texto
+     * imagem
+     * texto + imagem
+     */
 
     if (!nome) {
 
-        alert(
-            "Digite seu nome."
-        );
+        alert("Digite seu nome.");
 
         return;
     }
 
 
-    if (!conteudo) {
+    if (!conteudo && !arquivo) {
 
         alert(
-            "Digite um comentário."
+            "Escreva um comentário ou escolha uma imagem."
         );
 
         return;
@@ -1538,6 +1646,50 @@ async function adicionarComentario() {
     }
 
 
+    /*
+     * Limite de 5 MB
+     */
+
+    if (
+        arquivo &&
+        arquivo.size > 5 * 1024 * 1024
+    ) {
+
+        alert(
+            "A imagem deve ter no máximo 5 MB."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Verifica o tipo da imagem
+     */
+
+    const tiposPermitidos = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp"
+    ];
+
+
+    if (
+        arquivo &&
+        !tiposPermitidos.includes(
+            arquivo.type
+        )
+    ) {
+
+        alert(
+            "Formato de imagem não permitido."
+        );
+
+        return;
+    }
+
+
     const usuario =
         await iniciarUsuario();
 
@@ -1552,6 +1704,77 @@ async function adicionarComentario() {
     }
 
 
+    let imageUrl = null;
+
+    let imagePath = null;
+
+
+    /*
+     * Upload da imagem
+     */
+
+    if (arquivo) {
+
+        const extensao =
+            arquivo.name
+                .split(".")
+                .pop()
+                .toLowerCase();
+
+
+        imagePath =
+            `${usuario.id}/${crypto.randomUUID()}.${extensao}`;
+
+
+        const {
+            error: uploadError
+        } = await supabaseClient
+            .storage
+            .from("comments-images")
+            .upload(
+                imagePath,
+                arquivo,
+                {
+                    cacheControl: "3600",
+                    upsert: false
+                }
+            );
+
+
+        if (uploadError) {
+
+            console.error(
+                uploadError
+            );
+
+            alert(
+                "Não foi possível enviar a imagem."
+            );
+
+            return;
+        }
+
+
+        const {
+            data
+        } =
+            supabaseClient
+                .storage
+                .from("comments-images")
+                .getPublicUrl(
+                    imagePath
+                );
+
+
+        imageUrl =
+            data.publicUrl;
+    }
+
+
+    /*
+     * Salva o comentário
+     */
+
     const {
         error
     } = await supabaseClient
@@ -1565,13 +1788,36 @@ async function adicionarComentario() {
                 nome,
 
             content:
-                conteudo
+                conteudo,
+
+            image_url:
+                imageUrl,
+
+            image_path:
+                imagePath
         });
 
 
     if (error) {
 
         console.error(error);
+
+
+        /*
+         * Se o comentário falhar,
+         * tenta apagar a imagem enviada.
+         */
+
+        if (imagePath) {
+
+            await supabaseClient
+                .storage
+                .from("comments-images")
+                .remove([
+                    imagePath
+                ]);
+        }
+
 
         alert(
             "Erro ao publicar o comentário."
@@ -1580,6 +1826,10 @@ async function adicionarComentario() {
         return;
     }
 
+
+    /*
+     * Limpa o formulário
+     */
 
     document
         .getElementById("commentName")
@@ -1591,8 +1841,22 @@ async function adicionarComentario() {
         .value = "";
 
 
-    await carregarComentarios();
+    document
+        .getElementById("commentImage")
+        .value = "";
 
+
+    document
+        .getElementById("imagePreview")
+        .innerHTML = "";
+
+
+    document
+        .getElementById("imagePreview")
+        .style.display = "none";
+
+
+    await carregarComentarios();
 }
 
 
