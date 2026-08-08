@@ -1,11 +1,16 @@
+/* =========================
+   RESET
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+
 /* =========================
-   PALETA BLUEGREEN
+   CORES
 ========================= */
 
 :root {
@@ -36,7 +41,7 @@
 
 
 /* =========================
-   GERAL
+   BODY
 ========================= */
 
 body {
@@ -54,6 +59,7 @@ body {
     color:
         var(--text);
 }
+
 
 
 /* =========================
@@ -91,6 +97,7 @@ body {
 }
 
 
+
 /* =========================
    LOGO
 ========================= */
@@ -123,8 +130,9 @@ body {
 }
 
 
+
 /* =========================
-   BOTÃO ADMINISTRADOR
+   ADMINISTRADOR
 ========================= */
 
 .admin-button {
@@ -168,7 +176,7 @@ body {
 
 
 /* =========================
-   ESTRUTURA
+   LAYOUT
 ========================= */
 
 .page-layout {
@@ -282,7 +290,7 @@ body {
 
 
 /* =========================
-   CONTEÚDO CENTRAL
+   CONTEÚDO
 ========================= */
 
 .content {
@@ -292,8 +300,9 @@ body {
 }
 
 
+
 /* =========================
-   ADICIONAR TRABALHO
+   ÁREA ADICIONAR
 ========================= */
 
 .add-work-area {
@@ -301,13 +310,21 @@ body {
     display:
         flex;
 
-    justify-content:
+    flex-direction:
+        column;
+
+    align-items:
         center;
 
     margin-bottom:
         18px;
 }
 
+
+
+/* =========================
+   BOTÃO ADICIONAR
+========================= */
 
 .add-work-button {
 
@@ -371,6 +388,330 @@ body {
 
 
 /* =========================
+   FORMULÁRIO
+========================= */
+
+.work-form {
+
+    width:
+        100%;
+
+    max-width:
+        650px;
+
+    margin-top:
+        15px;
+
+    padding:
+        25px;
+
+    background:
+        var(--card);
+
+    border-radius:
+        16px;
+
+    border:
+        1px solid #202323;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.20);
+
+    display:
+        none;
+}
+
+
+.work-form.visible {
+
+    display:
+        block;
+}
+
+
+.work-form h2 {
+
+    color:
+        var(--blue);
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        22px;
+}
+
+
+
+/* =========================
+   SEÇÕES DO FORMULÁRIO
+========================= */
+
+.form-section {
+
+    margin-bottom:
+        18px;
+}
+
+
+.form-section label {
+
+    display:
+        block;
+
+    color:
+        var(--text-secondary);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    margin-bottom:
+        8px;
+}
+
+
+
+/* =========================
+   TIPOS
+========================= */
+
+.type-buttons {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+}
+
+
+.type-button {
+
+    flex:
+        1;
+
+    padding:
+        13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    background:
+        #181919;
+
+    color:
+        var(--text-secondary);
+
+    font-size:
+        15px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s;
+}
+
+
+.type-button:hover {
+
+    background:
+        #202222;
+
+    color:
+        var(--text);
+}
+
+
+.type-button.selected {
+
+    background:
+        #19342E;
+
+    border-color:
+        var(--green);
+
+    color:
+        var(--green);
+}
+
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.work-fields {
+
+    display:
+        none;
+}
+
+
+.work-fields.visible {
+
+    display:
+        block;
+}
+
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-section select,
+.form-section input,
+.form-section textarea {
+
+    width:
+        100%;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        9px;
+
+    background:
+        #181919;
+
+    color:
+        var(--text);
+
+    padding:
+        12px;
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+}
+
+
+.form-section select:focus,
+.form-section input:focus,
+.form-section textarea:focus {
+
+    border-color:
+        var(--green);
+}
+
+
+.form-section textarea {
+
+    min-height:
+        180px;
+
+    resize:
+        vertical;
+}
+
+
+
+/* =========================
+   CAMPOS ESPECÍFICOS
+========================= */
+
+#textField,
+#videoField {
+
+    display:
+        none;
+}
+
+
+#textField.visible,
+#videoField.visible {
+
+    display:
+        block;
+}
+
+
+
+/* =========================
+   PUBLICAR
+========================= */
+
+.publish-button {
+
+    width:
+        100%;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    padding:
+        14px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #087CC2,
+            #00A57C
+        );
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s;
+}
+
+
+.publish-button:hover {
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 165, 124, 0.25);
+}
+
+
+.publish-button:disabled {
+
+    opacity:
+        0.6;
+
+    cursor:
+        wait;
+
+    transform:
+        none;
+}
+
+
+
+/* =========================
    ÁREA DOS TRABALHOS
 ========================= */
 
@@ -383,7 +724,7 @@ body {
         var(--card);
 
     border:
-        1px solid #151515;
+        1px solid #202323;
 
     border-radius:
         16px;
@@ -396,6 +737,11 @@ body {
         rgba(0, 0, 0, 0.15);
 }
 
+
+
+/* =========================
+   ESTADO VAZIO
+========================= */
 
 .empty-state {
 
@@ -439,6 +785,145 @@ body {
 
     font-size:
         14px;
+}
+
+
+
+/* =========================
+   CARD DE TRABALHO
+========================= */
+
+.work-card {
+
+    background:
+        #111111;
+
+    border-radius:
+        16px;
+
+    padding:
+        25px;
+
+    margin-bottom:
+        18px;
+
+    border:
+        1px solid #202323;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.work-card:last-child {
+
+    margin-bottom:
+        0;
+}
+
+
+.work-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        18px;
+}
+
+
+.work-author {
+
+    color:
+        var(--text);
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+}
+
+
+.work-type {
+
+    color:
+        var(--green);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+}
+
+
+.work-date {
+
+    color:
+        var(--text-secondary);
+
+    font-size:
+        12px;
+
+    margin-top:
+        4px;
+}
+
+
+.work-text {
+
+    color:
+        var(--text-secondary);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.7;
+
+    white-space:
+        pre-wrap;
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+
+/* =========================
+   VÍDEO
+========================= */
+
+.work-video {
+
+    width:
+        100%;
+
+    aspect-ratio:
+        16 / 9;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    margin-top:
+        8px;
 }
 
 
@@ -540,6 +1025,10 @@ body {
 
     color:
         var(--green);
+
+    box-shadow:
+        0 3px 8px
+        rgba(67, 185, 141, 0.10);
 }
 
 
@@ -706,329 +1195,28 @@ body {
             14px;
     }
 
-}
 
-/* =====================================
-   FORMULÁRIO DE TRABALHO
-===================================== */
+    .work-form {
 
-.add-work-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        padding:
+            18px;
+    }
 
 
-.work-form {
+    .type-buttons {
 
-    width: 100%;
-    max-width: 650px;
+        flex-direction:
+            column;
+    }
 
-    margin-top: 15px;
 
-    padding: 25px;
+    .work-header {
 
-    background: var(--card);
+        align-items:
+            flex-start;
 
-    border-radius: 16px;
+        flex-direction:
+            column;
+    }
 
-    border: 1px solid #202323;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0, 0, 0, 0.20);
-
-    display: none;
-}
-
-
-.work-form.visible {
-    display: block;
-}
-
-
-.work-form h2 {
-
-    color: var(--blue);
-
-    font-size: 21px;
-
-    margin-bottom: 22px;
-}
-
-
-/* SEÇÕES */
-
-.form-section {
-
-    margin-bottom: 18px;
-}
-
-
-.form-section label {
-
-    display: block;
-
-    color: var(--text-secondary);
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    margin-bottom: 8px;
-}
-
-
-/* TIPOS */
-
-.type-buttons {
-
-    display: flex;
-
-    gap: 10px;
-}
-
-
-.type-button {
-
-    flex: 1;
-
-    padding: 13px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 10px;
-
-    background: #181919;
-
-    color: var(--text-secondary);
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-
-.type-button:hover {
-
-    background: #202222;
-
-    color: var(--text);
-}
-
-
-.type-button.selected {
-
-    background: #19342E;
-
-    border-color: var(--green);
-
-    color: var(--green);
-}
-
-
-/* INPUTS */
-
-.form-section select,
-.form-section input,
-.form-section textarea {
-
-    width: 100%;
-
-    border: 1px solid var(--border);
-
-    border-radius: 9px;
-
-    background: #181919;
-
-    color: var(--text);
-
-    padding: 12px;
-
-    font-family: inherit;
-
-    font-size: 14px;
-
-    outline: none;
-}
-
-
-.form-section select:focus,
-.form-section input:focus,
-.form-section textarea:focus {
-
-    border-color: var(--green);
-}
-
-
-.form-section textarea {
-
-    min-height: 180px;
-
-    resize: vertical;
-}
-
-
-/* CAMPOS */
-
-.work-fields {
-
-    display: none;
-}
-
-
-.work-fields.visible {
-
-    display: block;
-}
-
-
-/* TEXTO / VÍDEO */
-
-#textField,
-#videoField {
-
-    display: none;
-}
-
-
-#textField.visible,
-#videoField.visible {
-
-    display: block;
-}
-
-
-/* PUBLICAR */
-
-.publish-button {
-
-    width: 100%;
-
-    border: none;
-
-    border-radius: 10px;
-
-    padding: 14px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #087CC2,
-            #00A57C
-        );
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-
-.publish-button:hover {
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 5px 15px
-        rgba(0, 165, 124, 0.25);
-}
-
-
-/* =====================================
-   CARDS DOS TRABALHOS
-===================================== */
-
-.work-card {
-
-    background: #111111;
-
-    border-radius: 16px;
-
-    padding: 25px;
-
-    margin-bottom: 18px;
-
-    border: 1px solid #202323;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0, 0, 0, 0.15);
-}
-
-
-.work-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 18px;
-}
-
-
-.work-author {
-
-    color: var(--text);
-
-    font-size: 17px;
-
-    font-weight: 700;
-}
-
-
-.work-type {
-
-    color: var(--green);
-
-    font-size: 13px;
-
-    font-weight: 700;
-}
-
-
-.work-date {
-
-    color: var(--text-secondary);
-
-    font-size: 12px;
-
-    margin-top: 4px;
-}
-
-
-.work-text {
-
-    color: var(--text-secondary);
-
-    font-size: 16px;
-
-    line-height: 1.7;
-
-    white-space: pre-wrap;
-}
-
-
-.work-video {
-
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    border: none;
-
-    border-radius: 10px;
-
-    margin-top: 8px;
 }
