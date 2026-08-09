@@ -4051,7 +4051,7 @@ async function fazerLoginAdmin() {
 
     try {
 
-       const { data, error } = await supabase.auth.signInWithOAuth({
+       const { data, error } = await supabaseClient.auth.signInWithOAuth({
             provider: "google",
             options: {
                 redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
