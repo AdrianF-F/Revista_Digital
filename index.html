@@ -1093,7 +1093,11 @@ select option {
 
 .filter-options.visible {
 
-    display:block;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
 
 }
 
@@ -1577,6 +1581,46 @@ select option {
         );
 
     color:white;
+
+}
+
+.google-admin-button {
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:14px;
+
+    background:white;
+
+    color:#202124;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.google-admin-button:hover {
+
+    filter:brightness(.96);
+
+    transform:translateY(-1px);
+
+}
+
+.google-admin-button:disabled {
+
+    opacity:.65;
+
+    cursor:wait;
 
 }
 
@@ -2635,30 +2679,15 @@ select option {
         </p>
 
 
-        <label for="adminEmail">
-            E-mail
-        </label>
-
-
-        <input
-            type="email"
-            id="adminEmail"
-            placeholder="E-mail"
-            autocomplete="username"
+        <button
+            type="button"
+            class="google-admin-button"
+            id="googleAdminLogin"
         >
 
+            🔐 Entrar com Google
 
-        <label for="adminPassword">
-            Senha
-        </label>
-
-
-        <input
-            type="password"
-            id="adminPassword"
-            placeholder="Senha"
-            autocomplete="current-password"
-        >
+        </button>
 
 
         <div class="admin-modal-buttons">
@@ -2669,16 +2698,6 @@ select option {
             >
 
                 Cancelar
-
-            </button>
-
-
-            <button
-                type="button"
-                id="confirmAdminLogin"
-            >
-
-                Entrar
 
             </button>
 
@@ -2713,6 +2732,10 @@ const SUPABASE_KEY =
 
 const STORAGE_BUCKET =
     "imagens";
+
+
+const ADMIN_EMAIL =
+    "francisco.silva.adrian@escola.pr.gov.br";
 
 
 const supabaseClient =
@@ -2865,21 +2888,9 @@ const adminModal =
     );
 
 
-const adminEmail =
+const googleAdminLogin =
     document.getElementById(
-        "adminEmail"
-    );
-
-
-const adminPassword =
-    document.getElementById(
-        "adminPassword"
-    );
-
-
-const confirmAdminLogin =
-    document.getElementById(
-        "confirmAdminLogin"
+        "googleAdminLogin"
     );
 
 
@@ -3818,7 +3829,10 @@ async function publicarTrabalho() {
                         conteudo,
 
                     aprovado:
-                        false
+                        false,
+
+                    created_at:
+                        new Date().toISOString()
 
                 });
 
@@ -3986,14 +4000,13 @@ function limparFormulario() {
 
 
 /* =========================================================
-   LOGIN ADMINISTRADOR
+   LOGIN ADMINISTRADOR COM GOOGLE
 ========================================================= */
 
 adminButton.addEventListener(
     "click",
     abrirLoginAdmin
 );
-
 
 
 function abrirLoginAdmin() {
@@ -4010,9 +4023,6 @@ function abrirLoginAdmin() {
     adminModal.classList.add(
         "visible"
     );
-
-
-    adminEmail.focus();
 
 }
 
@@ -4031,132 +4041,70 @@ cancelAdminLogin.addEventListener(
 
 
 
-confirmAdminLogin.addEventListener(
-    "click",
-    fazerLoginAdmin
-);
-
-
-
 async function fazerLoginAdmin() {
 
-    const email =
-        adminEmail.value.trim();
+    googleAdminLogin.disabled = true;
 
-
-    const senha =
-        adminPassword.value;
-
-
-    if (
-        !email ||
-        !senha
-    ) {
-
-        alert(
-            "Digite o e-mail e a senha."
-        );
-
-        return;
-
-    }
-
-
-    confirmAdminLogin.disabled =
-        true;
-
-
-    confirmAdminLogin.textContent =
-        "Entrando...";
+    googleAdminLogin.textContent =
+        "Abrindo Google...";
 
 
     try {
 
         const {
-            data,
             error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
+        } = await supabaseClient
+            .auth
+            .signInWithOAuth({
 
-                    email:
-                        email,
+                provider: "google",
 
-                    password:
-                        senha
+                options: {
 
-                });
+                    redirectTo:
+                        window.location.origin
+
+                }
+
+            });
 
 
         if (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             alert(
-                "E-mail ou senha incorretos."
+                "Não foi possível iniciar o login com Google.\n\n" +
+                error.message
             );
 
-            return;
-
         }
-
-
-        if (
-            data.session
-        ) {
-
-            isAdmin =
-                true;
-
-
-            adminModal.classList.remove(
-                "visible"
-            );
-
-
-            adminEmail.value =
-                "";
-
-            adminPassword.value =
-                "";
-
-
-            adminButton.textContent =
-                "Sair do administrador";
-
-
-            await carregarTrabalhos();
-
-        }
-
 
     } catch (error) {
 
-        console.error(
-            error
-        );
-
+        console.error(error);
 
         alert(
-            "Não foi possível realizar o login."
+            "Não foi possível realizar o login com Google.\n\n" +
+            error.message
         );
-
 
     } finally {
 
-        confirmAdminLogin.disabled =
-            false;
+        googleAdminLogin.disabled = false;
 
-
-        confirmAdminLogin.textContent =
-            "Entrar";
+        googleAdminLogin.textContent =
+            "🔐 Entrar com Google";
 
     }
 
 }
+
+
+googleAdminLogin.addEventListener(
+    "click",
+    fazerLoginAdmin
+);
 
 
 
@@ -4200,26 +4148,110 @@ async function verificarSessao() {
 
     const {
         data
-    } =
-        await supabaseClient
-            .auth
-            .getSession();
+    } = await supabaseClient
+        .auth
+        .getSession();
 
 
-    if (
-        data.session
-    ) {
+    const session = data.session;
 
-        isAdmin =
-            true;
 
+    if (!session || !session.user) {
+
+        isAdmin = false;
 
         adminButton.textContent =
-            "Sair do administrador";
+            "Entrar como administrador";
+
+        return;
 
     }
 
+
+    const email =
+        (session.user.email || "")
+            .trim()
+            .toLowerCase();
+
+
+    if (email !== ADMIN_EMAIL.toLowerCase()) {
+
+        await supabaseClient.auth.signOut();
+
+        isAdmin = false;
+
+        adminButton.textContent =
+            "Entrar como administrador";
+
+        alert(
+            "Esta conta do Google não possui acesso de administrador."
+        );
+
+        return;
+
+    }
+
+
+    isAdmin = true;
+
+    adminButton.textContent =
+        "Sair do administrador";
+
 }
+
+
+supabaseClient.auth.onAuthStateChange(
+    async (event, session) => {
+
+        if (event === "SIGNED_OUT") {
+
+            isAdmin = false;
+
+            adminButton.textContent =
+                "Entrar como administrador";
+
+            return;
+
+        }
+
+
+        if (session && session.user) {
+
+            const email =
+                (session.user.email || "")
+                    .trim()
+                    .toLowerCase();
+
+
+            if (email === ADMIN_EMAIL.toLowerCase()) {
+
+                isAdmin = true;
+
+                adminButton.textContent =
+                    "Sair do administrador";
+
+                adminModal.classList.remove(
+                    "visible"
+                );
+
+                await carregarTrabalhos();
+
+            } else {
+
+                isAdmin = false;
+
+                await supabaseClient.auth.signOut();
+
+                alert(
+                    "Esta conta do Google não possui acesso de administrador."
+                );
+
+            }
+
+        }
+
+    }
+);
 
 
 
@@ -4252,7 +4284,7 @@ async function carregarTrabalhos() {
 
         query =
             query.order(
-                "id",
+                "created_at",
                 {
                     ascending:
                         false
@@ -4310,32 +4342,23 @@ function aplicarFiltros() {
         [...trabalhosCache];
 
 
-    /* =============================================
-       FILTRO POR TIPO
-    ============================================== */
-
-    if (
-        filtroAtual.tipo
-    ) {
+    if (filtroAtual.tipo) {
 
         resultado =
             resultado.filter(
                 trabalho =>
-                    trabalho.tipo ===
-                    filtroAtual.tipo
+                    String(trabalho.tipo || "")
+                        .trim()
+                        .toLowerCase() ===
+                    String(filtroAtual.tipo)
+                        .trim()
+                        .toLowerCase()
             );
 
     }
 
 
-
-    /* =============================================
-       FILTRO POR PESSOA
-    ============================================== */
-
-    if (
-        filtroAtual.pessoa
-    ) {
+    if (filtroAtual.pessoa) {
 
         resultado =
             resultado.filter(
@@ -4370,27 +4393,39 @@ function aplicarFiltros() {
     }
 
 
-
-    /* =============================================
-       ORDENAÇÃO
-    ============================================== */
-
     if (
         filtroAtual.ordenacao ===
         "recentes"
     ) {
 
         resultado.sort(
-            (
-                a,
-                b
-            ) =>
-                Number(b.id) -
-                Number(a.id)
+            (a, b) => {
+
+                const dataA =
+                    a.created_at
+                        ? new Date(a.created_at).getTime()
+                        : 0;
+
+                const dataB =
+                    b.created_at
+                        ? new Date(b.created_at).getTime()
+                        : 0;
+
+
+                if (dataA && dataB) {
+
+                    return dataB - dataA;
+
+                }
+
+
+                return Number(b.id || 0) -
+                    Number(a.id || 0);
+
+            }
         );
 
     }
-
 
 
     renderizarTrabalhos(
@@ -4538,9 +4573,32 @@ function renderizarTrabalhos(
                 "work-date";
 
 
-            date.textContent =
-                "ID do trabalho: #" +
-                trabalho.id;
+            if (trabalho.created_at) {
+
+                const dataPostagem =
+                    new Date(
+                        trabalho.created_at
+                    );
+
+
+                date.textContent =
+                    "Publicado em " +
+                    dataPostagem.toLocaleString(
+                        "pt-BR",
+                        {
+                            dateStyle:
+                                "short",
+                            timeStyle:
+                                "short"
+                        }
+                    );
+
+            } else {
+
+                date.textContent =
+                    "Data de publicação indisponível";
+
+            }
 
 
             info.appendChild(
@@ -5475,6 +5533,71 @@ const filterButtons =
     );
 
 
+function limparSelecaoDeFiltros() {
+
+    document
+        .querySelectorAll("[data-work-type]")
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "selected"
+                )
+        );
+
+
+    document
+        .querySelectorAll(
+            "#peopleFilterList .filter-subbutton"
+        )
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "selected"
+                )
+        );
+
+
+    document
+        .querySelectorAll("[data-sort]")
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "selected"
+                )
+        );
+
+}
+
+
+function mostrarOpcoesFiltro(nome) {
+
+    document
+        .querySelectorAll(".filter-options")
+        .forEach(
+            options =>
+                options.classList.remove(
+                    "visible"
+                )
+        );
+
+
+    const options =
+        document.getElementById(
+            nome + "Options"
+        );
+
+
+    if (options) {
+
+        options.classList.add(
+            "visible"
+        );
+
+    }
+
+}
+
+
 filterButtons.forEach(
     button => {
 
@@ -5486,34 +5609,11 @@ filterButtons.forEach(
                     button.dataset.filter;
 
 
-
-                /* =================================
-                   MOSTRAR OPÇÕES CORRETAS
-                ================================== */
-
-                document
-                    .querySelectorAll(
-                        ".filter-options"
-                    )
-                    .forEach(
-                        options => {
-
-                            options.classList.remove(
-                                "visible"
-                            );
-
-                        }
-                    );
-
-
                 filterButtons.forEach(
-                    item => {
-
+                    item =>
                         item.classList.remove(
                             "active"
-                        );
-
-                    }
+                        )
                 );
 
 
@@ -5522,77 +5622,23 @@ filterButtons.forEach(
                 );
 
 
-                const options =
-                    document.getElementById(
-                        filtro +
-                        "Options"
-                    );
+                mostrarOpcoesFiltro(
+                    filtro
+                );
 
 
-                if (options) {
+                if (filtro === "tempo") {
 
-                    options.classList.add(
-                        "visible"
-                    );
+                    filtroAtual.tipo = null;
+                    filtroAtual.pessoa = null;
+                    filtroAtual.ordenacao = "recentes";
 
-                }
-
-
-
-                /* =================================
-                   POR TEMPO
-                ================================== */
-
-                if (
-                    filtro ===
-                    "tempo"
-                ) {
-
-                    filtroAtual.tipo =
-                        null;
-
-                    filtroAtual.pessoa =
-                        null;
-
-                    filtroAtual.ordenacao =
-                        "recentes";
-
-
-                    document
-                        .querySelectorAll(
-                            "[data-work-type]"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    document
-                        .querySelectorAll(
-                            "#peopleFilterList .filter-subbutton"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
+                    limparSelecaoDeFiltros();
 
                     const recentes =
                         document.querySelector(
                             '[data-sort="recentes"]'
                         );
-
 
                     if (recentes) {
 
@@ -5602,87 +5648,47 @@ filterButtons.forEach(
 
                     }
 
-
-                    aplicarFiltros();
-
                 }
 
 
+                if (filtro === "pessoa") {
 
-                /* =================================
-                   POR PESSOA
-                ================================== */
-
-                if (
-                    filtro ===
-                    "pessoa"
-                ) {
-
-                    filtroAtual.tipo =
-                        null;
-
-                    filtroAtual.pessoa =
-                        null;
-
+                    filtroAtual.tipo = null;
+                    filtroAtual.pessoa = null;
+                    filtroAtual.ordenacao = "recentes";
 
                     document
-                        .querySelectorAll(
-                            "[data-work-type]"
-                        )
+                        .querySelectorAll("[data-work-type]")
                         .forEach(
-                            item => {
-
+                            item =>
                                 item.classList.remove(
                                     "selected"
-                                );
-
-                            }
+                                )
                         );
-
-
-                    aplicarFiltros();
 
                 }
 
 
+                if (filtro === "tipo") {
 
-                /* =================================
-                   POR TIPO
-                ================================== */
-
-                if (
-                    filtro ===
-                    "tipo"
-                ) {
-
-                    filtroAtual.pessoa =
-                        null;
-
+                    filtroAtual.pessoa = null;
+                    filtroAtual.ordenacao = "recentes";
 
                     document
                         .querySelectorAll(
                             "#peopleFilterList .filter-subbutton"
                         )
                         .forEach(
-                            item => {
-
+                            item =>
                                 item.classList.remove(
                                     "selected"
-                                );
-
-                            }
+                                )
                         );
 
-
-                    /*
-                        Aqui não apagamos filtroAtual.tipo.
-                        Isso permite clicar novamente no tipo
-                        e trocar entre Texto, Imagem e Vídeo.
-                    */
-
-                    aplicarFiltros();
-
                 }
+
+
+                aplicarFiltros();
 
             }
         );
@@ -5996,28 +6002,6 @@ adminModal.addEventListener(
             adminModal.classList.remove(
                 "visible"
             );
-
-        }
-
-    }
-);
-
-
-
-/* =========================================================
-   ENTER NO LOGIN
-========================================================= */
-
-adminPassword.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key ===
-            "Enter"
-        ) {
-
-            fazerLoginAdmin();
 
         }
 
