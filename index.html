@@ -54,7 +54,6 @@
         }
 
 
-
         /* ==================================================
            RESET
         ================================================== */
@@ -68,7 +67,6 @@
             padding: 0;
 
         }
-
 
 
         /* ==================================================
@@ -95,7 +93,6 @@
                 sans-serif;
 
         }
-
 
 
         /* ==================================================
@@ -130,7 +127,6 @@
         }
 
 
-
         /* ==================================================
            LOGO
         ================================================== */
@@ -146,7 +142,6 @@
         }
 
 
-
         .school-logo img {
 
             height: 78px;
@@ -158,7 +153,6 @@
             object-fit: contain;
 
         }
-
 
 
         /* ==================================================
@@ -191,7 +185,6 @@
         }
 
 
-
         .admin-button:hover {
 
             transform: translateY(-2px);
@@ -203,9 +196,8 @@
         }
 
 
-
         /* ==================================================
-           LAYOUT PRINCIPAL
+           LAYOUT
         ================================================== */
 
         .layout {
@@ -230,7 +222,6 @@
         }
 
 
-
         /* ==================================================
            MENU ESQUERDO
         ================================================== */
@@ -242,7 +233,6 @@
         }
 
 
-
         .main-navigation {
 
             display: flex;
@@ -252,7 +242,6 @@
             gap: 12px;
 
         }
-
 
 
         .nav-button {
@@ -285,20 +274,19 @@
         }
 
 
-
         .nav-button:hover {
 
-            background: rgba(
-                0,
-                168,
-                137,
-                .12
-            );
+            background:
+                rgba(
+                    0,
+                    168,
+                    137,
+                    .12
+                );
 
             color: white;
 
         }
-
 
 
         .nav-button.active {
@@ -316,7 +304,6 @@
         }
 
 
-
         /* ==================================================
            CONTEÚDO CENTRAL
         ================================================== */
@@ -328,9 +315,8 @@
         }
 
 
-
         /* ==================================================
-           BOTÃO ADICIONAR
+           ADICIONAR
         ================================================== */
 
         .add-work-button {
@@ -369,7 +355,6 @@
         }
 
 
-
         .add-work-button:hover {
 
             transform: translateY(-2px);
@@ -377,7 +362,6 @@
             filter: brightness(1.08);
 
         }
-
 
 
         /* ==================================================
@@ -402,13 +386,11 @@
         }
 
 
-
         .work-form.visible {
 
             display: block;
 
         }
-
 
 
         .work-form h2 {
@@ -422,9 +404,8 @@
         }
 
 
-
         /* ==================================================
-           SEÇÕES
+           FORM SECTIONS
         ================================================== */
 
         .form-section {
@@ -432,7 +413,6 @@
             margin-bottom: 20px;
 
         }
-
 
 
         .form-section label {
@@ -450,7 +430,6 @@
         }
 
 
-
         /* ==================================================
            TIPOS
         ================================================== */
@@ -461,12 +440,12 @@
 
             grid-template-columns:
                 1fr
+                1fr
                 1fr;
 
             gap: 12px;
 
         }
-
 
 
         .type-button {
@@ -496,14 +475,12 @@
         }
 
 
-
         .type-button:hover {
 
             border-color:
                 var(--green);
 
         }
-
 
 
         .type-button.selected {
@@ -519,10 +496,10 @@
             border-color:
                 #00c7a5;
 
-            color: #4edabd;
+            color:
+                #4edabd;
 
         }
-
 
 
         /* ==================================================
@@ -536,7 +513,6 @@
         }
 
 
-
         .work-fields.visible {
 
             display: block;
@@ -544,8 +520,8 @@
         }
 
 
-
         #textField,
+        #imageField,
         #videoField {
 
             display: none;
@@ -553,8 +529,8 @@
         }
 
 
-
         #textField.visible,
+        #imageField.visible,
         #videoField.visible {
 
             display: block;
@@ -562,6 +538,9 @@
         }
 
 
+        /* ==================================================
+           INPUTS
+        ================================================== */
 
         input,
         select,
@@ -592,7 +571,6 @@
         }
 
 
-
         input,
         select {
 
@@ -601,7 +579,6 @@
             padding: 0 13px;
 
         }
-
 
 
         textarea {
@@ -613,7 +590,6 @@
             resize: vertical;
 
         }
-
 
 
         input:focus,
@@ -635,13 +611,11 @@
         }
 
 
-
         select {
 
             cursor: pointer;
 
         }
-
 
 
         select option {
@@ -653,9 +627,47 @@
         }
 
 
+        /* ==================================================
+           INPUT DE IMAGEM
+        ================================================== */
+
+        .image-input {
+
+            padding: 10px;
+
+            cursor: pointer;
+
+        }
+
+
+        .image-preview {
+
+            display: none;
+
+            width: 100%;
+
+            max-height: 400px;
+
+            margin-top: 15px;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+
+            background: #000;
+
+        }
+
+
+        .image-preview.visible {
+
+            display: block;
+
+        }
+
 
         /* ==================================================
-           PUBLICAR
+           BOTÃO PUBLICAR
         ================================================== */
 
         .publish-button {
@@ -690,7 +702,6 @@
         }
 
 
-
         .publish-button:hover {
 
             filter: brightness(1.08);
@@ -698,7 +709,6 @@
             transform: translateY(-1px);
 
         }
-
 
 
         .publish-button:disabled {
@@ -710,7 +720,6 @@
             transform: none;
 
         }
-
 
 
         /* ==================================================
@@ -730,6 +739,9 @@
         }
 
 
+        /* ==================================================
+           CARD
+        ================================================== */
 
         .work-card {
 
@@ -755,6 +767,9 @@
         }
 
 
+        /* ==================================================
+           CABEÇALHO
+        ================================================== */
 
         .work-header {
 
@@ -771,7 +786,6 @@
         }
 
 
-
         .work-author {
 
             color: #dbe8f4;
@@ -781,7 +795,6 @@
             font-weight: bold;
 
         }
-
 
 
         .work-date {
@@ -794,7 +807,6 @@
             font-size: 13px;
 
         }
-
 
 
         .work-type {
@@ -821,6 +833,9 @@
         }
 
 
+        /* ==================================================
+           TEXTO
+        ================================================== */
 
         .work-text {
 
@@ -837,6 +852,30 @@
         }
 
 
+        /* ==================================================
+           IMAGEM DO TRABALHO
+        ================================================== */
+
+        .work-image {
+
+            display: block;
+
+            width: 100%;
+
+            max-height: 700px;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+
+            background: #000;
+
+        }
+
+
+        /* ==================================================
+           VÍDEO
+        ================================================== */
 
         .work-video {
 
@@ -853,7 +892,6 @@
             background: #000;
 
         }
-
 
 
         /* ==================================================
@@ -882,7 +920,6 @@
         }
 
 
-
         .empty-state h1 {
 
             color:
@@ -895,7 +932,6 @@
         }
 
 
-
         .empty-state p {
 
             color:
@@ -904,7 +940,6 @@
             font-size: 16px;
 
         }
-
 
 
         /* ==================================================
@@ -918,7 +953,6 @@
         }
 
 
-
         .filter-title {
 
             color: #aebdca;
@@ -930,7 +964,6 @@
             margin-bottom: 12px;
 
         }
-
 
 
         .filter-button {
@@ -964,7 +997,6 @@
         }
 
 
-
         .filter-button:hover {
 
             background:
@@ -978,7 +1010,6 @@
             color: white;
 
         }
-
 
 
         .filter-button.active {
@@ -997,9 +1028,8 @@
         }
 
 
-
         /* ==================================================
-           MODAL ADMIN
+           MODAL
         ================================================== */
 
         .admin-modal {
@@ -1029,7 +1059,6 @@
         }
 
 
-
         .admin-modal.visible {
 
             display: flex;
@@ -1037,12 +1066,11 @@
         }
 
 
-
         .admin-modal-box {
 
             width: 100%;
 
-            max-width: 420px;
+            max-width: 400px;
 
             padding: 28px;
 
@@ -1061,7 +1089,6 @@
         }
 
 
-
         .admin-modal-box h2 {
 
             color:
@@ -1072,7 +1099,6 @@
             margin-bottom: 8px;
 
         }
-
 
 
         .admin-login-description {
@@ -1087,75 +1113,37 @@
         }
 
 
+        .admin-modal-box label {
 
-        /* ==================================================
-           GOOGLE LOGIN
-        ================================================== */
+            display: block;
 
-        .google-login-button {
+            margin-top: 13px;
 
-            width: 100%;
+            margin-bottom: 7px;
 
-            display: flex;
+            color: #b8c8d7;
 
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 12px;
-
-            border: 1px solid
-                #3c4244;
-
-            border-radius: 10px;
-
-            padding: 14px;
-
-            background: #ffffff;
-
-            color: #202124;
-
-            font-size: 15px;
+            font-size: 14px;
 
             font-weight: bold;
 
-            cursor: pointer;
+        }
 
-            transition:
-                background .2s,
-                transform .2s;
+
+        .admin-modal-box input {
+
+            width: 100%;
+
+            height: 46px;
+
+            padding: 0 13px;
 
         }
 
 
-
-        .google-login-button:hover {
-
-            background: #eeeeee;
-
-            transform: translateY(-1px);
-
-        }
-
-
-
-        .google-icon {
-
-            width: 20px;
-
-            height: 20px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 18px;
-
-        }
-
-
+        /* ==================================================
+           BOTÕES MODAL
+        ================================================== */
 
         .admin-modal-buttons {
 
@@ -1163,10 +1151,9 @@
 
             gap: 10px;
 
-            margin-top: 18px;
+            margin-top: 22px;
 
         }
-
 
 
         .admin-modal-buttons button {
@@ -1188,7 +1175,6 @@
         }
 
 
-
         #cancelAdminLogin {
 
             background:
@@ -1200,14 +1186,50 @@
         }
 
 
-
-        #cancelAdminLogin:hover {
+        #confirmAdminLogin {
 
             background:
-                #323738;
+                linear-gradient(
+                    100deg,
+                    var(--blue),
+                    var(--green)
+                );
+
+            color: white;
 
         }
 
+
+        #googleLoginButton {
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 13px;
+
+            background: white;
+
+            color: #222;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        #googleLoginButton:hover {
+
+            filter: brightness(.95);
+
+        }
 
 
         /* ==================================================
@@ -1232,7 +1254,6 @@
         }
 
 
-
         .admin-controls button {
 
             border: none;
@@ -1254,7 +1275,6 @@
         }
 
 
-
         .admin-controls button:hover {
 
             transform: translateY(-1px);
@@ -1262,7 +1282,6 @@
             filter: brightness(1.1);
 
         }
-
 
 
         .approve-button {
@@ -1275,7 +1294,6 @@
         }
 
 
-
         .edit-button {
 
             background:
@@ -1286,7 +1304,6 @@
         }
 
 
-
         .delete-button {
 
             background:
@@ -1295,7 +1312,6 @@
             color: white;
 
         }
-
 
 
         /* ==================================================
@@ -1330,7 +1346,6 @@
         }
 
 
-
         /* ==================================================
            RESPONSIVIDADE
         ================================================== */
@@ -1352,13 +1367,11 @@
 
             }
 
-
             .school-logo img {
 
                 max-width: 190px;
 
             }
-
 
             .admin-button {
 
@@ -1371,6 +1384,9 @@
         }
 
 
+        /* ==================================================
+           TABLET / CELULAR
+        ================================================== */
 
         @media (
             max-width: 700px
@@ -1534,6 +1550,9 @@
         }
 
 
+        /* ==================================================
+           CELULARES PEQUENOS
+        ================================================== */
 
         @media (
             max-width: 450px
@@ -1599,131 +1618,317 @@
 <body>
 
 
-<!-- ==================================================
-     TOPO
-================================================== -->
-
-<header class="topbar">
-
-    <div class="school-logo">
-
-        <img
-            src="logo da escola.png"
-            alt="Logo da escola"
-        >
-
-    </div>
-
-
-    <button
-        class="admin-button"
-        id="adminButton"
-    >
-        Entrar como administrador
-    </button>
-
-</header>
-
-
-
-<!-- ==================================================
-     ESTRUTURA PRINCIPAL
-================================================== -->
-
-<main class="layout">
-
-
     <!-- ==================================================
-         MENU ESQUERDO
+         TOPO
     ================================================== -->
 
-    <aside class="left-sidebar">
+    <header class="topbar">
 
-        <nav class="main-navigation">
+        <div class="school-logo">
 
-            <button
-                class="nav-button active"
-                id="homeButton"
+            <img
+                src="logo da escola.png"
+                alt="Logo da escola"
             >
-                Início
-            </button>
 
-
-            <button
-                class="nav-button"
-                id="statisticsButton"
-            >
-                Estatísticas
-            </button>
-
-
-            <button
-                class="nav-button"
-                id="instructionsButton"
-            >
-                Instruções
-            </button>
-
-        </nav>
-
-    </aside>
-
-
-
-    <!-- ==================================================
-         CONTEÚDO CENTRAL
-    ================================================== -->
-
-    <section class="main-content">
+        </div>
 
 
         <button
-            class="add-work-button"
-            id="addWorkButton"
+            class="admin-button"
+            id="adminButton"
         >
-            + Adicionar Trabalho
+            Entrar como administrador
         </button>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         ESTRUTURA PRINCIPAL
+    ================================================== -->
+
+    <main class="layout">
+
+
+        <!-- ==================================================
+             MENU ESQUERDO
+        ================================================== -->
+
+        <aside class="left-sidebar">
+
+            <nav class="main-navigation">
+
+                <button
+                    class="nav-button active"
+                    id="homeButton"
+                >
+                    Início
+                </button>
+
+
+                <button
+                    class="nav-button"
+                    id="statisticsButton"
+                >
+                    Estatísticas
+                </button>
+
+
+                <button
+                    class="nav-button"
+                    id="instructionsButton"
+                >
+                    Instruções
+                </button>
+
+            </nav>
+
+        </aside>
 
 
 
         <!-- ==================================================
-             FORMULÁRIO
+             CONTEÚDO CENTRAL
         ================================================== -->
 
-        <div
-            class="work-form"
-            id="workForm"
-        >
-
-            <h2>
-                Adicionar Trabalho
-            </h2>
+        <section class="main-content">
 
 
-            <div class="form-section">
+            <!-- ==================================================
+                 ADICIONAR
+            ================================================== -->
 
-                <label>
-                    Tipo de trabalho
-                </label>
+            <button
+                class="add-work-button"
+                id="addWorkButton"
+            >
+                + Adicionar Trabalho
+            </button>
 
 
-                <div class="type-buttons">
+
+            <!-- ==================================================
+                 FORMULÁRIO
+            ================================================== -->
+
+            <div
+                class="work-form"
+                id="workForm"
+            >
+
+                <h2>
+                    Adicionar Trabalho
+                </h2>
+
+
+
+                <!-- ==================================================
+                     TIPO
+                ================================================== -->
+
+                <div class="form-section">
+
+                    <label>
+                        Tipo de trabalho
+                    </label>
+
+
+                    <div class="type-buttons">
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="texto"
+                        >
+                            📝 Texto
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="imagem"
+                        >
+                            🖼️ Imagem
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="video"
+                        >
+                            ▶️ Vídeo
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     CAMPOS
+                ================================================== -->
+
+                <div
+                    class="work-fields"
+                    id="workFields"
+                >
+
+
+                    <!-- ==================================================
+                         NOME
+                    ================================================== -->
+
+                    <div class="form-section">
+
+                        <label
+                            for="studentName"
+                        >
+                            Seu nome
+                        </label>
+
+
+                        <select
+                            id="studentName"
+                        >
+
+                            <option value="">
+                                Selecione seu nome
+                            </option>
+
+                            <option value="Aluno A">Aluno A</option>
+                            <option value="Aluno B">Aluno B</option>
+                            <option value="Aluno C">Aluno C</option>
+                            <option value="Aluno D">Aluno D</option>
+                            <option value="Aluno E">Aluno E</option>
+                            <option value="Aluno F">Aluno F</option>
+                            <option value="Aluno G">Aluno G</option>
+                            <option value="Aluno H">Aluno H</option>
+                            <option value="Aluno I">Aluno I</option>
+                            <option value="Aluno J">Aluno J</option>
+                            <option value="Aluno K">Aluno K</option>
+                            <option value="Aluno L">Aluno L</option>
+                            <option value="Aluno M">Aluno M</option>
+                            <option value="Aluno N">Aluno N</option>
+                            <option value="Aluno O">Aluno O</option>
+                            <option value="Aluno P">Aluno P</option>
+                            <option value="Aluno Q">Aluno Q</option>
+                            <option value="Aluno R">Aluno R</option>
+                            <option value="Aluno S">Aluno S</option>
+                            <option value="Aluno T">Aluno T</option>
+                            <option value="Aluno U">Aluno U</option>
+                            <option value="Aluno V">Aluno V</option>
+                            <option value="Aluno W">Aluno W</option>
+                            <option value="Aluno X">Aluno X</option>
+                            <option value="Aluno Y">Aluno Y</option>
+                            <option value="Aluno Z">Aluno Z</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         TEXTO
+                    ================================================== -->
+
+                    <div
+                        class="form-section"
+                        id="textField"
+                    >
+
+                        <label
+                            for="textContent"
+                        >
+                            Trabalho
+                        </label>
+
+
+                        <textarea
+                            id="textContent"
+                            placeholder="Digite o seu trabalho..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         IMAGEM
+                    ================================================== -->
+
+                    <div
+                        class="form-section"
+                        id="imageField"
+                    >
+
+                        <label
+                            for="imageFile"
+                        >
+                            Escolha uma imagem
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="imageFile"
+                            class="image-input"
+                            accept="image/*"
+                        >
+
+
+                        <img
+                            id="imagePreview"
+                            class="image-preview"
+                            alt="Pré-visualização da imagem"
+                        >
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         VÍDEO
+                    ================================================== -->
+
+                    <div
+                        class="form-section"
+                        id="videoField"
+                    >
+
+                        <label
+                            for="videoUrl"
+                        >
+                            URL do vídeo do YouTube
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="videoUrl"
+                            placeholder="https://www.youtube.com/watch?v=..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         PUBLICAR
+                    ================================================== -->
 
                     <button
                         type="button"
-                        class="type-button"
-                        data-type="texto"
+                        class="publish-button"
+                        id="publishButton"
                     >
-                        📝 Texto
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="video"
-                    >
-                        ▶️ Vídeo
+                        Publicar Trabalho
                     </button>
 
                 </div>
@@ -1732,425 +1937,314 @@
 
 
 
-            <div
-                class="work-fields"
-                id="workFields"
+            <!-- ==================================================
+                 TRABALHOS
+            ================================================== -->
+
+            <section
+                class="works-section"
+                id="worksArea"
             >
 
+                <div class="empty-state">
 
-                <div class="form-section">
+                    <h1>
+                        Trabalhos postados
+                    </h1>
 
-                    <label
-                        for="studentName"
-                    >
-                        Seu nome
-                    </label>
-
-
-                    <select
-                        id="studentName"
-                    >
-
-                        <option value="">
-                            Selecione seu nome
-                        </option>
-
-                        <option>Aluno A</option>
-                        <option>Aluno B</option>
-                        <option>Aluno C</option>
-                        <option>Aluno D</option>
-                        <option>Aluno E</option>
-                        <option>Aluno F</option>
-                        <option>Aluno G</option>
-                        <option>Aluno H</option>
-                        <option>Aluno I</option>
-                        <option>Aluno J</option>
-                        <option>Aluno K</option>
-                        <option>Aluno L</option>
-                        <option>Aluno M</option>
-                        <option>Aluno N</option>
-                        <option>Aluno O</option>
-                        <option>Aluno P</option>
-                        <option>Aluno Q</option>
-                        <option>Aluno R</option>
-                        <option>Aluno S</option>
-                        <option>Aluno T</option>
-                        <option>Aluno U</option>
-                        <option>Aluno V</option>
-                        <option>Aluno W</option>
-                        <option>Aluno X</option>
-                        <option>Aluno Y</option>
-                        <option>Aluno Z</option>
-
-                    </select>
+                    <p>
+                        Os trabalhos aprovados aparecerão aqui.
+                    </p>
 
                 </div>
 
+            </section>
 
-
-                <div
-                    class="form-section"
-                    id="textField"
-                >
-
-                    <label
-                        for="textContent"
-                    >
-                        Trabalho
-                    </label>
-
-
-                    <textarea
-                        id="textContent"
-                        placeholder="Digite o seu trabalho..."
-                    ></textarea>
-
-                </div>
+        </section>
 
 
 
-                <div
-                    class="form-section"
-                    id="videoField"
-                >
+        <!-- ==================================================
+             MENU DIREITO
+        ================================================== -->
 
-                    <label
-                        for="videoUrl"
-                    >
-                        URL do vídeo do YouTube
-                    </label>
+        <aside class="right-sidebar">
 
-
-                    <input
-                        type="url"
-                        id="videoUrl"
-                        placeholder="https://www.youtube.com/watch?v=..."
-                    >
-
-                </div>
+            <div class="filter-title">
+                Organizar trabalhos
+            </div>
 
 
+            <button
+                class="filter-button active"
+                data-filter="tempo"
+            >
+                Por tempo
+            </button>
+
+
+            <button
+                class="filter-button"
+                data-filter="pessoa"
+            >
+                Por pessoa
+            </button>
+
+
+            <button
+                class="filter-button"
+                data-filter="tipo"
+            >
+                Por tipo de trabalho
+            </button>
+
+        </aside>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         MODAL ADMIN
+    ================================================== -->
+
+    <div
+        class="admin-modal"
+        id="adminModal"
+    >
+
+        <div class="admin-modal-box">
+
+            <h2>
+                Login do administrador
+            </h2>
+
+
+            <p class="admin-login-description">
+                Entre com a conta de administrador.
+            </p>
+
+
+            <button
+                type="button"
+                id="googleLoginButton"
+            >
+                🔵 Entrar com Google
+            </button>
+
+
+            <div class="admin-modal-buttons">
 
                 <button
                     type="button"
-                    class="publish-button"
-                    id="publishButton"
+                    id="cancelAdminLogin"
                 >
-                    Publicar Trabalho
+                    Cancelar
                 </button>
 
             </div>
 
         </div>
 
-
-
-        <!-- ==================================================
-             TRABALHOS
-        ================================================== -->
-
-        <section
-            class="works-section"
-            id="worksArea"
-        >
-
-            <div class="empty-state">
-
-                <h1>
-                    Trabalhos postados
-                </h1>
-
-                <p>
-                    Os trabalhos aprovados aparecerão aqui.
-                </p>
-
-            </div>
-
-        </section>
-
-    </section>
+    </div>
 
 
 
     <!-- ==================================================
-         MENU DIREITO
+         SUPABASE
     ================================================== -->
 
-    <aside class="right-sidebar">
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
 
-        <div class="filter-title">
-            Organizar trabalhos
-        </div>
 
 
-        <button
-            class="filter-button active"
-            data-filter="tempo"
-        >
-            Por tempo
-        </button>
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
 
+    <script>
 
-        <button
-            class="filter-button"
-            data-filter="pessoa"
-        >
-            Por pessoa
-        </button>
+        /* ==================================================
+           CONFIGURAÇÃO SUPABASE
+        ================================================== */
 
+        const SUPABASE_URL =
+            "https://tcertncsuhrtldeojqfx.supabase.co";
 
-        <button
-            class="filter-button"
-            data-filter="tipo"
-        >
-            Por tipo de trabalho
-        </button>
 
-    </aside>
+        const SUPABASE_KEY =
+            "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
 
-</main>
 
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
 
 
-<!-- ==================================================
-     MODAL DO ADMINISTRADOR
-================================================== -->
 
-<div
-    class="admin-modal"
-    id="adminModal"
->
+        /* ==================================================
+           CONFIGURAÇÕES
+        ================================================== */
 
-    <div class="admin-modal-box">
+        const ADMIN_EMAIL =
+            "francisco.silva.adrian@escola.pr.gov.br";
 
-        <h2>
-            Login do administrador
-        </h2>
 
+        const STORAGE_BUCKET =
+            "imagens";
 
-        <p class="admin-login-description">
-            Entre utilizando sua conta Google autorizada.
-        </p>
 
 
-        <button
-            type="button"
-            class="google-login-button"
-            id="googleLoginButton"
-        >
+        /* ==================================================
+           ELEMENTOS
+        ================================================== */
 
-            <span class="google-icon">
-                G
-            </span>
+        const addWorkButton =
+            document.getElementById(
+                "addWorkButton"
+            );
 
-            Continuar com Google
 
-        </button>
+        const workForm =
+            document.getElementById(
+                "workForm"
+            );
 
 
-        <div class="admin-modal-buttons">
+        const typeButtons =
+            document.querySelectorAll(
+                ".type-button"
+            );
 
-            <button
-                type="button"
-                id="cancelAdminLogin"
-            >
-                Cancelar
-            </button>
 
-        </div>
+        const workFields =
+            document.getElementById(
+                "workFields"
+            );
 
-    </div>
 
-</div>
+        const textField =
+            document.getElementById(
+                "textField"
+            );
 
 
+        const imageField =
+            document.getElementById(
+                "imageField"
+            );
 
-<!-- ==================================================
-     SUPABASE
-================================================== -->
 
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+        const videoField =
+            document.getElementById(
+                "videoField"
+            );
 
 
+        const studentName =
+            document.getElementById(
+                "studentName"
+            );
 
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
 
-<script>
+        const textContent =
+            document.getElementById(
+                "textContent"
+            );
 
-    /* ==================================================
-       CONFIGURAÇÃO DO SUPABASE
-    ================================================== */
 
-    const SUPABASE_URL =
-        "https://tcertncsuhrtldeojqfx.supabase.co";
+        const imageFile =
+            document.getElementById(
+                "imageFile"
+            );
 
 
-    const SUPABASE_KEY =
-        "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
+        const imagePreview =
+            document.getElementById(
+                "imagePreview"
+            );
 
 
-    const supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
+        const videoUrl =
+            document.getElementById(
+                "videoUrl"
+            );
 
 
+        const publishButton =
+            document.getElementById(
+                "publishButton"
+            );
 
-    /* ==================================================
-       ADMINISTRADOR AUTORIZADO
-    ================================================== */
 
-    const ADMIN_EMAIL =
-        "francisco.silva.adrian@escola.pr.gov.br";
+        const worksArea =
+            document.getElementById(
+                "worksArea"
+            );
 
 
+        const adminButton =
+            document.getElementById(
+                "adminButton"
+            );
 
-    /* ==================================================
-       ELEMENTOS
-    ================================================== */
 
-    const addWorkButton =
-        document.getElementById(
-            "addWorkButton"
-        );
+        const adminModal =
+            document.getElementById(
+                "adminModal"
+            );
 
 
-    const workForm =
-        document.getElementById(
-            "workForm"
-        );
+        const googleLoginButton =
+            document.getElementById(
+                "googleLoginButton"
+            );
 
 
-    const typeButtons =
-        document.querySelectorAll(
-            ".type-button"
-        );
+        const cancelAdminLogin =
+            document.getElementById(
+                "cancelAdminLogin"
+            );
 
 
-    const workFields =
-        document.getElementById(
-            "workFields"
-        );
 
+        /* ==================================================
+           VARIÁVEIS
+        ================================================== */
 
-    const textField =
-        document.getElementById(
-            "textField"
-        );
+        let selectedType = null;
 
+        let isAdmin = false;
 
-    const videoField =
-        document.getElementById(
-            "videoField"
-        );
 
 
-    const studentName =
-        document.getElementById(
-            "studentName"
-        );
+        /* ==================================================
+           MENU ESQUERDO
+        ================================================== */
 
+        const navButtons =
+            document.querySelectorAll(
+                ".nav-button"
+            );
 
-    const textContent =
-        document.getElementById(
-            "textContent"
-        );
 
-
-    const videoUrl =
-        document.getElementById(
-            "videoUrl"
-        );
-
-
-    const publishButton =
-        document.getElementById(
-            "publishButton"
-        );
-
-
-    const worksArea =
-        document.getElementById(
-            "worksArea"
-        );
-
-
-    const adminButton =
-        document.getElementById(
-            "adminButton"
-        );
-
-
-    const adminModal =
-        document.getElementById(
-            "adminModal"
-        );
-
-
-    const googleLoginButton =
-        document.getElementById(
-            "googleLoginButton"
-        );
-
-
-    const cancelAdminLogin =
-        document.getElementById(
-            "cancelAdminLogin"
-        );
-
-
-
-    /* ==================================================
-       VARIÁVEIS
-    ================================================== */
-
-    let selectedType = null;
-
-    let isAdmin = false;
-
-
-
-    /* ==================================================
-       INÍCIO
-    ================================================== */
-
-    console.log(
-        "Sistema carregado."
-    );
-
-
-
-    /* ==================================================
-       MENU ESQUERDO
-    ================================================== */
-
-    const navButtons =
-        document.querySelectorAll(
-            ".nav-button"
-        );
-
-
-    navButtons.forEach(
-        button => {
+        navButtons.forEach(button => {
 
             button.addEventListener(
                 "click",
                 () => {
 
-                    navButtons.forEach(
-                        item => {
+                    navButtons.forEach(item => {
 
-                            item.classList.remove(
-                                "active"
-                            );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                        }
-                    );
+                    });
 
 
                     button.classList.add(
@@ -2160,88 +2254,148 @@
                 }
             );
 
-        }
-    );
+        });
 
 
 
-    /* ==================================================
-       MENU DIREITO
-    ================================================== */
+        /* ==================================================
+           FILTROS
+        ================================================== */
 
-    const filterButtons =
-        document.querySelectorAll(
-            ".filter-button"
-        );
+        const filterButtons =
+            document.querySelectorAll(
+                ".filter-button"
+            );
 
 
-    filterButtons.forEach(
-        button => {
+        filterButtons.forEach(button => {
 
             button.addEventListener(
                 "click",
                 () => {
 
-                    filterButtons.forEach(
-                        item => {
+                    filterButtons.forEach(item => {
 
-                            item.classList.remove(
-                                "active"
-                            );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                        }
-                    );
+                    });
 
 
                     button.classList.add(
                         "active"
                     );
 
+
+                    aplicarFiltro(
+                        button.dataset.filter
+                    );
+
                 }
             );
 
-        }
-    );
+        });
 
 
 
-    /* ==================================================
-       ADICIONAR TRABALHO
-    ================================================== */
+        /* ==================================================
+           FILTRO
+        ================================================== */
 
-    addWorkButton.addEventListener(
-        "click",
-        () => {
+        let trabalhosAtuais = [];
 
-            workForm.classList.toggle(
-                "visible"
+
+        function aplicarFiltro(
+            filtro
+        ) {
+
+            let trabalhos =
+                [...trabalhosAtuais];
+
+
+            if (
+                filtro === "tempo"
+            ) {
+
+                trabalhos.sort(
+                    (a, b) =>
+                        b.id - a.id
+                );
+
+            }
+
+
+            if (
+                filtro === "pessoa"
+            ) {
+
+                trabalhos.sort(
+                    (a, b) =>
+                        a.nome.localeCompare(
+                            b.nome
+                        )
+                );
+
+            }
+
+
+            if (
+                filtro === "tipo"
+            ) {
+
+                trabalhos.sort(
+                    (a, b) =>
+                        a.tipo.localeCompare(
+                            b.tipo
+                        )
+                );
+
+            }
+
+
+            renderizarTrabalhos(
+                trabalhos
             );
 
         }
-    );
 
 
 
-    /* ==================================================
-       TIPO DE TRABALHO
-    ================================================== */
+        /* ==================================================
+           ABRIR FORMULÁRIO
+        ================================================== */
 
-    typeButtons.forEach(
-        button => {
+        addWorkButton.addEventListener(
+            "click",
+            () => {
+
+                workForm.classList.toggle(
+                    "visible"
+                );
+
+            }
+        );
+
+
+
+        /* ==================================================
+           ESCOLHER TIPO
+        ================================================== */
+
+        typeButtons.forEach(button => {
 
             button.addEventListener(
                 "click",
                 () => {
 
-                    typeButtons.forEach(
-                        item => {
+                    typeButtons.forEach(item => {
 
-                            item.classList.remove(
-                                "selected"
-                            );
+                        item.classList.remove(
+                            "selected"
+                        );
 
-                        }
-                    );
+                    });
 
 
                     button.classList.add(
@@ -2258,16 +2412,37 @@
                     );
 
 
+                    textField.classList.remove(
+                        "visible"
+                    );
+
+
+                    imageField.classList.remove(
+                        "visible"
+                    );
+
+
+                    videoField.classList.remove(
+                        "visible"
+                    );
+
+
                     if (
-                        selectedType ===
-                        "texto"
+                        selectedType === "texto"
                     ) {
 
                         textField.classList.add(
                             "visible"
                         );
 
-                        videoField.classList.remove(
+                    }
+
+
+                    if (
+                        selectedType === "imagem"
+                    ) {
+
+                        imageField.classList.add(
                             "visible"
                         );
 
@@ -2275,15 +2450,10 @@
 
 
                     if (
-                        selectedType ===
-                        "video"
+                        selectedType === "video"
                     ) {
 
                         videoField.classList.add(
-                            "visible"
-                        );
-
-                        textField.classList.remove(
                             "visible"
                         );
 
@@ -2292,531 +2462,739 @@
                 }
             );
 
-        }
-    );
+        });
 
 
 
-    /* ==================================================
-       PUBLICAR
-    ================================================== */
+        /* ==================================================
+           PRÉ-VISUALIZAÇÃO DA IMAGEM
+        ================================================== */
 
-    publishButton.addEventListener(
-        "click",
-        publicarTrabalho
-    );
+        imageFile.addEventListener(
+            "change",
+            () => {
 
+                const arquivo =
+                    imageFile.files[0];
 
 
-    async function publicarTrabalho() {
+                if (!arquivo) {
 
-        if (!selectedType) {
+                    imagePreview.src =
+                        "";
 
-            alert(
-                "Escolha o tipo de trabalho."
-            );
-
-            return;
-
-        }
-
-
-        const nome =
-            studentName.value;
-
-
-        if (!nome) {
-
-            alert(
-                "Selecione seu nome."
-            );
-
-            return;
-
-        }
-
-
-        let conteudo = "";
-
-
-
-        if (
-            selectedType ===
-            "texto"
-        ) {
-
-            conteudo =
-                textContent.value.trim();
-
-
-            if (!conteudo) {
-
-                alert(
-                    "Digite o conteúdo do trabalho."
-                );
-
-                return;
-
-            }
-
-        }
-
-
-
-        if (
-            selectedType ===
-            "video"
-        ) {
-
-            conteudo =
-                videoUrl.value.trim();
-
-
-            if (!conteudo) {
-
-                alert(
-                    "Digite a URL do vídeo."
-                );
-
-                return;
-
-            }
-
-
-            if (
-                !conteudo.includes(
-                    "youtube.com"
-                ) &&
-                !conteudo.includes(
-                    "youtu.be"
-                )
-            ) {
-
-                alert(
-                    "Digite uma URL válida do YouTube."
-                );
-
-                return;
-
-            }
-
-        }
-
-
-
-        publishButton.disabled =
-            true;
-
-
-        publishButton.textContent =
-            "Publicando...";
-
-
-
-        try {
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from("trabalhos")
-                    .insert({
-
-                        nome:
-                            nome,
-
-                        tipo:
-                            selectedType,
-
-                        conteudo:
-                            conteudo,
-
-                        aprovado:
-                            false
-
-                    });
-
-
-
-            if (error) {
-
-                console.error(
-                    error
-                );
-
-
-                alert(
-                    "Não foi possível publicar o trabalho.\n\n" +
-                    error.message
-                );
-
-                return;
-
-            }
-
-
-
-            alert(
-                "Trabalho enviado para aprovação!"
-            );
-
-
-            limparFormulario();
-
-
-            await carregarTrabalhos();
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "Ocorreu um erro ao publicar o trabalho."
-            );
-
-        }
-
-
-        finally {
-
-            publishButton.disabled =
-                false;
-
-
-            publishButton.textContent =
-                "Publicar Trabalho";
-
-        }
-
-    }
-
-
-
-    /* ==================================================
-       LIMPAR FORMULÁRIO
-    ================================================== */
-
-    function limparFormulario() {
-
-        studentName.value =
-            "";
-
-
-        textContent.value =
-            "";
-
-
-        videoUrl.value =
-            "";
-
-
-        selectedType =
-            null;
-
-
-        typeButtons.forEach(
-            button => {
-
-                button.classList.remove(
-                    "selected"
-                );
-
-            }
-        );
-
-
-        workFields.classList.remove(
-            "visible"
-        );
-
-
-        textField.classList.remove(
-            "visible"
-        );
-
-
-        videoField.classList.remove(
-            "visible"
-        );
-
-    }
-
-
-
-    /* ==================================================
-       ABRIR LOGIN
-    ================================================== */
-
-    adminButton.addEventListener(
-        "click",
-        () => {
-
-            if (isAdmin) {
-
-                sairAdministrador();
-
-                return;
-
-            }
-
-
-            adminModal.classList.add(
-                "visible"
-            );
-
-        }
-    );
-
-
-
-    /* ==================================================
-       FECHAR LOGIN
-    ================================================== */
-
-    cancelAdminLogin.addEventListener(
-        "click",
-        () => {
-
-            adminModal.classList.remove(
-                "visible"
-            );
-
-        }
-    );
-
-
-
-    /* ==================================================
-       LOGIN GOOGLE
-    ================================================== */
-
-    googleLoginButton.addEventListener(
-        "click",
-        fazerLoginGoogle
-    );
-
-
-
-    async function fazerLoginGoogle() {
-
-        googleLoginButton.disabled =
-            true;
-
-
-        googleLoginButton.innerHTML =
-            "Entrando...";
-
-
-        try {
-
-            const {
-                error
-            } =
-                await supabaseClient.auth
-                    .signInWithOAuth({
-
-                        provider:
-                            "google",
-
-                        options: {
-
-                            redirectTo:
-                                window.location.origin +
-                                window.location.pathname
-
-                        }
-
-                    });
-
-
-
-            if (error) {
-
-                console.error(
-                    "Erro Google:",
-                    error
-                );
-
-
-                alert(
-                    "Não foi possível iniciar o login com Google."
-                );
-
-            }
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "Ocorreu um erro ao iniciar o login."
-            );
-
-        }
-
-
-        finally {
-
-            googleLoginButton.disabled =
-                false;
-
-
-            googleLoginButton.innerHTML =
-                `
-                    <span class="google-icon">
-                        G
-                    </span>
-
-                    Continuar com Google
-                `;
-
-        }
-
-    }
-
-
-
-    /* ==================================================
-       VERIFICAR USUÁRIO GOOGLE
-    ================================================== */
-
-    async function verificarSessao() {
-
-        const {
-            data
-        } =
-            await supabaseClient.auth
-                .getSession();
-
-
-        const session =
-            data.session;
-
-
-        if (!session) {
-
-            isAdmin =
-                false;
-
-            return;
-
-        }
-
-
-        const email =
-            session.user.email;
-
-
-
-        /*
-            SOMENTE ESTE E-MAIL
-            É ADMINISTRADOR.
-        */
-
-        if (
-            email &&
-            email.toLowerCase() ===
-            ADMIN_EMAIL.toLowerCase()
-        ) {
-
-            isAdmin =
-                true;
-
-
-            adminButton.textContent =
-                "Sair do administrador";
-
-
-            console.log(
-                "Administrador autenticado:",
-                email
-            );
-
-        }
-
-        else {
-
-            /*
-                Usuário Google autenticado,
-                mas não autorizado.
-            */
-
-            isAdmin =
-                false;
-
-
-            await supabaseClient.auth
-                .signOut();
-
-
-            alert(
-                "Esta conta Google não possui permissão de administrador."
-            );
-
-        }
-
-    }
-
-
-
-    /* ==================================================
-       OBSERVAR LOGIN / LOGOUT
-    ================================================== */
-
-    supabaseClient.auth.onAuthStateChange(
-        async (
-            event,
-            session
-        ) => {
-
-            if (
-                event ===
-                "SIGNED_IN"
-            ) {
-
-                if (!session) {
+                    imagePreview.classList.remove(
+                        "visible"
+                    );
 
                     return;
 
                 }
 
 
-                const email =
-                    session.user.email;
-
-
                 if (
-                    email &&
-                    email.toLowerCase() ===
-                    ADMIN_EMAIL.toLowerCase()
+                    !arquivo.type.startsWith(
+                        "image/"
+                    )
                 ) {
 
-                    isAdmin =
-                        true;
+                    alert(
+                        "Selecione um arquivo de imagem."
+                    );
+
+                    imageFile.value =
+                        "";
+
+                    return;
+
+                }
 
 
-                    adminButton.textContent =
-                        "Sair do administrador";
-
-
-                    adminModal.classList.remove(
-                        "visible"
+                const url =
+                    URL.createObjectURL(
+                        arquivo
                     );
 
 
-                    await carregarTrabalhos();
+                imagePreview.src =
+                    url;
+
+
+                imagePreview.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+
+
+        /* ==================================================
+           PUBLICAR
+        ================================================== */
+
+        publishButton.addEventListener(
+            "click",
+            publicarTrabalho
+        );
+
+
+
+        async function publicarTrabalho() {
+
+            if (!selectedType) {
+
+                alert(
+                    "Escolha o tipo de trabalho."
+                );
+
+                return;
+
+            }
+
+
+            const nome =
+                studentName.value;
+
+
+            if (!nome) {
+
+                alert(
+                    "Selecione seu nome."
+                );
+
+                return;
+
+            }
+
+
+            publishButton.disabled =
+                true;
+
+
+            publishButton.textContent =
+                "Publicando...";
+
+
+            try {
+
+                let conteudo = "";
+
+
+
+                /* ==========================================
+                   TEXTO
+                ========================================== */
+
+                if (
+                    selectedType === "texto"
+                ) {
+
+                    conteudo =
+                        textContent.value.trim();
+
+
+                    if (!conteudo) {
+
+                        alert(
+                            "Digite o conteúdo do trabalho."
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+
+
+                /* ==========================================
+                   VÍDEO
+                ========================================== */
+
+                if (
+                    selectedType === "video"
+                ) {
+
+                    conteudo =
+                        videoUrl.value.trim();
+
+
+                    if (!conteudo) {
+
+                        alert(
+                            "Digite a URL do vídeo."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !conteudo.includes(
+                            "youtube.com"
+                        ) &&
+                        !conteudo.includes(
+                            "youtu.be"
+                        )
+                    ) {
+
+                        alert(
+                            "Digite uma URL válida do YouTube."
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+
+
+                /* ==========================================
+                   IMAGEM
+                ========================================== */
+
+                if (
+                    selectedType === "imagem"
+                ) {
+
+                    const arquivo =
+                        imageFile.files[0];
+
+
+                    if (!arquivo) {
+
+                        alert(
+                            "Escolha uma imagem."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !arquivo.type.startsWith(
+                            "image/"
+                        )
+                    ) {
+
+                        alert(
+                            "O arquivo escolhido não é uma imagem."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                       Limite de 10 MB
+                    */
+
+                    if (
+                        arquivo.size >
+                        10 * 1024 * 1024
+                    ) {
+
+                        alert(
+                            "A imagem deve ter no máximo 10 MB."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const extensao =
+                        arquivo.name
+                            .split(".")
+                            .pop()
+                            .toLowerCase();
+
+
+                    const nomeArquivo =
+                        Date.now() +
+                        "-" +
+                        Math.random()
+                            .toString(36)
+                            .substring(2) +
+                        "." +
+                        extensao;
+
+
+
+                    /* ======================================
+                       UPLOAD STORAGE
+                    ====================================== */
+
+                    const {
+                        error:
+                            uploadError
+                    } =
+                        await supabaseClient
+                            .storage
+                            .from(
+                                STORAGE_BUCKET
+                            )
+                            .upload(
+                                nomeArquivo,
+                                arquivo,
+                                {
+                                    cacheControl:
+                                        "3600",
+
+                                    upsert:
+                                        false,
+
+                                    contentType:
+                                        arquivo.type
+
+                                }
+                            );
+
+
+                    if (uploadError) {
+
+                        console.error(
+                            uploadError
+                        );
+
+
+                        alert(
+                            "Não foi possível enviar a imagem.\n\n" +
+                            uploadError.message
+                        );
+
+                        return;
+
+                    }
+
+
+
+                    /* ======================================
+                       URL PÚBLICA
+                    ====================================== */
+
+                    const {
+                        data:
+                            publicData
+                    } =
+                        supabaseClient
+                            .storage
+                            .from(
+                                STORAGE_BUCKET
+                            )
+                            .getPublicUrl(
+                                nomeArquivo
+                            );
+
+
+                    conteudo =
+                        publicData.publicUrl;
+
+                }
+
+
+
+                /* ==========================================
+                   INSERIR BANCO
+                ========================================== */
+
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .from(
+                            "trabalhos"
+                        )
+                        .insert({
+
+                            nome:
+                                nome,
+
+                            tipo:
+                                selectedType,
+
+                            conteudo:
+                                conteudo,
+
+                            aprovado:
+                                false
+
+                        });
+
+
+                if (error) {
+
+                    console.error(
+                        error
+                    );
+
+
+                    alert(
+                        "Não foi possível publicar o trabalho.\n\n" +
+                        error.message
+                    );
+
+
+                    return;
+
+                }
+
+
+                alert(
+                    "Trabalho enviado para aprovação!"
+                );
+
+
+                limparFormulario();
+
+
+                await carregarTrabalhos();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "Ocorreu um erro ao publicar o trabalho."
+                );
+
+            }
+
+
+            finally {
+
+                publishButton.disabled =
+                    false;
+
+                publishButton.textContent =
+                    "Publicar Trabalho";
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           LIMPAR FORMULÁRIO
+        ================================================== */
+
+        function limparFormulario() {
+
+            studentName.value =
+                "";
+
+
+            textContent.value =
+                "";
+
+
+            videoUrl.value =
+                "";
+
+
+            imageFile.value =
+                "";
+
+
+            imagePreview.src =
+                "";
+
+
+            imagePreview.classList.remove(
+                "visible"
+            );
+
+
+            selectedType =
+                null;
+
+
+            typeButtons.forEach(button => {
+
+                button.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+            workFields.classList.remove(
+                "visible"
+            );
+
+
+            textField.classList.remove(
+                "visible"
+            );
+
+
+            imageField.classList.remove(
+                "visible"
+            );
+
+
+            videoField.classList.remove(
+                "visible"
+            );
+
+        }
+
+
+
+        /* ==================================================
+           ADMIN
+        ================================================== */
+
+        adminButton.addEventListener(
+            "click",
+            () => {
+
+                if (isAdmin) {
+
+                    sairAdministrador();
+
+                    return;
+
+                }
+
+
+                adminModal.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+
+
+        cancelAdminLogin.addEventListener(
+            "click",
+            () => {
+
+                adminModal.classList.remove(
+                    "visible"
+                );
+
+            }
+        );
+
+
+
+        /* ==================================================
+           LOGIN GOOGLE
+        ================================================== */
+
+        googleLoginButton.addEventListener(
+            "click",
+            fazerLoginGoogle
+        );
+
+
+
+        async function fazerLoginGoogle() {
+
+            googleLoginButton.disabled =
+                true;
+
+
+            googleLoginButton.textContent =
+                "Entrando...";
+
+
+            try {
+
+                const {
+                    error
+                } =
+                    await supabaseClient.auth
+                        .signInWithOAuth({
+
+                            provider:
+                                "google",
+
+                            options: {
+
+                                redirectTo:
+                                    window.location.origin +
+                                    window.location.pathname
+
+                            }
+
+                        });
+
+
+                if (error) {
+
+                    console.error(
+                        error
+                    );
+
+
+                    alert(
+                        "Não foi possível iniciar o login com Google.\n\n" +
+                        error.message
+                    );
+
+                }
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "Erro ao iniciar o login."
+                );
+
+            }
+
+
+            finally {
+
+                googleLoginButton.disabled =
+                    false;
+
+                googleLoginButton.textContent =
+                    "🔵 Entrar com Google";
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           VERIFICAR SESSÃO
+        ================================================== */
+
+        async function verificarSessao() {
+
+            const {
+                data
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (
+                data.session
+            ) {
+
+                verificarAdministrador(
+                    data.session
+                        .user
+                );
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           VERIFICAR ADMINISTRADOR
+        ================================================== */
+
+        function verificarAdministrador(
+            user
+        ) {
+
+            if (!user) {
+
+                isAdmin =
+                    false;
+
+                return;
+
+            }
+
+
+            const email =
+                user.email
+                    ?.toLowerCase();
+
+
+            if (
+                email ===
+                ADMIN_EMAIL.toLowerCase()
+            ) {
+
+                isAdmin =
+                    true;
+
+
+                adminButton.textContent =
+                    "Sair do administrador";
+
+            }
+
+            else {
+
+                /*
+                   Usuário Google diferente
+                   do administrador.
+
+                   Não recebe acesso.
+                */
+
+                isAdmin =
+                    false;
+
+                adminButton.textContent =
+                    "Entrar como administrador";
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           ALTERAÇÃO DE AUTENTICAÇÃO
+        ================================================== */
+
+        supabaseClient.auth.onAuthStateChange(
+            async (
+                event,
+                session
+            ) => {
+
+                if (
+                    session &&
+                    session.user
+                ) {
+
+                    verificarAdministrador(
+                        session.user
+                    );
+
+                    if (
+                        isAdmin
+                    ) {
+
+                        adminModal.classList.remove(
+                            "visible"
+                        );
+
+                    }
 
                 }
 
@@ -2825,121 +3203,708 @@
                     isAdmin =
                         false;
 
-
-                    await supabaseClient.auth
-                        .signOut();
-
-
-                    alert(
-                        "Esta conta Google não possui permissão de administrador."
-                    );
+                    adminButton.textContent =
+                        "Entrar como administrador";
 
                 }
-
-            }
-
-
-            if (
-                event ===
-                "SIGNED_OUT"
-            ) {
-
-                isAdmin =
-                    false;
-
-
-                adminButton.textContent =
-                    "Entrar como administrador";
 
 
                 await carregarTrabalhos();
 
             }
+        );
+
+
+
+        /* ==================================================
+           SAIR
+        ================================================== */
+
+        async function sairAdministrador() {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+
+            isAdmin =
+                false;
+
+
+            adminButton.textContent =
+                "Entrar como administrador";
+
+
+            await carregarTrabalhos();
 
         }
-    );
 
 
 
-    /* ==================================================
-       SAIR
-    ================================================== */
+        /* ==================================================
+           CARREGAR TRABALHOS
+        ================================================== */
 
-    async function sairAdministrador() {
+        async function carregarTrabalhos() {
 
-        await supabaseClient.auth.signOut();
+            try {
 
-
-        isAdmin =
-            false;
-
-
-        adminButton.textContent =
-            "Entrar como administrador";
-
-
-        await carregarTrabalhos();
-
-    }
+                let query =
+                    supabaseClient
+                        .from(
+                            "trabalhos"
+                        )
+                        .select("*");
 
 
+                if (!isAdmin) {
 
-    /* ==================================================
-       CARREGAR TRABALHOS
-    ================================================== */
+                    query =
+                        query.eq(
+                            "aprovado",
+                            true
+                        );
 
-    async function carregarTrabalhos() {
+                }
 
-        try {
-
-            let query =
-                supabaseClient
-                    .from("trabalhos")
-                    .select("*");
-
-
-            /*
-                Visitante:
-                somente aprovados.
-
-                Admin:
-                todos.
-            */
-
-            if (!isAdmin) {
 
                 query =
-                    query.eq(
-                        "aprovado",
-                        true
+                    query.order(
+                        "id",
+                        {
+                            ascending:
+                                false
+                        }
                     );
+
+
+                const {
+                    data,
+                    error
+                } =
+                    await query;
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao carregar trabalhos:",
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                trabalhosAtuais =
+                    data || [];
+
+
+                renderizarTrabalhos(
+                    trabalhosAtuais
+                );
 
             }
 
 
-            query =
-                query.order(
-                    "id",
-                    {
-                        ascending:
-                            false
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+            }
+
+        }
+
+
+
+        /* ==================================================
+           RENDERIZAR
+        ================================================== */
+
+        function renderizarTrabalhos(
+            trabalhos
+        ) {
+
+            worksArea.innerHTML =
+                "";
+
+
+            if (
+                !trabalhos ||
+                trabalhos.length === 0
+            ) {
+
+                worksArea.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <h1>
+                            ${isAdmin
+                                ? "Nenhum trabalho encontrado"
+                                : "Trabalhos postados"
+                            }
+                        </h1>
+
+                        <p>
+                            ${isAdmin
+                                ? "Não existem trabalhos publicados ou pendentes."
+                                : "Os trabalhos aprovados aparecerão aqui."
+                            }
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+
+            trabalhos.forEach(
+                trabalho => {
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    card.className =
+                        "work-card";
+
+
+
+                    /* ======================================
+                       HEADER
+                    ====================================== */
+
+                    const header =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    header.className =
+                        "work-header";
+
+
+                    const info =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    const author =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    author.className =
+                        "work-author";
+
+
+                    author.textContent =
+                        trabalho.nome;
+
+
+                    const date =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    date.className =
+                        "work-date";
+
+
+                    date.textContent =
+                        "ID do trabalho: #" +
+                        trabalho.id;
+
+
+                    info.appendChild(
+                        author
+                    );
+
+
+                    info.appendChild(
+                        date
+                    );
+
+
+
+                    /* ======================================
+                       TIPO
+                    ====================================== */
+
+                    const type =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    type.className =
+                        "work-type";
+
+
+                    if (
+                        trabalho.tipo ===
+                        "texto"
+                    ) {
+
+                        type.textContent =
+                            "📝 Texto";
+
+                    }
+
+
+                    else if (
+                        trabalho.tipo ===
+                        "imagem"
+                    ) {
+
+                        type.textContent =
+                            "🖼️ Imagem";
+
+                    }
+
+
+                    else {
+
+                        type.textContent =
+                            "▶️ Vídeo";
+
+                    }
+
+
+                    header.appendChild(
+                        info
+                    );
+
+
+                    header.appendChild(
+                        type
+                    );
+
+
+                    card.appendChild(
+                        header
+                    );
+
+
+
+                    /* ======================================
+                       PENDENTE
+                    ====================================== */
+
+                    if (
+                        isAdmin &&
+                        !trabalho.aprovado
+                    ) {
+
+                        const status =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        status.className =
+                            "pending-badge";
+
+
+                        status.textContent =
+                            "⏳ Aguardando aprovação";
+
+
+                        card.appendChild(
+                            status
+                        );
+
+                    }
+
+
+
+                    /* ======================================
+                       TEXTO
+                    ====================================== */
+
+                    if (
+                        trabalho.tipo ===
+                        "texto"
+                    ) {
+
+                        const texto =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        texto.className =
+                            "work-text";
+
+
+                        texto.textContent =
+                            trabalho.conteudo;
+
+
+                        card.appendChild(
+                            texto
+                        );
+
+                    }
+
+
+
+                    /* ======================================
+                       IMAGEM
+                    ====================================== */
+
+                    if (
+                        trabalho.tipo ===
+                        "imagem"
+                    ) {
+
+                        const imagem =
+                            document.createElement(
+                                "img"
+                            );
+
+
+                        imagem.className =
+                            "work-image";
+
+
+                        imagem.src =
+                            trabalho.conteudo;
+
+
+                        imagem.alt =
+                            "Imagem do trabalho";
+
+
+                        imagem.loading =
+                            "lazy";
+
+
+                        card.appendChild(
+                            imagem
+                        );
+
+                    }
+
+
+
+                    /* ======================================
+                       VÍDEO
+                    ====================================== */
+
+                    if (
+                        trabalho.tipo ===
+                        "video"
+                    ) {
+
+                        const iframe =
+                            document.createElement(
+                                "iframe"
+                            );
+
+
+                        iframe.className =
+                            "work-video";
+
+
+                        iframe.src =
+                            transformarYoutubeUrl(
+                                trabalho.conteudo
+                            );
+
+
+                        iframe.title =
+                            "Vídeo do trabalho";
+
+
+                        iframe.allow =
+                            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+
+
+                        iframe.allowFullscreen =
+                            true;
+
+
+                        card.appendChild(
+                            iframe
+                        );
+
+                    }
+
+
+
+                    /* ======================================
+                       CONTROLES ADMIN
+                    ====================================== */
+
+                    if (
+                        isAdmin
+                    ) {
+
+                        criarControlesAdmin(
+                            card,
+                            trabalho
+                        );
+
+                    }
+
+
+                    worksArea.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* ==================================================
+           CONTROLES ADMIN
+        ================================================== */
+
+        function criarControlesAdmin(
+            card,
+            trabalho
+        ) {
+
+            const controls =
+                document.createElement(
+                    "div"
+                );
+
+
+            controls.className =
+                "admin-controls";
+
+
+
+            /* ==========================================
+               APROVAR
+            ========================================== */
+
+            if (
+                !trabalho.aprovado
+            ) {
+
+                const approveButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                approveButton.className =
+                    "approve-button";
+
+
+                approveButton.textContent =
+                    "Aprovar";
+
+
+                approveButton.addEventListener(
+                    "click",
+                    async () => {
+
+                        await aprovarTrabalho(
+                            trabalho.id
+                        );
+
                     }
                 );
 
 
+                controls.appendChild(
+                    approveButton
+                );
+
+            }
+
+
+
+            /* ==========================================
+               EDITAR
+            ========================================== */
+
+            const editButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            editButton.className =
+                "edit-button";
+
+
+            editButton.textContent =
+                "Editar";
+
+
+            editButton.addEventListener(
+                "click",
+                async () => {
+
+                    await editarTrabalho(
+                        trabalho
+                    );
+
+                }
+            );
+
+
+            controls.appendChild(
+                editButton
+            );
+
+
+
+            /* ==========================================
+               APAGAR
+            ========================================== */
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            deleteButton.className =
+                "delete-button";
+
+
+            deleteButton.textContent =
+                "Apagar";
+
+
+            deleteButton.addEventListener(
+                "click",
+                async () => {
+
+                    await apagarTrabalho(
+                        trabalho.id
+                    );
+
+                }
+            );
+
+
+            controls.appendChild(
+                deleteButton
+            );
+
+
+            card.appendChild(
+                controls
+            );
+
+        }
+
+
+
+        /* ==================================================
+           APROVAR
+        ================================================== */
+
+        async function aprovarTrabalho(
+            id
+        ) {
+
+            if (
+                !confirm(
+                    "Deseja aprovar este trabalho?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
             const {
-                data,
                 error
             } =
-                await query;
+                await supabaseClient
+                    .from(
+                        "trabalhos"
+                    )
+                    .update({
 
+                        aprovado:
+                            true
+
+                    })
+                    .eq(
+                        "id",
+                        id
+                    );
 
 
             if (error) {
 
                 console.error(
-                    "Erro ao carregar:",
                     error
+                );
+
+
+                alert(
+                    "Não foi possível aprovar o trabalho."
+                );
+
+
+                return;
+
+            }
+
+
+            await carregarTrabalhos();
+
+        }
+
+
+
+        /* ==================================================
+           EDITAR
+        ================================================== */
+
+        async function editarTrabalho(
+            trabalho
+        ) {
+
+            const novoNome =
+                prompt(
+                    "Nome do aluno:",
+                    trabalho.nome
+                );
+
+
+            if (
+                novoNome === null
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                novoNome.trim() === ""
+            ) {
+
+                alert(
+                    "O nome não pode ficar vazio."
                 );
 
                 return;
@@ -2947,787 +3912,328 @@
             }
 
 
-            renderizarTrabalhos(
-                data
-            );
 
-        }
-
-
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-        }
-
-    }
+            let novoConteudo =
+                trabalho.conteudo;
 
 
 
-    /* ==================================================
-       RENDERIZAR TRABALHOS
-    ================================================== */
+            /* ==========================================
+               TEXTO
+            ========================================== */
 
-    function renderizarTrabalhos(
-        trabalhos
-    ) {
+            if (
+                trabalho.tipo ===
+                "texto"
+            ) {
 
-        worksArea.innerHTML =
-            "";
-
-
-        if (
-            !trabalhos ||
-            trabalhos.length === 0
-        ) {
-
-            worksArea.innerHTML = `
-
-                <div class="empty-state">
-
-                    <h1>
-                        ${
-                            isAdmin
-                                ? "Nenhum trabalho encontrado"
-                                : "Trabalhos postados"
-                        }
-                    </h1>
-
-                    <p>
-                        ${
-                            isAdmin
-                                ? "Não existem trabalhos publicados ou pendentes."
-                                : "Os trabalhos aprovados aparecerão aqui."
-                        }
-                    </p>
-
-                </div>
-
-            `;
-
-
-            return;
-
-        }
-
-
-
-        trabalhos.forEach(
-            trabalho => {
-
-                const card =
-                    document.createElement(
-                        "article"
+                novoConteudo =
+                    prompt(
+                        "Conteúdo do trabalho:",
+                        trabalho.conteudo
                     );
 
-
-                card.className =
-                    "work-card";
-
-
-
-                /* CABEÇALHO */
-
-                const header =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                header.className =
-                    "work-header";
-
-
-                const info =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                const author =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                author.className =
-                    "work-author";
-
-
-                author.textContent =
-                    trabalho.nome;
-
-
-                const date =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                date.className =
-                    "work-date";
-
-
-                date.textContent =
-                    "ID do trabalho: #" +
-                    trabalho.id;
-
-
-                info.appendChild(
-                    author
-                );
-
-
-                info.appendChild(
-                    date
-                );
-
-
-
-                const type =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                type.className =
-                    "work-type";
-
-
-                type.textContent =
-                    trabalho.tipo ===
-                    "texto"
-                        ? "📝 Texto"
-                        : "▶️ Vídeo";
-
-
-                header.appendChild(
-                    info
-                );
-
-
-                header.appendChild(
-                    type
-                );
-
-
-                card.appendChild(
-                    header
-                );
-
-
-
-                /* STATUS */
 
                 if (
-                    isAdmin &&
-                    !trabalho.aprovado
+                    novoConteudo === null
                 ) {
 
-                    const status =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    status.className =
-                        "pending-badge";
-
-
-                    status.textContent =
-                        "⏳ Aguardando aprovação";
-
-
-                    card.appendChild(
-                        status
-                    );
+                    return;
 
                 }
-
-
-
-                /* TEXTO */
-
-                if (
-                    trabalho.tipo ===
-                    "texto"
-                ) {
-
-                    const texto =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    texto.className =
-                        "work-text";
-
-
-                    texto.textContent =
-                        trabalho.conteudo;
-
-
-                    card.appendChild(
-                        texto
-                    );
-
-                }
-
-
-
-                /* VÍDEO */
-
-                if (
-                    trabalho.tipo ===
-                    "video"
-                ) {
-
-                    const iframe =
-                        document.createElement(
-                            "iframe"
-                        );
-
-
-                    iframe.className =
-                        "work-video";
-
-
-                    iframe.src =
-                        transformarYoutubeUrl(
-                            trabalho.conteudo
-                        );
-
-
-                    iframe.title =
-                        "Vídeo do trabalho";
-
-
-                    iframe.allow =
-                        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-
-
-                    iframe.allowFullscreen =
-                        true;
-
-
-                    card.appendChild(
-                        iframe
-                    );
-
-                }
-
-
-
-                /* ADMIN */
-
-                if (isAdmin) {
-
-                    criarControlesAdmin(
-                        card,
-                        trabalho
-                    );
-
-                }
-
-
-                worksArea.appendChild(
-                    card
-                );
 
             }
-        );
-
-    }
 
 
 
-    /* ==================================================
-       CONTROLES ADMIN
-    ================================================== */
+            /* ==========================================
+               VÍDEO
+            ========================================== */
 
-    function criarControlesAdmin(
-        card,
-        trabalho
-    ) {
+            if (
+                trabalho.tipo ===
+                "video"
+            ) {
 
-        const controls =
-            document.createElement(
-                "div"
-            );
-
-
-        controls.className =
-            "admin-controls";
+                novoConteudo =
+                    prompt(
+                        "URL do vídeo do YouTube:",
+                        trabalho.conteudo
+                    );
 
 
+                if (
+                    novoConteudo === null
+                ) {
 
-        /* APROVAR */
+                    return;
 
-        if (
-            !trabalho.aprovado
-        ) {
+                }
 
-            const approveButton =
-                document.createElement(
-                    "button"
+
+                if (
+                    !novoConteudo.includes(
+                        "youtube.com"
+                    ) &&
+                    !novoConteudo.includes(
+                        "youtu.be"
+                    )
+                ) {
+
+                    alert(
+                        "Digite uma URL válida do YouTube."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+
+            /* ==========================================
+               IMAGEM
+            ========================================== */
+
+            if (
+                trabalho.tipo ===
+                "imagem"
+            ) {
+
+                alert(
+                    "A edição de imagens será feita substituindo a imagem atual. Por enquanto, você pode apagar o trabalho e publicar outra imagem."
                 );
 
+                return;
 
-            approveButton.className =
-                "approve-button";
-
-
-            approveButton.textContent =
-                "Aprovar";
+            }
 
 
-            approveButton.onclick =
-                async () => {
+            if (
+                !novoConteudo ||
+                novoConteudo.trim() === ""
+            ) {
 
-                    await aprovarTrabalho(
+                alert(
+                    "O conteúdo não pode ficar vazio."
+                );
+
+                return;
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "trabalhos"
+                    )
+                    .update({
+
+                        nome:
+                            novoNome.trim(),
+
+                        conteudo:
+                            novoConteudo.trim()
+
+                    })
+                    .eq(
+                        "id",
                         trabalho.id
                     );
 
-                };
 
+            if (error) {
 
-            controls.appendChild(
-                approveButton
-            );
-
-        }
-
-
-
-        /* EDITAR */
-
-        const editButton =
-            document.createElement(
-                "button"
-            );
-
-
-        editButton.className =
-            "edit-button";
-
-
-        editButton.textContent =
-            "Editar";
-
-
-        editButton.onclick =
-            async () => {
-
-                await editarTrabalho(
-                    trabalho
-                );
-
-            };
-
-
-        controls.appendChild(
-            editButton
-        );
-
-
-
-        /* APAGAR */
-
-        const deleteButton =
-            document.createElement(
-                "button"
-            );
-
-
-        deleteButton.className =
-            "delete-button";
-
-
-        deleteButton.textContent =
-            "Apagar";
-
-
-        deleteButton.onclick =
-            async () => {
-
-                await apagarTrabalho(
-                    trabalho.id
-                );
-
-            };
-
-
-        controls.appendChild(
-            deleteButton
-        );
-
-
-        card.appendChild(
-            controls
-        );
-
-    }
-
-
-
-    /* ==================================================
-       APROVAR
-    ================================================== */
-
-    async function aprovarTrabalho(
-        id
-    ) {
-
-        if (
-            !confirm(
-                "Deseja aprovar este trabalho?"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("trabalhos")
-                .update({
-
-                    aprovado:
-                        true
-
-                })
-                .eq(
-                    "id",
-                    id
+                console.error(
+                    error
                 );
 
 
-        if (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "Não foi possível aprovar o trabalho."
-            );
-
-
-            return;
-
-        }
-
-
-        await carregarTrabalhos();
-
-    }
-
-
-
-    /* ==================================================
-       EDITAR
-    ================================================== */
-
-    async function editarTrabalho(
-        trabalho
-    ) {
-
-        const novoNome =
-            prompt(
-                "Nome do aluno:",
-                trabalho.nome
-            );
-
-
-        if (
-            novoNome === null
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            novoNome.trim() === ""
-        ) {
-
-            alert(
-                "O nome não pode ficar vazio."
-            );
-
-            return;
-
-        }
-
-
-
-        const novoConteudo =
-            prompt(
-                trabalho.tipo ===
-                    "video"
-                    ? "URL do vídeo do YouTube:"
-                    : "Conteúdo do trabalho:",
-                trabalho.conteudo
-            );
-
-
-        if (
-            novoConteudo === null
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            novoConteudo.trim() === ""
-        ) {
-
-            alert(
-                "O conteúdo não pode ficar vazio."
-            );
-
-            return;
-
-        }
-
-
-
-        if (
-            trabalho.tipo ===
-                "video" &&
-            !novoConteudo.includes(
-                "youtube.com"
-            ) &&
-            !novoConteudo.includes(
-                "youtu.be"
-            )
-        ) {
-
-            alert(
-                "Digite uma URL válida do YouTube."
-            );
-
-            return;
-
-        }
-
-
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("trabalhos")
-                .update({
-
-                    nome:
-                        novoNome.trim(),
-
-                    conteudo:
-                        novoConteudo.trim()
-
-                })
-                .eq(
-                    "id",
-                    trabalho.id
+                alert(
+                    "Não foi possível editar o trabalho."
                 );
 
 
-        if (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "Não foi possível editar o trabalho."
-            );
-
-
-            return;
-
-        }
-
-
-        alert(
-            "Trabalho editado com sucesso!"
-        );
-
-
-        await carregarTrabalhos();
-
-    }
-
-
-
-    /* ==================================================
-       APAGAR
-    ================================================== */
-
-    async function apagarTrabalho(
-        id
-    ) {
-
-        if (
-            !confirm(
-                "Tem certeza que deseja apagar este trabalho?\n\nEssa ação não pode ser desfeita."
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("trabalhos")
-                .delete()
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "Não foi possível apagar o trabalho."
-            );
-
-
-            return;
-
-        }
-
-
-        await carregarTrabalhos();
-
-    }
-
-
-
-    /* ==================================================
-       YOUTUBE
-    ================================================== */
-
-    function transformarYoutubeUrl(
-        url
-    ) {
-
-        try {
-
-            const endereco =
-                new URL(url);
-
-
-            let id =
-                "";
-
-
-            if (
-                endereco.hostname.includes(
-                    "youtu.be"
-                )
-            ) {
-
-                id =
-                    endereco.pathname.substring(
-                        1
-                    );
+                return;
 
             }
 
 
+            alert(
+                "Trabalho editado com sucesso!"
+            );
+
+
+            await carregarTrabalhos();
+
+        }
+
+
+
+        /* ==================================================
+           APAGAR
+        ================================================== */
+
+        async function apagarTrabalho(
+            id
+        ) {
+
             if (
-                endereco.hostname.includes(
-                    "youtube.com"
+                !confirm(
+                    "Tem certeza que deseja apagar este trabalho?\n\nEssa ação não pode ser desfeita."
                 )
             ) {
 
-                id =
-                    endereco.searchParams.get(
-                        "v"
+                return;
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from(
+                        "trabalhos"
+                    )
+                    .delete()
+                    .eq(
+                        "id",
+                        id
                     );
 
 
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+                    "Não foi possível apagar o trabalho."
+                );
+
+
+                return;
+
+            }
+
+
+            await carregarTrabalhos();
+
+        }
+
+
+
+        /* ==================================================
+           YOUTUBE
+        ================================================== */
+
+        function transformarYoutubeUrl(
+            url
+        ) {
+
+            try {
+
+                const endereco =
+                    new URL(url);
+
+
+                let id = "";
+
+
+
                 if (
-                    !id &&
-                    endereco.pathname.startsWith(
-                        "/shorts/"
+                    endereco.hostname.includes(
+                        "youtu.be"
                     )
                 ) {
 
                     id =
                         endereco.pathname
-                            .split("/")
-                            [2];
+                            .substring(1);
 
                 }
+
+
+
+                if (
+                    endereco.hostname.includes(
+                        "youtube.com"
+                    )
+                ) {
+
+                    id =
+                        endereco.searchParams
+                            .get("v");
+
+
+                    if (
+                        !id &&
+                        endereco.pathname
+                            .startsWith(
+                                "/shorts/"
+                            )
+                    ) {
+
+                        id =
+                            endereco.pathname
+                                .split(
+                                    "/"
+                                )[2];
+
+                    }
+
+                }
+
+
+
+                if (!id) {
+
+                    return url;
+
+                }
+
+
+                return (
+                    "https://www.youtube.com/embed/" +
+                    id
+                );
 
             }
 
 
-            if (!id) {
+            catch {
 
                 return url;
 
             }
 
+        }
 
-            return (
-                "https://www.youtube.com/embed/" +
-                id
-            );
+
+
+        /* ==================================================
+           INICIAR
+        ================================================== */
+
+        async function iniciarSistema() {
+
+            await verificarSessao();
+
+            await carregarTrabalhos();
 
         }
 
 
-        catch {
+        iniciarSistema();
 
-            return url;
-
-        }
-
-    }
-
-
-
-    /* ==================================================
-       INICIAR SISTEMA
-    ================================================== */
-
-    async function iniciarSistema() {
-
-        await verificarSessao();
-
-        await carregarTrabalhos();
-
-    }
-
-
-    iniciarSistema();
-
-</script>
-
+    </script>
 
 </body>
 
