@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
@@ -7,39 +6,59 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Revista Digital</title>
 
 <style>
 
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
 :root {
+
     --blue:#0878d1;
     --blue-light:#6aa8ff;
+
     --green:#00a889;
     --green-dark:#007d70;
+
     --background:#202526;
     --background-dark:#111313;
+
     --card:#111111;
     --card-light:#181919;
+
     --border:#343a3b;
+
     --text:#d4e0eb;
     --text-muted:#8996a2;
+
     --danger:#b53a3a;
     --warning:#f0b429;
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
+
     box-sizing:border-box;
     margin:0;
     padding:0;
+
 }
 
+
 body {
+
     min-height:100vh;
+
     background:
         radial-gradient(
             circle at top left,
@@ -47,22 +66,41 @@ body {
             transparent 35%
         ),
         var(--background);
+
     color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
 }
 
-/* =========================
+
+/* =========================================================
    TOPO
-========================= */
+========================================================= */
 
 .topbar {
+
     width:100%;
     min-height:110px;
+
     display:grid;
-    grid-template-columns:1fr auto 1fr;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
     align-items:center;
+
     gap:25px;
-    padding:10px 4%;
+
+    padding:
+        10px
+        4%;
+
     background:
         linear-gradient(
             110deg,
@@ -70,955 +108,1802 @@ body {
             #0796ad,
             #00a889
         );
-    border-bottom:1px solid rgba(255,255,255,.08);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
 }
+
 
 .school-logo {
+
     display:flex;
+
     align-items:center;
+
     justify-content:flex-start;
+
 }
+
 
 .school-logo img {
+
     height:86px;
+
     width:auto;
+
     max-width:300px;
+
     object-fit:contain;
+
     display:block;
-    border:2px solid #000;
+
+    border:
+        2px solid
+        #000;
+
     border-radius:10px;
+
     background:white;
+
 }
+
 
 .site-title {
+
     color:white;
+
     font-size:34px;
+
     font-weight:800;
+
     letter-spacing:1px;
+
     text-align:center;
+
     white-space:nowrap;
-    text-shadow:0 2px 5px rgba(0,0,0,.2);
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,0,0,.2);
+
 }
+
 
 .admin-area {
+
     display:flex;
+
     justify-content:flex-end;
+
 }
+
 
 .admin-button {
+
     border:none;
+
     border-radius:30px;
-    padding:15px 25px;
+
+    padding:
+        15px
+        25px;
+
     background:#101313;
+
     color:#00c59e;
+
     font-size:15px;
+
     font-weight:bold;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
+
 
 .admin-button:hover {
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
     background:#080909;
+
     color:#5ee6c4;
+
 }
 
-/* =========================
+
+/* =========================================================
    LAYOUT
-========================= */
+========================================================= */
 
 .layout {
+
     width:100%;
+
     max-width:1500px;
+
     margin:0 auto;
+
     padding:30px;
+
     display:grid;
-    grid-template-columns:190px minmax(0,1fr) 190px;
+
+    grid-template-columns:
+        190px
+        minmax(0,1fr)
+        190px;
+
     gap:25px;
+
 }
+
 
 .left-sidebar,
 .right-sidebar {
+
     padding-top:10px;
+
 }
+
 
 .main-content {
+
     min-width:0;
+
 }
 
-/* =========================
-   MENU
-========================= */
+
+/* =========================================================
+   MENU ESQUERDO
+========================================================= */
 
 .main-navigation {
+
     display:flex;
+
     flex-direction:column;
+
     gap:12px;
+
 }
+
 
 .nav-button {
+
     width:100%;
-    padding:16px 12px;
+
+    padding:
+        16px
+        12px;
+
     border:none;
+
     border-radius:12px;
+
     background:transparent;
+
     color:#aebdca;
+
     font-size:16px;
+
     font-weight:bold;
+
     text-align:left;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
+
 
 .nav-button:hover {
-    background:rgba(0,168,137,.12);
+
+    background:
+        rgba(0,168,137,.12);
+
     color:white;
+
 }
+
 
 .nav-button.active {
-    background:rgba(0,168,137,.20);
+
+    background:
+        rgba(0,168,137,.20);
+
     color:#52d5b8;
+
 }
 
-/* =========================
+
+/* =========================================================
    BOTÃO ADICIONAR
-========================= */
+========================================================= */
 
 .add-work-button {
+
     width:100%;
+
     border:none;
+
     border-radius:14px;
+
     padding:18px;
-    background:linear-gradient(100deg,var(--blue),var(--green));
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--blue),
+            var(--green)
+        );
+
     color:white;
+
     font-size:18px;
+
     font-weight:bold;
+
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(0,130,170,.15);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,130,170,.15);
+
     transition:.2s;
+
 }
+
 
 .add-work-button:hover {
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
     filter:brightness(1.08);
+
 }
 
-/* =========================
+
+/* =========================================================
    FORMULÁRIO
-========================= */
+========================================================= */
 
 .work-form {
+
     display:none;
+
     margin-top:18px;
+
     padding:25px;
+
     background:var(--card);
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
+
 }
+
 
 .work-form.visible {
+
     display:block;
+
 }
+
 
 .work-form h2 {
+
     margin-bottom:22px;
+
     color:var(--blue-light);
+
     font-size:24px;
+
 }
+
 
 .form-section {
+
     margin-bottom:20px;
+
 }
+
 
 .form-section label {
+
     display:block;
+
     margin-bottom:8px;
+
     color:#b8c8d7;
+
     font-size:14px;
+
     font-weight:bold;
+
 }
 
-/* =========================
+
+/* =========================================================
    TIPOS
-========================= */
+========================================================= */
 
 .type-buttons {
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:12px;
+
 }
+
 
 .type-button {
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:10px;
+
     padding:15px;
+
     background:var(--card-light);
+
     color:#b7c6d4;
+
     font-size:16px;
+
     font-weight:bold;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
+
 
 .type-button:hover {
+
     border-color:var(--green);
+
 }
+
 
 .type-button.selected {
-    background:rgba(0,168,137,.18);
+
+    background:
+        rgba(0,168,137,.18);
+
     border-color:#00c7a5;
+
     color:#4edabd;
+
 }
 
-/* =========================
+
+/* =========================================================
    CAMPOS
-========================= */
+========================================================= */
 
 .work-fields {
+
     display:none;
+
 }
 
+
 .work-fields.visible {
+
     display:block;
+
 }
+
 
 #textField,
 #imageField,
 #videoField {
+
     display:none;
+
 }
+
 
 #textField.visible,
 #imageField.visible,
 #videoField.visible {
+
     display:block;
+
 }
+
 
 input,
 select,
 textarea {
+
     width:100%;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:9px;
+
     background:#181919;
+
     color:white;
+
     outline:none;
+
     font-family:inherit;
+
     font-size:15px;
+
 }
+
 
 input,
 select {
+
     height:46px;
-    padding:0 13px;
+
+    padding:
+        0 13px;
+
 }
 
+
 textarea {
+
     min-height:180px;
+
     padding:13px;
+
     resize:vertical;
+
 }
+
 
 input:focus,
 select:focus,
 textarea:focus {
+
     border-color:var(--blue);
-    box-shadow:0 0 0 2px rgba(8,120,209,.15);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(8,120,209,.15);
+
 }
+
 
 select {
+
     cursor:pointer;
+
 }
+
 
 select option {
+
     background:#181919;
+
     color:white;
+
 }
 
-/* =========================
-   UPLOAD
-========================= */
 
-.file-input {
-    padding:10px;
+/* =========================================================
+   UPLOAD DE IMAGEM
+========================================================= */
+
+.image-upload-area {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.image-file-input {
+
+    width:100%;
+
     height:auto;
+
+    padding:12px;
+
     cursor:pointer;
+
+    background:#181919;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:9px;
+
+    color:#b8c8d7;
+
 }
 
-.file-name {
-    margin-top:8px;
-    color:var(--text-muted);
-    font-size:13px;
+
+.image-file-input::file-selector-button {
+
+    border:none;
+
+    border-radius:7px;
+
+    padding:
+        10px
+        14px;
+
+    margin-right:12px;
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--blue),
+            var(--green)
+        );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
 }
+
 
 .image-preview {
+
     display:none;
-    margin-top:15px;
+
+    margin-top:5px;
+
     max-width:100%;
+
     max-height:450px;
+
     border-radius:12px;
+
     object-fit:contain;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
+    background:#080808;
+
 }
+
 
 .image-preview.visible {
+
     display:block;
+
 }
 
-/* =========================
+
+.image-upload-status {
+
+    color:var(--text-muted);
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
    ALUNOS
-========================= */
+========================================================= */
 
 .student-select-container {
+
     display:flex;
+
     flex-direction:column;
+
     gap:10px;
+
 }
+
 
 .student-row {
+
     display:flex;
+
     gap:10px;
+
     align-items:center;
+
 }
+
 
 .student-row select {
+
     flex:1;
+
 }
+
 
 .remove-student-button {
+
     width:42px;
+
     height:42px;
+
     border:none;
+
     border-radius:8px;
+
     background:var(--danger);
+
     color:white;
+
     font-weight:bold;
+
     font-size:20px;
+
     cursor:pointer;
+
 }
+
 
 .add-student-button {
+
     width:100%;
-    border:1px solid var(--green);
+
+    border:
+        1px solid
+        var(--green);
+
     border-radius:9px;
+
     padding:11px;
-    background:rgba(0,168,137,.10);
+
+    background:
+        rgba(0,168,137,.10);
+
     color:#4edabd;
+
     font-weight:bold;
+
     cursor:pointer;
+
     margin-top:10px;
+
 }
 
-/* =========================
+
+/* =========================================================
    PUBLICAR
-========================= */
+========================================================= */
 
 .publish-button {
+
     width:100%;
+
     border:none;
+
     border-radius:10px;
+
     padding:14px;
-    background:linear-gradient(100deg,#0878d1,#00a889);
+
+    background:
+        linear-gradient(
+            100deg,
+            #0878d1,
+            #00a889
+        );
+
     color:white;
+
     font-size:16px;
+
     font-weight:bold;
+
     cursor:pointer;
+
 }
+
 
 .publish-button:disabled {
+
     opacity:.6;
+
     cursor:wait;
+
 }
 
-/* =========================
+
+/* =========================================================
    TRABALHOS
-========================= */
+========================================================= */
 
 .works-section {
+
     margin-top:25px;
+
     display:flex;
+
     flex-direction:column;
+
     gap:18px;
+
 }
+
 
 .work-card {
+
     background:var(--card);
-    border:1px solid rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
     border-radius:18px;
+
     padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.12);
+
 }
+
 
 .work-header {
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:15px;
+
     margin-bottom:18px;
+
 }
+
 
 .work-author {
+
     color:#dbe8f4;
+
     font-size:20px;
+
     font-weight:bold;
+
 }
+
 
 .work-date {
+
     margin-top:5px;
+
     color:var(--text-muted);
+
     font-size:13px;
+
 }
+
 
 .work-type {
-    padding:8px 12px;
+
+    padding:
+        8px
+        12px;
+
     border-radius:20px;
-    background:rgba(8,120,209,.15);
+
+    background:
+        rgba(8,120,209,.15);
+
     color:#78baff;
+
     font-size:13px;
+
     font-weight:bold;
+
 }
+
 
 .work-text {
+
     color:#c2d0dc;
+
     font-size:17px;
+
     line-height:1.7;
+
     white-space:pre-wrap;
+
     word-break:break-word;
+
 }
+
 
 .work-video {
+
     display:block;
+
     width:100%;
+
     aspect-ratio:16/9;
+
     border:none;
+
     border-radius:12px;
+
     background:#000;
+
 }
+
 
 .work-image {
+
     display:block;
+
     width:100%;
+
     max-height:700px;
+
     object-fit:contain;
+
     border-radius:12px;
+
     background:#080808;
+
 }
+
 
 .empty-state {
-    padding:50px 25px;
+
+    padding:
+        50px
+        25px;
+
     text-align:center;
+
     background:var(--card);
+
     border-radius:18px;
-    border:1px solid rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
 }
+
 
 .empty-state h1 {
+
     color:var(--blue-light);
+
     font-size:25px;
+
     margin-bottom:12px;
+
 }
+
 
 .empty-state p {
+
     color:var(--text-muted);
+
     font-size:16px;
+
 }
 
-/* =========================
+
+/* =========================================================
    ORGANIZAÇÃO
-========================= */
+========================================================= */
 
 .filter-title {
+
     color:#aebdca;
+
     font-size:14px;
+
     font-weight:bold;
+
     margin-bottom:12px;
+
 }
+
 
 .filter-button {
+
     width:100%;
+
     border:none;
+
     border-radius:10px;
-    padding:14px 10px;
+
+    padding:
+        14px
+        10px;
+
     margin-bottom:8px;
+
     background:transparent;
+
     color:#aebdca;
+
     font-size:14px;
+
     font-weight:bold;
+
     text-align:left;
+
     cursor:pointer;
+
 }
+
 
 .filter-button:hover {
-    background:rgba(8,120,209,.12);
+
+    background:
+        rgba(8,120,209,.12);
+
     color:white;
+
 }
+
 
 .filter-button.active {
-    background:rgba(0,168,137,.18);
+
+    background:
+        rgba(0,168,137,.18);
+
     color:#4edabd;
+
 }
+
 
 .filter-options {
+
     display:none;
+
     margin-top:4px;
+
     margin-bottom:15px;
+
 }
+
 
 .filter-options.visible {
+
     display:block;
+
 }
+
 
 .filter-subbutton {
+
     width:100%;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:8px;
+
     padding:10px;
+
     margin-bottom:6px;
+
     background:#181919;
+
     color:#aebdca;
+
     text-align:left;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
+
 
 .filter-subbutton:hover {
+
     background:#242828;
+
     color:white;
+
 }
+
 
 .filter-subbutton.selected {
+
     border-color:var(--green);
+
     color:#4edabd;
-    background:rgba(0,168,137,.08);
+
+    background:
+        rgba(0,168,137,.08);
+
 }
 
-/* =========================
+
+/* =========================================================
    ESTATÍSTICAS
-========================= */
+========================================================= */
 
 .statistics-section {
+
     display:none;
-    margin-top:0;
+
 }
+
 
 .statistics-section.visible {
+
     display:block;
+
 }
+
 
 .statistics-header {
+
     margin-bottom:20px;
+
 }
+
 
 .statistics-header h1 {
+
     color:var(--blue-light);
+
     font-size:28px;
+
     margin-bottom:8px;
+
 }
+
 
 .statistics-header p {
+
     color:var(--text-muted);
+
     font-size:15px;
+
 }
+
 
 .statistics-table-container {
+
     width:100%;
+
     overflow-x:auto;
+
     background:var(--card);
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
+
     padding:10px;
+
 }
+
 
 .statistics-table {
+
     width:100%;
+
     border-collapse:separate;
+
     border-spacing:8px;
+
     min-width:600px;
+
 }
+
 
 .statistics-table th {
-    padding:14px 12px;
+
+    padding:
+        14px
+        12px;
+
     background:#181919;
+
     color:#d4e0eb;
+
     font-size:15px;
+
     font-weight:bold;
+
     text-align:center;
+
     border-radius:8px;
+
 }
+
 
 .statistics-table th:first-child {
+
     text-align:left;
+
 }
+
 
 .statistics-name {
+
     padding:12px;
+
     color:#dbe8f4;
+
     font-size:15px;
+
     font-weight:bold;
+
     background:#181919;
+
     border-radius:8px;
+
 }
+
 
 .statistics-status {
+
     width:55px;
+
     height:45px;
+
     padding:0;
+
     border-radius:8px;
+
 }
+
 
 .statistics-status.completed {
+
     background:#00a889;
+
 }
+
 
 .statistics-status.missing {
+
     background:#b53a3a;
+
 }
 
-/* =========================
+
+/* =========================================================
    INSTRUÇÕES
-========================= */
+========================================================= */
 
 .instructions-section {
+
     display:none;
+
 }
+
 
 .instructions-section.visible {
+
     display:block;
+
 }
+
 
 .instructions-header {
+
     margin-bottom:25px;
+
 }
+
 
 .instructions-header h1 {
+
     color:var(--blue-light);
+
     font-size:30px;
+
     margin-bottom:8px;
+
 }
+
 
 .instructions-header p {
+
     color:var(--text-muted);
+
     line-height:1.6;
+
 }
+
 
 .instructions-grid {
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:18px;
+
 }
+
 
 .instruction-card {
+
     background:var(--card);
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
+
     padding:25px;
+
 }
+
 
 .instruction-card h2 {
+
     color:#52d5b8;
+
     font-size:20px;
+
     margin-bottom:14px;
+
 }
+
 
 .instruction-card p {
+
     color:#c2d0dc;
+
     line-height:1.7;
+
     font-size:15px;
+
 }
+
 
 .instructions-extra {
+
     margin-top:18px;
+
     background:var(--card);
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
+
     padding:25px;
+
 }
+
 
 .instructions-extra h2 {
+
     color:var(--blue-light);
+
     margin-bottom:12px;
+
 }
+
 
 .instructions-extra p {
+
     color:#c2d0dc;
+
     line-height:1.7;
+
     margin-bottom:10px;
+
 }
+
 
 .instructions-extra p:last-child {
+
     margin-bottom:0;
+
 }
 
-/* =========================
+
+/* =========================================================
    LOGIN
-========================= */
+========================================================= */
 
 .admin-modal {
+
     position:fixed;
+
     inset:0;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
-    background:rgba(0,0,0,.72);
+
+    background:
+        rgba(0,0,0,.72);
+
     z-index:1000;
+
 }
+
 
 .admin-modal.visible {
+
     display:flex;
+
 }
+
 
 .admin-modal-box {
+
     width:100%;
+
     max-width:400px;
+
     padding:28px;
+
     background:#111313;
-    border:1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:18px;
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.5);
+
 }
+
 
 .admin-modal-box h2 {
+
     color:var(--blue-light);
+
     font-size:24px;
+
     margin-bottom:8px;
+
 }
+
 
 .admin-login-description {
+
     color:var(--text-muted);
+
     font-size:14px;
+
     margin-bottom:22px;
+
 }
 
-.google-login-button {
-    width:100%;
-    border:none;
-    border-radius:10px;
-    padding:14px;
-    background:white;
-    color:#222;
-    font-size:15px;
+
+.admin-modal-box label {
+
+    display:block;
+
+    margin-top:13px;
+
+    margin-bottom:7px;
+
+    color:#b8c8d7;
+
+    font-size:14px;
+
     font-weight:bold;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    transition:.2s;
+
 }
 
-.google-login-button:hover {
-    background:#eeeeee;
-    transform:translateY(-1px);
-}
-
-.google-icon {
-    font-size:20px;
-}
 
 .admin-modal-buttons {
+
     display:flex;
+
     gap:10px;
-    margin-top:15px;
+
+    margin-top:22px;
+
 }
+
 
 .admin-modal-buttons button {
+
     flex:1;
+
     border:none;
+
     border-radius:9px;
+
     padding:13px;
+
     font-size:14px;
+
     font-weight:bold;
+
     cursor:pointer;
+
 }
+
 
 #cancelAdminLogin {
+
     background:#272b2c;
+
     color:#b7c3cc;
+
 }
 
-/* =========================
+
+#confirmAdminLogin {
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--blue),
+            var(--green)
+        );
+
+    color:white;
+
+}
+
+
+/* =========================================================
    ADMIN
-========================= */
+========================================================= */
 
 .admin-controls {
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:8px;
+
     margin-top:20px;
+
     padding-top:16px;
-    border-top:1px solid var(--border);
+
+    border-top:
+        1px solid
+        var(--border);
+
 }
+
 
 .admin-controls button {
+
     border:none;
+
     border-radius:8px;
-    padding:10px 15px;
+
+    padding:
+        10px
+        15px;
+
     font-size:13px;
+
     font-weight:bold;
+
     cursor:pointer;
+
 }
+
 
 .approve-button {
+
     background:#008f76;
+
     color:white;
+
 }
+
 
 .edit-button {
+
     background:#0878d1;
+
     color:white;
+
 }
+
 
 .delete-button {
+
     background:var(--danger);
+
     color:white;
+
 }
+
 
 .pending-badge {
+
     display:inline-block;
+
     margin-bottom:15px;
-    padding:7px 10px;
+
+    padding:
+        7px
+        10px;
+
     border-radius:7px;
-    background:rgba(240,180,41,.10);
+
+    background:
+        rgba(240,180,41,.10);
+
     color:var(--warning);
+
     font-size:13px;
+
     font-weight:bold;
+
 }
 
-/* =========================
+
+/* =========================================================
    RESPONSIVIDADE
-========================= */
+========================================================= */
 
 @media(max-width:1000px) {
 
     .layout {
-        grid-template-columns:160px minmax(0,1fr) 160px;
+
+        grid-template-columns:
+            160px
+            minmax(0,1fr)
+            160px;
+
         gap:15px;
+
         padding:20px;
+
     }
+
 
     .site-title {
+
         font-size:28px;
+
     }
+
 
     .school-logo img {
+
         max-width:200px;
+
     }
+
 
     .admin-button {
-        padding:12px 15px;
+
+        padding:
+            12px
+            15px;
+
         font-size:13px;
+
     }
 
+
     .instructions-grid {
+
         grid-template-columns:1fr;
+
     }
 
 }
+
 
 @media(max-width:750px) {
 
     .topbar {
+
         display:flex;
+
         flex-direction:column;
+
         justify-content:center;
+
         padding:15px;
+
         gap:12px;
+
     }
+
 
     .school-logo {
+
         justify-content:center;
+
     }
+
 
     .school-logo img {
+
         height:75px;
+
     }
+
 
     .site-title {
+
         font-size:25px;
+
         white-space:normal;
+
     }
+
 
     .admin-area {
+
         width:100%;
+
         justify-content:center;
+
     }
 
-    .admin-button {
-        width:auto;
-    }
 
     .layout {
+
         display:flex;
+
         flex-direction:column;
+
         padding:15px;
+
     }
+
 
     .left-sidebar {
+
         order:1;
+
         padding:0;
+
     }
+
 
     .main-navigation {
+
         display:grid;
-        grid-template-columns:repeat(3,1fr);
+
+        grid-template-columns:
+            repeat(3,1fr);
+
         gap:7px;
+
     }
+
 
     .nav-button {
-        padding:13px 6px;
+
+        padding:
+            13px
+            6px;
+
         font-size:13px;
+
         text-align:center;
+
     }
+
 
     .main-content {
+
         order:2;
+
     }
+
 
     .right-sidebar {
+
         order:3;
+
         padding:0;
+
     }
+
 
     .type-buttons {
+
         grid-template-columns:1fr;
+
     }
+
 
     .work-card {
+
         padding:18px;
+
     }
+
 
     .work-header {
+
         flex-direction:column;
+
         align-items:flex-start;
+
     }
 
+
     .instructions-grid {
+
         grid-template-columns:1fr;
+
     }
 
 }
 
+
 @media(max-width:450px) {
 
     .work-form {
+
         padding:18px;
+
     }
+
 
     .admin-modal-box {
+
         padding:20px;
+
     }
+
 
     .admin-controls {
+
         flex-direction:column;
+
     }
+
 
     .admin-controls button {
+
         width:100%;
+
     }
 
+
     .student-row {
+
         align-items:stretch;
+
     }
 
 }
@@ -1027,286 +1912,575 @@ select option {
 
 </head>
 
+
 <body>
+
+
+<!-- =========================================================
+     TOPO
+========================================================= -->
 
 <header class="topbar">
 
-```
-<div class="school-logo">
+    <div class="school-logo">
 
-    <img
-        src="Logo da escola.png"
-        alt="Logo da escola"
-    >
+        <img
+            src="Logo da escola.png"
+            alt="Logo da escola"
+        >
 
-</div>
+    </div>
 
-<div class="site-title">
-    Revista Digital
-</div>
 
-<div class="admin-area">
+    <div class="site-title">
 
-    <button
-        class="admin-button"
-        id="adminButton"
-    >
-        Entrar como administrador
-    </button>
+        Revista Digital
 
-</div>
-```
+    </div>
+
+
+    <div class="admin-area">
+
+        <button
+            class="admin-button"
+            id="adminButton"
+        >
+
+            Entrar como administrador
+
+        </button>
+
+    </div>
 
 </header>
 
+
+
+<!-- =========================================================
+     LAYOUT PRINCIPAL
+========================================================= -->
+
 <main class="layout">
 
-```
-<!-- =========================
-     MENU ESQUERDO
-========================= -->
 
-<aside class="left-sidebar">
+    <!-- =====================================================
+         MENU ESQUERDO
+    ====================================================== -->
 
-    <nav class="main-navigation">
+    <aside class="left-sidebar">
 
-        <button
-            class="nav-button active"
-            id="homeButton"
-        >
-            Início
-        </button>
+        <nav class="main-navigation">
 
-        <button
-            class="nav-button"
-            id="statisticsButton"
-        >
-            Estatísticas
-        </button>
-
-        <button
-            class="nav-button"
-            id="instructionsButton"
-        >
-            Instruções
-        </button>
-
-    </nav>
-
-</aside>
+            <button
+                class="nav-button active"
+                id="homeButton"
+            >
+                Início
+            </button>
 
 
-<!-- =========================
-     CONTEÚDO PRINCIPAL
-========================= -->
-
-<section class="main-content">
-
-    <!-- INÍCIO -->
-
-    <section id="homeSection">
-
-        <button
-            class="add-work-button"
-            id="addWorkButton"
-        >
-            + Adicionar Trabalho
-        </button>
+            <button
+                class="nav-button"
+                id="statisticsButton"
+            >
+                Estatísticas
+            </button>
 
 
-        <!-- FORMULÁRIO -->
+            <button
+                class="nav-button"
+                id="instructionsButton"
+            >
+                Instruções
+            </button>
 
-        <div
-            class="work-form"
-            id="workForm"
-        >
+        </nav>
 
-            <h2>
-                Adicionar Trabalho
-            </h2>
-
-
-            <div class="form-section">
-
-                <label>
-                    Tipo de trabalho
-                </label>
-
-                <div class="type-buttons">
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="texto"
-                    >
-                        📝 Texto
-                    </button>
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="imagem"
-                    >
-                        🖼️ Imagem
-                    </button>
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="video"
-                    >
-                        ▶️ Vídeo
-                    </button>
-
-                </div>
-
-            </div>
+    </aside>
 
 
-            <div
-                class="work-fields"
-                id="workFields"
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <section class="main-content">
+
+
+        <!-- =================================================
+             INÍCIO
+        ================================================== -->
+
+        <section id="homeSection">
+
+
+            <button
+                class="add-work-button"
+                id="addWorkButton"
             >
 
-                <!-- ALUNOS -->
+                + Adicionar Trabalho
+
+            </button>
+
+
+
+            <!-- =============================================
+                 FORMULÁRIO
+            ============================================== -->
+
+            <div
+                class="work-form"
+                id="workForm"
+            >
+
+                <h2>
+                    Adicionar Trabalho
+                </h2>
+
 
                 <div class="form-section">
 
                     <label>
-                        Aluno(s)
+                        Tipo de trabalho
                     </label>
 
+
+                    <div class="type-buttons">
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="texto"
+                        >
+
+                            📝 Texto
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="imagem"
+                        >
+
+                            🖼️ Imagem
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="video"
+                        >
+
+                            ▶️ Vídeo
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="work-fields"
+                    id="workFields"
+                >
+
+
+                    <!-- =====================================
+                         ALUNOS
+                    ====================================== -->
+
+                    <div class="form-section">
+
+                        <label>
+                            Aluno(s)
+                        </label>
+
+
+                        <div
+                            class="student-select-container"
+                            id="studentSelectContainer"
+                        >
+
+                            <div class="student-row">
+
+                                <select
+                                    class="student-select"
+                                >
+
+                                    <option value="">
+                                        Selecione seu nome
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="add-student-button"
+                            id="addStudentButton"
+                        >
+
+                            + Adicionar outro aluno
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         TEXTO
+                    ====================================== -->
+
                     <div
-                        class="student-select-container"
-                        id="studentSelectContainer"
+                        class="form-section"
+                        id="textField"
                     >
 
-                        <div class="student-row">
+                        <label for="textContent">
+                            Trabalho
+                        </label>
 
-                            <select class="student-select">
 
-                                <option value="">
-                                    Selecione seu nome
-                                </option>
+                        <textarea
+                            id="textContent"
+                            placeholder="Digite o seu trabalho..."
+                        ></textarea>
 
-                            </select>
+                    </div>
+
+
+
+                    <!-- =====================================
+                         IMAGEM
+                    ====================================== -->
+
+                    <div
+                        class="form-section"
+                        id="imageField"
+                    >
+
+                        <label for="imageFile">
+                            Escolher imagem
+                        </label>
+
+
+                        <div class="image-upload-area">
+
+                            <input
+                                type="file"
+                                id="imageFile"
+                                class="image-file-input"
+                                accept="image/*"
+                            >
+
+
+                            <div
+                                class="image-upload-status"
+                                id="imageUploadStatus"
+                            >
+                                Selecione uma imagem do seu dispositivo.
+                            </div>
+
+
+                            <img
+                                id="imagePreview"
+                                class="image-preview"
+                                alt="Pré-visualização da imagem"
+                            >
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- =====================================
+                         VÍDEO
+                    ====================================== -->
+
+                    <div
+                        class="form-section"
+                        id="videoField"
+                    >
+
+                        <label for="videoUrl">
+                            URL do vídeo do YouTube
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="videoUrl"
+                            placeholder="https://www.youtube.com/watch?v=..."
+                        >
+
+                    </div>
+
+
+
                     <button
                         type="button"
-                        class="add-student-button"
-                        id="addStudentButton"
+                        class="publish-button"
+                        id="publishButton"
                     >
-                        + Adicionar outro aluno
+
+                        Publicar Trabalho
+
                     </button>
 
                 </div>
 
-
-                <!-- TEXTO -->
-
-                <div
-                    class="form-section"
-                    id="textField"
-                >
-
-                    <label for="textContent">
-                        Trabalho
-                    </label>
-
-                    <textarea
-                        id="textContent"
-                        placeholder="Digite o seu trabalho..."
-                    ></textarea>
-
-                </div>
-
-
-                <!-- IMAGEM -->
-
-                <div
-                    class="form-section"
-                    id="imageField"
-                >
-
-                    <label for="imageFile">
-                        Selecionar imagem
-                    </label>
-
-                    <input
-                        type="file"
-                        id="imageFile"
-                        class="file-input"
-                        accept="image/*"
-                    >
-
-                    <div
-                        class="file-name"
-                        id="fileName"
-                    >
-                        Nenhuma imagem selecionada.
-                    </div>
-
-                    <img
-                        id="imagePreview"
-                        class="image-preview"
-                        alt="Pré-visualização da imagem"
-                    >
-
-                </div>
-
-
-                <!-- VÍDEO -->
-
-                <div
-                    class="form-section"
-                    id="videoField"
-                >
-
-                    <label for="videoUrl">
-                        URL do vídeo do YouTube
-                    </label>
-
-                    <input
-                        type="url"
-                        id="videoUrl"
-                        placeholder="https://www.youtube.com/watch?v=..."
-                    >
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="publish-button"
-                    id="publishButton"
-                >
-                    Publicar Trabalho
-                </button>
-
             </div>
 
-        </div>
 
 
-        <!-- TRABALHOS -->
+            <!-- =============================================
+                 TRABALHOS
+            ============================================== -->
+
+            <section
+                class="works-section"
+                id="worksArea"
+            >
+
+                <div class="empty-state">
+
+                    <h1>
+                        Trabalhos postados
+                    </h1>
+
+                    <p>
+                        Os trabalhos aprovados aparecerão aqui.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ESTATÍSTICAS
+        ================================================== -->
 
         <section
-            class="works-section"
-            id="worksArea"
+            class="statistics-section"
+            id="statisticsSection"
         >
 
-            <div class="empty-state">
+            <div class="statistics-header">
 
                 <h1>
-                    Trabalhos postados
+                    Estatísticas dos trabalhos
                 </h1>
 
                 <p>
-                    Os trabalhos aprovados aparecerão aqui.
+                    Acompanhe quais trabalhos já foram publicados.
+                </p>
+
+            </div>
+
+
+            <div class="statistics-table-container">
+
+                <table class="statistics-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nome
+                            </th>
+
+                            <th>
+                                Texto
+                            </th>
+
+                            <th>
+                                Foto
+                            </th>
+
+                            <th>
+                                Vídeo
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="statisticsBody"
+                    ></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             INSTRUÇÕES
+        ================================================== -->
+
+        <section
+            class="instructions-section"
+            id="instructionsSection"
+        >
+
+            <div class="instructions-header">
+
+                <h1>
+                    Instruções
+                </h1>
+
+                <p>
+                    Confira abaixo como enviar cada tipo de trabalho
+                    para a Revista Digital.
+                </p>
+
+            </div>
+
+
+            <div class="instructions-grid">
+
+
+                <article class="instruction-card">
+
+                    <h2>
+                        📝 Texto
+                    </h2>
+
+                    <p>
+
+                        Esta parte deve ser utilizada para colocar o
+                        texto do primeiro trabalho realizado em sala
+                        de aula, sobre o tema
+                        <strong>
+                            “Quem é o intelectual para você?”
+                        </strong>.
+
+                        Escreva o trabalho diretamente no campo
+                        disponibilizado no momento da publicação.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="instruction-card">
+
+                    <h2>
+                        🖼️ Foto
+                    </h2>
+
+                    <p>
+
+                        Esta opção deve ser utilizada para publicar o
+                        trabalho do mapa semântico ou mapa mental.
+
+                        Selecione a imagem diretamente do seu
+                        dispositivo no campo de envio.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="instruction-card">
+
+                    <h2>
+                        ▶️ Vídeo
+                    </h2>
+
+                    <p>
+
+                        Para publicar o vídeo, primeiro envie o vídeo
+                        para o YouTube.
+
+                        O vídeo deve estar configurado como
+                        <strong>“Não listado”</strong>.
+
+                        Depois, coloque o link do vídeo no campo indicado.
+
+                        Esse vídeo corresponde ao trabalho do
+                        <strong>podcast</strong>.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+
+
+            <div class="instructions-extra">
+
+                <h2>
+                    👥 Seleção dos estudantes
+                </h2>
+
+                <p>
+                    Ao enviar um trabalho, é necessário selecionar o
+                    nome do estudante que realizou a atividade.
+                </p>
+
+                <p>
+                    Caso o trabalho tenha sido realizado em grupo,
+                    selecione o nome de <strong>todos os integrantes</strong>
+                    utilizando o botão para adicionar outro aluno.
+                </p>
+
+                <p>
+                    Isso é importante para que o trabalho seja
+                    contabilizado corretamente nas estatísticas de
+                    cada estudante.
+                </p>
+
+            </div>
+
+
+
+            <div class="instructions-extra">
+
+                <h2>
+                    ⏳ Aprovação dos trabalhos
+                </h2>
+
+                <p>
+                    Depois de enviado, o trabalho não aparecerá
+                    imediatamente na página principal.
+                </p>
+
+                <p>
+                    Ele será enviado para análise e aprovação por
+                    alguém da administração da Revista Digital.
+                </p>
+
+                <p>
+                    Somente depois de aprovado o trabalho ficará
+                    disponível publicamente na página.
                 </p>
 
             </div>
@@ -1316,349 +2490,212 @@ select option {
     </section>
 
 
-    <!-- =========================
-         ESTATÍSTICAS
-    ========================= -->
 
-    <section
-        class="statistics-section"
-        id="statisticsSection"
+    <!-- =====================================================
+         ORGANIZAÇÃO
+    ====================================================== -->
+
+    <aside
+        class="right-sidebar"
+        id="rightSidebar"
     >
 
-        <div class="statistics-header">
-
-            <h1>
-                Estatísticas dos trabalhos
-            </h1>
-
-            <p>
-                Acompanhe quais trabalhos já foram publicados.
-            </p>
-
-        </div>
-
-        <div class="statistics-table-container">
-
-            <table class="statistics-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Nome
-                        </th>
-
-                        <th>
-                            Texto
-                        </th>
-
-                        <th>
-                            Foto
-                        </th>
-
-                        <th>
-                            Vídeo
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="statisticsBody"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         INSTRUÇÕES
-    ========================= -->
-
-    <section
-        class="instructions-section"
-        id="instructionsSection"
-    >
-
-        <div class="instructions-header">
-
-            <h1>
-                Instruções
-            </h1>
-
-            <p>
-                Confira abaixo como enviar cada tipo de trabalho
-                para a Revista Digital.
-            </p>
-
+        <div class="filter-title">
+            Organizar trabalhos
         </div>
 
 
-        <div class="instructions-grid">
-
-            <article class="instruction-card">
-
-                <h2>
-                    📝 Texto
-                </h2>
-
-                <p>
-                    Esta parte deve ser utilizada para colocar o
-                    texto do primeiro trabalho realizado em sala
-                    de aula, sobre o tema
-                    <strong>“Quem é o intelectual para você?”</strong>.
-                    Escreva o trabalho diretamente no campo
-                    disponibilizado no momento da publicação.
-                </p>
-
-            </article>
-
-
-            <article class="instruction-card">
-
-                <h2>
-                    🖼️ Foto
-                </h2>
-
-                <p>
-                    Esta opção deve ser utilizada para publicar o
-                    trabalho do mapa semântico ou mapa mental.
-                    Selecione a imagem diretamente no seu
-                    dispositivo e ela será enviada para o
-                    armazenamento da Revista Digital.
-                </p>
-
-            </article>
-
-
-            <article class="instruction-card">
-
-                <h2>
-                    ▶️ Vídeo
-                </h2>
-
-                <p>
-                    Para publicar o vídeo, primeiro envie o vídeo
-                    para o YouTube. O vídeo deve estar configurado
-                    como <strong>“Não listado”</strong>. Depois,
-                    coloque o link do vídeo no campo indicado.
-                    Esse vídeo corresponde ao trabalho do
-                    <strong>podcast</strong>.
-                </p>
-
-            </article>
-
-        </div>
-
-
-        <div class="instructions-extra">
-
-            <h2>
-                👥 Seleção dos estudantes
-            </h2>
-
-            <p>
-                Ao enviar um trabalho, é necessário selecionar o
-                nome do estudante que realizou a atividade.
-            </p>
-
-            <p>
-                Caso o trabalho tenha sido realizado em grupo,
-                selecione o nome de <strong>todos os integrantes</strong>
-                utilizando o botão para adicionar outro aluno.
-            </p>
-
-            <p>
-                Isso é importante para que o trabalho seja
-                contabilizado corretamente nas estatísticas de
-                cada estudante.
-            </p>
-
-        </div>
-
-
-        <div class="instructions-extra">
-
-            <h2>
-                ⏳ Aprovação dos trabalhos
-            </h2>
-
-            <p>
-                Depois de enviado, o trabalho não aparecerá
-                imediatamente na página principal.
-            </p>
-
-            <p>
-                Ele será enviado para análise e aprovação por
-                alguém da administração da Revista Digital.
-            </p>
-
-            <p>
-                Somente depois de aprovado o trabalho ficará
-                disponível publicamente na página.
-            </p>
-
-        </div>
-
-    </section>
-
-</section>
-
-
-<!-- =========================
-     ORGANIZAÇÃO
-========================= -->
-
-<aside
-    class="right-sidebar"
-    id="rightSidebar"
->
-
-    <div class="filter-title">
-        Organizar trabalhos
-    </div>
-
-
-    <!-- TEMPO -->
-
-    <button
-        class="filter-button active"
-        data-filter="tempo"
-    >
-        Por tempo
-    </button>
-
-    <div
-        class="filter-options visible"
-        id="tempoOptions"
-    >
+        <!-- TEMPO -->
 
         <button
-            class="filter-subbutton selected"
-            data-sort="recentes"
+            class="filter-button active"
+            data-filter="tempo"
         >
-            Mais recentes
+
+            Por tempo
+
         </button>
 
-    </div>
+
+        <div
+            class="filter-options visible"
+            id="tempoOptions"
+        >
+
+            <button
+                class="filter-subbutton selected"
+                data-sort="recentes"
+            >
+
+                Mais recentes
+
+            </button>
+
+        </div>
 
 
-    <!-- PESSOA -->
 
-    <button
-        class="filter-button"
-        data-filter="pessoa"
-    >
-        Por pessoa
-    </button>
-
-    <div
-        class="filter-options"
-        id="pessoaOptions"
-    >
-
-        <div id="peopleFilterList"></div>
-
-    </div>
-
-
-    <!-- TIPO -->
-
-    <button
-        class="filter-button"
-        data-filter="tipo"
-    >
-        Por tipo de trabalho
-    </button>
-
-    <div
-        class="filter-options"
-        id="tipoOptions"
-    >
+        <!-- PESSOA -->
 
         <button
-            class="filter-subbutton"
-            data-work-type="texto"
+            class="filter-button"
+            data-filter="pessoa"
         >
-            📝 Texto
+
+            Por pessoa
+
         </button>
+
+
+        <div
+            class="filter-options"
+            id="pessoaOptions"
+        >
+
+            <div
+                id="peopleFilterList"
+            ></div>
+
+        </div>
+
+
+
+        <!-- TIPO -->
 
         <button
-            class="filter-subbutton"
-            data-work-type="imagem"
+            class="filter-button"
+            data-filter="tipo"
         >
-            🖼️ Imagem
+
+            Por tipo de trabalho
+
         </button>
 
-        <button
-            class="filter-subbutton"
-            data-work-type="video"
+
+        <div
+            class="filter-options"
+            id="typeOptions"
         >
-            ▶️ Vídeo
-        </button>
 
-    </div>
+            <button
+                class="filter-subbutton"
+                data-work-type="texto"
+            >
 
-</aside>
-```
+                📝 Texto
+
+            </button>
+
+
+            <button
+                class="filter-subbutton"
+                data-work-type="imagem"
+            >
+
+                🖼️ Imagem
+
+            </button>
+
+
+            <button
+                class="filter-subbutton"
+                data-work-type="video"
+            >
+
+                ▶️ Vídeo
+
+            </button>
+
+        </div>
+
+    </aside>
 
 </main>
 
-<!-- =========================
+
+
+<!-- =========================================================
      LOGIN ADMINISTRADOR
-========================= -->
+========================================================= -->
 
 <div
     class="admin-modal"
     id="adminModal"
 >
 
-```
-<div class="admin-modal-box">
+    <div class="admin-modal-box">
 
-    <h2>
-        Login do administrador
-    </h2>
-
-    <p class="admin-login-description">
-        Entre utilizando sua conta Google autorizada.
-    </p>
-
-    <button
-        type="button"
-        class="google-login-button"
-        id="googleLoginButton"
-    >
-
-        <span class="google-icon">
-            G
-        </span>
-
-        Entrar com Google
-
-    </button>
+        <h2>
+            Login do administrador
+        </h2>
 
 
-    <div class="admin-modal-buttons">
+        <p class="admin-login-description">
+            Entre com a conta de administrador.
+        </p>
 
-        <button
-            type="button"
-            id="cancelAdminLogin"
+
+        <label for="adminEmail">
+            E-mail
+        </label>
+
+
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="E-mail"
+            autocomplete="username"
         >
-            Cancelar
-        </button>
+
+
+        <label for="adminPassword">
+            Senha
+        </label>
+
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Senha"
+            autocomplete="current-password"
+        >
+
+
+        <div class="admin-modal-buttons">
+
+            <button
+                type="button"
+                id="cancelAdminLogin"
+            >
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                id="confirmAdminLogin"
+            >
+
+                Entrar
+
+            </button>
+
+        </div>
 
     </div>
 
 </div>
-```
 
-</div>
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -1669,8 +2706,14 @@ select option {
 const SUPABASE_URL =
     "https://tcertncsuhrtldeojqfx.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
+
+
+const STORAGE_BUCKET =
+    "imagens";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1679,104 +2722,196 @@ const supabaseClient =
     );
 
 
-/* =========================================================
-   BUCKET DE IMAGENS
-========================================================= */
-
-const IMAGE_BUCKET =
-    "imagens";
-
 
 /* =========================================================
    ELEMENTOS
 ========================================================= */
 
 const addWorkButton =
-    document.getElementById("addWorkButton");
+    document.getElementById(
+        "addWorkButton"
+    );
+
 
 const workForm =
-    document.getElementById("workForm");
+    document.getElementById(
+        "workForm"
+    );
+
 
 const typeButtons =
-    document.querySelectorAll(".type-button");
+    document.querySelectorAll(
+        ".type-button"
+    );
+
 
 const workFields =
-    document.getElementById("workFields");
+    document.getElementById(
+        "workFields"
+    );
+
 
 const textField =
-    document.getElementById("textField");
+    document.getElementById(
+        "textField"
+    );
+
 
 const imageField =
-    document.getElementById("imageField");
+    document.getElementById(
+        "imageField"
+    );
+
 
 const videoField =
-    document.getElementById("videoField");
+    document.getElementById(
+        "videoField"
+    );
+
 
 const textContent =
-    document.getElementById("textContent");
+    document.getElementById(
+        "textContent"
+    );
+
 
 const imageFile =
-    document.getElementById("imageFile");
+    document.getElementById(
+        "imageFile"
+    );
+
 
 const imagePreview =
-    document.getElementById("imagePreview");
+    document.getElementById(
+        "imagePreview"
+    );
 
-const fileName =
-    document.getElementById("fileName");
+
+const imageUploadStatus =
+    document.getElementById(
+        "imageUploadStatus"
+    );
+
 
 const videoUrl =
-    document.getElementById("videoUrl");
+    document.getElementById(
+        "videoUrl"
+    );
+
 
 const publishButton =
-    document.getElementById("publishButton");
+    document.getElementById(
+        "publishButton"
+    );
+
 
 const worksArea =
-    document.getElementById("worksArea");
+    document.getElementById(
+        "worksArea"
+    );
+
 
 const homeSection =
-    document.getElementById("homeSection");
+    document.getElementById(
+        "homeSection"
+    );
+
 
 const statisticsSection =
-    document.getElementById("statisticsSection");
+    document.getElementById(
+        "statisticsSection"
+    );
+
 
 const instructionsSection =
-    document.getElementById("instructionsSection");
+    document.getElementById(
+        "instructionsSection"
+    );
+
 
 const statisticsBody =
-    document.getElementById("statisticsBody");
+    document.getElementById(
+        "statisticsBody"
+    );
+
 
 const studentSelectContainer =
-    document.getElementById("studentSelectContainer");
+    document.getElementById(
+        "studentSelectContainer"
+    );
+
 
 const addStudentButton =
-    document.getElementById("addStudentButton");
+    document.getElementById(
+        "addStudentButton"
+    );
+
 
 const rightSidebar =
-    document.getElementById("rightSidebar");
+    document.getElementById(
+        "rightSidebar"
+    );
+
 
 const adminButton =
-    document.getElementById("adminButton");
+    document.getElementById(
+        "adminButton"
+    );
+
 
 const adminModal =
-    document.getElementById("adminModal");
+    document.getElementById(
+        "adminModal"
+    );
 
-const googleLoginButton =
-    document.getElementById("googleLoginButton");
+
+const adminEmail =
+    document.getElementById(
+        "adminEmail"
+    );
+
+
+const adminPassword =
+    document.getElementById(
+        "adminPassword"
+    );
+
+
+const confirmAdminLogin =
+    document.getElementById(
+        "confirmAdminLogin"
+    );
+
 
 const cancelAdminLogin =
-    document.getElementById("cancelAdminLogin");
+    document.getElementById(
+        "cancelAdminLogin"
+    );
+
 
 const homeButton =
-    document.getElementById("homeButton");
+    document.getElementById(
+        "homeButton"
+    );
+
 
 const statisticsButton =
-    document.getElementById("statisticsButton");
+    document.getElementById(
+        "statisticsButton"
+    );
+
 
 const instructionsButton =
-    document.getElementById("instructionsButton");
+    document.getElementById(
+        "instructionsButton"
+    );
+
 
 const peopleFilterList =
-    document.getElementById("peopleFilterList");
+    document.getElementById(
+        "peopleFilterList"
+    );
+
 
 
 /* =========================================================
@@ -1789,11 +2924,30 @@ let isAdmin = false;
 
 let trabalhosCache = [];
 
+
+/*
+    Estado atual dos filtros.
+
+    tipo:
+        null = todos
+
+    pessoa:
+        null = todos
+
+    ordenacao:
+        recentes
+*/
+
 let filtroAtual = {
+
     tipo:null,
+
     pessoa:null,
+
     ordenacao:"recentes"
+
 };
+
 
 
 /* =========================================================
@@ -1832,6 +2986,7 @@ const alunos = [
 ];
 
 
+
 /* =========================================================
    OPÇÕES DE ALUNOS
 ========================================================= */
@@ -1841,38 +2996,58 @@ function criarOpcoesAluno(select) {
     select.innerHTML = "";
 
     const primeira =
-        document.createElement("option");
+        document.createElement(
+            "option"
+        );
 
     primeira.value = "";
 
     primeira.textContent =
         "Selecione seu nome";
 
-    select.appendChild(primeira);
+    select.appendChild(
+        primeira
+    );
 
-    alunos.forEach(aluno => {
 
-        const option =
-            document.createElement("option");
+    alunos.forEach(
+        aluno => {
 
-        option.value = aluno;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.textContent = aluno;
+            option.value =
+                aluno;
 
-        select.appendChild(option);
+            option.textContent =
+                aluno;
 
-    });
+            select.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
 
 document
-    .querySelectorAll(".student-select")
-    .forEach(select => {
+    .querySelectorAll(
+        ".student-select"
+    )
+    .forEach(
+        select => {
 
-        criarOpcoesAluno(select);
+            criarOpcoesAluno(
+                select
+            );
 
-    });
+        }
+    );
+
 
 
 /* =========================================================
@@ -1884,23 +3059,32 @@ addStudentButton.addEventListener(
     () => {
 
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         row.className =
             "student-row";
 
 
         const select =
-            document.createElement("select");
+            document.createElement(
+                "select"
+            );
 
         select.className =
             "student-select";
 
-        criarOpcoesAluno(select);
+
+        criarOpcoesAluno(
+            select
+        );
 
 
         const remove =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         remove.type =
             "button";
@@ -1914,18 +3098,30 @@ addStudentButton.addEventListener(
 
         remove.addEventListener(
             "click",
-            () => row.remove()
+            () => {
+
+                row.remove();
+
+            }
         );
 
 
-        row.appendChild(select);
+        row.appendChild(
+            select
+        );
 
-        row.appendChild(remove);
+        row.appendChild(
+            remove
+        );
 
-        studentSelectContainer.appendChild(row);
+
+        studentSelectContainer.appendChild(
+            row
+        );
 
     }
 );
+
 
 
 /* =========================================================
@@ -1939,46 +3135,67 @@ function obterAlunosSelecionados() {
             ".student-select"
         );
 
+
     const nomes = [];
 
-    selects.forEach(select => {
 
-        const nome =
-            select.value.trim();
+    selects.forEach(
+        select => {
 
-        if (
-            nome &&
-            !nomes.includes(nome)
-        ) {
+            const nome =
+                select.value.trim();
 
-            nomes.push(nome);
+
+            if (
+                nome &&
+                !nomes.includes(nome)
+            ) {
+
+                nomes.push(
+                    nome
+                );
+
+            }
 
         }
+    );
 
-    });
 
     return nomes;
 
 }
 
 
+
 /* =========================================================
    NAVEGAÇÃO
 ========================================================= */
 
-function ativarNavegacao(botao) {
+function ativarNavegacao(
+    botao
+) {
 
     document
-        .querySelectorAll(".nav-button")
-        .forEach(item => {
+        .querySelectorAll(
+            ".nav-button"
+        )
+        .forEach(
+            item => {
 
-            item.classList.remove("active");
+                item.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
-    botao.classList.add("active");
+
+    botao.classList.add(
+        "active"
+    );
 
 }
+
 
 
 /* =========================================================
@@ -1989,26 +3206,34 @@ homeButton.addEventListener(
     "click",
     async () => {
 
-        ativarNavegacao(homeButton);
+        ativarNavegacao(
+            homeButton
+        );
+
 
         homeSection.style.display =
             "block";
+
 
         statisticsSection.classList.remove(
             "visible"
         );
 
+
         instructionsSection.classList.remove(
             "visible"
         );
 
+
         rightSidebar.style.display =
             "";
+
 
         await carregarTrabalhos();
 
     }
 );
+
 
 
 /* =========================================================
@@ -2023,24 +3248,30 @@ statisticsButton.addEventListener(
             statisticsButton
         );
 
+
         homeSection.style.display =
             "none";
+
 
         statisticsSection.classList.add(
             "visible"
         );
 
+
         instructionsSection.classList.remove(
             "visible"
         );
 
+
         rightSidebar.style.display =
             "none";
+
 
         await carregarEstatisticas();
 
     }
 );
+
 
 
 /* =========================================================
@@ -2055,16 +3286,20 @@ instructionsButton.addEventListener(
             instructionsButton
         );
 
+
         homeSection.style.display =
             "none";
+
 
         statisticsSection.classList.remove(
             "visible"
         );
 
+
         instructionsSection.classList.add(
             "visible"
         );
+
 
         rightSidebar.style.display =
             "none";
@@ -2073,8 +3308,9 @@ instructionsButton.addEventListener(
 );
 
 
+
 /* =========================================================
-   FORMULÁRIO
+   ABRIR FORMULÁRIO
 ========================================================= */
 
 addWorkButton.addEventListener(
@@ -2089,92 +3325,103 @@ addWorkButton.addEventListener(
 );
 
 
+
 /* =========================================================
-   TIPOS DE TRABALHO
+   SELEÇÃO DO TIPO
 ========================================================= */
 
-typeButtons.forEach(button => {
+typeButtons.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            typeButtons.forEach(item => {
+                typeButtons.forEach(
+                    item => {
 
-                item.classList.remove(
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
                     "selected"
                 );
 
-            });
+
+                selectedType =
+                    button.dataset.type;
 
 
-            button.classList.add(
-                "selected"
-            );
-
-
-            selectedType =
-                button.dataset.type;
-
-
-            workFields.classList.add(
-                "visible"
-            );
-
-
-            textField.classList.remove(
-                "visible"
-            );
-
-            imageField.classList.remove(
-                "visible"
-            );
-
-            videoField.classList.remove(
-                "visible"
-            );
-
-
-            if (
-                selectedType === "texto"
-            ) {
-
-                textField.classList.add(
+                workFields.classList.add(
                     "visible"
                 );
 
-            }
 
-
-            if (
-                selectedType === "imagem"
-            ) {
-
-                imageField.classList.add(
+                textField.classList.remove(
                     "visible"
                 );
 
-            }
 
-
-            if (
-                selectedType === "video"
-            ) {
-
-                videoField.classList.add(
+                imageField.classList.remove(
                     "visible"
                 );
 
+
+                videoField.classList.remove(
+                    "visible"
+                );
+
+
+                if (
+                    selectedType ===
+                    "texto"
+                ) {
+
+                    textField.classList.add(
+                        "visible"
+                    );
+
+                }
+
+
+                if (
+                    selectedType ===
+                    "imagem"
+                ) {
+
+                    imageField.classList.add(
+                        "visible"
+                    );
+
+                }
+
+
+                if (
+                    selectedType ===
+                    "video"
+                ) {
+
+                    videoField.classList.add(
+                        "visible"
+                    );
+
+                }
+
             }
+        );
 
-        }
-    );
+    }
+);
 
-});
 
 
 /* =========================================================
-   PREVIEW DA IMAGEM
+   PRÉ-VISUALIZAÇÃO DA IMAGEM
 ========================================================= */
 
 imageFile.addEventListener(
@@ -2184,30 +3431,66 @@ imageFile.addEventListener(
         const arquivo =
             imageFile.files[0];
 
+
         if (!arquivo) {
 
-            imagePreview.src = "";
+            imagePreview.src =
+                "";
 
             imagePreview.classList.remove(
                 "visible"
             );
 
-            fileName.textContent =
-                "Nenhuma imagem selecionada.";
+            imageUploadStatus.textContent =
+                "Selecione uma imagem do seu dispositivo.";
 
             return;
+
         }
 
 
-        fileName.textContent =
-            arquivo.name;
+        if (
+            !arquivo.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            imageFile.value =
+                "";
+
+            imagePreview.src =
+                "";
+
+            imagePreview.classList.remove(
+                "visible"
+            );
+
+            imageUploadStatus.textContent =
+                "O arquivo selecionado não é uma imagem.";
+
+            return;
+
+        }
 
 
-        const leitor =
+        const tamanhoMB =
+            arquivo.size /
+            1024 /
+            1024;
+
+
+        imageUploadStatus.textContent =
+            arquivo.name +
+            " • " +
+            tamanhoMB.toFixed(2) +
+            " MB";
+
+
+        const reader =
             new FileReader();
 
 
-        leitor.onload =
+        reader.onload =
             event => {
 
                 imagePreview.src =
@@ -2220,7 +3503,7 @@ imageFile.addEventListener(
             };
 
 
-        leitor.readAsDataURL(
+        reader.readAsDataURL(
             arquivo
         );
 
@@ -2228,20 +3511,14 @@ imageFile.addEventListener(
 );
 
 
+
 /* =========================================================
-   UPLOAD DA IMAGEM
+   UPLOAD PARA O SUPABASE STORAGE
 ========================================================= */
 
-async function enviarImagem(arquivo) {
-
-    if (!arquivo) {
-
-        throw new Error(
-            "Nenhuma imagem foi selecionada."
-        );
-
-    }
-
+async function enviarImagemStorage(
+    arquivo
+) {
 
     const extensao =
         arquivo.name
@@ -2251,38 +3528,45 @@ async function enviarImagem(arquivo) {
 
 
     const nomeArquivo =
-        `${Date.now()}-${crypto.randomUUID()}.${extensao}`;
+        Date.now() +
+        "-" +
+        crypto.randomUUID() +
+        "." +
+        extensao;
 
 
     const caminho =
+        "trabalhos/" +
         nomeArquivo;
 
 
     const {
-        error: uploadError
+        error
     } =
         await supabaseClient
             .storage
-            .from(IMAGE_BUCKET)
+            .from(
+                STORAGE_BUCKET
+            )
             .upload(
                 caminho,
                 arquivo,
                 {
-                    cacheControl:"3600",
-                    upsert:false,
-                    contentType:arquivo.type
+                    cacheControl:
+                        "3600",
+
+                    upsert:
+                        false,
+
+                    contentType:
+                        arquivo.type
                 }
             );
 
 
-    if (uploadError) {
+    if (error) {
 
-        console.error(
-            "Erro no upload:",
-            uploadError
-        );
-
-        throw uploadError;
+        throw error;
 
     }
 
@@ -2292,8 +3576,12 @@ async function enviarImagem(arquivo) {
     } =
         supabaseClient
             .storage
-            .from(IMAGE_BUCKET)
-            .getPublicUrl(caminho);
+            .from(
+                STORAGE_BUCKET
+            )
+            .getPublicUrl(
+                caminho
+            );
 
 
     if (
@@ -2302,7 +3590,7 @@ async function enviarImagem(arquivo) {
     ) {
 
         throw new Error(
-            "Não foi possível obter a URL pública da imagem."
+            "Não foi possível obter a URL da imagem."
         );
 
     }
@@ -2313,6 +3601,7 @@ async function enviarImagem(arquivo) {
 }
 
 
+
 /* =========================================================
    PUBLICAR
 ========================================================= */
@@ -2321,6 +3610,7 @@ publishButton.addEventListener(
     "click",
     publicarTrabalho
 );
+
 
 
 async function publicarTrabalho() {
@@ -2340,7 +3630,9 @@ async function publicarTrabalho() {
         obterAlunosSelecionados();
 
 
-    if (nomes.length === 0) {
+    if (
+        nomes.length === 0
+    ) {
 
         alert(
             "Selecione pelo menos um aluno."
@@ -2353,11 +3645,17 @@ async function publicarTrabalho() {
 
     let conteudo = "";
 
+    let arquivoImagem = null;
 
-    /* TEXTO */
+
+
+    /* =============================================
+       TEXTO
+    ============================================== */
 
     if (
-        selectedType === "texto"
+        selectedType ===
+        "texto"
     ) {
 
         conteudo =
@@ -2377,20 +3675,24 @@ async function publicarTrabalho() {
     }
 
 
-    /* IMAGEM */
+
+    /* =============================================
+       IMAGEM
+    ============================================== */
 
     if (
-        selectedType === "imagem"
+        selectedType ===
+        "imagem"
     ) {
 
-        const arquivo =
+        arquivoImagem =
             imageFile.files[0];
 
 
-        if (!arquivo) {
+        if (!arquivoImagem) {
 
             alert(
-                "Selecione uma imagem."
+                "Escolha uma imagem antes de publicar."
             );
 
             return;
@@ -2399,13 +3701,13 @@ async function publicarTrabalho() {
 
 
         if (
-            !arquivo.type.startsWith(
+            !arquivoImagem.type.startsWith(
                 "image/"
             )
         ) {
 
             alert(
-                "Selecione um arquivo de imagem válido."
+                "O arquivo selecionado não é uma imagem."
             );
 
             return;
@@ -2415,10 +3717,14 @@ async function publicarTrabalho() {
     }
 
 
-    /* VÍDEO */
+
+    /* =============================================
+       VÍDEO
+    ============================================== */
 
     if (
-        selectedType === "video"
+        selectedType ===
+        "video"
     ) {
 
         conteudo =
@@ -2456,8 +3762,10 @@ async function publicarTrabalho() {
     }
 
 
+
     publishButton.disabled =
         true;
+
 
     publishButton.textContent =
         selectedType === "imagem"
@@ -2465,29 +3773,39 @@ async function publicarTrabalho() {
             : "Publicando...";
 
 
+
     try {
 
-        /* UPLOAD */
+
+        /* =========================================
+           UPLOAD DA IMAGEM
+        ========================================== */
 
         if (
-            selectedType === "imagem"
+            selectedType ===
+            "imagem"
         ) {
 
             conteudo =
-                await enviarImagem(
-                    imageFile.files[0]
+                await enviarImagemStorage(
+                    arquivoImagem
                 );
 
         }
 
 
-        /* BANCO */
+
+        /* =========================================
+           INSERIR TRABALHO
+        ========================================== */
 
         const {
             error
         } =
             await supabaseClient
-                .from("trabalhos")
+                .from(
+                    "trabalhos"
+                )
                 .insert({
 
                     nome:
@@ -2507,7 +3825,9 @@ async function publicarTrabalho() {
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
             alert(
                 "Não foi possível publicar o trabalho.\n\n" +
@@ -2534,10 +3854,13 @@ async function publicarTrabalho() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         alert(
-            "Ocorreu um erro ao publicar o trabalho.\n\n" +
+            "Ocorreu um erro ao enviar o trabalho.\n\n" +
             error.message
         );
 
@@ -2547,6 +3870,7 @@ async function publicarTrabalho() {
         publishButton.disabled =
             false;
 
+
         publishButton.textContent =
             "Publicar Trabalho";
 
@@ -2555,26 +3879,33 @@ async function publicarTrabalho() {
 }
 
 
+
 /* =========================================================
    LIMPAR FORMULÁRIO
 ========================================================= */
 
 function limparFormulario() {
 
-    textContent.value = "";
+    textContent.value =
+        "";
 
-    videoUrl.value = "";
+    videoUrl.value =
+        "";
 
-    imageFile.value = "";
+    imageFile.value =
+        "";
 
-    imagePreview.src = "";
+
+    imagePreview.src =
+        "";
 
     imagePreview.classList.remove(
         "visible"
     );
 
-    fileName.textContent =
-        "Nenhuma imagem selecionada.";
+
+    imageUploadStatus.textContent =
+        "Selecione uma imagem do seu dispositivo.";
 
 
     studentSelectContainer.innerHTML =
@@ -2582,52 +3913,69 @@ function limparFormulario() {
 
 
     const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     row.className =
         "student-row";
 
 
     const select =
-        document.createElement("select");
+        document.createElement(
+            "select"
+        );
+
 
     select.className =
         "student-select";
 
 
-    criarOpcoesAluno(select);
+    criarOpcoesAluno(
+        select
+    );
 
 
-    row.appendChild(select);
+    row.appendChild(
+        select
+    );
+
 
     studentSelectContainer.appendChild(
         row
     );
 
 
-    selectedType = null;
+    selectedType =
+        null;
 
 
-    typeButtons.forEach(button => {
+    typeButtons.forEach(
+        button => {
 
-        button.classList.remove(
-            "selected"
-        );
+            button.classList.remove(
+                "selected"
+            );
 
-    });
+        }
+    );
 
 
     workFields.classList.remove(
         "visible"
     );
 
+
     textField.classList.remove(
         "visible"
     );
 
+
     imageField.classList.remove(
         "visible"
     );
+
 
     videoField.classList.remove(
         "visible"
@@ -2636,15 +3984,16 @@ function limparFormulario() {
 }
 
 
+
 /* =========================================================
    LOGIN ADMINISTRADOR
-   GOOGLE OAUTH
 ========================================================= */
 
 adminButton.addEventListener(
     "click",
     abrirLoginAdmin
 );
+
 
 
 function abrirLoginAdmin() {
@@ -2662,76 +4011,11 @@ function abrirLoginAdmin() {
         "visible"
     );
 
-}
 
-
-googleLoginButton.addEventListener(
-    "click",
-    fazerLoginGoogle
-);
-
-
-async function fazerLoginGoogle() {
-
-    googleLoginButton.disabled =
-        true;
-
-    googleLoginButton.textContent =
-        "Redirecionando...";
-
-
-    try {
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithOAuth({
-
-                    provider:"google",
-
-                    options: {
-
-                        redirectTo:
-                            window.location.origin +
-                            window.location.pathname
-
-                    }
-
-                });
-
-
-        if (error) {
-
-            console.error(error);
-
-            alert(
-                "Não foi possível entrar com o Google.\n\n" +
-                error.message
-            );
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Ocorreu um erro ao iniciar o login."
-        );
-
-    } finally {
-
-        googleLoginButton.disabled =
-            false;
-
-        googleLoginButton.innerHTML =
-            '<span class="google-icon">G</span> Entrar com Google';
-
-    }
+    adminEmail.focus();
 
 }
+
 
 
 cancelAdminLogin.addEventListener(
@@ -2746,8 +4030,138 @@ cancelAdminLogin.addEventListener(
 );
 
 
+
+confirmAdminLogin.addEventListener(
+    "click",
+    fazerLoginAdmin
+);
+
+
+
+async function fazerLoginAdmin() {
+
+    const email =
+        adminEmail.value.trim();
+
+
+    const senha =
+        adminPassword.value;
+
+
+    if (
+        !email ||
+        !senha
+    ) {
+
+        alert(
+            "Digite o e-mail e a senha."
+        );
+
+        return;
+
+    }
+
+
+    confirmAdminLogin.disabled =
+        true;
+
+
+    confirmAdminLogin.textContent =
+        "Entrando...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .auth
+                .signInWithPassword({
+
+                    email:
+                        email,
+
+                    password:
+                        senha
+
+                });
+
+
+        if (error) {
+
+            console.error(
+                error
+            );
+
+            alert(
+                "E-mail ou senha incorretos."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            data.session
+        ) {
+
+            isAdmin =
+                true;
+
+
+            adminModal.classList.remove(
+                "visible"
+            );
+
+
+            adminEmail.value =
+                "";
+
+            adminPassword.value =
+                "";
+
+
+            adminButton.textContent =
+                "Sair do administrador";
+
+
+            await carregarTrabalhos();
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "Não foi possível realizar o login."
+        );
+
+
+    } finally {
+
+        confirmAdminLogin.disabled =
+            false;
+
+
+        confirmAdminLogin.textContent =
+            "Entrar";
+
+    }
+
+}
+
+
+
 /* =========================================================
-   SAIR ADMIN
+   SAIR ADMINISTRADOR
 ========================================================= */
 
 async function sairAdministrador() {
@@ -2757,16 +4171,25 @@ async function sairAdministrador() {
         .signOut();
 
 
-    isAdmin = false;
+    isAdmin =
+        false;
 
 
     adminButton.textContent =
         "Entrar como administrador";
 
 
+    filtroAtual.tipo =
+        null;
+
+    filtroAtual.pessoa =
+        null;
+
+
     await carregarTrabalhos();
 
 }
+
 
 
 /* =========================================================
@@ -2784,11 +4207,11 @@ async function verificarSessao() {
 
 
     if (
-        data &&
         data.session
     ) {
 
-        isAdmin = true;
+        isAdmin =
+            true;
 
 
         adminButton.textContent =
@@ -2798,45 +4221,6 @@ async function verificarSessao() {
 
 }
 
-
-/* =========================================================
-   MUDANÇA DE AUTENTICAÇÃO
-========================================================= */
-
-supabaseClient
-    .auth
-    .onAuthStateChange(
-        async (
-            event,
-            session
-        ) => {
-
-            if (session) {
-
-                isAdmin = true;
-
-                adminButton.textContent =
-                    "Sair do administrador";
-
-                adminModal.classList.remove(
-                    "visible"
-                );
-
-                await carregarTrabalhos();
-
-            } else {
-
-                isAdmin = false;
-
-                adminButton.textContent =
-                    "Entrar como administrador";
-
-                await carregarTrabalhos();
-
-            }
-
-        }
-    );
 
 
 /* =========================================================
@@ -2849,7 +4233,9 @@ async function carregarTrabalhos() {
 
         let query =
             supabaseClient
-                .from("trabalhos")
+                .from(
+                    "trabalhos"
+                )
                 .select("*");
 
 
@@ -2868,7 +4254,8 @@ async function carregarTrabalhos() {
             query.order(
                 "id",
                 {
-                    ascending:false
+                    ascending:
+                        false
                 }
             );
 
@@ -2882,7 +4269,9 @@ async function carregarTrabalhos() {
 
         if (error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
             return;
 
@@ -2901,11 +4290,14 @@ async function carregarTrabalhos() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
     }
 
 }
+
 
 
 /* =========================================================
@@ -2914,18 +4306,20 @@ async function carregarTrabalhos() {
 
 function aplicarFiltros() {
 
-    let trabalhos =
+    let resultado =
         [...trabalhosCache];
 
 
-    /* FILTRO POR TIPO */
+    /* =============================================
+       FILTRO POR TIPO
+    ============================================== */
 
     if (
         filtroAtual.tipo
     ) {
 
-        trabalhos =
-            trabalhos.filter(
+        resultado =
+            resultado.filter(
                 trabalho =>
                     trabalho.tipo ===
                     filtroAtual.tipo
@@ -2934,14 +4328,17 @@ function aplicarFiltros() {
     }
 
 
-    /* FILTRO POR PESSOA */
+
+    /* =============================================
+       FILTRO POR PESSOA
+    ============================================== */
 
     if (
         filtroAtual.pessoa
     ) {
 
-        trabalhos =
-            trabalhos.filter(
+        resultado =
+            resultado.filter(
                 trabalho => {
 
                     if (
@@ -2973,15 +4370,21 @@ function aplicarFiltros() {
     }
 
 
-    /* ORDENAÇÃO */
+
+    /* =============================================
+       ORDENAÇÃO
+    ============================================== */
 
     if (
         filtroAtual.ordenacao ===
         "recentes"
     ) {
 
-        trabalhos.sort(
-            (a,b) =>
+        resultado.sort(
+            (
+                a,
+                b
+            ) =>
                 Number(b.id) -
                 Number(a.id)
         );
@@ -2989,11 +4392,13 @@ function aplicarFiltros() {
     }
 
 
+
     renderizarTrabalhos(
-        trabalhos
+        resultado
     );
 
 }
+
 
 
 /* =========================================================
@@ -3004,7 +4409,8 @@ function renderizarTrabalhos(
     trabalhos
 ) {
 
-    worksArea.innerHTML = "";
+    worksArea.innerHTML =
+        "";
 
 
     if (
@@ -3012,25 +4418,66 @@ function renderizarTrabalhos(
         trabalhos.length === 0
     ) {
 
-        worksArea.innerHTML = `
+        const vazio =
+            document.createElement(
+                "div"
+            );
 
-            <div class="empty-state">
 
-                <h1>
-                    Nenhum trabalho encontrado
-                </h1>
+        vazio.className =
+            "empty-state";
 
-                <p>
-                    Não existem trabalhos para este filtro.
-                </p>
 
-            </div>
+        const titulo =
+            document.createElement(
+                "h1"
+            );
 
-        `;
+
+        titulo.textContent =
+            "Nenhum trabalho encontrado";
+
+
+        const texto =
+            document.createElement(
+                "p"
+            );
+
+
+        if (
+            isAdmin
+        ) {
+
+            texto.textContent =
+                "Não existem trabalhos correspondentes ao filtro selecionado.";
+
+        } else {
+
+            texto.textContent =
+                "Os trabalhos aprovados aparecerão aqui.";
+
+        }
+
+
+        vazio.appendChild(
+            titulo
+        );
+
+
+        vazio.appendChild(
+            texto
+        );
+
+
+        worksArea.appendChild(
+            vazio
+        );
+
 
         return;
 
     }
+
 
 
     trabalhos.forEach(
@@ -3041,14 +4488,21 @@ function renderizarTrabalhos(
                     "article"
                 );
 
+
             card.className =
                 "work-card";
 
+
+
+            /* =====================================
+               HEADER
+            ====================================== */
 
             const header =
                 document.createElement(
                     "div"
                 );
+
 
             header.className =
                 "work-header";
@@ -3065,8 +4519,10 @@ function renderizarTrabalhos(
                     "div"
                 );
 
+
             author.className =
                 "work-author";
+
 
             author.textContent =
                 trabalho.nome;
@@ -3077,23 +4533,36 @@ function renderizarTrabalhos(
                     "div"
                 );
 
+
             date.className =
                 "work-date";
+
 
             date.textContent =
                 "ID do trabalho: #" +
                 trabalho.id;
 
 
-            info.appendChild(author);
+            info.appendChild(
+                author
+            );
 
-            info.appendChild(date);
 
+            info.appendChild(
+                date
+            );
+
+
+
+            /* =====================================
+               TIPO
+            ====================================== */
 
             const type =
                 document.createElement(
                     "div"
                 );
+
 
             type.className =
                 "work-type";
@@ -3107,7 +4576,10 @@ function renderizarTrabalhos(
                 type.textContent =
                     "📝 Texto";
 
-            } else if (
+            }
+
+
+            else if (
                 trabalho.tipo ===
                 "imagem"
             ) {
@@ -3115,7 +4587,13 @@ function renderizarTrabalhos(
                 type.textContent =
                     "🖼️ Imagem";
 
-            } else {
+            }
+
+
+            else if (
+                trabalho.tipo ===
+                "video"
+            ) {
 
                 type.textContent =
                     "▶️ Vídeo";
@@ -3123,14 +4601,25 @@ function renderizarTrabalhos(
             }
 
 
-            header.appendChild(info);
-
-            header.appendChild(type);
-
-            card.appendChild(header);
+            header.appendChild(
+                info
+            );
 
 
-            /* PENDENTE */
+            header.appendChild(
+                type
+            );
+
+
+            card.appendChild(
+                header
+            );
+
+
+
+            /* =====================================
+               PENDENTE
+            ====================================== */
 
             if (
                 isAdmin &&
@@ -3142,18 +4631,26 @@ function renderizarTrabalhos(
                         "div"
                     );
 
+
                 status.className =
                     "pending-badge";
+
 
                 status.textContent =
                     "⏳ Aguardando aprovação";
 
-                card.appendChild(status);
+
+                card.appendChild(
+                    status
+                );
 
             }
 
 
-            /* TEXTO */
+
+            /* =====================================
+               TEXTO
+            ====================================== */
 
             if (
                 trabalho.tipo ===
@@ -3165,18 +4662,26 @@ function renderizarTrabalhos(
                         "div"
                     );
 
+
                 texto.className =
                     "work-text";
+
 
                 texto.textContent =
                     trabalho.conteudo;
 
-                card.appendChild(texto);
+
+                card.appendChild(
+                    texto
+                );
 
             }
 
 
-            /* IMAGEM */
+
+            /* =====================================
+               IMAGEM
+            ====================================== */
 
             if (
                 trabalho.tipo ===
@@ -3188,24 +4693,43 @@ function renderizarTrabalhos(
                         "img"
                     );
 
+
                 imagem.className =
                     "work-image";
+
 
                 imagem.src =
                     trabalho.conteudo;
 
+
                 imagem.alt =
                     "Imagem do trabalho";
+
 
                 imagem.loading =
                     "lazy";
 
-                card.appendChild(imagem);
+
+                imagem.onerror =
+                    () => {
+
+                        imagem.alt =
+                            "Não foi possível carregar esta imagem.";
+
+                    };
+
+
+                card.appendChild(
+                    imagem
+                );
 
             }
 
 
-            /* VÍDEO */
+
+            /* =====================================
+               VÍDEO
+            ====================================== */
 
             if (
                 trabalho.tipo ===
@@ -3217,29 +4741,40 @@ function renderizarTrabalhos(
                         "iframe"
                     );
 
+
                 iframe.className =
                     "work-video";
+
 
                 iframe.src =
                     transformarYoutubeUrl(
                         trabalho.conteudo
                     );
 
+
                 iframe.title =
                     "Vídeo do trabalho";
+
 
                 iframe.allow =
                     "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
 
+
                 iframe.allowFullscreen =
                     true;
 
-                card.appendChild(iframe);
+
+                card.appendChild(
+                    iframe
+                );
 
             }
 
 
-            /* CONTROLES ADMIN */
+
+            /* =====================================
+               ADMIN
+            ====================================== */
 
             if (isAdmin) {
 
@@ -3261,6 +4796,7 @@ function renderizarTrabalhos(
 }
 
 
+
 /* =========================================================
    CONTROLES ADMIN
 ========================================================= */
@@ -3275,6 +4811,7 @@ function criarControlesAdmin(
             "div"
         );
 
+
     controls.className =
         "admin-controls";
 
@@ -3288,17 +4825,21 @@ function criarControlesAdmin(
                 "button"
             );
 
+
         approve.className =
             "approve-button";
 
+
         approve.textContent =
             "Aprovar";
+
 
         approve.onclick =
             () =>
                 aprovarTrabalho(
                     trabalho.id
                 );
+
 
         controls.appendChild(
             approve
@@ -3307,16 +4848,20 @@ function criarControlesAdmin(
     }
 
 
+
     const edit =
         document.createElement(
             "button"
         );
 
+
     edit.className =
         "edit-button";
 
+
     edit.textContent =
         "Editar";
+
 
     edit.onclick =
         () =>
@@ -3324,9 +4869,11 @@ function criarControlesAdmin(
                 trabalho
             );
 
+
     controls.appendChild(
         edit
     );
+
 
 
     const remove =
@@ -3334,17 +4881,21 @@ function criarControlesAdmin(
             "button"
         );
 
+
     remove.className =
         "delete-button";
 
+
     remove.textContent =
         "Apagar";
+
 
     remove.onclick =
         () =>
             apagarTrabalho(
                 trabalho.id
             );
+
 
     controls.appendChild(
         remove
@@ -3358,11 +4909,14 @@ function criarControlesAdmin(
 }
 
 
+
 /* =========================================================
    APROVAR
 ========================================================= */
 
-async function aprovarTrabalho(id) {
+async function aprovarTrabalho(
+    id
+) {
 
     if (
         !confirm(
@@ -3379,9 +4933,14 @@ async function aprovarTrabalho(id) {
         error
     } =
         await supabaseClient
-            .from("trabalhos")
+            .from(
+                "trabalhos"
+            )
             .update({
-                aprovado:true
+
+                aprovado:
+                    true
+
             })
             .eq(
                 "id",
@@ -3391,11 +4950,15 @@ async function aprovarTrabalho(id) {
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         alert(
             "Não foi possível aprovar o trabalho."
         );
+
 
         return;
 
@@ -3407,6 +4970,7 @@ async function aprovarTrabalho(id) {
     await carregarEstatisticas();
 
 }
+
 
 
 /* =========================================================
@@ -3425,8 +4989,7 @@ async function editarTrabalho(
 
 
     if (
-        novoNome ===
-        null
+        novoNome === null
     ) {
 
         return;
@@ -3456,7 +5019,7 @@ async function editarTrabalho(
             : trabalho.tipo ===
               "imagem"
 
-                ? "URL da imagem:"
+                ? "URL atual da imagem:"
 
                 : "Conteúdo do trabalho:";
 
@@ -3469,8 +5032,7 @@ async function editarTrabalho(
 
 
     if (
-        novoConteudo ===
-        null
+        novoConteudo === null
     ) {
 
         return;
@@ -3495,7 +5057,9 @@ async function editarTrabalho(
         error
     } =
         await supabaseClient
-            .from("trabalhos")
+            .from(
+                "trabalhos"
+            )
             .update({
 
                 nome:
@@ -3513,11 +5077,15 @@ async function editarTrabalho(
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         alert(
             "Não foi possível editar."
         );
+
 
         return;
 
@@ -3536,11 +5104,14 @@ async function editarTrabalho(
 }
 
 
+
 /* =========================================================
    APAGAR
 ========================================================= */
 
-async function apagarTrabalho(id) {
+async function apagarTrabalho(
+    id
+) {
 
     if (
         !confirm(
@@ -3557,7 +5128,9 @@ async function apagarTrabalho(id) {
         error
     } =
         await supabaseClient
-            .from("trabalhos")
+            .from(
+                "trabalhos"
+            )
             .delete()
             .eq(
                 "id",
@@ -3567,11 +5140,15 @@ async function apagarTrabalho(id) {
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         alert(
             "Não foi possível apagar."
         );
+
 
         return;
 
@@ -3585,18 +5162,25 @@ async function apagarTrabalho(id) {
 }
 
 
+
 /* =========================================================
    YOUTUBE
 ========================================================= */
 
-function transformarYoutubeUrl(url) {
+function transformarYoutubeUrl(
+    url
+) {
 
     try {
 
         const endereco =
-            new URL(url);
+            new URL(
+                url
+            );
+
 
         let id = "";
+
 
 
         if (
@@ -3611,6 +5195,7 @@ function transformarYoutubeUrl(url) {
                 );
 
         }
+
 
 
         if (
@@ -3634,12 +5219,30 @@ function transformarYoutubeUrl(url) {
 
                 id =
                     endereco.pathname
-                        .split("/")
-                        [2];
+                        .split(
+                            "/"
+                        )[2];
+
+            }
+
+
+            if (
+                !id &&
+                endereco.pathname.startsWith(
+                    "/embed/"
+                )
+            ) {
+
+                id =
+                    endereco.pathname
+                        .split(
+                            "/"
+                        )[2];
 
             }
 
         }
+
 
 
         if (!id) {
@@ -3664,13 +5267,16 @@ function transformarYoutubeUrl(url) {
 }
 
 
+
 /* =========================================================
    ESTATÍSTICAS
 ========================================================= */
 
 async function carregarEstatisticas() {
 
-    if (!statisticsBody) {
+    if (
+        !statisticsBody
+    ) {
 
         return;
 
@@ -3684,7 +5290,9 @@ async function carregarEstatisticas() {
             error
         } =
             await supabaseClient
-                .from("trabalhos")
+                .from(
+                    "trabalhos"
+                )
                 .select("*")
                 .eq(
                     "aprovado",
@@ -3711,11 +5319,14 @@ async function carregarEstatisticas() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
     }
 
 }
+
 
 
 function alunoPossuiTipo(
@@ -3766,6 +5377,7 @@ function alunoPossuiTipo(
 }
 
 
+
 function renderizarEstatisticas(
     trabalhos
 ) {
@@ -3788,11 +5400,14 @@ function renderizarEstatisticas(
                     "td"
                 );
 
+
             nameCell.className =
                 "statistics-name";
 
+
             nameCell.textContent =
                 aluno;
+
 
             row.appendChild(
                 nameCell
@@ -3810,6 +5425,7 @@ function renderizarEstatisticas(
                         document.createElement(
                             "td"
                         );
+
 
                     cell.className =
                         "statistics-status";
@@ -3848,8 +5464,9 @@ function renderizarEstatisticas(
 }
 
 
+
 /* =========================================================
-   FILTROS
+   FILTROS PRINCIPAIS
 ========================================================= */
 
 const filterButtons =
@@ -3869,10 +5486,10 @@ filterButtons.forEach(
                     button.dataset.filter;
 
 
-                /*
-                 * Abre somente o grupo
-                 * clicado.
-                 */
+
+                /* =================================
+                   MOSTRAR OPÇÕES CORRETAS
+                ================================== */
 
                 document
                     .querySelectorAll(
@@ -3905,12 +5522,6 @@ filterButtons.forEach(
                 );
 
 
-                /*
-                 * CORREÇÃO PRINCIPAL:
-                 * o botão "tipo" procura
-                 * especificamente #tipoOptions.
-                 */
-
                 const options =
                     document.getElementById(
                         filtro +
@@ -3927,11 +5538,10 @@ filterButtons.forEach(
                 }
 
 
-                /*
-                 * Ao trocar o grupo,
-                 * limpamos filtros antigos
-                 * quando necessário.
-                 */
+
+                /* =================================
+                   POR TEMPO
+                ================================== */
 
                 if (
                     filtro ===
@@ -3978,41 +5588,30 @@ filterButtons.forEach(
                         );
 
 
-                    document
-                        .querySelector(
+                    const recentes =
+                        document.querySelector(
                             '[data-sort="recentes"]'
-                        )
-                        ?.classList.add(
+                        );
+
+
+                    if (recentes) {
+
+                        recentes.classList.add(
                             "selected"
                         );
 
-                }
+                    }
 
 
-                if (
-                    filtro ===
-                    "tipo"
-                ) {
-
-                    filtroAtual.pessoa =
-                        null;
-
-                    document
-                        .querySelectorAll(
-                            "#peopleFilterList .filter-subbutton"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
+                    aplicarFiltros();
 
                 }
 
+
+
+                /* =================================
+                   POR PESSOA
+                ================================== */
 
                 if (
                     filtro ===
@@ -4021,6 +5620,10 @@ filterButtons.forEach(
 
                     filtroAtual.tipo =
                         null;
+
+                    filtroAtual.pessoa =
+                        null;
+
 
                     document
                         .querySelectorAll(
@@ -4036,10 +5639,50 @@ filterButtons.forEach(
                             }
                         );
 
+
+                    aplicarFiltros();
+
                 }
 
 
-                aplicarFiltros();
+
+                /* =================================
+                   POR TIPO
+                ================================== */
+
+                if (
+                    filtro ===
+                    "tipo"
+                ) {
+
+                    filtroAtual.pessoa =
+                        null;
+
+
+                    document
+                        .querySelectorAll(
+                            "#peopleFilterList .filter-subbutton"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                    /*
+                        Aqui não apagamos filtroAtual.tipo.
+                        Isso permite clicar novamente no tipo
+                        e trocar entre Texto, Imagem e Vídeo.
+                    */
+
+                    aplicarFiltros();
+
+                }
 
             }
         );
@@ -4048,8 +5691,9 @@ filterButtons.forEach(
 );
 
 
+
 /* =========================================================
-   MAIS RECENTES
+   FILTRO POR TEMPO
 ========================================================= */
 
 document
@@ -4063,14 +5707,14 @@ document
                 "click",
                 () => {
 
-                    filtroAtual.ordenacao =
-                        button.dataset.sort;
-
                     filtroAtual.tipo =
                         null;
 
                     filtroAtual.pessoa =
                         null;
+
+                    filtroAtual.ordenacao =
+                        button.dataset.sort;
 
 
                     document
@@ -4093,6 +5737,36 @@ document
                     );
 
 
+                    document
+                        .querySelectorAll(
+                            "[data-work-type]"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                    document
+                        .querySelectorAll(
+                            "#peopleFilterList .filter-subbutton"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
                     aplicarFiltros();
 
                 }
@@ -4102,8 +5776,9 @@ document
     );
 
 
+
 /* =========================================================
-   FILTRO POR TIPO
+   FILTRO POR TIPO DE TRABALHO
 ========================================================= */
 
 document
@@ -4122,20 +5797,36 @@ document
 
 
                     /*
-                     * Guarda o filtro.
-                     */
+                        Define explicitamente o tipo
+                        selecionado.
+                    */
 
                     filtroAtual.tipo =
                         tipo;
+
+
+                    /*
+                        Ao escolher um tipo,
+                        removemos o filtro por pessoa.
+                    */
 
                     filtroAtual.pessoa =
                         null;
 
 
                     /*
-                     * Remove seleção dos
-                     * outros tipos.
-                     */
+                        Mantém a ordenação por
+                        trabalhos mais recentes.
+                    */
+
+                    filtroAtual.ordenacao =
+                        "recentes";
+
+
+
+                    /* =============================
+                       MARCAR BOTÃO SELECIONADO
+                    ============================== */
 
                     document
                         .querySelectorAll(
@@ -4152,19 +5843,35 @@ document
                         );
 
 
-                    /*
-                     * Seleciona o clicado.
-                     */
-
                     button.classList.add(
                         "selected"
                     );
 
 
-                    /*
-                     * Aplica de verdade
-                     * o filtro.
-                     */
+
+                    /* =============================
+                       LIMPAR PESSOA
+                    ============================== */
+
+                    document
+                        .querySelectorAll(
+                            "#peopleFilterList .filter-subbutton"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+
+                    /* =============================
+                       APLICAR
+                    ============================== */
 
                     aplicarFiltros();
 
@@ -4173,6 +5880,7 @@ document
 
         }
     );
+
 
 
 /* =========================================================
@@ -4209,8 +5917,14 @@ function atualizarFiltros() {
                     filtroAtual.pessoa =
                         aluno;
 
+
                     filtroAtual.tipo =
                         null;
+
+
+                    filtroAtual.ordenacao =
+                        "recentes";
+
 
 
                     document
@@ -4231,6 +5945,7 @@ function atualizarFiltros() {
                     button.classList.add(
                         "selected"
                     );
+
 
 
                     document
@@ -4264,8 +5979,9 @@ function atualizarFiltros() {
 }
 
 
+
 /* =========================================================
-   FECHAR LOGIN
+   FECHAR LOGIN AO CLICAR FORA
 ========================================================= */
 
 adminModal.addEventListener(
@@ -4287,6 +6003,29 @@ adminModal.addEventListener(
 );
 
 
+
+/* =========================================================
+   ENTER NO LOGIN
+========================================================= */
+
+adminPassword.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            fazerLoginAdmin();
+
+        }
+
+    }
+);
+
+
+
 /* =========================================================
    INICIAR SISTEMA
 ========================================================= */
@@ -4295,11 +6034,11 @@ async function iniciarSistema() {
 
     await verificarSessao();
 
-    atualizarFiltros();
-
     await carregarTrabalhos();
 
     await carregarEstatisticas();
+
+    atualizarFiltros();
 
 }
 
