@@ -2618,77 +2618,18 @@ select option {
      LOGIN ADMINISTRADOR
 ========================================================= -->
 
-<div
-    class="admin-modal"
-    id="adminModal"
->
+<div class="admin-google-login">
 
-    <div class="admin-modal-box">
-
-        <h2>
-            Login do administrador
-        </h2>
-
-
-        <p class="admin-login-description">
-            Entre com a conta de administrador.
-        </p>
-
-
-        <label for="adminEmail">
-            E-mail
-        </label>
-
-
-        <input
-            type="email"
-            id="adminEmail"
-            placeholder="E-mail"
-            autocomplete="username"
-        >
-
-
-        <label for="adminPassword">
-            Senha
-        </label>
-
-
-        <input
-            type="password"
-            id="adminPassword"
-            placeholder="Senha"
-            autocomplete="current-password"
-        >
-
-
-        <div class="admin-modal-buttons">
-
-            <button
-                type="button"
-                id="cancelAdminLogin"
-            >
-
-                Cancelar
-
-            </button>
-
-
-            <button
-                type="button"
-                id="confirmAdminLogin"
-            >
-
-                Entrar
-
-            </button>
-
-        </div>
-
-    </div>
+    <button
+        type="button"
+        id="googleLoginButton"
+        class="google-login-button"
+    >
+        <span>🌐</span>
+        Entrar com Google
+    </button>
 
 </div>
-
-
 
 <!-- =========================================================
      SUPABASE
@@ -3985,181 +3926,69 @@ function limparFormulario() {
 
 
 
-/* =========================================================
+/* =========================
    LOGIN ADMINISTRADOR
-========================================================= */
+   GOOGLE
+========================= */
 
 adminButton.addEventListener(
-    "click",
-    abrirLoginAdmin
-);
-
-
-
-function abrirLoginAdmin() {
-
-    if (isAdmin) {
-
-        sairAdministrador();
-
-        return;
-
-    }
-
-
-    adminModal.classList.add(
-        "visible"
-    );
-
-
-    adminEmail.focus();
-
-}
-
-
-
-cancelAdminLogin.addEventListener(
-    "click",
-    () => {
-
-        adminModal.classList.remove(
-            "visible"
-        );
-
-    }
-);
-
-
-
-confirmAdminLogin.addEventListener(
     "click",
     fazerLoginAdmin
 );
 
-
-
 async function fazerLoginAdmin() {
 
-    const email =
-        adminEmail.value.trim();
+    // Se já estiver logado,
+    // o botão funciona como sair
+    if (isAdmin) {
 
-
-    const senha =
-        adminPassword.value;
-
-
-    if (
-        !email ||
-        !senha
-    ) {
-
-        alert(
-            "Digite o e-mail e a senha."
-        );
+        await sairAdministrador();
 
         return;
-
     }
-
-
-    confirmAdminLogin.disabled =
-        true;
-
-
-    confirmAdminLogin.textContent =
-        "Entrando...";
-
 
     try {
 
         const {
-            data,
             error
         } =
             await supabaseClient
                 .auth
-                .signInWithPassword({
+                .signInWithOAuth({
 
-                    email:
-                        email,
+                    provider: "google",
 
-                    password:
-                        senha
+                    options: {
+
+                        redirectTo:
+                            window.location.origin
+
+                    }
 
                 });
-
 
         if (error) {
 
             console.error(
+                "Erro no login Google:",
                 error
             );
 
             alert(
-                "E-mail ou senha incorretos."
+                "Não foi possível entrar com o Google."
             );
-
-            return;
-
         }
-
-
-        if (
-            data.session
-        ) {
-
-            isAdmin =
-                true;
-
-
-            adminModal.classList.remove(
-                "visible"
-            );
-
-
-            adminEmail.value =
-                "";
-
-            adminPassword.value =
-                "";
-
-
-            adminButton.textContent =
-                "Sair do administrador";
-
-
-            await carregarTrabalhos();
-
-        }
-
 
     } catch (error) {
 
-        console.error(
-            error
-        );
-
+        console.error(error);
 
         alert(
-            "Não foi possível realizar o login."
+            "Ocorreu um erro ao iniciar o login."
         );
-
-
-    } finally {
-
-        confirmAdminLogin.disabled =
-            false;
-
-
-        confirmAdminLogin.textContent =
-            "Entrar";
-
     }
-
 }
-
-
-
+    
 /* =========================================================
    SAIR ADMINISTRADOR
 ========================================================= */
@@ -5470,228 +5299,139 @@ function renderizarEstatisticas(
 ========================================================= */
 
 const filterButtons =
-    document.querySelectorAll(
-        ".filter-button"
-    );
+    document.querySelectorAll(".filter-button");
+
+const filterOptions =
+    document.querySelectorAll(".filter-options");
 
 
-filterButtons.forEach(
-    button => {
+filterButtons.forEach(button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+    button.addEventListener("click", () => {
 
-                const filtro =
-                    button.dataset.filter;
+        const filtro =
+            button.dataset.filter;
 
 
+        /* ================================
+           FECHAR TODAS AS OPÇÕES
+        ================================= */
 
-                /* =================================
-                   MOSTRAR OPÇÕES CORRETAS
-                ================================== */
-
-                document
-                    .querySelectorAll(
-                        ".filter-options"
-                    )
-                    .forEach(
-                        options => {
-
-                            options.classList.remove(
-                                "visible"
-                            );
-
-                        }
-                    );
+        filterOptions.forEach(options => {
+            options.classList.remove("visible");
+        });
 
 
-                filterButtons.forEach(
-                    item => {
+        /* ================================
+           DESATIVAR TODOS OS BOTÕES
+        ================================= */
 
-                        item.classList.remove(
-                            "active"
-                        );
+        filterButtons.forEach(item => {
+            item.classList.remove("active");
+        });
 
-                    }
+
+        /* ================================
+           ATIVAR O BOTÃO CLICADO
+        ================================= */
+
+        button.classList.add("active");
+
+
+        /* ================================
+           ABRIR AS OPÇÕES CORRESPONDENTES
+        ================================= */
+
+        const options =
+            document.getElementById(
+                filtro + "Options"
+            );
+
+
+        if (options) {
+            options.classList.add("visible");
+        }
+
+
+        /* ================================
+           POR TEMPO
+        ================================= */
+
+        if (filtro === "tempo") {
+
+            filtroAtual.tipo = null;
+            filtroAtual.pessoa = null;
+            filtroAtual.ordenacao = "recentes";
+
+
+            document
+                .querySelectorAll("[data-work-type]")
+                .forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+
+            document
+                .querySelectorAll(
+                    "#peopleFilterList .filter-subbutton"
+                )
+                .forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+
+            const recentes =
+                document.querySelector(
+                    '[data-sort="recentes"]'
                 );
 
 
-                button.classList.add(
-                    "active"
-                );
-
-
-                const options =
-                    document.getElementById(
-                        filtro +
-                        "Options"
-                    );
-
-
-                if (options) {
-
-                    options.classList.add(
-                        "visible"
-                    );
-
-                }
-
-
-
-                /* =================================
-                   POR TEMPO
-                ================================== */
-
-                if (
-                    filtro ===
-                    "tempo"
-                ) {
-
-                    filtroAtual.tipo =
-                        null;
-
-                    filtroAtual.pessoa =
-                        null;
-
-                    filtroAtual.ordenacao =
-                        "recentes";
-
-
-                    document
-                        .querySelectorAll(
-                            "[data-work-type]"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    document
-                        .querySelectorAll(
-                            "#peopleFilterList .filter-subbutton"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    const recentes =
-                        document.querySelector(
-                            '[data-sort="recentes"]'
-                        );
-
-
-                    if (recentes) {
-
-                        recentes.classList.add(
-                            "selected"
-                        );
-
-                    }
-
-
-                    aplicarFiltros();
-
-                }
-
-
-
-                /* =================================
-                   POR PESSOA
-                ================================== */
-
-                if (
-                    filtro ===
-                    "pessoa"
-                ) {
-
-                    filtroAtual.tipo =
-                        null;
-
-                    filtroAtual.pessoa =
-                        null;
-
-
-                    document
-                        .querySelectorAll(
-                            "[data-work-type]"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    aplicarFiltros();
-
-                }
-
-
-
-                /* =================================
-                   POR TIPO
-                ================================== */
-
-                if (
-                    filtro ===
-                    "tipo"
-                ) {
-
-                    filtroAtual.pessoa =
-                        null;
-
-
-                    document
-                        .querySelectorAll(
-                            "#peopleFilterList .filter-subbutton"
-                        )
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    /*
-                        Aqui não apagamos filtroAtual.tipo.
-                        Isso permite clicar novamente no tipo
-                        e trocar entre Texto, Imagem e Vídeo.
-                    */
-
-                    aplicarFiltros();
-
-                }
-
+            if (recentes) {
+                recentes.classList.add("selected");
             }
-        );
-
-    }
-);
 
 
+            aplicarFiltros();
 
+        }
+
+
+        /* ================================
+           POR PESSOA
+        ================================= */
+
+        if (filtro === "pessoa") {
+
+            filtroAtual.tipo = null;
+
+
+            document
+                .querySelectorAll("[data-work-type]")
+                .forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+
+            aplicarFiltros();
+
+        }
+
+
+        /* ================================
+           POR TIPO
+        ================================= */
+
+        if (filtro === "tipo") {
+
+            filtroAtual.pessoa = null;
+
+            aplicarFiltros();
+
+        }
+
+    });
+
+});
 /* =========================================================
    FILTRO POR TEMPO
 ========================================================= */
@@ -6039,6 +5779,71 @@ async function iniciarSistema() {
     await carregarEstatisticas();
 
     atualizarFiltros();
+
+}
+
+/* =========================================================
+   LOGIN DO ADMINISTRADOR COM GOOGLE
+========================================================= */
+
+const googleLoginButton =
+    document.getElementById(
+        "googleLoginButton"
+    );
+
+
+if (googleLoginButton) {
+
+    googleLoginButton.addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signInWithOAuth({
+
+                        provider: "google",
+
+                        options: {
+                            redirectTo:
+                                window.location.origin
+                        }
+
+                    });
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao entrar com Google:",
+                        error
+                    );
+
+                    alert(
+                        "Não foi possível entrar com Google."
+                    );
+
+                }
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro inesperado:",
+                    erro
+                );
+
+                alert(
+                    "Ocorreu um erro ao tentar entrar."
+                );
+
+            }
+
+        }
+    );
 
 }
 
