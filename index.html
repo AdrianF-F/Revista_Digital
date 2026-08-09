@@ -4057,14 +4057,10 @@ async function fazerLoginAdmin() {
             .auth
             .signInWithOAuth({
 
-                provider: "google",
-
-                options: {
-
                   const { data, error } = await supabaseClient.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-        redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
+                    provider: "google",
+                    options: {
+                        redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
     }
 });
 
