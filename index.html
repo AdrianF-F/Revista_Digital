@@ -1,1796 +1,1824 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Trabalhos Escolares</title>
+<title>Revista Digital</title>
 
 
-    <style>
+<!-- ==================================================
+     CSS
+================================================== -->
 
-        /* ==================================================
-           VARIÁVEIS
-        ================================================== */
+<style>
 
-        :root {
+    /* ==================================================
+       VARIÁVEIS
+    ================================================== */
 
-            --blue: #0878d1;
+    :root {
 
-            --blue-light: #6aa8ff;
+        --blue: #0878d1;
 
-            --green: #00a889;
+        --blue-light: #6aa8ff;
 
-            --green-dark: #007d70;
+        --green: #00a889;
 
-            --background: #202526;
+        --green-dark: #007d70;
 
-            --background-dark: #111313;
+        --background: #202526;
 
-            --card: #111111;
+        --background-dark: #111313;
 
-            --card-light: #181919;
+        --card: #111111;
 
-            --border: #343a3b;
+        --card-light: #181919;
 
-            --text: #d4e0eb;
+        --border: #343a3b;
 
-            --text-muted: #8996a2;
+        --text: #d4e0eb;
 
-            --danger: #b53a3a;
+        --text-muted: #8996a2;
 
-            --warning: #f0b429;
+        --danger: #b53a3a;
+
+        --warning: #f0b429;
+
+    }
+
+
+
+    /* ==================================================
+       RESET
+    ================================================== */
+
+    * {
+
+        box-sizing: border-box;
+
+        margin: 0;
+
+        padding: 0;
+
+    }
+
+
+
+    /* ==================================================
+       BODY
+    ================================================== */
+
+    body {
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at top left,
+                rgba(8, 120, 209, 0.08),
+                transparent 35%
+            ),
+            var(--background);
+
+        color: var(--text);
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    }
+
+
+
+    /* ==================================================
+       TOPO
+    ================================================== */
+
+    .topbar {
+
+        width: 100%;
+
+        min-height: 110px;
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 12px 5%;
+
+        background:
+            linear-gradient(
+                110deg,
+                #0878d1,
+                #0796ad,
+                #00a889
+            );
+
+        border-bottom: 1px solid
+            rgba(255,255,255,.08);
+
+    }
+
+
+
+    /* ==================================================
+       LOGO
+    ================================================== */
+
+    .school-logo {
+
+        height: 90px;
+
+        display: flex;
+
+        align-items: center;
+
+    }
+
+
+
+    .school-logo img {
+
+        height: 86px;
+
+        width: auto;
+
+        max-width: 280px;
+
+        object-fit: contain;
+
+        border-radius: 8px;
+
+        border: 2px solid #000;
+
+        display: block;
+
+    }
+
+
+
+    /* ==================================================
+       TÍTULO
+    ================================================== */
+
+    .site-title {
+
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        color: white;
+
+        font-size: 32px;
+
+        font-weight: 800;
+
+        letter-spacing: 1px;
+
+        text-shadow:
+            0 2px 5px
+            rgba(0,0,0,.20);
+
+        white-space: nowrap;
+
+    }
+
+
+
+    /* ==================================================
+       BOTÃO ADMIN
+    ================================================== */
+
+    .admin-button {
+
+        border: none;
+
+        border-radius: 30px;
+
+        padding: 15px 26px;
+
+        background: #101313;
+
+        color: #00c59e;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition:
+            transform .2s,
+            background .2s,
+            color .2s;
+
+    }
+
+
+
+    .admin-button:hover {
+
+        transform: translateY(-2px);
+
+        background: #080909;
+
+        color: #5ee6c4;
+
+    }
+
+
+
+    /* ==================================================
+       LAYOUT
+    ================================================== */
+
+    .layout {
+
+        width: 100%;
+
+        max-width: 1500px;
+
+        margin: 0 auto;
+
+        padding: 30px;
+
+        display: grid;
+
+        grid-template-columns:
+            190px
+            minmax(0,1fr)
+            190px;
+
+        gap: 25px;
+
+    }
+
+
+
+    /* ==================================================
+       MENU ESQUERDO
+    ================================================== */
+
+    .left-sidebar {
+
+        padding-top: 10px;
+
+    }
+
+
+
+    .main-navigation {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+
+    .nav-button {
+
+        width: 100%;
+
+        padding: 16px 12px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: transparent;
+
+        color: #aebdca;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        text-align: left;
+
+        cursor: pointer;
+
+        transition:
+            background .2s,
+            color .2s,
+            transform .2s;
+
+    }
+
+
+
+    .nav-button:hover {
+
+        background:
+            rgba(0,168,137,.12);
+
+        color: white;
+
+    }
+
+
+
+    .nav-button.active {
+
+        background:
+            rgba(0,168,137,.20);
+
+        color: #52d5b8;
+
+    }
+
+
+
+    /* ==================================================
+       CONTEÚDO
+    ================================================== */
+
+    .main-content {
+
+        min-width: 0;
+
+    }
+
+
+
+    /* ==================================================
+       BOTÃO ADICIONAR
+    ================================================== */
+
+    .add-work-button {
+
+        width: 100%;
+
+        border: none;
+
+        border-radius: 14px;
+
+        padding: 18px;
+
+        background:
+            linear-gradient(
+                100deg,
+                var(--blue),
+                var(--green)
+            );
+
+        color: white;
+
+        font-size: 18px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 8px 25px
+            rgba(0,130,170,.15);
+
+        transition:
+            transform .2s,
+            filter .2s;
+
+    }
+
+
+
+    .add-work-button:hover {
+
+        transform: translateY(-2px);
+
+        filter: brightness(1.08);
+
+    }
+
+
+
+    /* ==================================================
+       FORMULÁRIO
+    ================================================== */
+
+    .work-form {
+
+        display: none;
+
+        margin-top: 18px;
+
+        padding: 25px;
+
+        background: var(--card);
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+    }
+
+
+
+    .work-form.visible {
+
+        display: block;
+
+    }
+
+
+
+    .work-form h2 {
+
+        margin-bottom: 22px;
+
+        color: var(--blue-light);
+
+        font-size: 24px;
+
+    }
+
+
+
+    .form-section {
+
+        margin-bottom: 20px;
+
+    }
+
+
+
+    .form-section label {
+
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #b8c8d7;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+    }
+
+
+
+    /* ==================================================
+       TIPOS
+    ================================================== */
+
+    .type-buttons {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap: 12px;
+
+    }
+
+
+
+    .type-button {
+
+        border: 1px solid var(--border);
+
+        border-radius: 10px;
+
+        padding: 15px;
+
+        background: var(--card-light);
+
+        color: #b7c6d4;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition:
+            border .2s,
+            background .2s,
+            color .2s;
+
+    }
+
+
+
+    .type-button:hover {
+
+        border-color: var(--green);
+
+    }
+
+
+
+    .type-button.selected {
+
+        background:
+            rgba(0,168,137,.18);
+
+        border-color: #00c7a5;
+
+        color: #4edabd;
+
+    }
+
+
+
+    /* ==================================================
+       CAMPOS
+    ================================================== */
+
+    .work-fields {
+
+        display: none;
+
+    }
+
+
+
+    .work-fields.visible {
+
+        display: block;
+
+    }
+
+
+
+    #textField,
+    #imageField,
+    #videoField {
+
+        display: none;
+
+    }
+
+
+
+    #textField.visible,
+    #imageField.visible,
+    #videoField.visible {
+
+        display: block;
+
+    }
+
+
+
+    input,
+    select,
+    textarea {
+
+        width: 100%;
+
+        border: 1px solid var(--border);
+
+        border-radius: 9px;
+
+        background: #181919;
+
+        color: white;
+
+        outline: none;
+
+        font-family: inherit;
+
+        font-size: 15px;
+
+    }
+
+
+
+    input,
+    select {
+
+        height: 46px;
+
+        padding: 0 13px;
+
+    }
+
+
+
+    textarea {
+
+        min-height: 180px;
+
+        padding: 13px;
+
+        resize: vertical;
+
+    }
+
+
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+
+        border-color: var(--blue);
+
+        box-shadow:
+            0 0 0 2px
+            rgba(8,120,209,.15);
+
+    }
+
+
+
+    select {
+
+        cursor: pointer;
+
+    }
+
+
+
+    select option {
+
+        background: #181919;
+
+        color: white;
+
+    }
+
+
+
+    /* ==================================================
+       ALUNOS
+    ================================================== */
+
+    .student-select-container {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+
+    .student-row {
+
+        display: flex;
+
+        gap: 10px;
+
+        align-items: center;
+
+    }
+
+
+
+    .student-row select {
+
+        flex: 1;
+
+    }
+
+
+
+    .remove-student-button {
+
+        width: 42px;
+
+        height: 42px;
+
+        border: none;
+
+        border-radius: 8px;
+
+        background: var(--danger);
+
+        color: white;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .add-student-button {
+
+        width: 100%;
+
+        border: 1px solid var(--green);
+
+        border-radius: 9px;
+
+        padding: 11px;
+
+        background:
+            rgba(0,168,137,.10);
+
+        color: #4edabd;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+
+    /* ==================================================
+       IMAGEM
+    ================================================== */
+
+    .image-preview {
+
+        display: none;
+
+        margin-top: 15px;
+
+        max-width: 100%;
+
+        max-height: 450px;
+
+        border-radius: 12px;
+
+        object-fit: contain;
+
+        border: 1px solid var(--border);
+
+    }
+
+
+
+    .image-preview.visible {
+
+        display: block;
+
+    }
+
+
+
+    /* ==================================================
+       PUBLICAR
+    ================================================== */
+
+    .publish-button {
+
+        width: 100%;
+
+        border: none;
+
+        border-radius: 10px;
+
+        padding: 14px;
+
+        background:
+            linear-gradient(
+                100deg,
+                #0878d1,
+                #00a889
+            );
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .publish-button:disabled {
+
+        opacity: .6;
+
+        cursor: wait;
+
+    }
+
+
+
+    /* ==================================================
+       TRABALHOS
+    ================================================== */
+
+    .works-section {
+
+        margin-top: 25px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 18px;
+
+    }
+
+
+
+    .work-card {
+
+        background: var(--card);
+
+        border: 1px solid
+            rgba(255,255,255,.05);
+
+        border-radius: 18px;
+
+        padding: 25px;
+
+        box-shadow:
+            0 5px 20px
+            rgba(0,0,0,.12);
+
+    }
+
+
+
+    .work-header {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-bottom: 18px;
+
+    }
+
+
+
+    .work-author {
+
+        color: #dbe8f4;
+
+        font-size: 20px;
+
+        font-weight: bold;
+
+    }
+
+
+
+    .work-date {
+
+        margin-top: 5px;
+
+        color: var(--text-muted);
+
+        font-size: 13px;
+
+    }
+
+
+
+    .work-type {
+
+        padding: 8px 12px;
+
+        border-radius: 20px;
+
+        background:
+            rgba(8,120,209,.15);
+
+        color: #78baff;
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+    }
+
+
+
+    .work-text {
+
+        color: #c2d0dc;
+
+        font-size: 17px;
+
+        line-height: 1.7;
+
+        white-space: pre-wrap;
+
+        word-break: break-word;
+
+    }
+
+
+
+    .work-video {
+
+        display: block;
+
+        width: 100%;
+
+        aspect-ratio: 16 / 9;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: #000;
+
+    }
+
+
+
+    .work-image {
+
+        display: block;
+
+        width: 100%;
+
+        max-height: 700px;
+
+        object-fit: contain;
+
+        border-radius: 12px;
+
+        background: #080808;
+
+    }
+
+
+
+    /* ==================================================
+       EMPTY
+    ================================================== */
+
+    .empty-state {
+
+        padding: 50px 25px;
+
+        text-align: center;
+
+        background: var(--card);
+
+        border-radius: 18px;
+
+        border: 1px solid
+            rgba(255,255,255,.05);
+
+    }
+
+
+
+    .empty-state h1 {
+
+        color: var(--blue-light);
+
+        font-size: 25px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+
+    .empty-state p {
+
+        color: var(--text-muted);
+
+        font-size: 16px;
+
+    }
+
+
+
+    /* ==================================================
+       MENU DIREITO
+    ================================================== */
+
+    .right-sidebar {
+
+        padding-top: 10px;
+
+    }
+
+
+
+    .filter-title {
+
+        color: #aebdca;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        margin-bottom: 12px;
+
+    }
+
+
+
+    .filter-button {
+
+        width: 100%;
+
+        border: none;
+
+        border-radius: 10px;
+
+        padding: 14px 10px;
+
+        margin-bottom: 8px;
+
+        background: transparent;
+
+        color: #aebdca;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        text-align: left;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .filter-button:hover {
+
+        background:
+            rgba(8,120,209,.12);
+
+        color: white;
+
+    }
+
+
+
+    .filter-button.active {
+
+        background:
+            rgba(0,168,137,.18);
+
+        color: #4edabd;
+
+    }
+
+
+
+    /* ==================================================
+       FILTROS
+    ================================================== */
+
+    .filter-options {
+
+        display: none;
+
+        margin-top: 8px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+
+    .filter-options.visible {
+
+        display: block;
+
+    }
+
+
+
+    .filter-subbutton {
+
+        width: 100%;
+
+        border: 1px solid var(--border);
+
+        border-radius: 8px;
+
+        padding: 10px;
+
+        margin-bottom: 6px;
+
+        background: #181919;
+
+        color: #aebdca;
+
+        text-align: left;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .filter-subbutton:hover {
+
+        background: #242828;
+
+        color: white;
+
+    }
+
+
+
+    .filter-subbutton.selected {
+
+        border-color: var(--green);
+
+        color: #4edabd;
+
+    }
+
+
+
+    /* ==================================================
+       ESTATÍSTICAS
+    ================================================== */
+
+    .statistics-section {
+
+        display: none;
+
+        margin-top: 25px;
+
+    }
+
+
+
+    .statistics-section.visible {
+
+        display: block;
+
+    }
+
+
+
+    .statistics-header {
+
+        margin-bottom: 20px;
+
+    }
+
+
+
+    .statistics-header h1 {
+
+        color: var(--blue-light);
+
+        font-size: 28px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+
+    .statistics-header p {
+
+        color: var(--text-muted);
+
+        font-size: 15px;
+
+    }
+
+
+
+    .statistics-table-container {
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        background: var(--card);
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 10px;
+
+    }
+
+
+
+    .statistics-table {
+
+        width: 100%;
+
+        border-collapse: separate;
+
+        border-spacing: 8px;
+
+        min-width: 600px;
+
+    }
+
+
+
+    .statistics-table th {
+
+        padding: 14px 12px;
+
+        background: #181919;
+
+        color: #d4e0eb;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        text-align: center;
+
+        border-radius: 8px;
+
+    }
+
+
+
+    .statistics-table th:first-child {
+
+        text-align: left;
+
+    }
+
+
+
+    .statistics-name {
+
+        padding: 12px;
+
+        color: #dbe8f4;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+        background: #181919;
+
+        border-radius: 8px;
+
+    }
+
+
+
+    .statistics-status {
+
+        width: 55px;
+
+        height: 45px;
+
+        padding: 0;
+
+        border-radius: 8px;
+
+    }
+
+
+
+    .statistics-status.completed {
+
+        background: #00a889;
+
+    }
+
+
+
+    .statistics-status.missing {
+
+        background: #b53a3a;
+
+    }
+
+
+
+    /* ==================================================
+       LOGIN ADMIN
+    ================================================== */
+
+    .admin-modal {
+
+        position: fixed;
+
+        inset: 0;
+
+        display: none;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 20px;
+
+        background: rgba(0,0,0,.72);
+
+        z-index: 1000;
+
+    }
+
+
+
+    .admin-modal.visible {
+
+        display: flex;
+
+    }
+
+
+
+    .admin-modal-box {
+
+        width: 100%;
+
+        max-width: 400px;
+
+        padding: 28px;
+
+        background: #111313;
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 20px 60px
+            rgba(0,0,0,.5);
+
+    }
+
+
+
+    .admin-modal-box h2 {
+
+        color: var(--blue-light);
+
+        font-size: 24px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+
+    .admin-login-description {
+
+        color: var(--text-muted);
+
+        font-size: 14px;
+
+        margin-bottom: 22px;
+
+    }
+
+
+
+    .admin-modal-box label {
+
+        display: block;
+
+        margin-top: 13px;
+
+        margin-bottom: 7px;
+
+        color: #b8c8d7;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+    }
+
+
+
+    .admin-modal-buttons {
+
+        display: flex;
+
+        gap: 10px;
+
+        margin-top: 22px;
+
+    }
+
+
+
+    .admin-modal-buttons button {
+
+        flex: 1;
+
+        border: none;
+
+        border-radius: 9px;
+
+        padding: 13px;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+
+    #cancelAdminLogin {
+
+        background: #272b2c;
+
+        color: #b7c3cc;
+
+    }
+
+
+
+    #confirmAdminLogin {
+
+        background:
+            linear-gradient(
+                100deg,
+                var(--blue),
+                var(--green)
+            );
+
+        color: white;
+
+    }
+
+
+
+    /* ==================================================
+       ADMIN CONTROLS
+    ================================================== */
+
+    .admin-controls {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        margin-top: 20px;
+
+        padding-top: 16px;
+
+        border-top: 1px solid var(--border);
+
+    }
+
+
+
+    .admin-controls button {
+
+        border: none;
+
+        border-radius: 8px;
+
+        padding: 10px 15px;
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+    }
+
+
+
+    .approve-button {
+
+        background: #008f76;
+
+        color: white;
+
+    }
+
+
+
+    .edit-button {
+
+        background: #0878d1;
+
+        color: white;
+
+    }
+
+
+
+    .delete-button {
+
+        background: var(--danger);
+
+        color: white;
+
+    }
+
+
+
+    .pending-badge {
+
+        display: inline-block;
+
+        margin-bottom: 15px;
+
+        padding: 7px 10px;
+
+        border-radius: 7px;
+
+        background:
+            rgba(240,180,41,.10);
+
+        color: var(--warning);
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+    }
+
+
+
+    /* ==================================================
+       RESPONSIVIDADE
+    ================================================== */
+
+    @media (max-width:900px) {
+
+        .layout {
+
+            grid-template-columns:
+                150px
+                minmax(0,1fr)
+                150px;
+
+            gap: 15px;
+
+            padding: 20px;
 
         }
 
+        .site-title {
+
+            font-size: 26px;
+
+        }
+
+        .school-logo img {
+
+            max-width: 190px;
+
+        }
+
+        .admin-button {
+
+            padding: 12px 18px;
+
+            font-size: 14px;
+
+        }
+
+    }
 
 
-        /* ==================================================
-           RESET
-        ================================================== */
 
-        * {
+    @media (max-width:700px) {
 
-            box-sizing: border-box;
+        .topbar {
 
-            margin: 0;
+            height: auto;
+
+            min-height: 100px;
+
+            padding: 10px 18px;
+
+            gap: 12px;
+
+        }
+
+        .site-title {
+
+            position: static;
+
+            transform: none;
+
+            order: 2;
+
+            width: 100%;
+
+            text-align: center;
+
+            font-size: 23px;
+
+        }
+
+        .school-logo {
+
+            order: 1;
+
+            width: 100%;
+
+            justify-content: center;
+
+        }
+
+        .admin-button {
+
+            order: 3;
+
+        }
+
+        .layout {
+
+            display: flex;
+
+            flex-direction: column;
+
+            padding: 15px;
+
+        }
+
+        .left-sidebar {
+
+            order: 1;
 
             padding: 0;
 
         }
 
-
-
-        /* ==================================================
-           BODY
-        ================================================== */
-
-        body {
-
-            min-height: 100vh;
-
-            background:
-                radial-gradient(
-                    circle at top left,
-                    rgba(8, 120, 209, 0.08),
-                    transparent 35%
-                ),
-                var(--background);
-
-            color: var(--text);
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-        }
-
-
-
-        /* ==================================================
-           TOPO
-        ================================================== */
-
-        .topbar {
-
-            width: 100%;
-
-            min-height: 105px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding: 12px 5%;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    #0878d1,
-                    #0796ad,
-                    #00a889
-                );
-
-            border-bottom: 1px solid
-                rgba(255,255,255,.08);
-
-        }
-
-
-
-        /* ==================================================
-           LOGO
-        ================================================== */
-
-        .school-logo {
-
-            height: 82px;
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-
-
-        .school-logo img {
-
-            height: 78px;
-
-            width: auto;
-
-            max-width: 250px;
-
-            object-fit: contain;
-
-        }
-
-
-
-        /* ==================================================
-           ADMIN
-        ================================================== */
-
-        .admin-button {
-
-            border: none;
-
-            border-radius: 30px;
-
-            padding: 15px 26px;
-
-            background: #101313;
-
-            color: #00c59e;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition:
-                transform .2s,
-                background .2s,
-                color .2s;
-
-        }
-
-
-
-        .admin-button:hover {
-
-            transform: translateY(-2px);
-
-            background: #080909;
-
-            color: #5ee6c4;
-
-        }
-
-
-
-        /* ==================================================
-           LAYOUT
-        ================================================== */
-
-        .layout {
-
-            width: 100%;
-
-            max-width: 1500px;
-
-            margin: 0 auto;
-
-            padding: 30px;
+        .main-navigation {
 
             display: grid;
 
             grid-template-columns:
-                190px
-                minmax(0, 1fr)
-                220px;
+                repeat(3,1fr);
 
-            gap: 25px;
+            gap: 7px;
 
         }
-
-
-
-        /* ==================================================
-           MENU ESQUERDO
-        ================================================== */
-
-        .left-sidebar {
-
-            padding-top: 10px;
-
-        }
-
-
-
-        .main-navigation {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 12px;
-
-        }
-
-
 
         .nav-button {
 
-            width: 100%;
+            padding: 13px 6px;
 
-            padding: 16px 12px;
+            font-size: 13px;
 
-            border: none;
-
-            border-radius: 12px;
-
-            background: transparent;
-
-            color: #aebdca;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            transition:
-                background .2s,
-                color .2s,
-                transform .2s;
+            text-align: center;
 
         }
-
-
-
-        .nav-button:hover {
-
-            background:
-                rgba(0, 168, 137, .12);
-
-            color: white;
-
-        }
-
-
-
-        .nav-button.active {
-
-            background:
-                rgba(0, 168, 137, .20);
-
-            color: #52d5b8;
-
-        }
-
-
-
-        /* ==================================================
-           CONTEÚDO
-        ================================================== */
 
         .main-content {
 
-            min-width: 0;
+            order: 2;
 
         }
 
+        .right-sidebar {
 
+            order: 3;
 
-        /* ==================================================
-           BOTÃO ADICIONAR
-        ================================================== */
-
-        .add-work-button {
-
-            width: 100%;
-
-            border: none;
-
-            border-radius: 14px;
-
-            padding: 18px;
-
-            background:
-                linear-gradient(
-                    100deg,
-                    var(--blue),
-                    var(--green)
-                );
-
-            color: white;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0, 130, 170, .15);
-
-            transition:
-                transform .2s,
-                filter .2s;
+            padding: 0;
 
         }
 
-
-
-        .add-work-button:hover {
-
-            transform: translateY(-2px);
-
-            filter: brightness(1.08);
-
-        }
-
-
-
-        /* ==================================================
-           FORMULÁRIO
-        ================================================== */
-
-        .work-form {
-
-            display: none;
-
-            margin-top: 18px;
-
-            padding: 25px;
-
-            background: var(--card);
-
-            border: 1px solid var(--border);
-
-            border-radius: 18px;
-
-        }
-
-
-
-        .work-form.visible {
-
-            display: block;
-
-        }
-
-
-
-        .work-form h2 {
-
-            margin-bottom: 22px;
-
-            color: var(--blue-light);
-
-            font-size: 24px;
-
-        }
-
-
-
-        .form-section {
-
-            margin-bottom: 20px;
-
-        }
-
-
-
-        .form-section label {
-
-            display: block;
-
-            margin-bottom: 8px;
-
-            color: #b8c8d7;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        /* ==================================================
-           TIPOS
-        ================================================== */
-
-        .type-buttons {
+        .right-sidebar {
 
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(3,1fr);
 
-            gap: 12px;
-
-        }
-
-
-
-        .type-button {
-
-            border: 1px solid var(--border);
-
-            border-radius: 10px;
-
-            padding: 15px;
-
-            background: var(--card-light);
-
-            color: #b7c6d4;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition:
-                border .2s,
-                background .2s,
-                color .2s;
+            gap: 7px;
 
         }
-
-
-
-        .type-button:hover {
-
-            border-color: var(--green);
-
-        }
-
-
-
-        .type-button.selected {
-
-            background:
-                rgba(0, 168, 137, .18);
-
-            border-color: #00c7a5;
-
-            color: #4edabd;
-
-        }
-
-
-
-        /* ==================================================
-           CAMPOS
-        ================================================== */
-
-        .work-fields {
-
-            display: none;
-
-        }
-
-
-
-        .work-fields.visible {
-
-            display: block;
-
-        }
-
-
-
-        #textField,
-        #imageField,
-        #videoField {
-
-            display: none;
-
-        }
-
-
-
-        #textField.visible,
-        #imageField.visible,
-        #videoField.visible {
-
-            display: block;
-
-        }
-
-
-
-        input,
-        select,
-        textarea {
-
-            width: 100%;
-
-            border: 1px solid var(--border);
-
-            border-radius: 9px;
-
-            background: #181919;
-
-            color: white;
-
-            outline: none;
-
-            font-family: inherit;
-
-            font-size: 15px;
-
-            transition:
-                border .2s,
-                box-shadow .2s;
-
-        }
-
-
-
-        input,
-        select {
-
-            height: 46px;
-
-            padding: 0 13px;
-
-        }
-
-
-
-        textarea {
-
-            min-height: 180px;
-
-            padding: 13px;
-
-            resize: vertical;
-
-        }
-
-
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-
-            border-color: var(--blue);
-
-            box-shadow:
-                0 0 0 2px
-                rgba(8,120,209,.15);
-
-        }
-
-
-
-        select {
-
-            cursor: pointer;
-
-        }
-
-
-
-        select option {
-
-            background: #181919;
-
-            color: white;
-
-        }
-
-
-
-        /* ==================================================
-           PARTICIPANTES
-        ================================================== */
-
-        .participants-container {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 10px;
-
-        }
-
-
-
-        .participant-row {
-
-            display: flex;
-
-            gap: 8px;
-
-            align-items: center;
-
-        }
-
-
-
-        .participant-row select {
-
-            flex: 1;
-
-        }
-
-
-
-        .remove-participant-button {
-
-            width: 42px;
-
-            height: 42px;
-
-            border: none;
-
-            border-radius: 8px;
-
-            background: #3a2020;
-
-            color: #ff8585;
-
-            font-size: 18px;
-
-            cursor: pointer;
-
-        }
-
-
-
-        .remove-participant-button:hover {
-
-            background: #542525;
-
-        }
-
-
-
-        .add-participant-button {
-
-            width: 100%;
-
-            margin-top: 10px;
-
-            padding: 11px;
-
-            border: 1px dashed #3f7770;
-
-            border-radius: 9px;
-
-            background: rgba(0,168,137,.08);
-
-            color: #4edabd;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-        }
-
-
-
-        .add-participant-button:hover {
-
-            background: rgba(0,168,137,.15);
-
-        }
-
-
-
-        /* ==================================================
-           IMAGEM
-        ================================================== */
-
-        .image-preview {
-
-            display: none;
-
-            margin-top: 12px;
-
-            max-width: 100%;
-
-            max-height: 350px;
-
-            border-radius: 12px;
-
-            border: 1px solid var(--border);
-
-            object-fit: contain;
-
-        }
-
-
-
-        .image-preview.visible {
-
-            display: block;
-
-        }
-
-
-
-        /* ==================================================
-           PUBLICAR
-        ================================================== */
-
-        .publish-button {
-
-            width: 100%;
-
-            border: none;
-
-            border-radius: 10px;
-
-            padding: 14px;
-
-            background:
-                linear-gradient(
-                    100deg,
-                    #0878d1,
-                    #00a889
-                );
-
-            color: white;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition:
-                filter .2s,
-                transform .2s;
-
-        }
-
-
-
-        .publish-button:hover {
-
-            filter: brightness(1.08);
-
-            transform: translateY(-1px);
-
-        }
-
-
-
-        .publish-button:disabled {
-
-            opacity: .6;
-
-            cursor: wait;
-
-            transform: none;
-
-        }
-
-
-
-        /* ==================================================
-           TRABALHOS
-        ================================================== */
-
-        .works-section {
-
-            margin-top: 25px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 18px;
-
-        }
-
-
-
-        .work-card {
-
-            background: var(--card);
-
-            border: 1px solid
-                rgba(255,255,255,.05);
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            box-shadow:
-                0 5px 20px
-                rgba(0,0,0,.12);
-
-        }
-
-
-
-        .work-header {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-
-        .work-author {
-
-            color: #dbe8f4;
-
-            font-size: 20px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        .work-participants {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 6px;
-
-            margin-top: 7px;
-
-        }
-
-
-
-        .participant-badge {
-
-            display: inline-block;
-
-            padding: 5px 9px;
-
-            border-radius: 15px;
-
-            background:
-                rgba(0,168,137,.12);
-
-            color: #56d9bd;
-
-            font-size: 12px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        .work-date {
-
-            margin-top: 6px;
-
-            color: var(--text-muted);
-
-            font-size: 13px;
-
-        }
-
-
-
-        .work-type {
-
-            padding: 8px 12px;
-
-            border-radius: 20px;
-
-            background:
-                rgba(8,120,209,.15);
-
-            color: #78baff;
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            white-space: nowrap;
-
-        }
-
-
-
-        .work-text {
-
-            color: #c2d0dc;
-
-            font-size: 17px;
-
-            line-height: 1.7;
-
-            white-space: pre-wrap;
-
-            word-break: break-word;
-
-        }
-
-
-
-        .work-image {
-
-            display: block;
-
-            width: 100%;
-
-            max-height: 700px;
-
-            object-fit: contain;
-
-            border-radius: 12px;
-
-            background: #080808;
-
-        }
-
-
-
-        .work-video {
-
-            display: block;
-
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
-
-            border: none;
-
-            border-radius: 12px;
-
-            background: #000;
-
-        }
-
-
-
-        /* ==================================================
-           ESTADO VAZIO
-        ================================================== */
-
-        .empty-state {
-
-            padding: 50px 25px;
-
-            text-align: center;
-
-            background: var(--card);
-
-            border-radius: 18px;
-
-            border: 1px solid
-                rgba(255,255,255,.05);
-
-        }
-
-
-
-        .empty-state h1 {
-
-            color: var(--blue-light);
-
-            font-size: 25px;
-
-            margin-bottom: 12px;
-
-        }
-
-
-
-        .empty-state p {
-
-            color: var(--text-muted);
-
-            font-size: 16px;
-
-        }
-
-
-
-        /* ==================================================
-           MENU DIREITO
-        ================================================== */
-
-        .right-sidebar {
-
-            padding-top: 10px;
-
-        }
-
-
 
         .filter-title {
 
-            color: #aebdca;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            margin-bottom: 12px;
+            grid-column: 1 / -1;
 
         }
-
-
 
         .filter-button {
 
-            width: 100%;
+            margin: 0;
 
-            border: none;
-
-            border-radius: 10px;
-
-            padding: 14px 10px;
-
-            margin-bottom: 8px;
-
-            background: transparent;
-
-            color: #aebdca;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            transition:
-                background .2s,
-                color .2s;
-
-        }
-
-
-
-        .filter-button:hover {
-
-            background:
-                rgba(8,120,209,.12);
-
-            color: white;
-
-        }
-
-
-
-        .filter-button.active {
-
-            background:
-                rgba(0,168,137,.18);
-
-            color: #4edabd;
-
-        }
-
-
-
-        /* ==================================================
-           SUBFILTROS
-        ================================================== */
-
-        .filter-options {
-
-            display: none;
-
-            margin: 0 0 12px 0;
-
-            padding: 10px;
-
-            background: #171919;
-
-            border: 1px solid var(--border);
-
-            border-radius: 12px;
-
-        }
-
-
-
-        .filter-options.visible {
-
-            display: block;
-
-        }
-
-
-
-        .filter-options-title {
-
-            color: var(--text-muted);
+            text-align: center;
 
             font-size: 12px;
 
-            font-weight: bold;
+        }
 
-            margin-bottom: 8px;
+        .type-buttons {
+
+            grid-template-columns: 1fr;
 
         }
 
+        .work-card {
+
+            padding: 18px;
+
+        }
+
+        .work-header {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+        .statistics-table {
+
+            min-width: 550px;
+
+        }
+
+    }
 
 
-        .subfilter-button {
+
+    @media (max-width:450px) {
+
+        .admin-button {
 
             width: 100%;
 
-            border: none;
-
-            border-radius: 8px;
-
-            padding: 10px;
-
-            margin-bottom: 5px;
-
-            background: transparent;
-
-            color: #b9c6d1;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            font-size: 13px;
-
         }
 
+        .work-form {
 
-
-        .subfilter-button:hover {
-
-            background: rgba(8,120,209,.12);
-
-            color: white;
+            padding: 18px;
 
         }
-
-
-
-        .subfilter-button.active {
-
-            background: rgba(0,168,137,.16);
-
-            color: #4edabd;
-
-            font-weight: bold;
-
-        }
-
-
-
-        /* ==================================================
-           MODAL ADMIN
-        ================================================== */
-
-        .admin-modal {
-
-            position: fixed;
-
-            inset: 0;
-
-            display: none;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-                rgba(0,0,0,.72);
-
-            z-index: 1000;
-
-        }
-
-
-
-        .admin-modal.visible {
-
-            display: flex;
-
-        }
-
-
 
         .admin-modal-box {
 
-            width: 100%;
-
-            max-width: 400px;
-
-            padding: 28px;
-
-            background: #111313;
-
-            border: 1px solid var(--border);
-
-            border-radius: 18px;
-
-            box-shadow:
-                0 20px 60px
-                rgba(0,0,0,.5);
+            padding: 20px;
 
         }
-
-
-
-        .admin-modal-box h2 {
-
-            color: var(--blue-light);
-
-            font-size: 24px;
-
-            margin-bottom: 8px;
-
-        }
-
-
-
-        .admin-login-description {
-
-            color: var(--text-muted);
-
-            font-size: 14px;
-
-            margin-bottom: 22px;
-
-        }
-
-
-
-        .google-login-button {
-
-            width: 100%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 10px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            padding: 14px;
-
-            background: white;
-
-            color: #222;
-
-            font-size: 15px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-        }
-
-
-
-        .google-login-button:hover {
-
-            filter: brightness(.95);
-
-        }
-
-
-
-        .admin-modal-buttons {
-
-            display: flex;
-
-            gap: 10px;
-
-            margin-top: 12px;
-
-        }
-
-
-
-        .admin-modal-buttons button {
-
-            flex: 1;
-
-            border: none;
-
-            border-radius: 9px;
-
-            padding: 13px;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-        }
-
-
-
-        #cancelAdminLogin {
-
-            background: #272b2c;
-
-            color: #b7c3cc;
-
-        }
-
-
-
-        #cancelAdminLogin:hover {
-
-            background: #323738;
-
-        }
-
-
-
-        /* ==================================================
-           CONTROLES ADMIN
-        ================================================== */
 
         .admin-controls {
 
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            margin-top: 20px;
-
-            padding-top: 16px;
-
-            border-top: 1px solid var(--border);
+            flex-direction: column;
 
         }
-
-
 
         .admin-controls button {
 
-            border: none;
-
-            border-radius: 8px;
-
-            padding: 10px 15px;
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition:
-                transform .15s,
-                filter .15s;
+            width: 100%;
 
         }
 
+    }
 
-
-        .admin-controls button:hover {
-
-            transform: translateY(-1px);
-
-            filter: brightness(1.1);
-
-        }
-
-
-
-        .approve-button {
-
-            background: #008f76;
-
-            color: white;
-
-        }
-
-
-
-        .edit-button {
-
-            background: #0878d1;
-
-            color: white;
-
-        }
-
-
-
-        .delete-button {
-
-            background: var(--danger);
-
-            color: white;
-
-        }
-
-
-
-        /* ==================================================
-           STATUS
-        ================================================== */
-
-        .pending-badge {
-
-            display: inline-block;
-
-            margin-bottom: 15px;
-
-            padding: 7px 10px;
-
-            border-radius: 7px;
-
-            background:
-                rgba(240,180,41,.10);
-
-            color: var(--warning);
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        /* ==================================================
-           RESPONSIVIDADE
-        ================================================== */
-
-        @media (max-width: 900px) {
-
-            .layout {
-
-                grid-template-columns:
-                    150px
-                    minmax(0,1fr)
-                    180px;
-
-                gap: 15px;
-
-                padding: 20px;
-
-            }
-
-
-
-            .school-logo img {
-
-                max-width: 190px;
-
-            }
-
-
-
-            .admin-button {
-
-                padding: 12px 18px;
-
-                font-size: 14px;
-
-            }
-
-        }
-
-
-
-        @media (max-width: 700px) {
-
-            .topbar {
-
-                min-height: 90px;
-
-                padding: 10px 18px;
-
-                gap: 12px;
-
-            }
-
-
-
-            .school-logo {
-
-                height: 65px;
-
-            }
-
-
-
-            .school-logo img {
-
-                height: 60px;
-
-                max-width: 150px;
-
-            }
-
-
-
-            .admin-button {
-
-                padding: 11px 15px;
-
-                font-size: 12px;
-
-            }
-
-
-
-            .layout {
-
-                display: flex;
-
-                flex-direction: column;
-
-                padding: 15px;
-
-            }
-
-
-
-            .left-sidebar {
-
-                order: 1;
-
-                padding: 0;
-
-            }
-
-
-
-            .main-navigation {
-
-                display: grid;
-
-                grid-template-columns:
-                    repeat(3,1fr);
-
-                gap: 7px;
-
-            }
-
-
-
-            .nav-button {
-
-                padding: 13px 6px;
-
-                font-size: 13px;
-
-                text-align: center;
-
-            }
-
-
-
-            .main-content {
-
-                order: 2;
-
-            }
-
-
-
-            .right-sidebar {
-
-                order: 3;
-
-                padding: 0;
-
-            }
-
-
-
-            .right-sidebar {
-
-                display: block;
-
-            }
-
-
-
-            .filter-button {
-
-                text-align: center;
-
-            }
-
-
-
-            .filter-options {
-
-                margin-bottom: 10px;
-
-            }
-
-
-
-            .work-card {
-
-                padding: 18px;
-
-            }
-
-
-
-            .work-header {
-
-                align-items: flex-start;
-
-                flex-direction: column;
-
-            }
-
-
-
-            .work-type {
-
-                align-self: flex-start;
-
-            }
-
-
-
-            .type-buttons {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
-
-
-
-        @media (max-width: 450px) {
-
-            .topbar {
-
-                flex-direction: column;
-
-                justify-content: center;
-
-            }
-
-
-
-            .school-logo img {
-
-                max-width: 180px;
-
-            }
-
-
-
-            .admin-button {
-
-                width: 100%;
-
-            }
-
-
-
-            .work-form {
-
-                padding: 18px;
-
-            }
-
-
-
-            .admin-modal-box {
-
-                padding: 20px;
-
-            }
-
-
-
-            .admin-controls {
-
-                flex-direction: column;
-
-            }
-
-
-
-            .admin-controls button {
-
-                width: 100%;
-
-            }
-
-
-
-            .participant-row {
-
-                flex-direction: row;
-
-            }
-
-        }
-
-    </style>
+</style>
+```
 
 </head>
 
-
-
 <body>
 
-
+```
 <!-- ==================================================
      TOPO
 ================================================== -->
 
 <header class="topbar">
 
-
     <div class="school-logo">
 
         <img
-            src="Logo da escola.png"
+            src="logo da escola.png"
             alt="Logo da escola"
         >
 
+    </div>
+
+
+    <div class="site-title">
+        Revista Digital
     </div>
 
 
@@ -1801,13 +1829,12 @@
         Entrar como administrador
     </button>
 
-
 </header>
 
 
 
 <!-- ==================================================
-     ESTRUTURA
+     LAYOUT PRINCIPAL
 ================================================== -->
 
 <main class="layout">
@@ -1819,9 +1846,7 @@
 
     <aside class="left-sidebar">
 
-
         <nav class="main-navigation">
-
 
             <button
                 class="nav-button active"
@@ -1846,9 +1871,7 @@
                 Instruções
             </button>
 
-
         </nav>
-
 
     </aside>
 
@@ -1861,287 +1884,306 @@
     <section class="main-content">
 
 
-        <button
-            class="add-work-button"
-            id="addWorkButton"
-        >
-            + Adicionar Trabalho
-        </button>
-
-
-
         <!-- ==================================================
-             FORMULÁRIO
+             INÍCIO
         ================================================== -->
 
-        <div
-            class="work-form"
-            id="workForm"
-        >
+        <section id="homeSection">
 
 
-            <h2>
-                Adicionar Trabalho
-            </h2>
+            <button
+                class="add-work-button"
+                id="addWorkButton"
+            >
+                + Adicionar Trabalho
+            </button>
 
 
 
             <!-- ==================================================
-                 TIPO
+                 FORMULÁRIO
             ================================================== -->
 
-            <div class="form-section">
-
-                <label>
-                    Tipo de trabalho
-                </label>
-
-
-                <div class="type-buttons">
-
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="texto"
-                    >
-                        📝 Texto
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="imagem"
-                    >
-                        🖼️ Imagem
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="type-button"
-                        data-type="video"
-                    >
-                        ▶️ Vídeo
-                    </button>
-
-
-                </div>
-
-            </div>
-
-
-
             <div
-                class="work-fields"
-                id="workFields"
+                class="work-form"
+                id="workForm"
             >
 
+                <h2>
+                    Adicionar Trabalho
+                </h2>
 
-                <!-- ==================================================
-                     PARTICIPANTES
-                ================================================== -->
+
+
+                <!-- TIPOS -->
 
                 <div class="form-section">
 
-
                     <label>
-                        Participantes
+                        Tipo de trabalho
                     </label>
 
 
-                    <div
-                        class="participants-container"
-                        id="participantsContainer"
-                    >
+                    <div class="type-buttons">
+
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="texto"
+                        >
+                            📝 Texto
+                        </button>
 
 
-                        <div class="participant-row">
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="imagem"
+                        >
+                            🖼️ Imagem
+                        </button>
 
 
-                            <select class="participant-select">
+                        <button
+                            type="button"
+                            class="type-button"
+                            data-type="video"
+                        >
+                            ▶️ Vídeo
+                        </button>
 
-                                <option value="">
-                                    Selecione o participante
-                                </option>
+                    </div>
 
-                                <option value="Aluno A">Aluno A</option>
-                                <option value="Aluno B">Aluno B</option>
-                                <option value="Aluno C">Aluno C</option>
-                                <option value="Aluno D">Aluno D</option>
-                                <option value="Aluno E">Aluno E</option>
-                                <option value="Aluno F">Aluno F</option>
-                                <option value="Aluno G">Aluno G</option>
-                                <option value="Aluno H">Aluno H</option>
-                                <option value="Aluno I">Aluno I</option>
-                                <option value="Aluno J">Aluno J</option>
-                                <option value="Aluno K">Aluno K</option>
-                                <option value="Aluno L">Aluno L</option>
-                                <option value="Aluno M">Aluno M</option>
-                                <option value="Aluno N">Aluno N</option>
-                                <option value="Aluno O">Aluno O</option>
-                                <option value="Aluno P">Aluno P</option>
-                                <option value="Aluno Q">Aluno Q</option>
-                                <option value="Aluno R">Aluno R</option>
-                                <option value="Aluno S">Aluno S</option>
-                                <option value="Aluno T">Aluno T</option>
-                                <option value="Aluno U">Aluno U</option>
-                                <option value="Aluno V">Aluno V</option>
-                                <option value="Aluno W">Aluno W</option>
-                                <option value="Aluno X">Aluno X</option>
-                                <option value="Aluno Y">Aluno Y</option>
-                                <option value="Aluno Z">Aluno Z</option>
+                </div>
 
-                            </select>
 
+
+                <!-- CAMPOS -->
+
+                <div
+                    class="work-fields"
+                    id="workFields"
+                >
+
+
+                    <!-- ALUNOS -->
+
+                    <div class="form-section">
+
+                        <label>
+                            Aluno(s)
+                        </label>
+
+
+                        <div
+                            class="student-select-container"
+                            id="studentSelectContainer"
+                        >
+
+                            <div class="student-row">
+
+                                <select
+                                    class="student-select"
+                                >
+
+                                    <option value="">
+                                        Selecione seu nome
+                                    </option>
+
+                                </select>
+
+                            </div>
 
                         </div>
 
 
+                        <button
+                            type="button"
+                            class="add-student-button"
+                            id="addStudentButton"
+                        >
+                            + Adicionar outro aluno
+                        </button>
+
                     </div>
 
 
+
+                    <!-- TEXTO -->
+
+                    <div
+                        class="form-section"
+                        id="textField"
+                    >
+
+                        <label for="textContent">
+                            Trabalho
+                        </label>
+
+
+                        <textarea
+                            id="textContent"
+                            placeholder="Digite o seu trabalho..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- IMAGEM -->
+
+                    <div
+                        class="form-section"
+                        id="imageField"
+                    >
+
+                        <label for="imageUrl">
+                            URL da imagem
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="imageUrl"
+                            placeholder="https://..."
+                        >
+
+
+                        <img
+                            id="imagePreview"
+                            class="image-preview"
+                            alt="Pré-visualização"
+                        >
+
+                    </div>
+
+
+
+                    <!-- VÍDEO -->
+
+                    <div
+                        class="form-section"
+                        id="videoField"
+                    >
+
+                        <label for="videoUrl">
+                            URL do vídeo do YouTube
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="videoUrl"
+                            placeholder="https://www.youtube.com/watch?v=..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- PUBLICAR -->
+
                     <button
                         type="button"
-                        class="add-participant-button"
-                        id="addParticipantButton"
+                        class="publish-button"
+                        id="publishButton"
                     >
-                        + Adicionar participante
+                        Publicar Trabalho
                     </button>
 
-
                 </div>
-
-
-
-                <!-- ==================================================
-                     TEXTO
-                ================================================== -->
-
-                <div
-                    class="form-section"
-                    id="textField"
-                >
-
-                    <label
-                        for="textContent"
-                    >
-                        Trabalho
-                    </label>
-
-
-                    <textarea
-                        id="textContent"
-                        placeholder="Digite o seu trabalho..."
-                    ></textarea>
-
-                </div>
-
-
-
-                <!-- ==================================================
-                     IMAGEM
-                ================================================== -->
-
-                <div
-                    class="form-section"
-                    id="imageField"
-                >
-
-
-                    <label
-                        for="imageFile"
-                    >
-                        Imagem
-                    </label>
-
-
-                    <input
-                        type="file"
-                        id="imageFile"
-                        accept="image/*"
-                    >
-
-
-                    <img
-                        id="imagePreview"
-                        class="image-preview"
-                        alt="Pré-visualização da imagem"
-                    >
-
-
-                </div>
-
-
-
-                <!-- ==================================================
-                     VÍDEO
-                ================================================== -->
-
-                <div
-                    class="form-section"
-                    id="videoField"
-                >
-
-                    <label
-                        for="videoUrl"
-                    >
-                        URL do vídeo do YouTube
-                    </label>
-
-
-                    <input
-                        type="url"
-                        id="videoUrl"
-                        placeholder="https://www.youtube.com/watch?v=..."
-                    >
-
-                </div>
-
-
-
-                <button
-                    type="button"
-                    class="publish-button"
-                    id="publishButton"
-                >
-                    Publicar Trabalho
-                </button>
-
 
             </div>
 
 
-        </div>
+
+            <!-- ==================================================
+                 TRABALHOS
+            ================================================== -->
+
+            <section
+                class="works-section"
+                id="worksArea"
+            >
+
+                <div class="empty-state">
+
+                    <h1>
+                        Trabalhos postados
+                    </h1>
+
+                    <p>
+                        Os trabalhos aprovados aparecerão aqui.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
 
 
 
         <!-- ==================================================
-             TRABALHOS
+             ESTATÍSTICAS
         ================================================== -->
 
         <section
-            class="works-section"
-            id="worksArea"
+            class="statistics-section"
+            id="statisticsSection"
         >
 
-
-            <div class="empty-state">
+            <div class="statistics-header">
 
                 <h1>
-                    Trabalhos postados
+                    Estatísticas dos trabalhos
                 </h1>
 
                 <p>
-                    Os trabalhos aprovados aparecerão aqui.
+                    Acompanhe quais trabalhos já foram publicados.
                 </p>
 
             </div>
 
 
-        </section>
+            <div class="statistics-table-container">
 
+                <table class="statistics-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nome
+                            </th>
+
+                            <th>
+                                Texto
+                            </th>
+
+                            <th>
+                                Foto
+                            </th>
+
+                            <th>
+                                Vídeo
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="statisticsBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
 
     </section>
 
@@ -2153,7 +2195,6 @@
 
     <aside class="right-sidebar">
 
-
         <div class="filter-title">
             Organizar trabalhos
         </div>
@@ -2163,7 +2204,7 @@
             class="filter-button active"
             data-filter="tempo"
         >
-            🕐 Por tempo
+            Por tempo
         </button>
 
 
@@ -2172,12 +2213,8 @@
             id="tempoOptions"
         >
 
-            <div class="filter-options-title">
-                Organização
-            </div>
-
             <button
-                class="subfilter-button active"
+                class="filter-subbutton selected"
                 data-sort="recentes"
             >
                 Mais recentes
@@ -2186,12 +2223,11 @@
         </div>
 
 
-
         <button
             class="filter-button"
             data-filter="pessoa"
         >
-            👤 Por pessoa
+            Por pessoa
         </button>
 
 
@@ -2200,70 +2236,57 @@
             id="pessoaOptions"
         >
 
-            <div class="filter-options-title">
-                Escolha uma pessoa
-            </div>
-
             <div id="peopleFilterList"></div>
 
         </div>
-
 
 
         <button
             class="filter-button"
             data-filter="tipo"
         >
-            🏷️ Por tipo de trabalho
+            Por tipo de trabalho
         </button>
 
 
         <div
             class="filter-options"
-            id="tipoOptions"
+            id="typeOptions"
         >
 
-            <div class="filter-options-title">
-                Escolha o tipo
-            </div>
-
-
             <button
-                class="subfilter-button"
-                data-type-filter="texto"
+                class="filter-subbutton"
+                data-work-type="texto"
             >
                 📝 Texto
             </button>
 
 
             <button
-                class="subfilter-button"
-                data-type-filter="imagem"
+                class="filter-subbutton"
+                data-work-type="imagem"
             >
                 🖼️ Imagem
             </button>
 
 
             <button
-                class="subfilter-button"
-                data-type-filter="video"
+                class="filter-subbutton"
+                data-work-type="video"
             >
                 ▶️ Vídeo
             </button>
 
-
         </div>
 
-
     </aside>
-
 
 </main>
 
 
 
 <!-- ==================================================
-     MODAL ADMIN
+     LOGIN ADMINISTRADOR
 ================================================== -->
 
 <div
@@ -2271,9 +2294,7 @@
     id="adminModal"
 >
 
-
     <div class="admin-modal-box">
-
 
         <h2>
             Login do administrador
@@ -2281,22 +2302,37 @@
 
 
         <p class="admin-login-description">
-            Entre utilizando a conta Google autorizada.
+            Entre com a conta de administrador.
         </p>
 
 
-        <button
-            type="button"
-            class="google-login-button"
-            id="googleLoginButton"
+        <label for="adminEmail">
+            E-mail
+        </label>
+
+
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="E-mail"
+            autocomplete="username"
         >
-            <span>G</span>
-            Entrar com Google
-        </button>
+
+
+        <label for="adminPassword">
+            Senha
+        </label>
+
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Senha"
+            autocomplete="current-password"
+        >
 
 
         <div class="admin-modal-buttons">
-
 
             <button
                 type="button"
@@ -2306,11 +2342,16 @@
             </button>
 
 
+            <button
+                type="button"
+                id="confirmAdminLogin"
+            >
+                Entrar
+            </button>
+
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -2320,14 +2361,20 @@
      SUPABASE
 ================================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
 
 <script>
 
     /* ==================================================
-       CONFIGURAÇÃO SUPABASE
+       SUPABASE
     ================================================== */
 
     const SUPABASE_URL =
@@ -2347,97 +2394,149 @@
 
 
     /* ==================================================
-       ADMIN
-    ================================================== */
-
-    const ADMIN_EMAIL =
-        "francisco.silva.adrian@escola.pr.gov.br";
-
-
-    const ADMIN_REDIRECT_URL =
-        "https://adrianf-f.github.io/Revista_Digital/";
-
-
-
-    /* ==================================================
        ELEMENTOS
     ================================================== */
 
     const addWorkButton =
-        document.getElementById("addWorkButton");
+        document.getElementById(
+            "addWorkButton"
+        );
 
 
     const workForm =
-        document.getElementById("workForm");
+        document.getElementById(
+            "workForm"
+        );
 
 
     const typeButtons =
-        document.querySelectorAll(".type-button");
+        document.querySelectorAll(
+            ".type-button"
+        );
 
 
     const workFields =
-        document.getElementById("workFields");
+        document.getElementById(
+            "workFields"
+        );
 
 
     const textField =
-        document.getElementById("textField");
+        document.getElementById(
+            "textField"
+        );
 
 
     const imageField =
-        document.getElementById("imageField");
+        document.getElementById(
+            "imageField"
+        );
 
 
     const videoField =
-        document.getElementById("videoField");
+        document.getElementById(
+            "videoField"
+        );
 
 
     const textContent =
-        document.getElementById("textContent");
+        document.getElementById(
+            "textContent"
+        );
 
 
-    const videoUrl =
-        document.getElementById("videoUrl");
-
-
-    const imageFile =
-        document.getElementById("imageFile");
+    const imageUrl =
+        document.getElementById(
+            "imageUrl"
+        );
 
 
     const imagePreview =
-        document.getElementById("imagePreview");
+        document.getElementById(
+            "imagePreview"
+        );
+
+
+    const videoUrl =
+        document.getElementById(
+            "videoUrl"
+        );
 
 
     const publishButton =
-        document.getElementById("publishButton");
+        document.getElementById(
+            "publishButton"
+        );
 
 
     const worksArea =
-        document.getElementById("worksArea");
-
-
-    const participantsContainer =
         document.getElementById(
-            "participantsContainer"
+            "worksArea"
         );
 
 
-    const addParticipantButton =
+    const homeSection =
         document.getElementById(
-            "addParticipantButton"
+            "homeSection"
         );
 
+
+    const statisticsSection =
+        document.getElementById(
+            "statisticsSection"
+        );
+
+
+    const statisticsBody =
+        document.getElementById(
+            "statisticsBody"
+        );
+
+
+    const studentSelectContainer =
+        document.getElementById(
+            "studentSelectContainer"
+        );
+
+
+    const addStudentButton =
+        document.getElementById(
+            "addStudentButton"
+        );
+
+
+
+    /* ==================================================
+       ADMIN
+    ================================================== */
 
     const adminButton =
-        document.getElementById("adminButton");
+        document.getElementById(
+            "adminButton"
+        );
 
 
     const adminModal =
-        document.getElementById("adminModal");
-
-
-    const googleLoginButton =
         document.getElementById(
-            "googleLoginButton"
+            "adminModal"
+        );
+
+
+    const adminEmail =
+        document.getElementById(
+            "adminEmail"
+        );
+
+
+    const adminPassword =
+        document.getElementById(
+            "adminPassword"
+        );
+
+
+    const confirmAdminLogin =
+        document.getElementById(
+            "confirmAdminLogin"
         );
 
 
@@ -2447,33 +2546,26 @@
         );
 
 
-    const filterButtons =
-        document.querySelectorAll(
-            ".filter-button"
+
+    /* ==================================================
+       NAVEGAÇÃO
+    ================================================== */
+
+    const homeButton =
+        document.getElementById(
+            "homeButton"
         );
 
 
-    const tempoOptions =
+    const statisticsButton =
         document.getElementById(
-            "tempoOptions"
+            "statisticsButton"
         );
 
 
-    const pessoaOptions =
+    const instructionsButton =
         document.getElementById(
-            "pessoaOptions"
-        );
-
-
-    const tipoOptions =
-        document.getElementById(
-            "tipoOptions"
-        );
-
-
-    const peopleFilterList =
-        document.getElementById(
-            "peopleFilterList"
+            "instructionsButton"
         );
 
 
@@ -2486,11 +2578,7 @@
 
     let isAdmin = false;
 
-    let currentFilter = "tempo";
-
-    let currentPerson = null;
-
-    let currentType = null;
+    let trabalhosCache = [];
 
 
 
@@ -2532,36 +2620,279 @@
 
 
     /* ==================================================
-       MENU ESQUERDO
+       CRIAR OPÇÕES DE ALUNOS
     ================================================== */
 
-    document
-        .querySelectorAll(".nav-button")
-        .forEach(button => {
+    function criarOpcoesAluno(
+        select
+    ) {
 
-            button.addEventListener(
+        select.innerHTML = `
+
+            <option value="">
+                Selecione seu nome
+            </option>
+
+        `;
+
+
+        alunos.forEach(
+            aluno => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    aluno;
+
+
+                option.textContent =
+                    aluno;
+
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+    }
+
+
+
+    document
+        .querySelectorAll(
+            ".student-select"
+        )
+        .forEach(
+            select => {
+
+                criarOpcoesAluno(
+                    select
+                );
+
+            }
+        );
+
+
+
+    /* ==================================================
+       ADICIONAR OUTRO ALUNO
+    ================================================== */
+
+    addStudentButton.addEventListener(
+        "click",
+        () => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "student-row";
+
+
+            const select =
+                document.createElement(
+                    "select"
+                );
+
+
+            select.className =
+                "student-select";
+
+
+            criarOpcoesAluno(
+                select
+            );
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+
+            remove.type =
+                "button";
+
+
+            remove.className =
+                "remove-student-button";
+
+
+            remove.textContent =
+                "×";
+
+
+            remove.addEventListener(
                 "click",
                 () => {
 
-                    document
-                        .querySelectorAll(".nav-button")
-                        .forEach(item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        });
-
-
-                    button.classList.add(
-                        "active"
-                    );
+                    row.remove();
 
                 }
             );
 
-        });
+
+            row.appendChild(
+                select
+            );
+
+
+            row.appendChild(
+                remove
+            );
+
+
+            studentSelectContainer.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+
+    /* ==================================================
+       PEGAR ALUNOS SELECIONADOS
+    ================================================== */
+
+    function obterAlunosSelecionados() {
+
+        const selects =
+            document.querySelectorAll(
+                ".student-select"
+            );
+
+
+        const nomes = [];
+
+
+        selects.forEach(
+            select => {
+
+                const nome =
+                    select.value;
+
+
+                if (
+                    nome &&
+                    !nomes.includes(
+                        nome
+                    )
+                ) {
+
+                    nomes.push(
+                        nome
+                    );
+
+                }
+
+            }
+        );
+
+
+        return nomes;
+
+    }
+
+
+
+    /* ==================================================
+       MENU
+    ================================================== */
+
+    document
+        .querySelectorAll(
+            ".nav-button"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".nav-button"
+                            )
+                            .forEach(
+                                item => {
+
+                                    item.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* ==================================================
+       INÍCIO
+    ================================================== */
+
+    homeButton.addEventListener(
+        "click",
+        () => {
+
+            statisticsSection.classList.remove(
+                "visible"
+            );
+
+
+            homeSection.style.display =
+                "block";
+
+
+            worksArea.style.display =
+                "flex";
+
+        }
+    );
+
+
+
+    /* ==================================================
+       ESTATÍSTICAS
+    ================================================== */
+
+    statisticsButton.addEventListener(
+        "click",
+        async () => {
+
+            homeSection.style.display =
+                "none";
+
+
+            statisticsSection.classList.add(
+                "visible"
+            );
+
+
+            await carregarEstatisticas();
+
+        }
+    );
 
 
 
@@ -2583,134 +2914,90 @@
 
 
     /* ==================================================
-       SELECIONAR TIPO
+       ESCOLHER TIPO
     ================================================== */
 
-    typeButtons.forEach(button => {
+    typeButtons.forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                typeButtons.forEach(item => {
+                    typeButtons.forEach(
+                        item => {
 
-                    item.classList.remove(
+                            item.classList.remove(
+                                "selected"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add(
                         "selected"
                     );
 
-                });
+
+                    selectedType =
+                        button.dataset.type;
 
 
-                button.classList.add(
-                    "selected"
-                );
-
-
-                selectedType =
-                    button.dataset.type;
-
-
-                workFields.classList.add(
-                    "visible"
-                );
-
-
-                textField.classList.remove(
-                    "visible"
-                );
-
-
-                imageField.classList.remove(
-                    "visible"
-                );
-
-
-                videoField.classList.remove(
-                    "visible"
-                );
-
-
-                if (
-                    selectedType === "texto"
-                ) {
-
-                    textField.classList.add(
+                    workFields.classList.add(
                         "visible"
                     );
+
+
+                    textField.classList.remove(
+                        "visible"
+                    );
+
+
+                    imageField.classList.remove(
+                        "visible"
+                    );
+
+
+                    videoField.classList.remove(
+                        "visible"
+                    );
+
+
+                    if (
+                        selectedType === "texto"
+                    ) {
+
+                        textField.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+
+                    if (
+                        selectedType === "imagem"
+                    ) {
+
+                        imageField.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+
+                    if (
+                        selectedType === "video"
+                    ) {
+
+                        videoField.classList.add(
+                            "visible"
+                        );
+
+                    }
 
                 }
-
-
-                if (
-                    selectedType === "imagem"
-                ) {
-
-                    imageField.classList.add(
-                        "visible"
-                    );
-
-                }
-
-
-                if (
-                    selectedType === "video"
-                ) {
-
-                    videoField.classList.add(
-                        "visible"
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
-
-
-    /* ==================================================
-       PRÉ-VISUALIZAÇÃO DA IMAGEM
-    ================================================== */
-
-    imageFile.addEventListener(
-        "change",
-        () => {
-
-            const file =
-                imageFile.files[0];
-
-
-            if (!file) {
-
-                imagePreview.src = "";
-
-                imagePreview.classList.remove(
-                    "visible"
-                );
-
-                return;
-            }
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                event => {
-
-                    imagePreview.src =
-                        event.target.result;
-
-                    imagePreview.classList.add(
-                        "visible"
-                    );
-
-                };
-
-
-            reader.readAsDataURL(file);
+            );
 
         }
     );
@@ -2718,170 +3005,41 @@
 
 
     /* ==================================================
-       CRIAR CAMPO PARTICIPANTE
+       PREVIEW IMAGEM
     ================================================== */
 
-    function criarCampoParticipante() {
+    imageUrl.addEventListener(
+        "input",
+        () => {
 
-        const row =
-            document.createElement(
-                "div"
-            );
-
-
-        row.className =
-            "participant-row";
+            const url =
+                imageUrl.value.trim();
 
 
-        const select =
-            document.createElement(
-                "select"
-            );
+            if (!url) {
 
-
-        select.className =
-            "participant-select";
-
-
-        const primeiraOpcao =
-            document.createElement(
-                "option"
-            );
-
-
-        primeiraOpcao.value = "";
-
-        primeiraOpcao.textContent =
-            "Selecione o participante";
-
-
-        select.appendChild(
-            primeiraOpcao
-        );
-
-
-        alunos.forEach(aluno => {
-
-            const option =
-                document.createElement(
-                    "option"
+                imagePreview.classList.remove(
+                    "visible"
                 );
 
+                imagePreview.src =
+                    "";
 
-            option.value =
-                aluno;
-
-
-            option.textContent =
-                aluno;
-
-
-            select.appendChild(
-                option
-            );
-
-        });
-
-
-        const removeButton =
-            document.createElement(
-                "button"
-            );
-
-
-        removeButton.type =
-            "button";
-
-
-        removeButton.className =
-            "remove-participant-button";
-
-
-        removeButton.textContent =
-            "×";
-
-
-        removeButton.title =
-            "Remover participante";
-
-
-        removeButton.addEventListener(
-            "click",
-            () => {
-
-                row.remove();
+                return;
 
             }
-        );
 
 
-        row.appendChild(
-            select
-        );
+            imagePreview.src =
+                url;
 
 
-        row.appendChild(
-            removeButton
-        );
+            imagePreview.classList.add(
+                "visible"
+            );
 
-
-        participantsContainer.appendChild(
-            row
-        );
-
-    }
-
-
-
-    /* ==================================================
-       ADICIONAR PARTICIPANTE
-    ================================================== */
-
-    addParticipantButton.addEventListener(
-        "click",
-        criarCampoParticipante
+        }
     );
-
-
-
-    /* ==================================================
-       OBTER PARTICIPANTES
-    ================================================== */
-
-    function obterParticipantes() {
-
-        const selects =
-            document.querySelectorAll(
-                ".participant-select"
-            );
-
-
-        const participantes = [];
-
-
-        selects.forEach(select => {
-
-            const valor =
-                select.value.trim();
-
-
-            if (
-                valor &&
-                !participantes.includes(valor)
-            ) {
-
-                participantes.push(
-                    valor
-                );
-
-            }
-
-        });
-
-
-        return participantes;
-
-    }
 
 
 
@@ -2909,16 +3067,16 @@
         }
 
 
-        const participantes =
-            obterParticipantes();
+        const nomes =
+            obterAlunosSelecionados();
 
 
         if (
-            participantes.length === 0
+            nomes.length === 0
         ) {
 
             alert(
-                "Selecione pelo menos um participante."
+                "Selecione pelo menos um aluno."
             );
 
             return;
@@ -2928,10 +3086,6 @@
 
         let conteudo = "";
 
-
-        /* ==================================================
-           TEXTO
-        ================================================== */
 
         if (
             selectedType === "texto"
@@ -2954,10 +3108,26 @@
         }
 
 
+        if (
+            selectedType === "imagem"
+        ) {
 
-        /* ==================================================
-           VÍDEO
-        ================================================== */
+            conteudo =
+                imageUrl.value.trim();
+
+
+            if (!conteudo) {
+
+                alert(
+                    "Digite a URL da imagem."
+                );
+
+                return;
+
+            }
+
+        }
+
 
         if (
             selectedType === "video"
@@ -2998,7 +3168,6 @@
         }
 
 
-
         publishButton.disabled =
             true;
 
@@ -3009,124 +3178,17 @@
 
         try {
 
+            /*
+               O campo "nome" continua sendo
+               utilizado para manter compatibilidade
+               com a tabela atual.
 
-            /* ==================================================
-               IMAGEM
-            ================================================== */
+               Os vários alunos são armazenados
+               separados por vírgula.
+            */
 
-            if (
-                selectedType === "imagem"
-            ) {
-
-                const file =
-                    imageFile.files[0];
-
-
-                if (!file) {
-
-                    alert(
-                        "Selecione uma imagem."
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    !file.type.startsWith(
-                        "image/"
-                    )
-                ) {
-
-                    alert(
-                        "O arquivo selecionado não é uma imagem."
-                    );
-
-                    return;
-
-                }
-
-
-                const extensao =
-                    file.name
-                        .split(".")
-                        .pop();
-
-
-                const nomeArquivo =
-                    Date.now() +
-                    "_" +
-                    Math.random()
-                        .toString(36)
-                        .substring(2) +
-                    "." +
-                    extensao;
-
-
-                const caminho =
-                    nomeArquivo;
-
-
-                const {
-                    error: uploadError
-                } = await supabaseClient
-                    .storage
-                    .from("imagens")
-                    .upload(
-                        caminho,
-                        file,
-                        {
-                            cacheControl:
-                                "3600",
-
-                            upsert:
-                                false
-                        }
-                    );
-
-
-                if (uploadError) {
-
-                    console.error(
-                        uploadError
-                    );
-
-
-                    alert(
-                        "Não foi possível enviar a imagem.\n\n" +
-                        uploadError.message
-                    );
-
-                    return;
-
-                }
-
-
-                const {
-                    data: publicData
-                } =
-                    supabaseClient
-                        .storage
-                        .from("imagens")
-                        .getPublicUrl(
-                            caminho
-                        );
-
-
-                conteudo =
-                    publicData.publicUrl;
-
-            }
-
-
-
-            /* ==================================================
-               INSERIR NO BANCO
-            ================================================== */
-
-            const nomePrincipal =
-                participantes[0];
+            const nome =
+                nomes.join(", ");
 
 
             const {
@@ -3137,12 +3199,7 @@
                     .insert({
 
                         nome:
-                            participantes.join(
-                                ", "
-                            ),
-
-                        nomes:
-                            participantes,
+                            nome,
 
                         tipo:
                             selectedType,
@@ -3151,11 +3208,7 @@
                             conteudo,
 
                         aprovado:
-                            false,
-
-                        data_criacao:
-                            new Date()
-                                .toISOString()
+                            false
 
                     });
 
@@ -3172,7 +3225,6 @@
                     error.message
                 );
 
-
                 return;
 
             }
@@ -3188,6 +3240,8 @@
 
             await carregarTrabalhos();
 
+            await carregarEstatisticas();
+
         }
 
 
@@ -3199,7 +3253,7 @@
 
 
             alert(
-                "Ocorreu um erro ao publicar o trabalho."
+                "Ocorreu um erro ao publicar."
             );
 
         }
@@ -3209,6 +3263,7 @@
 
             publishButton.disabled =
                 false;
+
 
             publishButton.textContent =
                 "Publicar Trabalho";
@@ -3229,11 +3284,11 @@
             "";
 
 
-        videoUrl.value =
+        imageUrl.value =
             "";
 
 
-        imageFile.value =
+        videoUrl.value =
             "";
 
 
@@ -3246,18 +3301,17 @@
         );
 
 
-        participantsContainer.innerHTML =
-            "";
+        studentSelectContainer.innerHTML = "";
 
 
-        const primeiraLinha =
+        const row =
             document.createElement(
                 "div"
             );
 
 
-        primeiraLinha.className =
-            "participant-row";
+        row.className =
+            "student-row";
 
 
         const select =
@@ -3267,36 +3321,21 @@
 
 
         select.className =
-            "participant-select";
+            "student-select";
 
 
-        select.innerHTML =
-            `
-                <option value="">
-                    Selecione o participante
-                </option>
-            `;
-
-
-        alunos.forEach(aluno => {
-
-            select.innerHTML +=
-                `
-                    <option value="${aluno}">
-                        ${aluno}
-                    </option>
-                `;
-
-        });
-
-
-        primeiraLinha.appendChild(
+        criarOpcoesAluno(
             select
         );
 
 
-        participantsContainer.appendChild(
-            primeiraLinha
+        row.appendChild(
+            select
+        );
+
+
+        studentSelectContainer.appendChild(
+            row
         );
 
 
@@ -3304,13 +3343,15 @@
             null;
 
 
-        typeButtons.forEach(button => {
+        typeButtons.forEach(
+            button => {
 
-            button.classList.remove(
-                "selected"
-            );
+                button.classList.remove(
+                    "selected"
+                );
 
-        });
+            }
+        );
 
 
         workFields.classList.remove(
@@ -3342,23 +3383,30 @@
 
     adminButton.addEventListener(
         "click",
-        () => {
-
-            if (isAdmin) {
-
-                sairAdministrador();
-
-                return;
-
-            }
+        abrirLoginAdmin
+    );
 
 
-            adminModal.classList.add(
-                "visible"
-            );
+
+    function abrirLoginAdmin() {
+
+        if (isAdmin) {
+
+            sairAdministrador();
+
+            return;
 
         }
-    );
+
+
+        adminModal.classList.add(
+            "visible"
+        );
+
+
+        adminEmail.focus();
+
+    }
 
 
 
@@ -3375,62 +3423,62 @@
 
 
 
-    /* ==================================================
-       LOGIN GOOGLE
-    ================================================== */
-
-    googleLoginButton.addEventListener(
+    confirmAdminLogin.addEventListener(
         "click",
-        async () => {
-
-            googleLoginButton.disabled =
-                true;
+        fazerLoginAdmin
+    );
 
 
-            googleLoginButton.textContent =
-                "Abrindo Google...";
+
+    async function fazerLoginAdmin() {
+
+        const email =
+            adminEmail.value.trim();
 
 
-            try {
-
-                const {
-                    error
-                } =
-                    await supabaseClient
-                        .auth
-                        .signInWithOAuth({
-
-                            provider:
-                                "google",
-
-                            options: {
-
-                                redirectTo:
-                                    ADMIN_REDIRECT_URL
-
-                            }
-
-                        });
+        const senha =
+            adminPassword.value;
 
 
-                if (error) {
+        if (!email || !senha) {
 
-                    console.error(
-                        error
-                    );
+            alert(
+                "Digite o e-mail e a senha."
+            );
 
+            return;
 
-                    alert(
-                        "Não foi possível iniciar o login com Google.\n\n" +
-                        error.message
-                    );
-
-                }
-
-            }
+        }
 
 
-            catch (error) {
+        confirmAdminLogin.disabled =
+            true;
+
+
+        confirmAdminLogin.textContent =
+            "Entrando...";
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+
+                        email:
+                            email,
+
+                        password:
+                            senha
+
+                    });
+
+
+            if (error) {
 
                 console.error(
                     error
@@ -3438,145 +3486,70 @@
 
 
                 alert(
-                    "Erro ao iniciar o login."
+                    "E-mail ou senha incorretos."
                 );
 
-            }
-
-
-            finally {
-
-                googleLoginButton.disabled =
-                    false;
-
-                googleLoginButton.innerHTML =
-                    "<span>G</span> Entrar com Google";
+                return;
 
             }
 
-        }
-    );
 
-
-
-    /* ==================================================
-       VERIFICAR ADMIN
-    ================================================== */
-
-    async function verificarSessao() {
-
-        const {
-            data
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
-
-        if (
-            data.session &&
-            data.session.user
-        ) {
-
-            const email =
-                data.session.user.email;
-
-
-            if (
-                email === ADMIN_EMAIL
-            ) {
+            if (data.session) {
 
                 isAdmin =
                     true;
 
 
+                adminModal.classList.remove(
+                    "visible"
+                );
+
+
+                adminEmail.value =
+                    "";
+
+
+                adminPassword.value =
+                    "";
+
+
                 adminButton.textContent =
                     "Sair do administrador";
 
-            }
 
-            else {
-
-                await supabaseClient
-                    .auth
-                    .signOut();
-
-                isAdmin =
-                    false;
+                await carregarTrabalhos();
 
             }
 
         }
 
+
+        catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Não foi possível realizar o login."
+            );
+
+        }
+
+
+        finally {
+
+            confirmAdminLogin.disabled =
+                false;
+
+
+            confirmAdminLogin.textContent =
+                "Entrar";
+
+        }
+
     }
-
-
-
-    /* ==================================================
-       MUDANÇA DE SESSÃO
-    ================================================== */
-
-    supabaseClient
-        .auth
-        .onAuthStateChange(
-            async (
-                event,
-                session
-            ) => {
-
-                if (
-                    session &&
-                    session.user
-                ) {
-
-                    if (
-                        session.user.email ===
-                        ADMIN_EMAIL
-                    ) {
-
-                        isAdmin =
-                            true;
-
-
-                        adminButton.textContent =
-                            "Sair do administrador";
-
-
-                        adminModal.classList.remove(
-                            "visible"
-                        );
-
-
-                        await carregarTrabalhos();
-
-                    }
-
-                    else {
-
-                        await supabaseClient
-                            .auth
-                            .signOut();
-
-                        isAdmin =
-                            false;
-
-                    }
-
-                }
-
-                else {
-
-                    isAdmin =
-                        false;
-
-
-                    adminButton.textContent =
-                        "Entrar como administrador";
-
-                }
-
-            }
-        );
 
 
 
@@ -3600,6 +3573,35 @@
 
 
         await carregarTrabalhos();
+
+    }
+
+
+
+    /* ==================================================
+       SESSÃO
+    ================================================== */
+
+    async function verificarSessao() {
+
+        const {
+            data
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+
+        if (data.session) {
+
+            isAdmin =
+                true;
+
+
+            adminButton.textContent =
+                "Sair do administrador";
+
+        }
 
     }
 
@@ -3632,7 +3634,7 @@
 
             query =
                 query.order(
-                    "data_criacao",
+                    "id",
                     {
                         ascending:
                             false
@@ -3658,14 +3660,16 @@
             }
 
 
-            atualizarFiltroPessoas(
-                data || []
+            trabalhosCache =
+                data || [];
+
+
+            renderizarTrabalhos(
+                trabalhosCache
             );
 
 
-            aplicarFiltros(
-                data || []
-            );
+            atualizarFiltros();
 
         }
 
@@ -3683,447 +3687,7 @@
 
 
     /* ==================================================
-       OBTER PARTICIPANTES DO TRABALHO
-    ================================================== */
-
-    function obterNomesDoTrabalho(
-        trabalho
-    ) {
-
-        if (
-            Array.isArray(
-                trabalho.nomes
-            ) &&
-            trabalho.nomes.length > 0
-        ) {
-
-            return trabalho.nomes;
-
-        }
-
-
-        if (
-            trabalho.nome
-        ) {
-
-            return trabalho.nome
-                .split(",")
-                .map(
-                    nome =>
-                        nome.trim()
-                )
-                .filter(Boolean);
-
-        }
-
-
-        return [];
-
-    }
-
-
-
-    /* ==================================================
-       ATUALIZAR LISTA DE PESSOAS
-    ================================================== */
-
-    function atualizarFiltroPessoas(
-        trabalhos
-    ) {
-
-        peopleFilterList.innerHTML =
-            "";
-
-
-        const pessoas =
-            new Set();
-
-
-        alunos.forEach(aluno => {
-
-            pessoas.add(
-                aluno
-            );
-
-        });
-
-
-        trabalhos.forEach(trabalho => {
-
-            obterNomesDoTrabalho(
-                trabalho
-            ).forEach(nome => {
-
-                pessoas.add(
-                    nome
-                );
-
-            });
-
-        });
-
-
-        Array.from(pessoas)
-            .sort(
-                (a,b) =>
-                    a.localeCompare(b)
-            )
-            .forEach(nome => {
-
-                const button =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                button.className =
-                    "subfilter-button";
-
-
-                button.textContent =
-                    nome;
-
-
-                button.dataset.person =
-                    nome;
-
-
-                if (
-                    currentPerson ===
-                    nome &&
-                    currentFilter ===
-                    "pessoa"
-                ) {
-
-                    button.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        currentFilter =
-                            "pessoa";
-
-                        currentPerson =
-                            nome;
-
-                        currentType =
-                            null;
-
-
-                        document
-                            .querySelectorAll(
-                                "[data-person]"
-                            )
-                            .forEach(item => {
-
-                                item.classList.remove(
-                                    "active"
-                                );
-
-                            });
-
-
-                        button.classList.add(
-                            "active"
-                        );
-
-
-                        aplicarFiltros(
-                            trabalhos
-                        );
-
-                    }
-                );
-
-
-                peopleFilterList.appendChild(
-                    button
-                );
-
-            });
-
-    }
-
-
-
-    /* ==================================================
-       FILTROS PRINCIPAIS
-    ================================================== */
-
-    filterButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            async () => {
-
-                const filtro =
-                    button.dataset.filter;
-
-
-                filterButtons.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                tempoOptions.classList.remove(
-                    "visible"
-                );
-
-
-                pessoaOptions.classList.remove(
-                    "visible"
-                );
-
-
-                tipoOptions.classList.remove(
-                    "visible"
-                );
-
-
-                if (
-                    filtro === "tempo"
-                ) {
-
-                    currentFilter =
-                        "tempo";
-
-                    currentPerson =
-                        null;
-
-                    currentType =
-                        null;
-
-
-                    tempoOptions.classList.add(
-                        "visible"
-                    );
-
-                }
-
-
-                if (
-                    filtro === "pessoa"
-                ) {
-
-                    currentFilter =
-                        "pessoa";
-
-                    currentPerson =
-                        null;
-
-                    currentType =
-                        null;
-
-
-                    pessoaOptions.classList.add(
-                        "visible"
-                    );
-
-                }
-
-
-                if (
-                    filtro === "tipo"
-                ) {
-
-                    currentFilter =
-                        "tipo";
-
-                    currentPerson =
-                        null;
-
-                    currentType =
-                        null;
-
-
-                    tipoOptions.classList.add(
-                        "visible"
-                    );
-
-                }
-
-
-                await carregarTrabalhos();
-
-            }
-        );
-
-    });
-
-
-
-    /* ==================================================
-       FILTRO POR TIPO
-    ================================================== */
-
-    document
-        .querySelectorAll(
-            "[data-type-filter]"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                async () => {
-
-                    currentFilter =
-                        "tipo";
-
-
-                    currentType =
-                        button.dataset
-                            .typeFilter;
-
-
-                    currentPerson =
-                        null;
-
-
-                    document
-                        .querySelectorAll(
-                            "[data-type-filter]"
-                        )
-                        .forEach(item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        });
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    await carregarTrabalhos();
-
-                }
-            );
-
-        });
-
-
-
-    /* ==================================================
-       APLICAR FILTROS
-    ================================================== */
-
-    function aplicarFiltros(
-        trabalhos
-    ) {
-
-        let resultado =
-            [...trabalhos];
-
-
-        /* ==================================================
-           POR TEMPO
-        ================================================== */
-
-        if (
-            currentFilter ===
-            "tempo"
-        ) {
-
-            resultado.sort(
-                (a,b) => {
-
-                    return (
-                        new Date(
-                            b.data_criacao ||
-                            0
-                        ) -
-                        new Date(
-                            a.data_criacao ||
-                            0
-                        )
-                    );
-
-                }
-            );
-
-        }
-
-
-
-        /* ==================================================
-           POR PESSOA
-        ================================================== */
-
-        if (
-            currentFilter ===
-            "pessoa" &&
-            currentPerson
-        ) {
-
-            resultado =
-                resultado.filter(
-                    trabalho => {
-
-                        const nomes =
-                            obterNomesDoTrabalho(
-                                trabalho
-                            );
-
-
-                        return nomes.includes(
-                            currentPerson
-                        );
-
-                    }
-                );
-
-        }
-
-
-
-        /* ==================================================
-           POR TIPO
-        ================================================== */
-
-        if (
-            currentFilter ===
-            "tipo" &&
-            currentType
-        ) {
-
-            resultado =
-                resultado.filter(
-                    trabalho =>
-                        trabalho.tipo ===
-                        currentType
-                );
-
-        }
-
-
-        renderizarTrabalhos(
-            resultado
-        );
-
-    }
-
-
-
-    /* ==================================================
-       RENDERIZAR
+       RENDERIZAR TRABALHOS
     ================================================== */
 
     function renderizarTrabalhos(
@@ -4139,68 +3703,26 @@
             trabalhos.length === 0
         ) {
 
-            const empty =
-                document.createElement(
-                    "div"
-                );
+            worksArea.innerHTML = `
 
+                <div class="empty-state">
 
-            empty.className =
-                "empty-state";
+                    <h1>
+                        Trabalhos postados
+                    </h1>
 
+                    <p>
+                        Os trabalhos aprovados aparecerão aqui.
+                    </p>
 
-            const h =
-                document.createElement(
-                    "h1"
-                );
+                </div>
 
-
-            h.textContent =
-                "Nenhum trabalho encontrado";
-
-
-            const p =
-                document.createElement(
-                    "p"
-                );
-
-
-            if (
-                isAdmin
-            ) {
-
-                p.textContent =
-                    "Não existem trabalhos correspondentes ao filtro.";
-
-            }
-
-            else {
-
-                p.textContent =
-                    "Não existem trabalhos correspondentes ao filtro.";
-
-            }
-
-
-            empty.appendChild(
-                h
-            );
-
-
-            empty.appendChild(
-                p
-            );
-
-
-            worksArea.appendChild(
-                empty
-            );
+            `;
 
 
             return;
 
         }
-
 
 
         trabalhos.forEach(
@@ -4215,11 +3737,6 @@
                 card.className =
                     "work-card";
 
-
-
-                /* ==================================================
-                   CABEÇALHO
-                ================================================== */
 
                 const header =
                     document.createElement(
@@ -4247,78 +3764,9 @@
                     "work-author";
 
 
-                const nomes =
-                    obterNomesDoTrabalho(
-                        trabalho
-                    );
-
-
                 author.textContent =
-                    nomes.length === 1
-                        ? nomes[0]
-                        : nomes.length > 1
-                            ? `${nomes.length} participantes`
-                            : trabalho.nome || "Sem nome";
+                    trabalho.nome;
 
-
-                info.appendChild(
-                    author
-                );
-
-
-
-                /* ==================================================
-                   PARTICIPANTES
-                ================================================== */
-
-                if (
-                    nomes.length > 1
-                ) {
-
-                    const badges =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    badges.className =
-                        "work-participants";
-
-
-                    nomes.forEach(nome => {
-
-                        const badge =
-                            document.createElement(
-                                "span"
-                            );
-
-
-                        badge.className =
-                            "participant-badge";
-
-
-                        badge.textContent =
-                            nome;
-
-
-                        badges.appendChild(
-                            badge
-                        );
-
-                    });
-
-
-                    info.appendChild(
-                        badges
-                    );
-
-                }
-
-
-
-                /* ==================================================
-                   DATA
-                ================================================== */
 
                 const date =
                     document.createElement(
@@ -4330,47 +3778,20 @@
                     "work-date";
 
 
-                if (
-                    trabalho.data_criacao
-                ) {
-
-                    const data =
-                        new Date(
-                            trabalho.data_criacao
-                        );
+                date.textContent =
+                    "ID do trabalho: #" +
+                    trabalho.id;
 
 
-                    date.textContent =
-                        data.toLocaleString(
-                            "pt-BR",
-                            {
-                                dateStyle:
-                                    "short",
-                                timeStyle:
-                                    "short"
-                            }
-                        );
-
-                }
-
-                else {
-
-                    date.textContent =
-                        "ID do trabalho: #" +
-                        trabalho.id;
-
-                }
+                info.appendChild(
+                    author
+                );
 
 
                 info.appendChild(
                     date
                 );
 
-
-
-                /* ==================================================
-                   TIPO
-                ================================================== */
 
                 const type =
                     document.createElement(
@@ -4383,8 +3804,7 @@
 
 
                 if (
-                    trabalho.tipo ===
-                    "texto"
+                    trabalho.tipo === "texto"
                 ) {
 
                     type.textContent =
@@ -4392,17 +3812,14 @@
 
                 }
 
-
                 else if (
-                    trabalho.tipo ===
-                    "imagem"
+                    trabalho.tipo === "imagem"
                 ) {
 
                     type.textContent =
                         "🖼️ Imagem";
 
                 }
-
 
                 else {
 
@@ -4426,11 +3843,6 @@
                     header
                 );
 
-
-
-                /* ==================================================
-                   STATUS ADMIN
-                ================================================== */
 
                 if (
                     isAdmin &&
@@ -4458,14 +3870,8 @@
                 }
 
 
-
-                /* ==================================================
-                   TEXTO
-                ================================================== */
-
                 if (
-                    trabalho.tipo ===
-                    "texto"
+                    trabalho.tipo === "texto"
                 ) {
 
                     const texto =
@@ -4489,14 +3895,8 @@
                 }
 
 
-
-                /* ==================================================
-                   IMAGEM
-                ================================================== */
-
                 if (
-                    trabalho.tipo ===
-                    "imagem"
+                    trabalho.tipo === "imagem"
                 ) {
 
                     const imagem =
@@ -4517,10 +3917,6 @@
                         "Imagem do trabalho";
 
 
-                    imagem.loading =
-                        "lazy";
-
-
                     card.appendChild(
                         imagem
                     );
@@ -4528,14 +3924,8 @@
                 }
 
 
-
-                /* ==================================================
-                   VÍDEO
-                ================================================== */
-
                 if (
-                    trabalho.tipo ===
-                    "video"
+                    trabalho.tipo === "video"
                 ) {
 
                     const iframe =
@@ -4573,14 +3963,7 @@
                 }
 
 
-
-                /* ==================================================
-                   CONTROLES ADMIN
-                ================================================== */
-
-                if (
-                    isAdmin
-                ) {
+                if (isAdmin) {
 
                     criarControlesAdmin(
                         card,
@@ -4620,117 +4003,87 @@
             "admin-controls";
 
 
-
-        /* ==================================================
-           APROVAR
-        ================================================== */
-
         if (
             !trabalho.aprovado
         ) {
 
-            const approveButton =
+            const approve =
                 document.createElement(
                     "button"
                 );
 
 
-            approveButton.className =
+            approve.className =
                 "approve-button";
 
 
-            approveButton.textContent =
+            approve.textContent =
                 "Aprovar";
 
 
-            approveButton.addEventListener(
-                "click",
-                async () => {
-
-                    await aprovarTrabalho(
+            approve.onclick =
+                () =>
+                    aprovarTrabalho(
                         trabalho.id
                     );
 
-                }
-            );
-
 
             controls.appendChild(
-                approveButton
+                approve
             );
 
         }
 
 
-
-        /* ==================================================
-           EDITAR
-        ================================================== */
-
-        const editButton =
+        const edit =
             document.createElement(
                 "button"
             );
 
 
-        editButton.className =
+        edit.className =
             "edit-button";
 
 
-        editButton.textContent =
+        edit.textContent =
             "Editar";
 
 
-        editButton.addEventListener(
-            "click",
-            async () => {
-
-                await editarTrabalho(
+        edit.onclick =
+            () =>
+                editarTrabalho(
                     trabalho
                 );
 
-            }
-        );
-
 
         controls.appendChild(
-            editButton
+            edit
         );
 
 
-
-        /* ==================================================
-           APAGAR
-        ================================================== */
-
-        const deleteButton =
+        const remove =
             document.createElement(
                 "button"
             );
 
 
-        deleteButton.className =
+        remove.className =
             "delete-button";
 
 
-        deleteButton.textContent =
+        remove.textContent =
             "Apagar";
 
 
-        deleteButton.addEventListener(
-            "click",
-            async () => {
-
-                await apagarTrabalho(
-                    trabalho
+        remove.onclick =
+            () =>
+                apagarTrabalho(
+                    trabalho.id
                 );
-
-            }
-        );
 
 
         controls.appendChild(
-            deleteButton
+            remove
         );
 
 
@@ -4797,6 +4150,8 @@
 
         await carregarTrabalhos();
 
+        await carregarEstatisticas();
+
     }
 
 
@@ -4809,13 +4164,44 @@
         trabalho
     ) {
 
+        const novoNome =
+            prompt(
+                "Nome(s) dos alunos:",
+                trabalho.nome
+            );
+
+
+        if (
+            novoNome === null
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            !novoNome.trim()
+        ) {
+
+            alert(
+                "O nome não pode ficar vazio."
+            );
+
+            return;
+
+        }
+
+
         const novoConteudo =
             prompt(
                 trabalho.tipo === "video"
                     ? "URL do vídeo:"
-                    : trabalho.tipo === "imagem"
-                        ? "URL da imagem:"
-                        : "Conteúdo do trabalho:",
+                    :
+                trabalho.tipo === "imagem"
+                    ? "URL da imagem:"
+                    :
+                    "Conteúdo do trabalho:",
                 trabalho.conteudo
             );
 
@@ -4849,6 +4235,9 @@
                 .from("trabalhos")
                 .update({
 
+                    nome:
+                        novoNome.trim(),
+
                     conteudo:
                         novoConteudo.trim()
 
@@ -4867,9 +4256,8 @@
 
 
             alert(
-                "Não foi possível editar o trabalho."
+                "Não foi possível editar."
             );
-
 
             return;
 
@@ -4883,6 +4271,8 @@
 
         await carregarTrabalhos();
 
+        await carregarEstatisticas();
+
     }
 
 
@@ -4892,7 +4282,7 @@
     ================================================== */
 
     async function apagarTrabalho(
-        trabalho
+        id
     ) {
 
         if (
@@ -4914,7 +4304,7 @@
                 .delete()
                 .eq(
                     "id",
-                    trabalho.id
+                    id
                 );
 
 
@@ -4926,70 +4316,17 @@
 
 
             alert(
-                "Não foi possível apagar o trabalho."
+                "Não foi possível apagar."
             );
-
 
             return;
 
         }
 
 
-        /* ==================================================
-           APAGAR IMAGEM DO STORAGE
-        ================================================== */
-
-        if (
-            trabalho.tipo ===
-            "imagem"
-        ) {
-
-            try {
-
-                const url =
-                    trabalho.conteudo;
-
-
-                const partes =
-                    url.split(
-                        "/imagens/"
-                    );
-
-
-                if (
-                    partes.length > 1
-                ) {
-
-                    const caminho =
-                        decodeURIComponent(
-                            partes[1]
-                        );
-
-
-                    await supabaseClient
-                        .storage
-                        .from("imagens")
-                        .remove([
-                            caminho
-                        ]);
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.warn(
-                    "Não foi possível remover a imagem do Storage:",
-                    error
-                );
-
-            }
-
-        }
-
-
         await carregarTrabalhos();
+
+        await carregarEstatisticas();
 
     }
 
@@ -5009,7 +4346,8 @@
                 new URL(url);
 
 
-            let id = "";
+            let id =
+                "";
 
 
             if (
@@ -5052,21 +4390,6 @@
 
                 }
 
-
-                if (
-                    !id &&
-                    endereco.pathname.startsWith(
-                        "/embed/"
-                    )
-                ) {
-
-                    id =
-                        endereco.pathname
-                            .split("/")
-                            [2];
-
-                }
-
             }
 
 
@@ -5095,7 +4418,458 @@
 
 
     /* ==================================================
-       INICIAR
+       ESTATÍSTICAS
+    ================================================== */
+
+    async function carregarEstatisticas() {
+
+        if (!statisticsBody) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from("trabalhos")
+                    .select("*")
+                    .eq(
+                        "aprovado",
+                        true
+                    );
+
+
+            if (error) {
+
+                console.error(
+                    "Erro nas estatísticas:",
+                    error
+                );
+
+                return;
+
+            }
+
+
+            renderizarEstatisticas(
+                data || []
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                error
+            );
+
+        }
+
+    }
+
+
+
+    /* ==================================================
+       VERIFICAR ALUNO
+    ================================================== */
+
+    function alunoPossuiTipo(
+        trabalhos,
+        aluno,
+        tipo
+    ) {
+
+        return trabalhos.some(
+            trabalho => {
+
+                if (
+                    trabalho.tipo !== tipo
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    typeof trabalho.nome !==
+                    "string"
+                ) {
+
+                    return false;
+
+                }
+
+
+                const nomes =
+                    trabalho.nome
+                        .split(",")
+                        .map(
+                            nome =>
+                                nome.trim()
+                        );
+
+
+                return nomes.includes(
+                    aluno
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* ==================================================
+       RENDERIZAR ESTATÍSTICAS
+    ================================================== */
+
+    function renderizarEstatisticas(
+        trabalhos
+    ) {
+
+        statisticsBody.innerHTML =
+            "";
+
+
+        alunos.forEach(
+            aluno => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                const nameCell =
+                    document.createElement(
+                        "td"
+                    );
+
+
+                nameCell.className =
+                    "statistics-name";
+
+
+                nameCell.textContent =
+                    aluno;
+
+
+                row.appendChild(
+                    nameCell
+                );
+
+
+                [
+                    "texto",
+                    "imagem",
+                    "video"
+                ]
+                .forEach(
+                    tipo => {
+
+                        const cell =
+                            document.createElement(
+                                "td"
+                            );
+
+
+                        cell.className =
+                            "statistics-status";
+
+
+                        const possui =
+                            alunoPossuiTipo(
+                                trabalhos,
+                                aluno,
+                                tipo
+                            );
+
+
+                        cell.classList.add(
+                            possui
+                                ? "completed"
+                                : "missing"
+                        );
+
+
+                        row.appendChild(
+                            cell
+                        );
+
+                    }
+                );
+
+
+                statisticsBody.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* ==================================================
+       FILTROS
+    ================================================== */
+
+    const filterButtons =
+        document.querySelectorAll(
+            ".filter-button"
+        );
+
+
+    filterButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const filtro =
+                        button.dataset.filter;
+
+
+                    document
+                        .querySelectorAll(
+                            ".filter-options"
+                        )
+                        .forEach(
+                            options => {
+
+                                options.classList.remove(
+                                    "visible"
+                                );
+
+                            }
+                        );
+
+
+                    filterButtons.forEach(
+                        item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    const options =
+                        document.getElementById(
+                            filtro +
+                            "Options"
+                        );
+
+
+                    if (options) {
+
+                        options.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+
+                    if (
+                        filtro === "tempo"
+                    ) {
+
+                        renderizarTrabalhos(
+                            trabalhosCache
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* ==================================================
+       FILTRO POR TIPO
+    ================================================== */
+
+    document
+        .querySelectorAll(
+            "[data-work-type]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const tipo =
+                            button.dataset.workType;
+
+
+                        document
+                            .querySelectorAll(
+                                "[data-work-type]"
+                            )
+                            .forEach(
+                                item => {
+
+                                    item.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+
+                        const filtrados =
+                            trabalhosCache.filter(
+                                trabalho =>
+                                    trabalho.tipo ===
+                                    tipo
+                            );
+
+
+                        renderizarTrabalhos(
+                            filtrados
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* ==================================================
+       FILTRO POR PESSOA
+    ================================================== */
+
+    function atualizarFiltros() {
+
+        const peopleList =
+            document.getElementById(
+                "peopleFilterList"
+            );
+
+
+        peopleList.innerHTML =
+            "";
+
+
+        alunos.forEach(
+            aluno => {
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "filter-subbutton";
+
+
+                button.textContent =
+                    aluno;
+
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                "#peopleFilterList .filter-subbutton"
+                            )
+                            .forEach(
+                                item => {
+
+                                    item.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+
+                        const filtrados =
+                            trabalhosCache.filter(
+                                trabalho => {
+
+                                    if (
+                                        typeof trabalho.nome !==
+                                        "string"
+                                    ) {
+
+                                        return false;
+
+                                    }
+
+
+                                    return trabalho.nome
+                                        .split(",")
+                                        .map(
+                                            nome =>
+                                                nome.trim()
+                                        )
+                                        .includes(
+                                            aluno
+                                        );
+
+                                }
+                            );
+
+
+                        renderizarTrabalhos(
+                            filtrados
+                        );
+
+                    }
+                );
+
+
+                peopleList.appendChild(
+                    button
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* ==================================================
+       INICIAR SISTEMA
     ================================================== */
 
     async function iniciarSistema() {
@@ -5104,13 +4878,15 @@
 
         await carregarTrabalhos();
 
+        await carregarEstatisticas();
+
     }
 
 
     iniciarSistema();
 
 </script>
-
+```
 
 </body>
 
