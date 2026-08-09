@@ -4061,28 +4061,23 @@ async function fazerLoginAdmin() {
 
                 options: {
 
-                  const { data, error } = await supabase.auth.signInWithOAuth({
+                  const { data, error } = await supabaseClient.auth.signInWithOAuth({
     provider: "google",
     options: {
         redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
     }
 });
-                }
 
-            });
+if (error) {
 
+    console.error(error);
 
-        if (error) {
+    alert(
+        "Não foi possível iniciar o login com Google.\n\n" +
+        error.message
+    );
 
-            console.error(error);
-
-            alert(
-                "Não foi possível iniciar o login com Google.\n\n" +
-                error.message
-            );
-
-        }
-
+}
     } catch (error) {
 
         console.error(error);
