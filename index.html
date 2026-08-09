@@ -4051,22 +4051,12 @@ async function fazerLoginAdmin() {
 
     try {
 
-        const {
-            error
-        } = await supabaseClient
-            .auth
-            .signInWithOAuth({
-
-                provider: "google",
-
-                options: {
-
-                    redirectTo:
-                        window.location.origin
-
-                }
-
-            });
+       const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
+    }
+});
 
 
         if (error) {
