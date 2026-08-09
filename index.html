@@ -2967,33 +2967,35 @@ let filtroAtual = {
 
 const alunos = [
 
-    "Aluno A",
-    "Aluno B",
-    "Aluno C",
-    "Aluno D",
-    "Aluno E",
-    "Aluno F",
-    "Aluno G",
-    "Aluno H",
-    "Aluno I",
-    "Aluno J",
-    "Aluno K",
-    "Aluno L",
-    "Aluno M",
-    "Aluno N",
-    "Aluno O",
-    "Aluno P",
-    "Aluno Q",
-    "Aluno R",
-    "Aluno S",
-    "Aluno T",
-    "Aluno U",
-    "Aluno V",
-    "Aluno W",
-    "Aluno X",
-    "Aluno Y",
-    "Aluno Z"
-
+   const alunos = [
+    
+    "Adrian Felipe",
+    "Adryan Felyp",
+    "Ana Gabryella",
+    "Ana Lara",
+    "Atailton",
+    "Caio",
+    "Camila",
+    "Elieder",
+    "Emanuelly",
+    "Haniel",
+    "Iago",
+    "Isadora",
+    "Joao Pedro",
+    "Joao Victor",
+    "Jose Adriano",
+    "Kethelyn",
+    "Kelly",
+    "Lucas",
+    "Luiz Gustavo",
+    "Maria Heloísa",
+    "Milena",
+    "Miguel Felipe",
+    "Miguel Fernando",
+    "Pedro",
+    "Samira",
+    
+];
 ];
 
 
@@ -4164,7 +4166,7 @@ async function verificarSessao() {
             .toLowerCase();
 
 
-    if (email !== ADMIN_EMAIL.toLowerCase()) {
+    if (!ADMIN_EMAILS.includes(email)) {
 
         await supabaseClient.auth.signOut();
 
@@ -4213,7 +4215,7 @@ supabaseClient.auth.onAuthStateChange(
                     .toLowerCase();
 
 
-            if (email === ADMIN_EMAIL.toLowerCase()) {
+            if (ADMIN_EMAILS.includes(email)) {
 
                 isAdmin = true;
 
