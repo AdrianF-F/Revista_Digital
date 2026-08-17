@@ -483,13 +483,6 @@ body {
 }
 
 
-/* ... (o resto do CSS original permanece igual) ... */
-
-/* For brevity, include full original CSS below, unchanged.
-   (The real file keeps all previous rules; they are included
-   in full here to keep layout/appearance consistent.)
-*/
-
 /* =========================================================
    TIPOS
 ========================================================= */
@@ -1398,6 +1391,124 @@ select option {
 .stat-badge.missing { background: #b53a3a; }
 
 /* =========================================================
+   IMAGE CAROUSEL (roleta de imagens)
+========================================================= */
+
+.carousel-section {
+    margin: 30px auto;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+.image-carousel {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 420ms ease;
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #080808;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    color: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+.carousel-indicators {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 0 0;
+}
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.18);
+    cursor: pointer;
+}
+.carousel-indicators button.active {
+    background: var(--green);
+}
+
+/* small thumbnail strip */
+.carousel-thumbs {
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-top:12px;
+    padding-bottom:8px;
+}
+.carousel-thumb {
+    width:72px;
+    height:48px;
+    flex: 0 0 auto;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    border: 2px solid transparent;
+}
+.carousel-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.carousel-thumb.active { border-color: var(--green); }
+
+/* pending badge overlay for admin view */
+.carousel-pending-badge {
+    position:absolute;
+    left:10px;
+    top:10px;
+    background: rgba(240,180,41,0.12);
+    color:var(--warning);
+    padding:6px 8px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:13px;
+}
+
+/* responsive adjustments */
+@media (max-width: 600px) {
+    .carousel-prev, .carousel-next { width:36px; height:36px; }
+    .carousel-slide img { max-height: 300px; }
+    .carousel-thumb { width:56px; height:40px; }
+}
+
+/* =========================================================
    INSTRUÇÕES
 ========================================================= */
 
@@ -1413,9 +1524,6 @@ select option {
     display:block;
 
 }
-
-
-/* ... rest unchanged ... */
 
 
 /* =========================================================
@@ -2377,7 +2485,22 @@ select option {
 
 </main>
 
+<!-- =========================================================
+   IMAGE CAROUSEL (ROLET A) - no final (antes do modal)
+========================================================= -->
+<section class="carousel-section" id="carouselSection" aria-label="Galeria de imagens dos trabalhos">
+    <h2 style="color:var(--blue-light); margin-left:20px;">Galeria de imagens</h2>
+    <div class="image-carousel" id="imageCarousel" aria-live="polite">
+        <div class="carousel-track" role="list"></div>
 
+        <button class="carousel-prev" aria-label="Imagem anterior">‹</button>
+        <button class="carousel-next" aria-label="Próxima imagem">›</button>
+
+        <div class="carousel-indicators" role="tablist" aria-label="Indicadores"></div>
+
+        <div class="carousel-thumbs" aria-hidden="false"></div>
+    </div>
+</section>
 
 <!-- =========================================================
      LOGIN ADMINISTRADOR
@@ -2441,7 +2564,7 @@ select option {
 
 /* =========================================================
    SUPABASE
-========================================================= */
+======================================================== */
 
 const SUPABASE_URL =
     "https://tcertncsuhrtldeojqfx.supabase.co";
@@ -2662,7 +2785,13 @@ const themeToggle =
         "themeToggle"
     );
 
-
+const carouselSection = document.getElementById("carouselSection");
+const imageCarousel = document.getElementById("imageCarousel");
+const carouselTrack = imageCarousel ? imageCarousel.querySelector(".carousel-track") : null;
+const carouselIndicators = imageCarousel ? imageCarousel.querySelector(".carousel-indicators") : null;
+const carouselThumbs = imageCarousel ? imageCarousel.querySelector(".carousel-thumbs") : null;
+const carouselPrev = imageCarousel ? imageCarousel.querySelector(".carousel-prev") : null;
+const carouselNext = imageCarousel ? imageCarousel.querySelector(".carousel-next") : null;
 
 /* =========================================================
    VARIÁVEIS
@@ -2698,6 +2827,20 @@ let filtroAtual = {
 
 };
 
+
+/* =========================================================
+   CAROUSEL STATE
+========================================================= */
+
+const carouselState = {
+    currentIndex: 0,
+    timer: null,
+    autoplayDelay: 4000,
+    slidesCount: 0,
+    isPaused: false,
+    pointerStartX: 0,
+    pointerEndX: 0
+};
 
 
 /* =========================================================
@@ -2987,7 +3130,7 @@ homeButton.addEventListener(
 
 /* =========================================================
    ESTATÍSTICAS
-========================================================= */
+======================================================== */
 
 statisticsButton.addEventListener(
     "click",
@@ -3025,7 +3168,7 @@ statisticsButton.addEventListener(
 
 /* =========================================================
    INSTRUÇÕES
-========================================================= */
+======================================================== */
 
 instructionsButton.addEventListener(
     "click",
@@ -3388,7 +3531,7 @@ async function enviarImagemStorage(
 
 /* =========================================================
    PUBLICAR
-========================================================= */
+======================================================== */
 
 publishButton.addEventListener(
     "click",
@@ -3774,7 +3917,7 @@ function limparFormulario() {
 
 /* =========================================================
    LOGIN ADMINISTRADOR COM GOOGLE
-========================================================= */
+======================================================== */
 
 adminButton.addEventListener(
     "click",
@@ -3873,7 +4016,7 @@ googleAdminLogin.addEventListener(
 
 /* =========================================================
    SAIR ADMINISTRADOR
-========================================================= */
+======================================================== */
 
 async function sairAdministrador() {
 
@@ -3905,7 +4048,7 @@ async function sairAdministrador() {
 
 /* =========================================================
    SESSÃO
-========================================================= */
+======================================================== */
 
 async function verificarSessao() {
 
@@ -4082,6 +4225,8 @@ async function carregarTrabalhos() {
 
         aplicarFiltros();
 
+        // atualizar a roleta de imagens sempre que os trabalhos mudarem
+        atualizarCarousel();
 
     } catch (error) {
 
@@ -5811,7 +5956,7 @@ adminModal.addEventListener(
 
 /* =========================================================
    TEMA (claro/escuro)
-========================================================= */
+======================================================== */
 
 function applyTheme(theme) {
     if (theme === "light") {
@@ -5842,8 +5987,170 @@ function initTheme() {
 }
 
 /* =========================================================
+   CAROUSEL: lógica para montar/atualizar a roleta de imagens
+   usa trabalhosCache (mostra apenas imagens aprovadas quando não é admin)
+======================================================== */
+
+function buildSlidesFromTrabalhos() {
+    // seleciona trabalhos do tipo imagem; se for admin inclui pendentes
+    const imgs = (trabalhosCache || []).filter(t => t.tipo === "imagem" && (isAdmin ? true : t.aprovado));
+    return imgs;
+}
+
+function atualizarCarousel() {
+    if (!imageCarousel || !carouselTrack || !carouselIndicators || !carouselThumbs) return;
+
+    const slidesData = buildSlidesFromTrabalhos();
+
+    // se não há imagens, esconda a seção
+    if (!slidesData || slidesData.length === 0) {
+        carouselSection.style.display = "none";
+        clearCarouselTimer();
+        return;
+    } else {
+        carouselSection.style.display = "";
+    }
+
+    carouselTrack.innerHTML = "";
+    carouselIndicators.innerHTML = "";
+    carouselThumbs.innerHTML = "";
+
+    slidesData.forEach((trabalho, i) => {
+        // slide
+        const slide = document.createElement("div");
+        slide.className = "carousel-slide";
+        slide.setAttribute("role", "listitem");
+
+        const img = document.createElement("img");
+        img.src = trabalho.conteudo;
+        img.alt = "Trabalho - " + (trabalho.nome || "");
+        img.loading = "lazy";
+
+        img.onerror = () => { img.alt = "Não foi possível carregar esta imagem."; };
+
+        slide.appendChild(img);
+
+        // pending badge if admin and not approved
+        if (isAdmin && !trabalho.aprovado) {
+            const badge = document.createElement("div");
+            badge.className = "carousel-pending-badge";
+            badge.textContent = "⏳ Pendente";
+            slide.appendChild(badge);
+        }
+
+        carouselTrack.appendChild(slide);
+
+        // indicator
+        const indicator = document.createElement("button");
+        indicator.type = "button";
+        indicator.setAttribute("aria-label", "Ir para imagem " + (i+1));
+        indicator.addEventListener("click", () => goToSlide(i));
+        carouselIndicators.appendChild(indicator);
+
+        // thumb
+        const thumb = document.createElement("div");
+        thumb.className = "carousel-thumb";
+        const thumbImg = document.createElement("img");
+        thumbImg.src = trabalho.conteudo;
+        thumbImg.alt = trabalho.nome || "";
+        thumb.appendChild(thumbImg);
+        thumb.addEventListener("click", () => goToSlide(i));
+        carouselThumbs.appendChild(thumb);
+    });
+
+    carouselState.slidesCount = slidesData.length;
+    carouselState.currentIndex = 0;
+
+    updateCarouselUI();
+    startCarouselTimer();
+}
+
+function updateCarouselUI() {
+    if (!carouselTrack || !carouselIndicators || !carouselThumbs) return;
+    const idx = carouselState.currentIndex;
+    carouselTrack.style.transform = `translateX(${ -idx * 100 }%)`;
+
+    // indicators
+    Array.from(carouselIndicators.children).forEach((btn, i) => {
+        btn.classList.toggle("active", i === idx);
+    });
+    // thumbs
+    Array.from(carouselThumbs.children).forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === idx);
+    });
+}
+
+function nextSlide() {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = (carouselState.currentIndex + 1) % carouselState.slidesCount;
+    updateCarouselUI();
+}
+
+function prevSlide() {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = (carouselState.currentIndex - 1 + carouselState.slidesCount) % carouselState.slidesCount;
+    updateCarouselUI();
+}
+
+function goToSlide(index) {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = Math.max(0, Math.min(carouselState.slidesCount - 1, index));
+    updateCarouselUI();
+    resetCarouselTimer();
+}
+
+function startCarouselTimer() {
+    clearCarouselTimer();
+    carouselState.timer = setInterval(() => {
+        if (!carouselState.isPaused) nextSlide();
+    }, carouselState.autoplayDelay);
+}
+
+function clearCarouselTimer() {
+    if (carouselState.timer) {
+        clearInterval(carouselState.timer);
+        carouselState.timer = null;
+    }
+}
+
+function resetCarouselTimer() {
+    clearCarouselTimer();
+    startCarouselTimer();
+}
+
+// pause on hover
+if (imageCarousel) {
+    imageCarousel.addEventListener("mouseenter", () => {
+        carouselState.isPaused = true;
+    });
+    imageCarousel.addEventListener("mouseleave", () => {
+        carouselState.isPaused = false;
+    });
+}
+
+// prev/next controls
+if (carouselPrev) carouselPrev.addEventListener("click", () => { prevSlide(); resetCarouselTimer(); });
+if (carouselNext) carouselNext.addEventListener("click", () => { nextSlide(); resetCarouselTimer(); });
+
+// touch/swipe support (pointer events)
+if (carouselTrack) {
+    carouselTrack.addEventListener("pointerdown", (e) => {
+        carouselState.pointerStartX = e.clientX;
+    });
+    carouselTrack.addEventListener("pointerup", (e) => {
+        carouselState.pointerEndX = e.clientX;
+        const diff = carouselState.pointerEndX - carouselState.pointerStartX;
+        if (Math.abs(diff) > 40) {
+            if (diff < 0) nextSlide();
+            else prevSlide();
+            resetCarouselTimer();
+        }
+    });
+}
+
+/* =========================================================
    INICIAR SISTEMA
-========================================================= */
+======================================================== */
 
 async function iniciarSistema() {
 
