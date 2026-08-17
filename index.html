@@ -43,6 +43,28 @@
     --warning:#f0b429;
 }
 
+/* LIGHT THEME OVERRIDES (aplica-se ao body.light-theme) */
+body.light-theme {
+    --blue: #0b63b7;
+    --blue-light: #2d7fcf;
+    --green: #0ea47f;
+    --green-dark: #0a8d6b;
+
+    --background: #f4f6f8;
+    --background-dark: #e9eef2;
+
+    --card: #ffffff;
+    --card-light: #fbfdff;
+
+    --border: #d3dbe2;
+
+    --text: #0b1a24;
+    --text-muted: #58666f;
+
+    --danger: #c03a3a;
+    --warning: #b88600;
+}
+
 
 /* =========================================================
    RESET
@@ -106,9 +128,9 @@ body {
     background:
         linear-gradient(
             110deg,
-            #0878d1,
+            var(--blue),
             #0796ad,
-            #00a889
+            var(--green)
         );
 
     border-bottom:
@@ -178,6 +200,8 @@ body {
     display:flex;
 
     justify-content:flex-end;
+    gap:8px;
+    align-items:center;
 
 }
 
@@ -218,6 +242,22 @@ body {
 
 }
 
+/* Theme toggle button */
+
+.theme-toggle {
+    border:none;
+    border-radius:12px;
+    padding:10px 12px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    transition:.18s;
+}
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    filter:brightness(1.06);
+}
 
 /* =========================================================
    LAYOUT
@@ -325,7 +365,8 @@ body {
 
 
 /* =========================================================
-   BOTÃO ADICIONAR
+   BOTÃO ADICIONAR (ORIGINAL)
+   Será escondido em telas pequenas; substituído por FAB
 ========================================================= */
 
 .add-work-button {
@@ -371,6 +412,35 @@ body {
 
 }
 
+/* =========================================================
+   FLOATING ACTION BUTTON (FAB)
+========================================================= */
+
+.fab {
+    position: fixed;
+    right: 20px;
+    bottom: 22px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(100deg, var(--blue), var(--green));
+    color: white;
+    font-size:28px;
+    display: none; /* shown on small screens */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    z-index: 1200;
+    cursor: pointer;
+}
+.fab:active { transform: translateY(1px); }
+
+/* show FAB on small and also optionally on medium screens */
+@media (max-width: 750px) {
+    .fab { display:flex; }
+    .add-work-button { display:none; }
+}
 
 /* =========================================================
    FORMULÁRIO
@@ -409,28 +479,6 @@ body {
     color:var(--blue-light);
 
     font-size:24px;
-
-}
-
-
-.form-section {
-
-    margin-bottom:20px;
-
-}
-
-
-.form-section label {
-
-    display:block;
-
-    margin-bottom:8px;
-
-    color:#b8c8d7;
-
-    font-size:14px;
-
-    font-weight:bold;
 
 }
 
@@ -811,8 +859,8 @@ select option {
     background:
         linear-gradient(
             100deg,
-            #0878d1,
-            #00a889
+            var(--blue),
+            var(--green)
         );
 
     color:white;
@@ -1300,6 +1348,165 @@ select option {
 
 }
 
+/* Mobile: show compact card list for statistics */
+.statistics-cards {
+    display:none;
+    margin-top:8px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:12px;
+}
+.stat-card .name {
+    font-weight:700;
+    color:var(--text);
+    flex:1;
+}
+.stat-card .badges {
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+.stat-badge {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:32px;
+    border-radius:8px;
+    color:white;
+    font-weight:700;
+    font-size:13px;
+}
+.stat-badge.completed { background: #00a889; }
+.stat-badge.missing { background: #b53a3a; }
+
+/* =========================================================
+   IMAGE CAROUSEL (roleta de imagens)
+========================================================= */
+
+.carousel-section {
+    margin: 30px auto;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+.image-carousel {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 420ms ease;
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #080808;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.45);
+    color: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+.carousel-indicators {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 0 0;
+}
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.18);
+    cursor: pointer;
+}
+.carousel-indicators button.active {
+    background: var(--green);
+}
+
+/* small thumbnail strip */
+.carousel-thumbs {
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-top:12px;
+    padding-bottom:8px;
+}
+.carousel-thumb {
+    width:72px;
+    height:48px;
+    flex: 0 0 auto;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    border: 2px solid transparent;
+}
+.carousel-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.carousel-thumb.active { border-color: var(--green); }
+
+/* pending badge overlay for admin view */
+.carousel-pending-badge {
+    position:absolute;
+    left:10px;
+    top:10px;
+    background: rgba(240,180,41,0.12);
+    color:var(--warning);
+    padding:6px 8px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:13px;
+}
+
+/* responsive adjustments */
+@media (max-width: 600px) {
+    .carousel-prev, .carousel-next { width:36px; height:36px; }
+    .carousel-slide img { max-height: 300px; }
+    .carousel-thumb { width:56px; height:40px; }
+}
 
 /* =========================================================
    INSTRUÇÕES
@@ -1315,407 +1522,6 @@ select option {
 .instructions-section.visible {
 
     display:block;
-
-}
-
-
-.instructions-header {
-
-    margin-bottom:25px;
-
-}
-
-
-.instructions-header h1 {
-
-    color:var(--blue-light);
-
-    font-size:30px;
-
-    margin-bottom:8px;
-
-}
-
-
-.instructions-header p {
-
-    color:var(--text-muted);
-
-    line-height:1.6;
-
-}
-
-
-.instructions-grid {
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-}
-
-
-.instruction-card {
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    padding:25px;
-
-}
-
-
-.instruction-card h2 {
-
-    color:#52d5b8;
-
-    font-size:20px;
-
-    margin-bottom:14px;
-
-}
-
-
-.instruction-card p {
-
-    color:#c2d0dc;
-
-    line-height:1.7;
-
-    font-size:15px;
-
-}
-
-
-.instructions-extra {
-
-    margin-top:18px;
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    padding:25px;
-
-}
-
-
-.instructions-extra h2 {
-
-    color:var(--blue-light);
-
-    margin-bottom:12px;
-
-}
-
-
-.instructions-extra p {
-
-    color:#c2d0dc;
-
-    line-height:1.7;
-
-    margin-bottom:10px;
-
-}
-
-
-.instructions-extra p:last-child {
-
-    margin-bottom:0;
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.admin-modal {
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-        rgba(0,0,0,.72);
-
-    z-index:1000;
-
-}
-
-
-.admin-modal.visible {
-
-    display:flex;
-
-}
-
-
-.admin-modal-box {
-
-    width:100%;
-
-    max-width:400px;
-
-    padding:28px;
-
-    background:#111313;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.5);
-
-}
-
-
-.admin-modal-box h2 {
-
-    color:var(--blue-light);
-
-    font-size:24px;
-
-    margin-bottom:8px;
-
-}
-
-
-.admin-login-description {
-
-    color:var(--text-muted);
-
-    font-size:14px;
-
-    margin-bottom:22px;
-
-}
-
-
-.admin-modal-box label {
-
-    display:block;
-
-    margin-top:13px;
-
-    margin-bottom:7px;
-
-    color:#b8c8d7;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-}
-
-
-.admin-modal-buttons {
-
-    display:flex;
-
-    gap:10px;
-
-    margin-top:22px;
-
-}
-
-
-.admin-modal-buttons button {
-
-    flex:1;
-
-    border:none;
-
-    border-radius:9px;
-
-    padding:13px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-#cancelAdminLogin {
-
-    background:#272b2c;
-
-    color:#b7c3cc;
-
-}
-
-
-#confirmAdminLogin {
-
-    background:
-        linear-gradient(
-            100deg,
-            var(--blue),
-            var(--green)
-        );
-
-    color:white;
-
-}
-
-.google-admin-button {
-
-    width:100%;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    padding:14px;
-
-    background:white;
-
-    color:#202124;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.google-admin-button:hover {
-
-    filter:brightness(.96);
-
-    transform:translateY(-1px);
-
-}
-
-.google-admin-button:disabled {
-
-    opacity:.65;
-
-    cursor:wait;
-
-}
-
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-controls {
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin-top:20px;
-
-    padding-top:16px;
-
-    border-top:
-        1px solid
-        var(--border);
-
-}
-
-
-.admin-controls button {
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:
-        10px
-        15px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.approve-button {
-
-    background:#008f76;
-
-    color:white;
-
-}
-
-
-.edit-button {
-
-    background:#0878d1;
-
-    color:white;
-
-}
-
-
-.delete-button {
-
-    background:var(--danger);
-
-    color:white;
-
-}
-
-
-.pending-badge {
-
-    display:inline-block;
-
-    margin-bottom:15px;
-
-    padding:
-        7px
-        10px;
-
-    border-radius:7px;
-
-    background:
-        rgba(240,180,41,.10);
-
-    color:var(--warning);
-
-    font-size:13px;
-
-    font-weight:bold;
 
 }
 
@@ -1913,6 +1719,14 @@ select option {
 
     }
 
+    /* mobile: switch statistics presentation */
+    .statistics-table-container {
+        display:none;
+    }
+    .statistics-cards {
+        display:flex;
+    }
+
 }
 
 
@@ -1961,7 +1775,6 @@ select option {
 
 <body>
 
-
 <!-- =========================================================
      TOPO
 ========================================================= -->
@@ -1988,6 +1801,14 @@ select option {
     <div class="admin-area">
 
         <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Alternar tema claro/escuro"
+        >
+            🌙
+        </button>
+
+        <button
             class="admin-button"
             id="adminButton"
         >
@@ -2001,6 +1822,9 @@ select option {
 </header>
 
 
+
+<!-- Floating Add Work Button (FAB) -->
+<button id="fabAddWork" class="fab" title="+ Adicionar Trabalho">+</button>
 
 <!-- =========================================================
      LAYOUT PRINCIPAL
@@ -2380,6 +2204,9 @@ select option {
 
             </div>
 
+            <!-- Mobile-friendly card list -->
+            <div id="statisticsCards" class="statistics-cards" aria-live="polite"></div>
+
         </section>
 
 
@@ -2658,7 +2485,22 @@ select option {
 
 </main>
 
+<!-- =========================================================
+   IMAGE CAROUSEL (ROLET A) - no final (antes do modal)
+========================================================= -->
+<section class="carousel-section" id="carouselSection" aria-label="Galeria de imagens dos trabalhos">
+    <h2 style="color:var(--blue-light); margin-left:20px;">Galeria de imagens</h2>
+    <div class="image-carousel" id="imageCarousel" aria-live="polite">
+        <div class="carousel-track" role="list"></div>
 
+        <button class="carousel-prev" aria-label="Imagem anterior">‹</button>
+        <button class="carousel-next" aria-label="Próxima imagem">›</button>
+
+        <div class="carousel-indicators" role="tablist" aria-label="Indicadores"></div>
+
+        <div class="carousel-thumbs" aria-hidden="false"></div>
+    </div>
+</section>
 
 <!-- =========================================================
      LOGIN ADMINISTRADOR
@@ -2722,7 +2564,7 @@ select option {
 
 /* =========================================================
    SUPABASE
-========================================================= */
+======================================================== */
 
 const SUPABASE_URL =
     "https://tcertncsuhrtldeojqfx.supabase.co";
@@ -2736,11 +2578,12 @@ const STORAGE_BUCKET =
     "imagens";
 
 
+/* Normalize ADMIN emails to lowercase and trim */
 const ADMIN_EMAILS = [
     "francisco.silva.adrian@escola.pr.gov.br",
     "miguel.rocha.cardoso@escola.pr.gov.br",
     "luciane.lima26@escola.pr.gov.br"
-    ];
+].map(e => String(e || "").trim().toLowerCase());
 
 const supabaseClient =
     window.supabase.createClient(
@@ -2757,6 +2600,11 @@ const supabaseClient =
 const addWorkButton =
     document.getElementById(
         "addWorkButton"
+    );
+
+const fabAddWork =
+    document.getElementById(
+        "fabAddWork"
     );
 
 
@@ -2861,6 +2709,11 @@ const statisticsBody =
         "statisticsBody"
     );
 
+const statisticsCards =
+    document.getElementById(
+        "statisticsCards"
+    );
+
 
 const studentSelectContainer =
     document.getElementById(
@@ -2927,7 +2780,18 @@ const peopleFilterList =
         "peopleFilterList"
     );
 
+const themeToggle =
+    document.getElementById(
+        "themeToggle"
+    );
 
+const carouselSection = document.getElementById("carouselSection");
+const imageCarousel = document.getElementById("imageCarousel");
+const carouselTrack = imageCarousel ? imageCarousel.querySelector(".carousel-track") : null;
+const carouselIndicators = imageCarousel ? imageCarousel.querySelector(".carousel-indicators") : null;
+const carouselThumbs = imageCarousel ? imageCarousel.querySelector(".carousel-thumbs") : null;
+const carouselPrev = imageCarousel ? imageCarousel.querySelector(".carousel-prev") : null;
+const carouselNext = imageCarousel ? imageCarousel.querySelector(".carousel-next") : null;
 
 /* =========================================================
    VARIÁVEIS
@@ -2964,10 +2828,24 @@ let filtroAtual = {
 };
 
 
+/* =========================================================
+   CAROUSEL STATE
+========================================================= */
+
+const carouselState = {
+    currentIndex: 0,
+    timer: null,
+    autoplayDelay: 4000,
+    slidesCount: 0,
+    isPaused: false,
+    pointerStartX: 0,
+    pointerEndX: 0
+};
+
 
 /* =========================================================
    LISTA DE ALUNOS
-========================================================= */
+======================================================== */
 
 const alunos = [
     
@@ -3003,7 +2881,7 @@ const alunos = [
 
 /* =========================================================
    OPÇÕES DE ALUNOS
-========================================================= */
+======================================================== */
 
 function criarOpcoesAluno(select) {
 
@@ -3066,7 +2944,7 @@ document
 
 /* =========================================================
    ADICIONAR ALUNO
-========================================================= */
+======================================================== */
 
 addStudentButton.addEventListener(
     "click",
@@ -3140,7 +3018,7 @@ addStudentButton.addEventListener(
 
 /* =========================================================
    ALUNOS SELECIONADOS
-========================================================= */
+======================================================== */
 
 function obterAlunosSelecionados() {
 
@@ -3183,7 +3061,7 @@ function obterAlunosSelecionados() {
 
 /* =========================================================
    NAVEGAÇÃO
-========================================================= */
+======================================================== */
 
 function ativarNavegacao(
     botao
@@ -3214,7 +3092,7 @@ function ativarNavegacao(
 
 /* =========================================================
    INÍCIO
-========================================================= */
+======================================================== */
 
 homeButton.addEventListener(
     "click",
@@ -3252,7 +3130,7 @@ homeButton.addEventListener(
 
 /* =========================================================
    ESTATÍSTICAS
-========================================================= */
+======================================================== */
 
 statisticsButton.addEventListener(
     "click",
@@ -3290,7 +3168,7 @@ statisticsButton.addEventListener(
 
 /* =========================================================
    INSTRUÇÕES
-========================================================= */
+======================================================== */
 
 instructionsButton.addEventListener(
     "click",
@@ -3335,14 +3213,25 @@ addWorkButton.addEventListener(
             "visible"
         );
 
+        // scroll to top of form on mobile
+        if (workForm.classList.contains("visible")) {
+            workForm.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
     }
 );
 
+/* FAB também abre o formulário */
+fabAddWork.addEventListener("click", () => {
+    workForm.classList.toggle("visible");
+    if (workForm.classList.contains("visible")) {
+        workForm.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+});
 
 
 /* =========================================================
    SELEÇÃO DO TIPO
-========================================================= */
+======================================================== */
 
 typeButtons.forEach(
     button => {
@@ -3436,7 +3325,7 @@ typeButtons.forEach(
 
 /* =========================================================
    PRÉ-VISUALIZAÇÃO DA IMAGEM
-========================================================= */
+======================================================== */
 
 imageFile.addEventListener(
     "change",
@@ -3528,11 +3417,35 @@ imageFile.addEventListener(
 
 /* =========================================================
    UPLOAD PARA O SUPABASE STORAGE
-========================================================= */
+   com fallback uuid e checagem de tamanho
+======================================================== */
+
+function generateUUIDFallback() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (Math.random() * 16) | 0;
+        const v = c === 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+function safeRandomUUID() {
+    try {
+        if (crypto && typeof crypto.randomUUID === "function") {
+            return crypto.randomUUID();
+        }
+    } catch (e) { /* ignore */ }
+    return generateUUIDFallback();
+}
 
 async function enviarImagemStorage(
     arquivo
 ) {
+
+    // opcional: limitar para evitar uploads enormes (ex.: 15MB)
+    const MAX_MB = 15;
+    const tamanhoMB = arquivo.size / 1024 / 1024;
+    if (tamanhoMB > MAX_MB) {
+        throw new Error(`Imagem muito grande (${tamanhoMB.toFixed(2)} MB). Limite: ${MAX_MB} MB.`);
+    }
 
     const extensao =
         arquivo.name
@@ -3544,7 +3457,7 @@ async function enviarImagemStorage(
     const nomeArquivo =
         Date.now() +
         "-" +
-        crypto.randomUUID() +
+        safeRandomUUID() +
         "." +
         extensao;
 
@@ -3618,7 +3531,7 @@ async function enviarImagemStorage(
 
 /* =========================================================
    PUBLICAR
-========================================================= */
+======================================================== */
 
 publishButton.addEventListener(
     "click",
@@ -3878,7 +3791,7 @@ async function publicarTrabalho() {
 
         alert(
             "Ocorreu um erro ao enviar o trabalho.\n\n" +
-            error.message
+            (error && error.message ? error.message : String(error))
         );
 
 
@@ -4004,7 +3917,7 @@ function limparFormulario() {
 
 /* =========================================================
    LOGIN ADMINISTRADOR COM GOOGLE
-========================================================= */
+======================================================== */
 
 adminButton.addEventListener(
     "click",
@@ -4057,9 +3970,9 @@ async function fazerLoginAdmin() {
        const { data, error } = await supabaseClient.auth.signInWithOAuth({
             provider: "google",
             options: {
-                redirectTo: "https://adrianf-f.github.io/Revista_Digital/"
-    }
-});
+                redirectTo: window.location.origin + window.location.pathname
+            }
+        });
 
 
         if (error) {
@@ -4103,7 +4016,7 @@ googleAdminLogin.addEventListener(
 
 /* =========================================================
    SAIR ADMINISTRADOR
-========================================================= */
+======================================================== */
 
 async function sairAdministrador() {
 
@@ -4135,7 +4048,7 @@ async function sairAdministrador() {
 
 /* =========================================================
    SESSÃO
-========================================================= */
+======================================================== */
 
 async function verificarSessao() {
 
@@ -4250,7 +4163,7 @@ supabaseClient.auth.onAuthStateChange(
 
 /* =========================================================
    CARREGAR TRABALHOS
-========================================================= */
+======================================================== */
 
 async function carregarTrabalhos() {
 
@@ -4312,6 +4225,8 @@ async function carregarTrabalhos() {
 
         aplicarFiltros();
 
+        // atualizar a roleta de imagens sempre que os trabalhos mudarem
+        atualizarCarousel();
 
     } catch (error) {
 
@@ -4327,7 +4242,7 @@ async function carregarTrabalhos() {
 
 /* =========================================================
    APLICAR FILTROS
-========================================================= */
+======================================================== */
 
 function aplicarFiltros() {
 
@@ -4431,7 +4346,7 @@ function aplicarFiltros() {
 
 /* =========================================================
    RENDERIZAR TRABALHOS
-========================================================= */
+======================================================== */
 
 function renderizarTrabalhos(
     trabalhos
@@ -4850,7 +4765,7 @@ function renderizarTrabalhos(
 
 /* =========================================================
    CONTROLES ADMIN
-========================================================= */
+======================================================== */
 
 function criarControlesAdmin(
     card,
@@ -4963,7 +4878,7 @@ function criarControlesAdmin(
 
 /* =========================================================
    APROVAR
-========================================================= */
+======================================================== */
 
 async function aprovarTrabalho(
     id
@@ -5026,7 +4941,7 @@ async function aprovarTrabalho(
 
 /* =========================================================
    EDITAR
-========================================================= */
+======================================================== */
 
 async function editarTrabalho(
     trabalho
@@ -5158,7 +5073,7 @@ async function editarTrabalho(
 
 /* =========================================================
    APAGAR
-========================================================= */
+======================================================== */
 
 async function apagarTrabalho(
     id
@@ -5216,26 +5131,31 @@ async function apagarTrabalho(
 
 /* =========================================================
    YOUTUBE
-========================================================= */
+   versão mais robusta/segura
+======================================================== */
 
 function transformarYoutubeUrl(
     url
 ) {
 
+    if (!url || typeof url !== "string") return url;
+
     try {
 
         const endereco =
             new URL(
-                url
+                url.trim()
             );
 
 
         let id = "";
 
+        const hostname = endereco.hostname.toLowerCase();
+
 
 
         if (
-            endereco.hostname.includes(
+            hostname.includes(
                 "youtu.be"
             )
         ) {
@@ -5245,12 +5165,8 @@ function transformarYoutubeUrl(
                     1
                 );
 
-        }
-
-
-
-        if (
-            endereco.hostname.includes(
+        } else if (
+            hostname.includes(
                 "youtube.com"
             )
         ) {
@@ -5258,8 +5174,7 @@ function transformarYoutubeUrl(
             id =
                 endereco.searchParams.get(
                     "v"
-                );
-
+                ) || "";
 
             if (
                 !id &&
@@ -5272,10 +5187,9 @@ function transformarYoutubeUrl(
                     endereco.pathname
                         .split(
                             "/"
-                        )[2];
+                        )[2] || "";
 
             }
-
 
             if (
                 !id &&
@@ -5288,7 +5202,7 @@ function transformarYoutubeUrl(
                     endereco.pathname
                         .split(
                             "/"
-                        )[2];
+                        )[2] || "";
 
             }
 
@@ -5296,7 +5210,7 @@ function transformarYoutubeUrl(
 
 
 
-        if (!id) {
+        if (!id || !/^[a-zA-Z0-9_-]{6,}$/.test(id)) {
 
             return url;
 
@@ -5305,7 +5219,7 @@ function transformarYoutubeUrl(
 
         return (
             "https://www.youtube.com/embed/" +
-            id
+            encodeURIComponent(id)
         );
 
 
@@ -5321,7 +5235,8 @@ function transformarYoutubeUrl(
 
 /* =========================================================
    ESTATÍSTICAS
-========================================================= */
+   Agora renderiza tabela (desktop) e cards (mobile)
+======================================================== */
 
 async function carregarEstatisticas() {
 
@@ -5433,6 +5348,7 @@ function renderizarEstatisticas(
     trabalhos
 ) {
 
+    // --- Table (desktop) ---
     statisticsBody.innerHTML =
         "";
 
@@ -5512,13 +5428,48 @@ function renderizarEstatisticas(
         }
     );
 
+    // --- Cards (mobile) ---
+    statisticsCards.innerHTML = "";
+
+    alunos.forEach(aluno => {
+        const card = document.createElement("div");
+        card.className = "stat-card";
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = aluno;
+
+        const badges = document.createElement("div");
+        badges.className = "badges";
+
+        const tipos = [
+            { key: "texto", label: "T" },
+            { key: "imagem", label: "F" },
+            { key: "video", label: "V" }
+        ];
+
+        tipos.forEach(t => {
+            const possui = alunoPossuiTipo(trabalhos, aluno, t.key);
+            const b = document.createElement("div");
+            b.className = "stat-badge " + (possui ? "completed" : "missing");
+            b.title = (t.key === "texto" ? "Texto" : t.key === "imagem" ? "Foto" : "Vídeo");
+            b.textContent = t.label;
+            badges.appendChild(b);
+        });
+
+        card.appendChild(name);
+        card.appendChild(badges);
+
+        statisticsCards.appendChild(card);
+    });
+
 }
 
 
 
 /* =========================================================
    FILTROS PRINCIPAIS
-========================================================= */
+======================================================== */
 
 const filterButtons =
     document.querySelectorAll(
@@ -5693,7 +5644,7 @@ filterButtons.forEach(
 
 /* =========================================================
    FILTRO POR TEMPO
-========================================================= */
+======================================================== */
 
 document
     .querySelectorAll(
@@ -5778,7 +5729,7 @@ document
 
 /* =========================================================
    FILTRO POR TIPO DE TRABALHO
-========================================================= */
+======================================================== */
 
 document
     .querySelectorAll(
@@ -5884,7 +5835,7 @@ document
 
 /* =========================================================
    FILTRO POR PESSOA
-========================================================= */
+======================================================== */
 
 function atualizarFiltros() {
 
@@ -6004,10 +5955,206 @@ adminModal.addEventListener(
 
 
 /* =========================================================
+   TEMA (claro/escuro)
+======================================================== */
+
+function applyTheme(theme) {
+    if (theme === "light") {
+        document.body.classList.add("light-theme");
+        themeToggle.textContent = "☀️";
+    } else {
+        document.body.classList.remove("light-theme");
+        themeToggle.textContent = "🌙";
+    }
+    try { localStorage.setItem("revista_theme", theme); } catch (e) { /* ignore */ }
+}
+
+function toggleTheme() {
+    const current = document.body.classList.contains("light-theme") ? "light" : "dark";
+    applyTheme(current === "light" ? "dark" : "light");
+}
+
+themeToggle.addEventListener("click", toggleTheme);
+
+function initTheme() {
+    try {
+        const saved = localStorage.getItem("revista_theme");
+        if (saved === "light") applyTheme("light");
+        else applyTheme("dark");
+    } catch (e) {
+        applyTheme("dark");
+    }
+}
+
+/* =========================================================
+   CAROUSEL: lógica para montar/atualizar a roleta de imagens
+   usa trabalhosCache (mostra apenas imagens aprovadas quando não é admin)
+======================================================== */
+
+function buildSlidesFromTrabalhos() {
+    // seleciona trabalhos do tipo imagem; se for admin inclui pendentes
+    const imgs = (trabalhosCache || []).filter(t => t.tipo === "imagem" && (isAdmin ? true : t.aprovado));
+    return imgs;
+}
+
+function atualizarCarousel() {
+    if (!imageCarousel || !carouselTrack || !carouselIndicators || !carouselThumbs) return;
+
+    const slidesData = buildSlidesFromTrabalhos();
+
+    // se não há imagens, esconda a seção
+    if (!slidesData || slidesData.length === 0) {
+        carouselSection.style.display = "none";
+        clearCarouselTimer();
+        return;
+    } else {
+        carouselSection.style.display = "";
+    }
+
+    carouselTrack.innerHTML = "";
+    carouselIndicators.innerHTML = "";
+    carouselThumbs.innerHTML = "";
+
+    slidesData.forEach((trabalho, i) => {
+        // slide
+        const slide = document.createElement("div");
+        slide.className = "carousel-slide";
+        slide.setAttribute("role", "listitem");
+
+        const img = document.createElement("img");
+        img.src = trabalho.conteudo;
+        img.alt = "Trabalho - " + (trabalho.nome || "");
+        img.loading = "lazy";
+
+        img.onerror = () => { img.alt = "Não foi possível carregar esta imagem."; };
+
+        slide.appendChild(img);
+
+        // pending badge if admin and not approved
+        if (isAdmin && !trabalho.aprovado) {
+            const badge = document.createElement("div");
+            badge.className = "carousel-pending-badge";
+            badge.textContent = "⏳ Pendente";
+            slide.appendChild(badge);
+        }
+
+        carouselTrack.appendChild(slide);
+
+        // indicator
+        const indicator = document.createElement("button");
+        indicator.type = "button";
+        indicator.setAttribute("aria-label", "Ir para imagem " + (i+1));
+        indicator.addEventListener("click", () => goToSlide(i));
+        carouselIndicators.appendChild(indicator);
+
+        // thumb
+        const thumb = document.createElement("div");
+        thumb.className = "carousel-thumb";
+        const thumbImg = document.createElement("img");
+        thumbImg.src = trabalho.conteudo;
+        thumbImg.alt = trabalho.nome || "";
+        thumb.appendChild(thumbImg);
+        thumb.addEventListener("click", () => goToSlide(i));
+        carouselThumbs.appendChild(thumb);
+    });
+
+    carouselState.slidesCount = slidesData.length;
+    carouselState.currentIndex = 0;
+
+    updateCarouselUI();
+    startCarouselTimer();
+}
+
+function updateCarouselUI() {
+    if (!carouselTrack || !carouselIndicators || !carouselThumbs) return;
+    const idx = carouselState.currentIndex;
+    carouselTrack.style.transform = `translateX(${ -idx * 100 }%)`;
+
+    // indicators
+    Array.from(carouselIndicators.children).forEach((btn, i) => {
+        btn.classList.toggle("active", i === idx);
+    });
+    // thumbs
+    Array.from(carouselThumbs.children).forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === idx);
+    });
+}
+
+function nextSlide() {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = (carouselState.currentIndex + 1) % carouselState.slidesCount;
+    updateCarouselUI();
+}
+
+function prevSlide() {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = (carouselState.currentIndex - 1 + carouselState.slidesCount) % carouselState.slidesCount;
+    updateCarouselUI();
+}
+
+function goToSlide(index) {
+    if (carouselState.slidesCount === 0) return;
+    carouselState.currentIndex = Math.max(0, Math.min(carouselState.slidesCount - 1, index));
+    updateCarouselUI();
+    resetCarouselTimer();
+}
+
+function startCarouselTimer() {
+    clearCarouselTimer();
+    carouselState.timer = setInterval(() => {
+        if (!carouselState.isPaused) nextSlide();
+    }, carouselState.autoplayDelay);
+}
+
+function clearCarouselTimer() {
+    if (carouselState.timer) {
+        clearInterval(carouselState.timer);
+        carouselState.timer = null;
+    }
+}
+
+function resetCarouselTimer() {
+    clearCarouselTimer();
+    startCarouselTimer();
+}
+
+// pause on hover
+if (imageCarousel) {
+    imageCarousel.addEventListener("mouseenter", () => {
+        carouselState.isPaused = true;
+    });
+    imageCarousel.addEventListener("mouseleave", () => {
+        carouselState.isPaused = false;
+    });
+}
+
+// prev/next controls
+if (carouselPrev) carouselPrev.addEventListener("click", () => { prevSlide(); resetCarouselTimer(); });
+if (carouselNext) carouselNext.addEventListener("click", () => { nextSlide(); resetCarouselTimer(); });
+
+// touch/swipe support (pointer events)
+if (carouselTrack) {
+    carouselTrack.addEventListener("pointerdown", (e) => {
+        carouselState.pointerStartX = e.clientX;
+    });
+    carouselTrack.addEventListener("pointerup", (e) => {
+        carouselState.pointerEndX = e.clientX;
+        const diff = carouselState.pointerEndX - carouselState.pointerStartX;
+        if (Math.abs(diff) > 40) {
+            if (diff < 0) nextSlide();
+            else prevSlide();
+            resetCarouselTimer();
+        }
+    });
+}
+
+/* =========================================================
    INICIAR SISTEMA
-========================================================= */
+======================================================== */
 
 async function iniciarSistema() {
+
+    initTheme();
 
     await verificarSessao();
 
@@ -6018,7 +6165,6 @@ async function iniciarSistema() {
     atualizarFiltros();
 
 }
-
 
 iniciarSistema();
 
