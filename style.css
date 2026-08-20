@@ -1,0 +1,116 @@
+/* styles.css — centraliza estilo (resumido/compatível com HTML enviado) */
+
+/* Variáveis */
+:root{
+  --blue:#0878d1;
+  --green:#00a889;
+  --background:#202526;
+  --card:#111111;
+  --border:#343a3b;
+  --text:#d4e0eb;
+  --text-muted:#8996a2;
+  --danger:#b53a3a;
+}
+body.light-theme{
+  --background:#f4f6f8;
+  --card:#ffffff;
+  --border:#d3dbe2;
+  --text:#0b1a24;
+  --text-muted:#58666f;
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;background:radial-gradient(circle at top left, rgba(8,120,209,.08), transparent 35%),var(--background);
+  color:var(--text);font-family:Arial,Helvetica,sans-serif;
+}
+
+/* Topbar */
+.topbar{width:100%;min-height:86px;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;background:linear-gradient(110deg,var(--blue),#0796ad,var(--green));border-bottom:1px solid rgba(255,255,255,.08)}
+.school-logo img{height:56px;border-radius:8px;background:white;border:2px solid #000}
+.site-title{font-size:20px;color:white;font-weight:800}
+.admin-area{display:flex;gap:10px;align-items:center}
+.admin-button{border:none;border-radius:10px;padding:8px 12px;background:#101313;color:#00c59e;font-weight:700;cursor:pointer}
+.theme-toggle{border:none;border-radius:8px;padding:8px 10px;background:rgba(255,255,255,0.12);color:white;cursor:pointer}
+.organize-button{border:none;border-radius:8px;padding:8px 10px;background:rgba(255,255,255,0.12);color:white;cursor:pointer}
+
+/* Layout */
+.layout{max-width:1200px;margin:20px auto;display:grid;grid-template-columns:200px 1fr 240px;gap:18px;padding:0 12px}
+.left-sidebar,.right-sidebar{padding-top:8px}
+.main-content{min-width:0}
+
+/* Navigation */
+.main-navigation{display:flex;flex-direction:column;gap:8px}
+.nav-button{padding:10px;border-radius:8px;border:none;background:transparent;color:var(--text-muted);text-align:left;font-weight:700;cursor:pointer}
+.nav-button.active{background:rgba(0,168,137,.14);color:#4edabd}
+
+/* FAB */
+.fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(100deg,var(--blue),var(--green));color:white;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 20px rgba(0,0,0,.22);z-index:1200;cursor:pointer}
+
+/* Form */
+.work-form{display:none;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:12px}
+.work-form.visible{display:block}
+.type-buttons{display:flex;gap:8px;margin-top:6px}
+.type-button{padding:8px 10px;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);cursor:pointer}
+.type-button.selected{background:rgba(0,168,137,.12);border-color:var(--green);color:#4edabd}
+.work-fields{display:none}
+.work-fields.visible{display:block}
+
+/* Students */
+.student-select-container{display:flex;flex-direction:column;gap:8px}
+.student-row{display:flex;gap:8px;align-items:center}
+.add-student-button{margin-top:8px;padding:8px;border-radius:8px;border:1px solid var(--green);background:transparent;color:var(--green);cursor:pointer}
+
+/* Publish */
+.publish-button{margin-top:12px;padding:10px;border-radius:8px;border:none;background:linear-gradient(100deg,var(--blue),var(--green));color:white;font-weight:700;cursor:pointer}
+
+/* Works */
+.works-section{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.work-card{background:var(--card);border:1px solid rgba(255,255,255,.03);border-radius:10px;padding:12px}
+.work-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.work-author{font-weight:800}
+.work-date{color:var(--text-muted);font-size:13px}
+.work-type{padding:6px 10px;border-radius:999px;background:rgba(8,120,209,.08);font-weight:700}
+
+/* Admin controls */
+.admin-controls{display:flex;gap:8px;margin-top:10px}
+.admin-controls button{padding:8px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
+.approve-button{background:#008f76;color:white}
+.edit-button{background:#0878d1;color:white}
+.delete-button{background:var(--danger);color:white}
+
+/* Statistics */
+.statistics-table-container{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;overflow-x:auto}
+.statistics-table{width:100%;border-collapse:collapse;min-width:520px}
+.statistics-table th{padding:10px;background:rgba(0,0,0,0.12);color:var(--text);font-weight:700}
+.statistics-table td{padding:10px;text-align:center;border-top:1px solid rgba(255,255,255,.02)}
+.statistics-name{text-align:left;font-weight:700;color:var(--text)}
+.statistics-status{width:48px;height:28px;border-radius:6px}
+.statistics-status.completed{background:#00a889}
+.statistics-status.missing{background:#b53a3a}
+
+/* Cards for mobile-ready stats (hidden on desktop) */
+.statistics-cards{display:none;flex-direction:column;gap:10px}
+.stat-card{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:var(--card);border:1px solid var(--border)}
+.stat-badge{display:inline-flex;align-items:center;justify-content:center;width:36px;height:28px;border-radius:6px;color:white;font-weight:700}
+.stat-badge.completed{background:#00a889}
+.stat-badge.missing{background:#b53a3a}
+
+/* Carousel */
+.carousel-section{max-width:1100px;margin:28px auto;padding:0 12px}
+.image-carousel{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
+.carousel-track{display:flex;transition:transform .42s ease;will-change:transform}
+.carousel-slide{min-width:100%;flex:0 0 100%;display:flex;align-items:center;justify-content:center}
+.carousel-slide img{max-width:100%;max-height:420px;object-fit:contain;border-radius:8px}
+.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:white;border:none;width:44px;height:44px;border-radius:8px;cursor:pointer}
+.carousel-prev{left:12px}.carousel-next{right:12px}
+
+/* Responsive adjustments */
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;gap:12px;padding:0 12px}
+  .right-sidebar{display:none}
+  .statistics-table-container{display:none}
+  .statistics-cards{display:flex}
+  .fab{right:12px;bottom:12px}
+}
