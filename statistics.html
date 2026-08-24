@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Revista Digital — Estatísticas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="school-logo"><img src="Logo da escola.png" alt="Logo da escola"></div>
+    <div class="site-title">Estatísticas — Revista Digital</div>
+    <div class="admin-area">
+      <a href="index.html" class="btn secondary">← Voltar</a>
+      <button id="adminButton" class="btn">Entrar como administrador</button>
+    </div>
+  </header>
+
+  <main style="max-width:1100px;margin:28px auto;padding:0 18px;">
+    <section class="statistics-header" style="margin-bottom:12px">
+      <h1>Estatísticas dos trabalhos</h1>
+      <p>Abaixo estão as estatísticas por aluno e a lista de envios (aprovados). Administradores veem envios pendentes e controles.</p>
+    </section>
+
+    <div class="statistics-table-container" style="margin-bottom:16px;">
+      <table class="statistics-table" aria-live="polite">
+        <thead>
+          <tr><th>Nome</th><th>Texto</th><th>Foto</th><th>Vídeo</th></tr>
+        </thead>
+        <tbody id="statisticsBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Lista de envios (detalhes) -->
+    <section id="submissionsList" style="margin-top:8px;">
+      <h2>Envios</h2>
+      <div id="submissionsContainer"></div>
+    </section>
+
+    <!-- Modal para ver envio -->
+    <div id="submissionModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:1400;">
+      <div class="modal-box" style="width:100%;max-width:800px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;position:relative;">
+        <button id="closeModal" class="btn" style="position:absolute;right:12px;top:12px;">Fechar</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
