@@ -16,9 +16,10 @@
     <div class="site-title">Revista Digital</div>
 
     <div class="admin-area">
-      <button id="organizeToggle" class="organize-button" title="Organizar por">Organizar por</button>
-      <button id="themeToggle" class="theme-toggle" title="Alternar tema">🌙</button>
-      <button id="adminButton" class="admin-button">Entrar como administrador</button>
+      <a href="statistics.html" class="btn secondary">Estatísticas</a>
+      <a href="instructions.html" class="btn secondary">Instruções</a>
+      <button id="themeToggle" class="btn" title="Alternar tema">🌙</button>
+      <button id="adminButton" class="btn">Entrar como administrador</button>
     </div>
   </header>
 
@@ -29,7 +30,8 @@
     <aside class="left-sidebar">
       <nav class="main-navigation">
         <button class="nav-button active" id="homeButton">Início</button>
-        <button class="nav-button" id="statisticsButton">Estatísticas</button>
+        <a class="nav-button" href="statistics.html">Estatísticas</a>
+        <a class="nav-button" href="instructions.html">Instruções</a>
       </nav>
     </aside>
 
@@ -56,7 +58,7 @@
                   <select class="student-select"><option value="">Selecione seu nome</option></select>
                 </div>
               </div>
-              <button type="button" class="add-student-button" id="addStudentButton">+ Adicionar outro aluno</button>
+              <button type="button" class="btn" id="addStudentButton">+ Adicionar outro aluno</button>
             </div>
 
             <div class="form-section" id="textField">
@@ -78,7 +80,7 @@
               <input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=...">
             </div>
 
-            <button type="button" id="publishButton" class="publish-button">Publicar Trabalho</button>
+            <button type="button" id="publishButton" class="btn positive">Publicar Trabalho</button>
           </div>
         </div>
 
@@ -89,44 +91,35 @@
             <p>Os trabalhos aprovados aparecerão aqui.</p>
           </div>
         </section>
+
+        <!-- Quick instructions summary under the entry area -->
+        <section class="instructions-summary" style="margin-top:18px;">
+          <h3>Como enviar</h3>
+          <p>Escolha o tipo de trabalho, selecione o(s) aluno(s) e envie. Trabalhos ficam pendentes até aprovação.</p>
+          <p>Para ver estatísticas completas e os envios, clique em <a href="statistics.html">Estatísticas</a>.</p>
+        </section>
+
       </section>
 
-      <section id="statisticsSection" class="statistics-section" aria-live="polite">
-        <div class="statistics-header">
-          <h1>Estatísticas dos trabalhos</h1>
-          <p>Acompanhe quais trabalhos já foram publicados.</p>
-        </div>
-
-        <div class="statistics-table-container">
-          <table class="statistics-table">
-            <thead>
-              <tr><th>Nome</th><th>Texto</th><th>Foto</th><th>Vídeo</th></tr>
-            </thead>
-            <tbody id="statisticsBody"></tbody>
-          </table>
-        </div>
-
-        <div id="statisticsCards" class="statistics-cards" aria-hidden="true"></div>
-      </section>
     </section>
 
     <aside class="right-sidebar" id="rightSidebar" aria-hidden="true">
       <div class="filter-title">Organizar trabalhos</div>
-      <button class="filter-button active" data-filter="tempo">Por tempo</button>
+      <button class="btn secondary filter-button active" data-filter="tempo">Por tempo</button>
       <div id="tempoOptions" class="filter-options visible">
-        <button class="filter-subbutton selected" data-sort="recentes">Mais recentes</button>
+        <button class="btn secondary filter-subbutton selected" data-sort="recentes">Mais recentes</button>
       </div>
 
-      <button class="filter-button" data-filter="pessoa">Por pessoa</button>
+      <button class="btn secondary filter-button" data-filter="pessoa">Por pessoa</button>
       <div id="pessoaOptions" class="filter-options">
         <div id="peopleFilterList"></div>
       </div>
 
-      <button class="filter-button" data-filter="tipo">Por tipo de trabalho</button>
+      <button class="btn secondary filter-button" data-filter="tipo">Por tipo de trabalho</button>
       <div id="tipoOptions" class="filter-options">
-        <button class="filter-subbutton" data-work-type="texto">📝 Texto</button>
-        <button class="filter-subbutton" data-work-type="imagem">🖼️ Imagem</button>
-        <button class="filter-subbutton" data-work-type="video">▶️ Vídeo</button>
+        <button class="btn secondary filter-subbutton" data-work-type="texto">📝 Texto</button>
+        <button class="btn secondary filter-subbutton" data-work-type="imagem">🖼️ Imagem</button>
+        <button class="btn secondary filter-subbutton" data-work-type="video">▶️ Vídeo</button>
       </div>
     </aside>
   </main>
@@ -141,9 +134,8 @@
     </div>
   </section>
 
-  <!-- Link para página de instruções -->
   <footer style="text-align:center;padding:18px 8px 40px;">
-    <a href="instructions.html" style="color:var(--blue);font-weight:700">Ver instruções completas →</a>
+    <a href="instructions.html" class="btn secondary">Ver instruções completas →</a>
   </footer>
 
   <script type="module" src="app.js"></script>
