@@ -1,2702 +1,349 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Revista Digital</title>
-
 <link rel="icon" type="image/png" href="Logo da escola.png">
-
 <style>
-
-/* =========================================================
-   VARIÁVEIS
-========================================================= */
-
-:root {
-
-    --blue:#0878d1;
-    --blue-light:#6aa8ff;
-
-    --green:#00a889;
-    --green-dark:#007d70;
-
-    --background:#202526;
-    --background-dark:#111313;
-
-    --card:#111111;
-    --card-light:#181919;
-
-    --border:#343a3b;
-
-    --text:#d4e0eb;
-    --text-muted:#8996a2;
-
-    --danger:#b53a3a;
-    --warning:#f0b429;
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-
-}
-
-
-body {
-
-    min-height:100vh;
-
-    background:
-        radial-gradient(
-            circle at top left,
-            rgba(8,120,209,.08),
-            transparent 35%
-        ),
-        var(--background);
-
-    color:var(--text);
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-}
-
-
-/* =========================================================
-   TOPO
-========================================================= */
-
-.topbar {
-
-    width:100%;
-    min-height:110px;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        auto
-        1fr;
-
-    align-items:center;
-
-    gap:25px;
-
-    padding:
-        10px
-        4%;
-
-    background:
-        linear-gradient(
-            110deg,
-            #0878d1,
-            #0796ad,
-            #00a889
-        );
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-
-}
-
-
-.school-logo {
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-start;
-
-}
-
-
-.school-logo img {
-
-    height:86px;
-
-    width:auto;
-
-    max-width:300px;
-
-    object-fit:contain;
-
-    display:block;
-
-    border:
-        2px solid
-        #000;
-
-    border-radius:10px;
-
-    background:white;
-
-}
-
-
-.site-title {
-
-    color:white;
-
-    font-size:34px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    text-align:center;
-
-    white-space:nowrap;
-
-    text-shadow:
-        0 2px 5px
-        rgba(0,0,0,.2);
-
-}
-
-
-.admin-area {
-
-    display:flex;
-
-    justify-content:flex-end;
-
-}
-
-
-.admin-button {
-
-    border:none;
-
-    border-radius:30px;
-
-    padding:
-        15px
-        25px;
-
-    background:#101313;
-
-    color:#00c59e;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.admin-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    background:#080909;
-
-    color:#5ee6c4;
-
-}
-
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-
-.layout {
-
-    width:100%;
-
-    max-width:1500px;
-
-    margin:0 auto;
-
-    padding:30px;
-
-    display:grid;
-
-    grid-template-columns:
-        190px
-        minmax(0,1fr)
-        190px;
-
-    gap:25px;
-
-}
-
-
-.left-sidebar,
-.right-sidebar {
-
-    padding-top:10px;
-
-}
-
-
-.main-content {
-
-    min-width:0;
-
-}
-
-
-/* =========================================================
-   MENU ESQUERDO
-========================================================= */
-
-.main-navigation {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-}
-
-
-.nav-button {
-
-    width:100%;
-
-    padding:
-        16px
-        12px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:transparent;
-
-    color:#aebdca;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.nav-button:hover {
-
-    background:
-        rgba(0,168,137,.12);
-
-    color:white;
-
-}
-
-
-.nav-button.active {
-
-    background:
-        rgba(0,168,137,.20);
-
-    color:#52d5b8;
-
-}
-
-
-/* =========================================================
-   BOTÃO ADICIONAR (flutuante já incluído + botão normal)
-========================================================= */
-
-.add-work-button {
-
-    width:100%;
-
-    border:none;
-
-    border-radius:14px;
-
-    padding:18px;
-
-    background:
-        linear-gradient(
-            100deg,
-            var(--blue),
-            var(--green)
-        );
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,130,170,.15);
-
-    transition:.2s;
-
-}
-
-
-.add-work-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    filter:brightness(1.08);
-
-}
-
-/* Floating FAB (new) */
-.fab{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  border:none;
-  background:linear-gradient(90deg,var(--blue),var(--green));
-  color:white;
-  font-size:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 12px 28px rgba(0,0,0,0.28);
-  z-index:1200;
-  cursor:pointer;
-}
-
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
-
-.work-form {
-
-    display:none;
-
-    margin-top:18px;
-
-    padding:25px;
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-}
-
-
-.work-form.visible {
-
-    display:block;
-
-}
-
-
-.work-form h2 {
-
-    margin-bottom:22px;
-
-    color:var(--blue-light);
-
-    font-size:24px;
-
-}
-
-
-.form-section {
-
-    margin-bottom:20px;
-
-}
-
-
-.form-section label {
-
-    display:block;
-
-    margin-bottom:8px;
-
-    color:#b8c8d7;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-}
-
-
-/* =========================================================
-   TIPOS
-========================================================= */
-
-.type-buttons {
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-
-}
-
-
-.type-button {
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:10px;
-
-    padding:15px;
-
-    background:var(--card-light);
-
-    color:#b7c6d4;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.type-button:hover {
-
-    border-color:var(--green);
-
-}
-
-
-.type-button.selected {
-
-    background:
-        rgba(0,168,137,.18);
-
-    border-color:#00c7a5;
-
-    color:#4edabd;
-
-}
-
-
-/* =========================================================
-   CAMPOS
-========================================================= */
-
-.work-fields {
-
-    display:none;
-
-}
-
-
-.work-fields.visible {
-
-    display:block;
-
-}
-
-
-#textField,
-#imageField,
-#videoField {
-
-    display:none;
-
-}
-
-
-#textField.visible,
-#imageField.visible,
-#videoField.visible {
-
-    display:block;
-
-}
-
-
-input,
-select,
-textarea {
-
-    width:100%;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:9px;
-
-    background:#181919;
-
-    color:white;
-
-    outline:none;
-
-    font-family:inherit;
-
-    font-size:15px;
-
-}
-
-
-input,
-select {
-
-    height:46px;
-
-    padding:
-        0 13px;
-
-}
-
-
-textarea {
-
-    min-height:180px;
-
-    padding:13px;
-
-    resize:vertical;
-
-}
-
-
-input:focus,
-select:focus,
-textarea:focus {
-
-    border-color:var(--blue);
-
-    box-shadow:
-        0 0 0 2px
-        rgba(8,120,209,.15);
-
-}
-
-
-select {
-
-    cursor:pointer;
-
-}
-
-
-select option {
-
-    background:#181919;
-
-    color:white;
-
-}
-
-
-/* =========================================================
-   UPLOAD DE IMAGEM
-========================================================= */
-
-.image-upload-area {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-}
-
-
-.image-file-input {
-
-    width:100%;
-
-    height:auto;
-
-    padding:12px;
-
-    cursor:pointer;
-
-    background:#181919;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:9px;
-
-    color:#b8c8d7;
-
-}
-
-
-.image-file-input::file-selector-button {
-
-    border:none;
-
-    border-radius:7px;
-
-    padding:
-        10px
-        14px;
-
-    margin-right:12px;
-
-    background:
-        linear-gradient(
-            100deg,
-            var(--blue),
-            var(--green)
-        );
-
-    color:white;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.image-preview {
-
-    display:none;
-
-    margin-top:5px;
-
-    max-width:100%;
-
-    max-height:450px;
-
-    border-radius:12px;
-
-    object-fit:contain;
-
-    border:
-        1px solid
-        var(--border);
-
-    background:#080808;
-
-}
-
-
-.image-preview.visible {
-
-    display:block;
-
-}
-
-
-.image-upload-status {
-
-    color:var(--text-muted);
-
-    font-size:13px;
-
-}
-
-
-/* =========================================================
-   ALUNOS
-========================================================= */
-
-.student-select-container {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-
-.student-row {
-
-    display:flex;
-
-    gap:10px;
-
-    align-items:center;
-
-}
-
-
-.student-row select {
-
-    flex:1;
-
-}
-
-
-.remove-student-button {
-
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:var(--danger);
-
-    color:white;
-
-    font-weight:bold;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-}
-
-
-.add-student-button {
-
-    width:100%;
-
-    border:
-        1px solid
-        var(--green);
-
-    border-radius:9px;
-
-    padding:11px;
-
-    background:
-        rgba(0,168,137,.10);
-
-    color:#4edabd;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    margin-top:10px;
-
-}
-
-
-/* =========================================================
-   PUBLICAR
-========================================================= */
-
-.publish-button {
-
-    width:100%;
-
-    border:none;
-
-    border-radius:10px;
-
-    padding:14px;
-
-    background:
-        linear-gradient(
-            100deg,
-            #0878d1,
-            #00a889
-        );
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.publish-button:disabled {
-
-    opacity:.6;
-
-    cursor:wait;
-
-}
-
-
-/* =========================================================
-   TRABALHOS
-========================================================= */
-
-.works-section {
-
-    margin-top:25px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-}
-
-
-.work-card {
-
-    background:var(--card);
-
-    border:
-        1px solid
-        rgba(255,255,255,.05);
-
-    border-radius:18px;
-
-    padding:25px;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,.12);
-
-}
-
-
-.work-header {
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:18px;
-
-}
-
-
-.work-author {
-
-    color:#dbe8f4;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-}
-
-
-.work-date {
-
-    margin-top:5px;
-
-    color:var(--text-muted);
-
-    font-size:13px;
-
-}
-
-
-.work-type {
-
-    padding:
-        8px
-        12px;
-
-    border-radius:20px;
-
-    background:
-        rgba(8,120,209,.15);
-
-    color:#78baff;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-}
-
-
-.work-text {
-
-    color:#c2d0dc;
-
-    font-size:17px;
-
-    line-height:1.7;
-
-    white-space:pre-wrap;
-
-    word-break:break-word;
-
-}
-
-
-.work-video {
-
-    display:block;
-
-    width:100%;
-
-    aspect-ratio:16/9;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#000;
-
-}
-
-
-.work-image {
-
-    display:block;
-
-    width:100%;
-
-    max-height:700px;
-
-    object-fit:contain;
-
-    border-radius:12px;
-
-    background:#080808;
-
-}
-
-
-.empty-state {
-
-    padding:
-        50px
-        25px;
-
-    text-align:center;
-
-    background:var(--card);
-
-    border-radius:18px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.05);
-
-}
-
-
-.empty-state h1 {
-
-    color:var(--blue-light);
-
-    font-size:25px;
-
-    margin-bottom:12px;
-
-}
-
-
-.empty-state p {
-
-    color:var(--text-muted);
-
-    font-size:16px;
-
-}
-
-
-/* =========================================================
-   ORGANIZAÇÃO
-========================================================= */
-
-.filter-title {
-
-    color:#aebdca;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    margin-bottom:12px;
-
-}
-
-
-.filter-button {
-
-    width:100%;
-
-    border:none;
-
-    border-radius:10px;
-
-    padding:
-        14px
-        10px;
-
-    margin-bottom:8px;
-
-    background:transparent;
-
-    color:#aebdca;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    text-align:left;
-
-    cursor:pointer;
-
-}
-
-
-.filter-button:hover {
-
-    background:
-        rgba(8,120,209,.12);
-
-    color:white;
-
-}
-
-
-.filter-button.active {
-
-    background:
-        rgba(0,168,137,.18);
-
-    color:#4edabd;
-
-}
-
-
-.filter-options {
-
-    display:none;
-
-    margin-top:4px;
-
-    margin-bottom:15px;
-
-}
-
-
-.filter-options.visible {
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
-}
-
-
-.filter-subbutton {
-
-    width:100%;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:8px;
-
-    padding:10px;
-
-    margin-bottom:6px;
-
-    background:#181919;
-
-    color:#aebdca;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-.filter-subbutton:hover {
-
-    background:#242828;
-
-    color:white;
-
-}
-
-
-.filter-subbutton.selected {
-
-    border-color:var(--green);
-
-    color:#4edabd;
-
-    background:
-        rgba(0,168,137,.08);
-
-}
-
-
-/* =========================================================
-   ESTATÍSTICAS
-========================================================= */
-
-.statistics-section {
-
-    display:none;
-
-}
-
-
-.statistics-section.visible {
-
-    display:block;
-
-}
-
-
-.statistics-header {
-
-    margin-bottom:20px;
-
-}
-
-
-.statistics-header h1 {
-
-    color:var(--blue-light);
-
-    font-size:28px;
-
-    margin-bottom:8px;
-
-}
-
-
-.statistics-header p {
-
-    color:var(--text-muted);
-
-    font-size:15px;
-
-}
-
-
-.statistics-table-container {
-
-    width:100%;
-
-    overflow-x:auto;
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    padding:10px;
-
-}
-
-
-.statistics-table {
-
-    width:100%;
-
-    border-collapse:separate;
-
-    border-spacing:8px;
-
-    min-width:600px;
-
-}
-
-
-.statistics-table th {
-
-    padding:
-        14px
-        12px;
-
-    background:#181919;
-
-    color:#d4e0eb;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-    border-radius:8px;
-
-}
-
-
-.statistics-table th:first-child {
-
-    text-align:left;
-
-}
-
-
-.statistics-name {
-
-    padding:12px;
-
-    color:#dbe8f4;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    background:#181919;
-
-    border-radius:8px;
-
-}
-
-
-.statistics-status {
-
-    width:55px;
-
-    height:45px;
-
-    padding:0;
-
-    border-radius:8px;
-
-}
-
-
-.statistics-status.completed {
-
-    background:#00a889;
-
-}
-
-
-.statistics-status.missing {
-
-    background:#b53a3a;
-
-}
-
-
-/* =========================================================
-   INSTRUÇÕES
-========================================================= */
-
-.instructions-section {
-
-    display:none;
-
-}
-
-
-.instructions-section.visible {
-
-    display:block;
-
-}
-
-
-.instructions-header {
-
-    margin-bottom:25px;
-
-}
-
-
-.instructions-header h1 {
-
-    color:var(--blue-light);
-
-    font-size:30px;
-
-    margin-bottom:8px;
-
-}
-
-
-.instructions-header p {
-
-    color:var(--text-muted);
-
-    line-height:1.6;
-
-}
-
-
-.instructions-grid {
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-}
-
-
-.instruction-card {
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    padding:25px;
-
-}
-
-
-.instruction-card h2 {
-
-    color:#52d5b8;
-
-    font-size:20px;
-
-    margin-bottom:14px;
-
-}
-
-
-.instruction-card p {
-
-    color:#c2d0dc;
-
-    line-height:1.7;
-
-    font-size:15px;
-
-}
-
-
-.instructions-extra {
-
-    margin-top:18px;
-
-    background:var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    padding:25px;
-
-}
-
-
-.instructions-extra h2 {
-
-    color:var(--blue-light);
-
-    margin-bottom:12px;
-
-}
-
-
-.instructions-extra p {
-
-    color:#c2d0dc;
-
-    line-height:1.7;
-
-    margin-bottom:10px;
-
-}
-
-
-.instructions-extra p:last-child {
-
-    margin-bottom:0;
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.admin-modal {
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-        rgba(0,0,0,.72);
-
-    z-index:1000;
-
-}
-
-
-.admin-modal.visible {
-
-    display:flex;
-
-}
-
-
-.admin-modal-box {
-
-    width:100%;
-
-    max-width:400px;
-
-    padding:28px;
-
-    background:#111313;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.5);
-
-}
-
-
-.admin-modal-box h2 {
-
-    color:var(--blue-light);
-
-    font-size:24px;
-
-    margin-bottom:8px;
-
-}
-
-
-.admin-login-description {
-
-    color:var(--text-muted);
-
-    font-size:14px;
-
-    margin-bottom:22px;
-
-}
-
-
-.admin-modal-box label {
-
-    display:block;
-
-    margin-top:13px;
-
-    margin-bottom:7px;
-
-    color:#b8c8d7;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-}
-
-
-.admin-modal-buttons {
-
-    display:flex;
-
-    gap:10px;
-
-    margin-top:22px;
-
-}
-
-
-.admin-modal-buttons button {
-
-    flex:1;
-
-    border:none;
-
-    border-radius:9px;
-
-    padding:13px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-#cancelAdminLogin {
-
-    background:#272b2c;
-
-    color:#b7c3cc;
-
-}
-
-
-#confirmAdminLogin {
-
-    background:
-        linear-gradient(
-            100deg,
-            var(--blue),
-            var(--green)
-        );
-
-    color:white;
-
-}
-
-.google-admin-button {
-
-    width:100%;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    padding:14px;
-
-    background:white;
-
-    color:#202124;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.google-admin-button:hover {
-
-    filter:brightness(.96);
-
-    transform:translateY(-1px);
-
-}
-
-.google-admin-button:disabled {
-
-    opacity:.65;
-
-    cursor:wait;
-
-}
-
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-controls {
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin-top:20px;
-
-    padding-top:16px;
-
-    border-top:
-        1px solid
-        var(--border);
-
-}
-
-
-.admin-controls button {
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:
-        10px
-        15px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.approve-button {
-
-    background:#008f76;
-
-    color:white;
-
-}
-
-
-.edit-button {
-
-    background:#0878d1;
-
-    color:white;
-
-}
-
-
-.delete-button {
-
-    background:var(--danger);
-
-    color:white;
-
-}
-
-
-.pending-badge {
-
-    display:inline-block;
-
-    margin-bottom:15px;
-
-    padding:
-        7px
-        10px;
-
-    border-radius:7px;
-
-    background:
-        rgba(240,180,41,.10);
-
-    color:var(--warning);
-
-    font-size:13px;
-
-    font-weight:bold;
-
-}
-
-
-/* =========================================================
-   CAROUSEL (added)
-========================================================= */
-
+:root{
+  --blue:#0878d1;--blue-light:#6aa8ff;--green:#00a889;--green-dark:#007d70;
+  --background:#202526;--background-dark:#111313;--card:#111111;--card-light:#181919;
+  --border:#343a3b;--text:#d4e0eb;--text-muted:#8996a2;--danger:#b53a3a;--warning:#f0b429;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:radial-gradient(circle at top left,rgba(8,120,209,.08),transparent 35%),var(--background);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+
+/* topo */
+.topbar{width:100%;min-height:110px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:25px;padding:10px 4%;background:linear-gradient(110deg,#0878d1,#0796ad,#00a889);border-bottom:1px solid rgba(255,255,255,.08)}
+.school-logo{display:flex;align-items:center;justify-content:flex-start}
+.school-logo img{height:86px;width:auto;max-width:300px;object-fit:contain;display:block;border:2px solid #000;border-radius:10px;background:white}
+.site-title{color:white;font-size:34px;font-weight:800;letter-spacing:1px;text-align:center;white-space:nowrap;text-shadow:0 2px 5px rgba(0,0,0,.2)}
+.admin-area{display:flex;justify-content:flex-end}
+.admin-button{border:none;border-radius:30px;padding:15px 25px;background:#101313;color:#00c59e;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
+.admin-button:hover{transform:translateY(-2px);background:#080909;color:#5ee6c4}
+
+/* layout */
+.layout{width:100%;max-width:1500px;margin:0 auto;padding:30px;display:grid;grid-template-columns:190px minmax(0,1fr) 190px;gap:25px}
+.left-sidebar,.right-sidebar{padding-top:10px}
+.main-content{min-width:0}
+
+/* menu esquerdo */
+.main-navigation{display:flex;flex-direction:column;gap:12px}
+.nav-button{width:100%;padding:16px 12px;border:none;border-radius:12px;background:transparent;color:#aebdca;font-size:16px;font-weight:bold;text-align:left;cursor:pointer;transition:.2s}
+.nav-button:hover{background:rgba(0,168,137,.12);color:white}
+.nav-button.active{background:rgba(0,168,137,.20);color:#52d5b8}
+
+/* botão adicionar */
+.add-work-button{width:100%;border:none;border-radius:14px;padding:18px;background:linear-gradient(100deg,var(--blue),var(--green));color:white;font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px rgba(0,130,170,.15);transition:.2s}
+.add-work-button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(90deg,var(--blue),var(--green));color:white;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(0,0,0,.28);z-index:1200;cursor:pointer}
+
+/* formulário */
+.work-form{display:none;margin-top:18px;padding:25px;background:var(--card);border:1px solid var(--border);border-radius:18px}
+.work-form.visible{display:block}
+.work-form h2{margin-bottom:22px;color:var(--blue-light);font-size:24px}
+.form-section{margin-bottom:20px}
+.form-section label{display:block;margin-bottom:8px;color:#b8c8d7;font-size:14px;font-weight:bold}
+.type-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.type-button{border:1px solid var(--border);border-radius:10px;padding:15px;background:var(--card-light);color:#b7c6d4;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
+.type-button:hover{border-color:var(--green)}
+.type-button.selected{background:rgba(0,168,137,.18);border-color:#00c7a5;color:#4edabd}
+.work-fields{display:none}
+.work-fields.visible{display:block}
+#textField,#imageField,#videoField{display:none}
+#textField.visible,#imageField.visible,#videoField.visible{display:block}
+input,select,textarea{width:100%;border:1px solid var(--border);border-radius:9px;background:#181919;color:white;outline:none;font-family:inherit;font-size:15px}
+input,select{height:46px;padding:0 13px}
+textarea{min-height:180px;padding:13px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(8,120,209,.15)}
+select{cursor:pointer}
+select option{background:#181919;color:white}
+
+/* upload imagem */
+.image-upload-area{display:flex;flex-direction:column;gap:12px}
+.image-file-input{width:100%;height:auto;padding:12px;cursor:pointer;background:#181919;border:1px solid var(--border);border-radius:9px;color:#b8c8d7}
+.image-file-input::file-selector-button{border:none;border-radius:7px;padding:10px 14px;margin-right:12px;background:linear-gradient(100deg,var(--blue),var(--green));color:white;font-weight:bold;cursor:pointer}
+.image-preview{display:none;margin-top:5px;max-width:100%;max-height:450px;border-radius:12px;object-fit:contain;border:1px solid var(--border);background:#080808}
+.image-preview.visible{display:block}
+.image-upload-status{color:var(--text-muted);font-size:13px}
+
+/* alunos */
+.student-select-container{display:flex;flex-direction:column;gap:10px}
+.student-row{display:flex;gap:10px;align-items:center}
+.student-row select{flex:1}
+.remove-student-button{width:42px;height:42px;border:none;border-radius:8px;background:var(--danger);color:white;font-weight:bold;font-size:20px;cursor:pointer}
+.add-student-button{width:100%;border:1px solid var(--green);border-radius:9px;padding:11px;background:rgba(0,168,137,.10);color:#4edabd;font-weight:bold;cursor:pointer;margin-top:10px}
+
+/* publicar */
+.publish-button{width:100%;border:none;border-radius:10px;padding:14px;background:linear-gradient(100deg,#0878d1,#00a889);color:white;font-size:16px;font-weight:bold;cursor:pointer}
+.publish-button:disabled{opacity:.6;cursor:wait}
+
+/* trabalhos */
+.works-section{margin-top:25px;display:flex;flex-direction:column;gap:18px}
+.work-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,.12)}
+.work-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}
+.work-author{color:#dbe8f4;font-size:20px;font-weight:bold}
+.work-date{margin-top:5px;color:var(--text-muted);font-size:13px}
+.work-type{padding:8px 12px;border-radius:20px;background:rgba(8,120,209,.15);color:#78baff;font-size:13px;font-weight:bold}
+.work-text{color:#c2d0dc;font-size:17px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.work-video{display:block;width:100%;aspect-ratio:16/9;border:none;border-radius:12px;background:#000}
+.work-image{display:block;width:100%;max-height:700px;object-fit:contain;border-radius:12px;background:#080808}
+.empty-state{padding:50px 25px;text-align:center;background:var(--card);border-radius:18px;border:1px solid rgba(255,255,255,.05)}
+.empty-state h1{color:var(--blue-light);font-size:25px;margin-bottom:12px}
+.empty-state p{color:var(--text-muted);font-size:16px}
+
+/* organização */
+.filter-title{color:#aebdca;font-size:14px;font-weight:bold;margin-bottom:12px}
+.filter-button{width:100%;border:none;border-radius:10px;padding:14px 10px;margin-bottom:8px;background:transparent;color:#aebdca;font-size:14px;font-weight:bold;text-align:left;cursor:pointer}
+.filter-button:hover{background:rgba(8,120,209,.12);color:white}
+.filter-button.active{background:rgba(0,168,137,.18);color:#4edabd}
+.filter-options{display:none;margin-top:4px;margin-bottom:15px}
+.filter-options.visible{display:flex;flex-direction:column;gap:8px}
+.filter-subbutton{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:6px;background:#181919;color:#aebdca;text-align:left;cursor:pointer;transition:.2s}
+.filter-subbutton:hover{background:#242828;color:white}
+.filter-subbutton.selected{border-color:var(--green);color:#4edabd;background:rgba(0,168,137,.08)}
+
+/* estatísticas */
+.statistics-section{display:none}
+.statistics-section.visible{display:block}
+.statistics-header{margin-bottom:20px}
+.statistics-header h1{color:var(--blue-light);font-size:28px;margin-bottom:8px}
+.statistics-header p{color:var(--text-muted);font-size:15px}
+.statistics-table-container{width:100%;overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:10px}
+.statistics-table{width:100%;border-collapse:separate;border-spacing:8px;min-width:600px}
+.statistics-table th{padding:14px 12px;background:#181919;color:#d4e0eb;font-size:15px;font-weight:bold;text-align:center;border-radius:8px}
+.statistics-table th:first-child{text-align:left}
+.statistics-name{padding:12px;color:#dbe8f4;font-size:15px;font-weight:bold;background:#181919;border-radius:8px}
+.statistics-status{width:55px;height:45px;padding:0;border-radius:8px;margin:0 auto}
+.statistics-status.completed{background:#00a889}
+.statistics-status.missing{background:#b53a3a}
+
+/* instruções */
+.instructions-section{display:none}
+.instructions-section.visible{display:block}
+.instructions-header{margin-bottom:25px}
+.instructions-header h1{color:var(--blue-light);font-size:30px;margin-bottom:8px}
+.instructions-header p{color:var(--text-muted);line-height:1.6}
+.instructions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.instruction-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:25px}
+.instruction-card h2{color:#52d5b8;font-size:20px;margin-bottom:14px}
+.instruction-card p{color:#c2d0dc;line-height:1.7;font-size:15px}
+.instructions-extra{margin-top:18px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:25px}
+.instructions-extra h2{color:var(--blue-light);margin-bottom:12px}
+.instructions-extra p{color:#c2d0dc;line-height:1.7;margin-bottom:10px}
+.instructions-extra p:last-child{margin-bottom:0}
+
+/* login */
+.admin-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);z-index:1000}
+.admin-modal.visible{display:flex}
+.admin-modal-box{width:100%;max-width:400px;padding:28px;background:#111313;border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.admin-modal-box h2{color:var(--blue-light);font-size:24px;margin-bottom:8px}
+.admin-login-description{color:var(--text-muted);font-size:14px;margin-bottom:22px}
+.admin-modal-buttons{display:flex;gap:10px;margin-top:22px}
+.admin-modal-buttons button{flex:1;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:bold;cursor:pointer}
+#cancelAdminLogin{background:#272b2c;color:#b7c3cc}
+.google-admin-button{width:100%;border:1px solid var(--border);border-radius:10px;padding:14px;background:white;color:#202124;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
+.google-admin-button:hover{filter:brightness(.96);transform:translateY(-1px)}
+.google-admin-button:disabled{opacity:.65;cursor:wait}
+
+/* admin */
+.admin-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.admin-controls button{border:none;border-radius:8px;padding:10px 15px;font-size:13px;font-weight:bold;cursor:pointer}
+.approve-button{background:#008f76;color:white}
+.edit-button{background:#0878d1;color:white}
+.delete-button{background:var(--danger);color:white}
+.pending-badge{display:inline-block;margin-bottom:15px;padding:7px 10px;border-radius:7px;background:rgba(240,180,41,.10);color:var(--warning);font-size:13px;font-weight:bold}
+
+/* carrossel */
 .carousel-section{max-width:1100px;margin:28px auto;padding:0 12px}
 .image-carousel{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
 .carousel-track{display:flex;transition:transform .42s ease;will-change:transform}
 .carousel-slide{min-width:100%;display:flex;align-items:center;justify-content:center}
 .carousel-slide img{max-width:100%;max-height:420px;object-fit:contain;border-radius:8px}
-.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);color:white;border:none;width:44px;height:44px;border-radius:8px;cursor:pointer}
+.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:white;border:none;width:44px;height:44px;border-radius:8px;cursor:pointer}
 .carousel-prev{left:12px}.carousel-next{right:12px}
 
-/* =========================================================
-   RESPONSIVIDADE
-========================================================= */
-
-@media(max-width:1000px) {
-
-    .layout {
-
-        grid-template-columns:
-            160px
-            minmax(0,1fr)
-            160px;
-
-        gap:15px;
-
-        padding:20px;
-
-    }
-
-
-    .site-title {
-
-        font-size:28px;
-
-    }
-
-
-    .school-logo img {
-
-        max-width:200px;
-
-    }
-
-
-    .admin-button {
-
-        padding:
-            12px
-            15px;
-
-        font-size:13px;
-
-    }
-
-
-    .instructions-grid {
-
-        grid-template-columns:1fr;
-
-    }
-
+/* responsividade */
+@media(max-width:1000px){
+  .layout{grid-template-columns:160px minmax(0,1fr) 160px;gap:15px;padding:20px}
+  .site-title{font-size:28px}
+  .school-logo img{max-width:200px}
+  .admin-button{padding:12px 15px;font-size:13px}
+  .instructions-grid{grid-template-columns:1fr}
 }
-
-
-@media(max-width:750px) {
-
-    .topbar {
-
-        display:flex;
-
-        flex-direction:column;
-
-        justify-content:center;
-
-        padding:15px;
-
-        gap:12px;
-
-    }
-
-
-    .school-logo {
-
-        justify-content:center;
-
-    }
-
-
-    .school-logo img {
-
-        height:75px;
-
-    }
-
-
-    .site-title {
-
-        font-size:25px;
-
-        white-space:normal;
-
-    }
-
-
-    .admin-area {
-
-        width:100%;
-
-        justify-content:center;
-
-    }
-
-
-    .layout {
-
-        display:flex;
-
-        flex-direction:column;
-
-        padding:15px;
-
-    }
-
-
-    .left-sidebar {
-
-        order:1;
-
-        padding:0;
-
-    }
-
-
-    .main-navigation {
-
-        display:grid;
-
-        grid-template-columns:
-            repeat(3,1fr);
-
-        gap:7px;
-
-    }
-
-
-    .nav-button {
-
-        padding:
-            13px
-            6px;
-
-        font-size:13px;
-
-        text-align:center;
-
-    }
-
-
-    .main-content {
-
-        order:2;
-
-    }
-
-
-    .right-sidebar {
-
-        order:3;
-
-        padding:0;
-
-    }
-
-
-    .type-buttons {
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .work-card {
-
-        padding:18px;
-
-    }
-
-
-    .work-header {
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-    }
-
-
-    .instructions-grid {
-
-        grid-template-columns:1fr;
-
-    }
-
+@media(max-width:750px){
+  .topbar{display:flex;flex-direction:column;justify-content:center;padding:15px;gap:12px}
+  .school-logo{justify-content:center}
+  .school-logo img{height:75px}
+  .site-title{font-size:25px;white-space:normal}
+  .admin-area{width:100%;justify-content:center}
+  .layout{display:flex;flex-direction:column;padding:15px}
+  .left-sidebar{order:1;padding:0}
+  .main-navigation{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .nav-button{padding:13px 6px;font-size:13px;text-align:center}
+  .main-content{order:2}
+  .right-sidebar{order:3;padding:0}
+  .type-buttons{grid-template-columns:1fr}
+  .work-card{padding:18px}
+  .work-header{flex-direction:column;align-items:flex-start}
+  .instructions-grid{grid-template-columns:1fr}
 }
-
-
-@media(max-width:450px) {
-
-    .work-form {
-
-        padding:18px;
-
-    }
-
-
-    .admin-modal-box {
-
-        padding:20px;
-
-    }
-
-
-    .admin-controls {
-
-        flex-direction:column;
-
-    }
-
-
-    .admin-controls button {
-
-        width:100%;
-
-    }
-
-
-    .student-row {
-
-        align-items:stretch;
-
-    }
-
+@media(max-width:450px){
+  .work-form{padding:18px}
+  .admin-modal-box{padding:20px}
+  .admin-controls{flex-direction:column}
+  .admin-controls button{width:100%}
+  .student-row{align-items:stretch}
 }
-
 </style>
-
 </head>
-
-
 <body>
 
-
-<!-- =========================================================
-     TOPO
-========================================================= -->
-
 <header class="topbar">
-
-    <div class="school-logo">
-
-        <img
-            src="Logo da escola.png"
-            alt="Logo da escola"
-        >
-
-    </div>
-
-
-    <div class="site-title">
-
-        Revista Digital
-
-    </div>
-
-
-    <div class="admin-area">
-
-      <a href="statistics.html" class="btn secondary" style="margin-right:8px;color:inherit;text-decoration:none;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03)">Estatísticas</a>
-      <a href="instructions.html" class="btn secondary" style="margin-right:8px;color:inherit;text-decoration:none;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03)">Instruções</a>
-        <button
-            class="admin-button"
-            id="adminButton"
-        >
-
-            Entrar como administrador
-
-        </button>
-
-    </div>
-
+  <div class="school-logo"><img src="Logo da escola.png" alt="Logo da escola"></div>
+  <div class="site-title">Revista Digital</div>
+  <div class="admin-area">
+    <button class="admin-button" id="adminButton">Entrar como administrador</button>
+  </div>
 </header>
 
-
-
-<!-- =========================================================
-     LAYOUT PRINCIPAL
-========================================================= -->
-
 <main class="layout">
-
-
-    <!-- =====================================================
-         MENU ESQUERDO
-    ====================================================== -->
-
-    <aside class="left-sidebar">
-
-        <nav class="main-navigation">
-
-            <button
-                class="nav-button active"
-                id="homeButton"
-            >
-                Início
-            </button>
-
-
-            <button
-                class="nav-button"
-                id="statisticsButton"
-            >
-                Estatísticas
-            </button>
-
-
-            <button
-                class="nav-button"
-                id="instructionsButton"
-            >
-                Instruções
-            </button>
-
-        </nav>
-
-    </aside>
-
-
-
-    <!-- =====================================================
-         CONTEÚDO
-    ====================================================== -->
-
-    <section class="main-content">
-
-
-        <!-- =================================================
-             INÍCIO
-        ================================================== -->
-
-        <section id="homeSection">
-
-
-            <button
-                class="add-work-button"
-                id="addWorkButton"
-            >
-
-                + Adicionar Trabalho
-
-            </button>
-
-
-
-            <!-- =============================================
-                 FORMULÁRIO
-            ============================================== -->
-
-            <div
-                class="work-form"
-                id="workForm"
-            >
-
-                <h2>
-                    Adicionar Trabalho
-                </h2>
-
-
-                <div class="form-section">
-
-                    <label>
-                        Tipo de trabalho
-                    </label>
-
-
-                    <div class="type-buttons">
-
-
-                        <button
-                            type="button"
-                            class="type-button"
-                            data-type="texto"
-                        >
-
-                            📝 Texto
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="type-button"
-                            data-type="imagem"
-                        >
-
-                            🖼️ Imagem
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="type-button"
-                            data-type="video"
-                        >
-
-                            ▶️ Vídeo
-
-                        </button>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <div
-                    class="work-fields"
-                    id="workFields"
-                >
-
-
-                    <!-- =====================================
-                         ALUNOS
-                    ====================================== -->
-
-                    <div class="form-section">
-
-                        <label>
-                            Aluno(s)
-                        </label>
-
-
-                        <div
-                            class="student-select-container"
-                            id="studentSelectContainer"
-                        >
-
-                            <div class="student-row">
-
-                                <select
-                                    class="student-select"
-                                >
-
-                                    <option value="">
-                                        Selecione seu nome
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            class="add-student-button"
-                            id="addStudentButton"
-                        >
-
-                            + Adicionar outro aluno
-
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- =====================================
-                         TEXTO
-                    ====================================== -->
-
-                    <div
-                        class="form-section"
-                        id="textField"
-                    >
-
-                        <label for="textContent">
-                            Trabalho
-                        </label>
-
-
-                        <textarea
-                            id="textContent"
-                            placeholder="Digite o seu trabalho..."
-                        ></textarea>
-
-                    </div>
-
-
-
-                    <!-- =====================================
-                         IMAGEM
-                    ====================================== -->
-
-                    <div
-                        class="form-section"
-                        id="imageField"
-                    >
-
-                        <label for="imageFile">
-                            Escolher imagem
-                        </label>
-
-
-                        <div class="image-upload-area">
-
-                            <input
-                                type="file"
-                                id="imageFile"
-                                class="image-file-input"
-                                accept="image/*"
-                            >
-
-
-                            <div
-                                class="image-upload-status"
-                                id="imageUploadStatus"
-                            >
-                                Selecione uma imagem do seu dispositivo.
-                            </div>
-
-
-                            <img
-                                id="imagePreview"
-                                class="image-preview"
-                                alt="Pré-visualização da imagem"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =====================================
-                         VÍDEO
-                    ====================================== -->
-
-                    <div
-                        class="form-section"
-                        id="videoField"
-                    >
-
-                        <label for="videoUrl">
-                            URL do vídeo do YouTube
-                        </label>
-
-
-                        <input
-                            type="url"
-                            id="videoUrl"
-                            placeholder="https://www.youtube.com/watch?v=..."
-                        >
-
-                    </div>
-
-
-
-                    <button
-                        type="button"
-                        class="publish-button"
-                        id="publishButton"
-                    >
-
-                        Publicar Trabalho
-
-                    </button>
-
-                </div>
-
+  <aside class="left-sidebar">
+    <nav class="main-navigation">
+      <button class="nav-button active" id="homeButton">Início</button>
+      <button class="nav-button" id="statisticsButton">Estatísticas</button>
+      <button class="nav-button" id="instructionsButton">Instruções</button>
+    </nav>
+  </aside>
+
+  <section class="main-content">
+    <section id="homeSection">
+      <button class="add-work-button" id="addWorkButton">+ Adicionar Trabalho</button>
+
+      <div class="work-form" id="workForm">
+        <h2>Adicionar Trabalho</h2>
+        <div class="form-section">
+          <label>Tipo de trabalho</label>
+          <div class="type-buttons">
+            <button type="button" class="type-button" data-type="texto">📝 Texto</button>
+            <button type="button" class="type-button" data-type="imagem">🖼️ Imagem</button>
+            <button type="button" class="type-button" data-type="video">▶️ Vídeo</button>
+          </div>
+        </div>
+
+        <div class="work-fields" id="workFields">
+          <div class="form-section">
+            <label>Aluno(s)</label>
+            <div class="student-select-container" id="studentSelectContainer">
+              <div class="student-row">
+                <select class="student-select"><option value="">Selecione seu nome</option></select>
+              </div>
             </div>
+            <button type="button" class="add-student-button" id="addStudentButton">+ Adicionar outro aluno</button>
+          </div>
 
+          <div class="form-section" id="textField">
+            <label for="textContent">Trabalho</label>
+            <textarea id="textContent" placeholder="Digite o seu trabalho..."></textarea>
+          </div>
 
-
-            <!-- =============================================
-                 TRABALHOS
-            ============================================== -->
-
-            <section
-                class="works-section"
-                id="worksArea"
-            >
-
-                <div class="empty-state">
-
-                    <h1>
-                        Trabalhos postados
-                    </h1>
-
-                    <p>
-                        Os trabalhos aprovados aparecerão aqui.
-                    </p>
-
-                </div>
-
-            </section>
-
-        </section>
-
-
-
-        <!-- =================================================
-             ESTATÍSTICAS
-        ================================================== -->
-
-        <section
-            class="statistics-section"
-            id="statisticsSection"
-        >
-
-            <div class="statistics-header">
-
-                <h1>
-                    Estatísticas dos trabalhos
-                </h1>
-
-                <p>
-                    Acompanhe quais trabalhos já foram publicados.
-                </p>
-
+          <div class="form-section" id="imageField">
+            <label for="imageFile">Escolher imagem</label>
+            <div class="image-upload-area">
+              <input type="file" id="imageFile" class="image-file-input" accept="image/*">
+              <div class="image-upload-status" id="imageUploadStatus">Selecione uma imagem do seu dispositivo.</div>
+              <img id="imagePreview" class="image-preview" alt="Pré-visualização da imagem">
             </div>
-
-
-            <div class="statistics-table-container">
-
-                <table class="statistics-table">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Nome
-                            </th>
-
-                            <th>
-                                Texto
-                            </th>
-
-                            <th>
-                                Foto
-                            </th>
-
-                            <th>
-                                Vídeo
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody
-                        id="statisticsBody"
-                    ></tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             INSTRUÇÕES
-        ================================================== -->
-
-        <section
-            class="instructions-section"
-            id="instructionsSection"
-        >
-
-            <div class="instructions-header">
-
-                <h1>
-                    Instruções
-                </h1>
-
-                <p>
-                    Confira abaixo como enviar cada tipo de trabalho
-                    para a Revista Digital.
-                </p>
-
-            </div>
-
-
-            <div class="instructions-grid">
-
-
-                <article class="instruction-card">
-
-                    <h2>
-                        📝 Texto
-                    </h2>
-
-                    <p>
-
-                        Esta parte deve ser utilizada para colocar o
-                        texto do primeiro trabalho realizado em sala
-                        de aula, sobre o tema
-                        <strong>
-                            “Quem é o intelectual para você?”
-                        </strong>.
-
-                        Escreva o trabalho diretamente no campo
-                        disponibilizado no momento da publicação.
-
-                    </p>
-
-                </article>
-
-
-
-                <article class="instruction-card">
-
-                    <h2>
-                        🖼️ Foto
-                    </h2>
-
-                    <p>
-
-                        Esta opção deve ser utilizada para publicar o
-                        trabalho do mapa semântico ou mapa mental.
-
-                        Selecione a imagem diretamente do seu
-                        dispositivo no campo de envio.
-
-                    </p>
-
-                </article>
-
-
-
-                <article class="instruction-card">
-
-                    <h2>
-                        ▶️ Vídeo
-                    </h2>
-
-                    <p>
-
-                        Para publicar o vídeo, primeiro envie o vídeo
-                        para o YouTube.
-
-                        O vídeo deve estar configurado como
-                        <strong>“Não listado”</strong>.
-
-                        Depois, coloque o link do vídeo no campo indicado.
-
-                        Esse vídeo corresponde ao trabalho do
-                        <strong>podcast</strong>.
-
-                    </p>
-
-                </article>
-
-            </div>
-
-
-
-            <div class="instructions-extra">
-
-                <h2>
-                    👥 Seleção dos estudantes
-                </h2>
-
-                <p>
-                    Ao enviar um trabalho, é necessário selecionar o
-                    nome do estudante que realizou a atividade.
-                </p>
-
-                <p>
-                    Caso o trabalho tenha sido realizado em grupo,
-                    selecione o nome de <strong>todos os integrantes</strong>
-                    utilizando o botão para adicionar outro aluno.
-                </p>
-
-                <p>
-                    Isso é importante para que o trabalho seja
-                    contabilizado corretamente nas estatísticas de
-                    cada estudante.
-                </p>
-
-            </div>
-
-
-
-            <div class="instructions-extra">
-
-                <h2>
-                    ⏳ Aprovação dos trabalhos
-                </h2>
-
-                <p>
-                    Depois de enviado, o trabalho não aparecerá
-                    imediatamente na página principal.
-                </p>
-
-                <p>
-                    Ele será enviado para análise e aprovação por
-                    alguém da administração da Revista Digital.
-                </p>
-
-                <p>
-                    Somente depois de aprovado o trabalho ficará
-                    disponível publicamente na página.
-                </p>
-
-            </div>
-
-        </section>
-
+          </div>
+
+          <div class="form-section" id="videoField">
+            <label for="videoUrl">URL do vídeo do YouTube</label>
+            <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+          </div>
+
+          <button type="button" class="publish-button" id="publishButton">Publicar Trabalho</button>
+        </div>
+      </div>
+
+      <section class="works-section" id="worksArea">
+        <div class="empty-state">
+          <h1>Trabalhos postados</h1>
+          <p>Os trabalhos aprovados aparecerão aqui.</p>
+        </div>
+      </section>
     </section>
 
+    <section class="statistics-section" id="statisticsSection">
+      <div class="statistics-header">
+        <h1>Estatísticas dos trabalhos</h1>
+        <p>Acompanhe quais trabalhos já foram publicados.</p>
+      </div>
+      <div class="statistics-table-container">
+        <table class="statistics-table">
+          <thead><tr><th>Nome</th><th>Texto</th><th>Foto</th><th>Vídeo</th></tr></thead>
+          <tbody id="statisticsBody"></tbody>
+        </table>
+      </div>
+    </section>
 
+    <section class="instructions-section" id="instructionsSection">
+      <div class="instructions-header">
+        <h1>Instruções</h1>
+        <p>Confira abaixo como enviar cada tipo de trabalho para a Revista Digital.</p>
+      </div>
+      <div class="instructions-grid">
+        <article class="instruction-card">
+          <h2>📝 Texto</h2>
+          <p>Esta parte deve ser utilizada para colocar o texto do primeiro trabalho realizado em sala de aula, sobre o tema <strong>"Quem é o intelectual para você?"</strong>. Escreva o trabalho diretamente no campo disponibilizado no momento da publicação.</p>
+        </article>
+        <article class="instruction-card">
+          <h2>🖼️ Foto</h2>
+          <p>Esta opção deve ser utilizada para publicar o trabalho do mapa semântico ou mapa mental. Selecione a imagem diretamente do seu dispositivo no campo de envio.</p>
+        </article>
+        <article class="instruction-card">
+          <h2>▶️ Vídeo</h2>
+          <p>Para publicar o vídeo, primeiro envie o vídeo para o YouTube. O vídeo deve estar configurado como <strong>"Não listado"</strong>. Depois, coloque o link do vídeo no campo indicado. Esse vídeo corresponde ao trabalho do <strong>podcast</strong>.</p>
+        </article>
+      </div>
+      <div class="instructions-extra">
+        <h2>👥 Seleção dos estudantes</h2>
+        <p>Ao enviar um trabalho, é necessário selecionar o nome do estudante que realizou a atividade.</p>
+        <p>Caso o trabalho tenha sido realizado em grupo, selecione o nome de <strong>todos os integrantes</strong> utilizando o botão para adicionar outro aluno.</p>
+        <p>Isso é importante para que o trabalho seja contabilizado corretamente nas estatísticas de cada estudante.</p>
+      </div>
+      <div class="instructions-extra">
+        <h2>⏳ Aprovação dos trabalhos</h2>
+        <p>Depois de enviado, o trabalho não aparecerá imediatamente na página principal.</p>
+        <p>Ele será enviado para análise e aprovação por alguém da administração da Revista Digital.</p>
+        <p>Somente depois de aprovado o trabalho ficará disponível publicamente na página.</p>
+      </div>
+    </section>
+  </section>
 
-    <!-- =====================================================
-         ORGANIZAÇÃO
-    ====================================================== -->
+  <aside class="right-sidebar" id="rightSidebar">
+    <div class="filter-title">Organizar trabalhos</div>
 
-    <aside
-        class="right-sidebar"
-        id="rightSidebar"
-    >
+    <button class="filter-button active" data-filter="tempo">Por tempo</button>
+    <div class="filter-options visible" id="tempoOptions">
+      <button class="filter-subbutton selected" data-sort="recentes">Mais recentes</button>
+    </div>
 
-        <div class="filter-title">
-            Organizar trabalhos
-        </div>
+    <button class="filter-button" data-filter="pessoa">Por pessoa</button>
+    <div class="filter-options" id="pessoaOptions">
+      <div id="peopleFilterList"></div>
+    </div>
 
-
-        <!-- TEMPO -->
-
-        <button
-            class="filter-button active"
-            data-filter="tempo"
-        >
-
-            Por tempo
-
-        </button>
-
-
-        <div
-            class="filter-options visible"
-            id="tempoOptions"
-        >
-
-            <button
-                class="filter-subbutton selected"
-                data-sort="recentes"
-            >
-
-                Mais recentes
-
-            </button>
-
-        </div>
-
-
-
-        <!-- PESSOA -->
-
-        <button
-            class="filter-button"
-            data-filter="pessoa"
-        >
-
-            Por pessoa
-
-        </button>
-
-
-        <div
-            class="filter-options"
-            id="pessoaOptions"
-        >
-
-            <div
-                id="peopleFilterList"
-            ></div>
-
-        </div>
-
-
-
-        <!-- TIPO -->
-
-        <button
-            class="filter-button"
-            data-filter="tipo"
-        >
-
-            Por tipo de trabalho
-
-        </button>
-
-
-        <div
-            class="filter-options"
-            id="tipoOptions"
-        >
-
-            <button
-                class="filter-subbutton"
-                data-work-type="texto"
-            >
-
-                📝 Texto
-
-            </button>
-
-
-            <button
-                class="filter-subbutton"
-                data-work-type="imagem"
-            >
-
-                🖼️ Imagem
-
-            </button>
-
-
-            <button
-                class="filter-subbutton"
-                data-work-type="video"
-            >
-
-                ▶️ Vídeo
-
-            </button>
-
-        </div>
-
-    </aside>
-
+    <button class="filter-button" data-filter="tipo">Por tipo de trabalho</button>
+    <div class="filter-options" id="tipoOptions">
+      <button class="filter-subbutton" data-work-type="texto">📝 Texto</button>
+      <button class="filter-subbutton" data-work-type="imagem">🖼️ Imagem</button>
+      <button class="filter-subbutton" data-work-type="video">▶️ Vídeo</button>
+    </div>
+  </aside>
 </main>
 
-
-<!-- =========================================================
-   CAROUSEL ADICIONADO (final da página inicial)
-========================================================= -->
-
-<section class="carousel-section" id="carouselSection" aria-label="Galeria de imagens dos trabalhos" style="display:none;">
+<section class="carousel-section" id="carouselSection" aria-label="Galeria de imagens dos trabalhos" style="display:none">
   <h2 style="text-align:center;margin-bottom:12px;color:var(--blue-light)">Galeria de imagens</h2>
   <div class="image-carousel" id="imageCarousel" aria-live="polite">
     <div class="carousel-track" role="list"></div>
@@ -2705,624 +352,529 @@ select option {
   </div>
 </section>
 
-<!-- Floating button (minimal change requested) -->
-<button id="fabAddWork" class="fab" title="+">+</button>
+<button id="fabAddWork" class="fab" title="Adicionar trabalho">+</button>
 
-<!-- =========================================================
-     LOGIN ADMINISTRADOR
-========================================================= -->
-
-<div
-    class="admin-modal"
-    id="adminModal"
->
-
-    <div class="admin-modal-box">
-
-        <h2>
-            Login do administrador
-        </h2>
-
-
-        <p class="admin-login-description">
-            Entre com a conta de administrador.
-        </p>
-
-
-        <button
-            type="button"
-            class="google-admin-button"
-            id="googleAdminLogin"
-        >
-
-            🔐 Entrar com Google
-
-        </button>
-
-
-        <div class="admin-modal-buttons">
-
-            <button
-                type="button"
-                id="cancelAdminLogin"
-            >
-
-                Cancelar
-
-            </button>
-
-        </div>
-
+<div class="admin-modal" id="adminModal">
+  <div class="admin-modal-box">
+    <h2>Login do administrador</h2>
+    <p class="admin-login-description">Entre com a conta de administrador.</p>
+    <button type="button" class="google-admin-button" id="googleAdminLogin">🔐 Entrar com Google</button>
+    <div class="admin-modal-buttons">
+      <button type="button" id="cancelAdminLogin">Cancelar</button>
     </div>
-
+  </div>
 </div>
 
-
-
-<!-- =========================================================
-     SUPABASE
-========================================================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
-/* (kept your original script mostly intact, only small additions:)
-   - added FAB wiring
-   - added carousel functions and call to atualizarCarousel() in carregarTrabalhos
-   Minimal other changes so behavior stays the same.
-*/
-
-/* =========================================================
-   SUPABASE
-======================================================== */
-
-const SUPABASE_URL =
-    "https://tcertncsuhrtldeojqfx.supabase.co";
-
-
-const SUPABASE_KEY =
-    "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
-
-
-const STORAGE_BUCKET =
-    "imagens";
-
-
+/* ===== SUPABASE ===== */
+const SUPABASE_URL = "https://tcertncsuhrtldeojqfx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
+const STORAGE_BUCKET = "imagens";
 const ADMIN_EMAILS = [
-    "francisco.silva.adrian@escola.pr.gov.br",
-    "miguel.rocha.cardoso@escola.pr.gov.br",
-    "luciane.lima26@escola.pr.gov.br"
-    ];
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =========================================================
-   ELEMENTOS
-   (unchanged)
-======================================================== */
-
-/* ... (kept same element selections as in your original file) ... */
-/* For brevity in this response I reuse the same variables as in your file: */
-
-const addWorkButton = document.getElementById("addWorkButton");
-const workForm = document.getElementById("workForm");
-const typeButtons = document.querySelectorAll(".type-button");
-const workFields = document.getElementById("workFields");
-const textField = document.getElementById("textField");
-const imageField = document.getElementById("imageField");
-const videoField = document.getElementById("videoField");
-const textContent = document.getElementById("textContent");
-const imageFile = document.getElementById("imageFile");
-const imagePreview = document.getElementById("imagePreview");
-const imageUploadStatus = document.getElementById("imageUploadStatus");
-const videoUrl = document.getElementById("videoUrl");
-const publishButton = document.getElementById("publishButton");
-const worksArea = document.getElementById("worksArea");
-const homeSection = document.getElementById("homeSection");
-const statisticsSection = document.getElementById("statisticsSection");
-const instructionsSection = document.getElementById("instructionsSection");
-const statisticsBody = document.getElementById("statisticsBody");
-const studentSelectContainer = document.getElementById("studentSelectContainer");
-const addStudentButton = document.getElementById("addStudentButton");
-const rightSidebar = document.getElementById("rightSidebar");
-const adminButton = document.getElementById("adminButton");
-const adminModal = document.getElementById("adminModal");
-const googleAdminLogin = document.getElementById("googleAdminLogin");
-const cancelAdminLogin = document.getElementById("cancelAdminLogin");
-const homeButton = document.getElementById("homeButton");
-const statisticsButton = document.getElementById("statisticsButton");
-const instructionsButton = document.getElementById("instructionsButton");
-const peopleFilterList = document.getElementById("peopleFilterList");
-const fabAddWork = document.getElementById("fabAddWork");
-
-
-/* =========================================================
-   VARIÁVEIS E LISTAS (unchanged)
-======================================================== */
-
-let selectedType = null;
-let isAdmin = false;
-let trabalhosCache = [];
-let filtroAtual = { tipo:null, pessoa:null, ordenacao:"recentes" };
-
-const alunos = [
-    "Adrian Felipe",
-    "Adryan Felyp",
-    "Ana Gabryella",
-    "Ana Lara",
-    "Atailton",
-    "Caio",
-    "Camila",
-    "Elieder",
-    "Emanuelly",
-    "Haniel",
-    "Iago",
-    "Isadora",
-    "Joao Pedro",
-    "Joao Victor",
-    "Jose Adriano",
-    "Kethelyn",
-    "Kelly",
-    "Lucas",
-    "Luiz Gustavo",
-    "Maria Heloísa",
-    "Milena",
-    "Miguel Felipe",
-    "Miguel Fernando",
-    "Pedro",
-    "Samira",
+  "francisco.silva.adrian@escola.pr.gov.br",
+  "miguel.rocha.cardoso@escola.pr.gov.br",
+  "luciane.lima26@escola.pr.gov.br"
 ];
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+/* ===== ELEMENTOS ===== */
+const addWorkButton=document.getElementById("addWorkButton"),workForm=document.getElementById("workForm"),
+typeButtons=document.querySelectorAll(".type-button"),workFields=document.getElementById("workFields"),
+textField=document.getElementById("textField"),imageField=document.getElementById("imageField"),videoField=document.getElementById("videoField"),
+textContent=document.getElementById("textContent"),imageFile=document.getElementById("imageFile"),
+imagePreview=document.getElementById("imagePreview"),imageUploadStatus=document.getElementById("imageUploadStatus"),
+videoUrl=document.getElementById("videoUrl"),publishButton=document.getElementById("publishButton"),
+worksArea=document.getElementById("worksArea"),homeSection=document.getElementById("homeSection"),
+statisticsSection=document.getElementById("statisticsSection"),instructionsSection=document.getElementById("instructionsSection"),
+statisticsBody=document.getElementById("statisticsBody"),studentSelectContainer=document.getElementById("studentSelectContainer"),
+addStudentButton=document.getElementById("addStudentButton"),rightSidebar=document.getElementById("rightSidebar"),
+adminButton=document.getElementById("adminButton"),adminModal=document.getElementById("adminModal"),
+googleAdminLogin=document.getElementById("googleAdminLogin"),cancelAdminLogin=document.getElementById("cancelAdminLogin"),
+homeButton=document.getElementById("homeButton"),statisticsButton=document.getElementById("statisticsButton"),
+instructionsButton=document.getElementById("instructionsButton"),peopleFilterList=document.getElementById("peopleFilterList"),
+fabAddWork=document.getElementById("fabAddWork");
 
-/* =========================================================
-   FUNÇÕES EXISTENTES (mantidas) + pequenas adições
-   - criarOpcoesAluno, adicionar aluno, navegação, publicar, etc.
-   Kept code but added 2 small hooks:
-     1) after aplicarFiltros() in carregarTrabalhos() we call atualizarCarousel()
-     2) a new set of carousel helper functions are added below
-======================================================== */
+/* ===== ESTADO ===== */
+let selectedType=null,isAdmin=false,trabalhosCache=[];
+let filtroAtual={tipo:null,pessoa:null};
 
-/* ---------- criarOpcoesAluno e inicialização dos selects ---------- */
-function criarOpcoesAluno(select) {
-    select.innerHTML = "";
-    const primeira = document.createElement("option");
-    primeira.value = "";
-    primeira.textContent = "Selecione seu nome";
-    select.appendChild(primeira);
-    alunos.forEach(aluno => {
-        const option = document.createElement("option");
-        option.value = aluno;
-        option.textContent = aluno;
-        select.appendChild(option);
-    });
+const alunos=["Adrian Felipe","Adryan Felyp","Ana Gabryella","Ana Lara","Atailton","Caio","Camila","Elieder","Emanuelly","Haniel","Iago","Isadora","Joao Pedro","Joao Victor","Jose Adriano","Kethelyn","Kelly","Lucas","Luiz Gustavo","Maria Heloísa","Milena","Miguel Felipe","Miguel Fernando","Pedro","Samira"];
+
+/* ===== ALUNOS NO FORM ===== */
+function criarOpcoesAluno(select){
+  select.innerHTML="";
+  const primeira=document.createElement("option");
+  primeira.value="";primeira.textContent="Selecione seu nome";
+  select.appendChild(primeira);
+  alunos.forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;select.appendChild(o);});
 }
-document.querySelectorAll(".student-select").forEach(select => criarOpcoesAluno(select));
+document.querySelectorAll(".student-select").forEach(criarOpcoesAluno);
 
-/* ---------- adicionar aluno ---------- */
-addStudentButton.addEventListener("click", () => {
-    const row = document.createElement("div");
-    row.className = "student-row";
-    const select = document.createElement("select");
-    select.className = "student-select";
-    criarOpcoesAluno(select);
-    const remove = document.createElement("button");
-    remove.type = "button";
-    remove.className = "remove-student-button";
-    remove.textContent = "×";
-    remove.addEventListener("click", () => row.remove());
-    row.appendChild(select);
-    row.appendChild(remove);
-    studentSelectContainer.appendChild(row);
+addStudentButton.addEventListener("click",()=>{
+  const row=document.createElement("div");row.className="student-row";
+  const select=document.createElement("select");select.className="student-select";
+  criarOpcoesAluno(select);
+  const remove=document.createElement("button");
+  remove.type="button";remove.className="remove-student-button";remove.textContent="×";
+  remove.addEventListener("click",()=>row.remove());
+  row.append(select,remove);
+  studentSelectContainer.appendChild(row);
 });
 
-/* ---------- obter alunos selecionados ---------- */
-function obterAlunosSelecionados() {
-    const selects = document.querySelectorAll(".student-select");
-    const nomes = [];
-    selects.forEach(select => {
-        const nome = (select.value || "").trim();
-        if (nome && !nomes.includes(nome)) nomes.push(nome);
-    });
-    return nomes;
+function obterAlunosSelecionados(){
+  const nomes=[];
+  document.querySelectorAll(".student-select").forEach(s=>{
+    const nome=(s.value||"").trim();
+    if(nome&&!nomes.includes(nome))nomes.push(nome);
+  });
+  return nomes;
 }
 
-/* ---------- navegação ---------- */
-function ativarNavegacao(botao) {
-    document.querySelectorAll(".nav-button").forEach(item => item.classList.remove("active"));
-    botao.classList.add("active");
+/* ===== NAVEGAÇÃO ===== */
+function ativarNavegacao(botao){
+  document.querySelectorAll(".nav-button").forEach(b=>b.classList.remove("active"));
+  botao.classList.add("active");
+}
+homeButton.addEventListener("click",async()=>{
+  ativarNavegacao(homeButton);
+  homeSection.style.display="block";
+  statisticsSection.classList.remove("visible");
+  instructionsSection.classList.remove("visible");
+  rightSidebar.style.display="";
+  await carregarTrabalhos();
+});
+statisticsButton.addEventListener("click",async()=>{
+  ativarNavegacao(statisticsButton);
+  homeSection.style.display="none";
+  statisticsSection.classList.add("visible");
+  instructionsSection.classList.remove("visible");
+  rightSidebar.style.display="none";
+  await carregarEstatisticas();
+});
+instructionsButton.addEventListener("click",()=>{
+  ativarNavegacao(instructionsButton);
+  homeSection.style.display="none";
+  statisticsSection.classList.remove("visible");
+  instructionsSection.classList.add("visible");
+  rightSidebar.style.display="none";
+});
+
+/* ===== ABRIR FORMULÁRIO ===== */
+function alternarFormulario(){
+  workForm.classList.toggle("visible");
+  if(workForm.classList.contains("visible")) workForm.scrollIntoView({behavior:"smooth",block:"center"});
+}
+addWorkButton.addEventListener("click",alternarFormulario);
+fabAddWork.addEventListener("click",alternarFormulario);
+
+/* ===== TIPO DE TRABALHO ===== */
+typeButtons.forEach(button=>{
+  button.addEventListener("click",()=>{
+    typeButtons.forEach(b=>b.classList.remove("selected"));
+    button.classList.add("selected");
+    selectedType=button.dataset.type;
+    workFields.classList.add("visible");
+    [textField,imageField,videoField].forEach(f=>f.classList.remove("visible"));
+    if(selectedType==="texto")textField.classList.add("visible");
+    if(selectedType==="imagem")imageField.classList.add("visible");
+    if(selectedType==="video")videoField.classList.add("visible");
+  });
+});
+
+/* ===== PREVIEW IMAGEM ===== */
+imageFile.addEventListener("change",()=>{
+  const arquivo=imageFile.files[0];
+  if(!arquivo){imagePreview.src="";imagePreview.classList.remove("visible");imageUploadStatus.textContent="Selecione uma imagem do seu dispositivo.";return;}
+  if(!arquivo.type.startsWith("image/")){imageFile.value="";imagePreview.src="";imagePreview.classList.remove("visible");imageUploadStatus.textContent="O arquivo selecionado não é uma imagem.";return;}
+  imageUploadStatus.textContent=arquivo.name+" • "+(arquivo.size/1024/1024).toFixed(2)+" MB";
+  const reader=new FileReader();
+  reader.onload=e=>{imagePreview.src=e.target.result;imagePreview.classList.add("visible");};
+  reader.readAsDataURL(arquivo);
+});
+
+async function enviarImagemStorage(arquivo){
+  const ext=arquivo.name.split(".").pop().toLowerCase();
+  const nome=Date.now()+"-"+(crypto?.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2))+"."+ext;
+  const caminho="trabalhos/"+nome;
+  const{error}=await supabaseClient.storage.from(STORAGE_BUCKET).upload(caminho,arquivo,{cacheControl:"3600",upsert:false,contentType:arquivo.type});
+  if(error)throw error;
+  const{data}=supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(caminho);
+  if(!data?.publicUrl)throw new Error("Não foi possível obter a URL da imagem.");
+  return data.publicUrl;
 }
 
-homeButton.addEventListener("click", async () => {
-    ativarNavegacao(homeButton);
-    homeSection.style.display = "block";
-    statisticsSection.classList.remove("visible");
-    instructionsSection.classList.remove("visible");
-    rightSidebar.style.display = "";
+/* ===== PUBLICAR ===== */
+publishButton.addEventListener("click",publicarTrabalho);
+async function publicarTrabalho(){
+  if(!selectedType){alert("Escolha o tipo de trabalho.");return;}
+  const nomes=obterAlunosSelecionados();
+  if(nomes.length===0){alert("Selecione pelo menos um aluno.");return;}
+  let conteudo="",arquivoImagem=null;
+  if(selectedType==="texto"){
+    conteudo=textContent.value.trim();
+    if(!conteudo){alert("Digite o conteúdo do trabalho.");return;}
+  }
+  if(selectedType==="imagem"){
+    arquivoImagem=imageFile.files[0];
+    if(!arquivoImagem){alert("Escolha uma imagem antes de publicar.");return;}
+    if(!arquivoImagem.type.startsWith("image/")){alert("O arquivo selecionado não é uma imagem.");return;}
+  }
+  if(selectedType==="video"){
+    conteudo=videoUrl.value.trim();
+    if(!conteudo){alert("Digite a URL do vídeo.");return;}
+    if(!conteudo.includes("youtube.com")&&!conteudo.includes("youtu.be")){alert("Digite uma URL válida do YouTube.");return;}
+  }
+  publishButton.disabled=true;
+  publishButton.textContent=selectedType==="imagem"?"Enviando imagem...":"Publicando...";
+  try{
+    if(selectedType==="imagem")conteudo=await enviarImagemStorage(arquivoImagem);
+    const{error}=await supabaseClient.from("trabalhos").insert({nome:nomes.join(", "),tipo:selectedType,conteudo,aprovado:false,created_at:new Date().toISOString()});
+    if(error){alert("Não foi possível publicar o trabalho.\n\n"+error.message);return;}
+    alert("Trabalho enviado para aprovação!");
+    limparFormulario();
     await carregarTrabalhos();
-});
-
-statisticsButton.addEventListener("click", async () => {
-    ativarNavegacao(statisticsButton);
-    homeSection.style.display = "none";
-    statisticsSection.classList.add("visible");
-    instructionsSection.classList.remove("visible");
-    rightSidebar.style.display = "none";
     await carregarEstatisticas();
+  }catch(error){
+    alert("Ocorreu um erro ao enviar o trabalho.\n\n"+(error.message||error));
+  }finally{
+    publishButton.disabled=false;
+    publishButton.textContent="Publicar Trabalho";
+  }
+}
+
+function limparFormulario(){
+  textContent.value="";videoUrl.value="";imageFile.value="";
+  imagePreview.src="";imagePreview.classList.remove("visible");
+  imageUploadStatus.textContent="Selecione uma imagem do seu dispositivo.";
+  studentSelectContainer.innerHTML="";
+  const row=document.createElement("div");row.className="student-row";
+  const select=document.createElement("select");select.className="student-select";
+  criarOpcoesAluno(select);
+  row.appendChild(select);studentSelectContainer.appendChild(row);
+  selectedType=null;
+  typeButtons.forEach(b=>b.classList.remove("selected"));
+  workFields.classList.remove("visible");
+  [textField,imageField,videoField].forEach(f=>f.classList.remove("visible"));
+}
+
+/* ===== LOGIN ADMIN ===== */
+adminButton.addEventListener("click",()=>{
+  if(isAdmin){sairAdministrador();return;}
+  adminModal.classList.add("visible");
+});
+cancelAdminLogin.addEventListener("click",()=>adminModal.classList.remove("visible"));
+
+googleAdminLogin.addEventListener("click",async()=>{
+  googleAdminLogin.disabled=true;
+  googleAdminLogin.textContent="Abrindo Google...";
+  try{
+    const{error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.href.split("#")[0]}});
+    if(error)alert("Não foi possível iniciar o login com Google.\n\n"+error.message);
+  }catch(error){
+    alert("Não foi possível realizar o login com Google.\n\n"+error.message);
+  }finally{
+    googleAdminLogin.disabled=false;
+    googleAdminLogin.textContent="🔐 Entrar com Google";
+  }
 });
 
-instructionsButton.addEventListener("click", () => {
-    ativarNavegacao(instructionsButton);
-    homeSection.style.display = "none";
-    statisticsSection.classList.remove("visible");
-    instructionsSection.classList.add("visible");
-    rightSidebar.style.display = "none";
+async function sairAdministrador(){
+  await supabaseClient.auth.signOut();
+  isAdmin=false;
+  adminButton.textContent="Entrar como administrador";
+  filtroAtual={tipo:null,pessoa:null};
+  await carregarTrabalhos();
+}
+
+async function verificarSessao(){
+  const{data}=await supabaseClient.auth.getSession();
+  const session=data.session;
+  if(!session?.user){isAdmin=false;adminButton.textContent="Entrar como administrador";return;}
+  const email=(session.user.email||"").trim().toLowerCase();
+  if(!ADMIN_EMAILS.includes(email)){
+    await supabaseClient.auth.signOut();
+    isAdmin=false;adminButton.textContent="Entrar como administrador";
+    alert("Esta conta do Google não possui acesso de administrador.");
+    return;
+  }
+  isAdmin=true;
+  adminButton.textContent="Sair do administrador";
+}
+supabaseClient.auth.onAuthStateChange(async(event,session)=>{
+  if(event==="SIGNED_OUT"){isAdmin=false;adminButton.textContent="Entrar como administrador";return;}
+  if(session?.user){
+    const email=(session.user.email||"").trim().toLowerCase();
+    if(ADMIN_EMAILS.includes(email)){
+      isAdmin=true;
+      adminButton.textContent="Sair do administrador";
+      adminModal.classList.remove("visible");
+      await carregarTrabalhos();
+      await carregarEstatisticas();
+    }else{
+      isAdmin=false;
+      await supabaseClient.auth.signOut();
+      alert("Esta conta do Google não possui acesso de administrador.");
+    }
+  }
 });
 
-/* ---------- abrir formulário (normal button) ---------- */
-addWorkButton.addEventListener("click", () => {
-    workForm.classList.toggle("visible");
-});
+/* ===== CARREGAR TRABALHOS ===== */
+async function carregarTrabalhos(){
+  try{
+    let query=supabaseClient.from("trabalhos").select("*");
+    if(!isAdmin)query=query.eq("aprovado",true);
+    query=query.order("created_at",{ascending:false});
+    const{data,error}=await query;
+    if(error){console.error(error);return;}
+    trabalhosCache=data||[];
+    atualizarFiltros();
+    aplicarFiltros();
+    atualizarCarousel();
+  }catch(error){console.error(error);}
+}
 
-/* ---------- FAB wiring (new) ---------- */
-if (fabAddWork) {
-  fabAddWork.addEventListener("click", () => {
-    workForm.classList.toggle("visible");
-    // scroll into view for convenience
-    if (workForm.classList.contains("visible")) workForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+/* ===== FILTROS ===== */
+document.querySelectorAll(".filter-button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-button").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".filter-options").forEach(o=>o.classList.remove("visible"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.filter+"Options")?.classList.add("visible");
+  });
+});
+document.querySelector('[data-sort="recentes"]').addEventListener("click",function(){
+  filtroAtual={tipo:null,pessoa:null};
+  document.querySelectorAll(".filter-subbutton").forEach(b=>b.classList.remove("selected"));
+  this.classList.add("selected");
+  aplicarFiltros();
+});
+document.querySelectorAll("[data-work-type]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    filtroAtual={tipo:btn.dataset.workType,pessoa:null};
+    document.querySelectorAll(".filter-subbutton").forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+    aplicarFiltros();
+  });
+});
+function atualizarFiltros(){
+  peopleFilterList.innerHTML="";
+  alunos.forEach(aluno=>{
+    const button=document.createElement("button");
+    button.className="filter-subbutton";
+    button.textContent=aluno;
+    button.addEventListener("click",()=>{
+      filtroAtual={tipo:null,pessoa:aluno};
+      document.querySelectorAll(".filter-subbutton").forEach(b=>b.classList.remove("selected"));
+      button.classList.add("selected");
+      aplicarFiltros();
+    });
+    peopleFilterList.appendChild(button);
   });
 }
 
-/* ---------- tipo seleção ---------- */
-typeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        typeButtons.forEach(item => item.classList.remove("selected"));
-        button.classList.add("selected");
-        selectedType = button.dataset.type;
-        workFields.classList.add("visible");
-        textField.classList.remove("visible");
-        imageField.classList.remove("visible");
-        videoField.classList.remove("visible");
-        if (selectedType === "texto") textField.classList.add("visible");
-        if (selectedType === "imagem") imageField.classList.add("visible");
-        if (selectedType === "video") videoField.classList.add("visible");
-    });
-});
-
-/* ---------- preview imagem ---------- */
-imageFile.addEventListener("change", () => {
-    const arquivo = imageFile.files[0];
-    if (!arquivo) {
-        imagePreview.src = "";
-        imagePreview.classList.remove("visible");
-        imageUploadStatus.textContent = "Selecione uma imagem do seu dispositivo.";
-        return;
-    }
-    if (!arquivo.type.startsWith("image/")) {
-        imageFile.value = "";
-        imagePreview.src = "";
-        imagePreview.classList.remove("visible");
-        imageUploadStatus.textContent = "O arquivo selecionado não é uma imagem.";
-        return;
-    }
-    const tamanhoMB = arquivo.size / 1024 / 1024;
-    imageUploadStatus.textContent = arquivo.name + " • " + tamanhoMB.toFixed(2) + " MB";
-    const reader = new FileReader();
-    reader.onload = event => {
-        imagePreview.src = event.target.result;
-        imagePreview.classList.add("visible");
-    };
-    reader.readAsDataURL(arquivo);
-});
-
-/* ---------- enviar imagem para storage ---------- */
-async function enviarImagemStorage(arquivo) {
-    const extensao = arquivo.name.split(".").pop().toLowerCase();
-    const nomeArquivo = Date.now() + "-" + (crypto?.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)) + "." + extensao;
-    const caminho = "trabalhos/" + nomeArquivo;
-    const { error } = await supabaseClient.storage.from(STORAGE_BUCKET).upload(caminho, arquivo, { cacheControl: "3600", upsert: false, contentType: arquivo.type });
-    if (error) throw error;
-    const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(caminho);
-    if (!data || !data.publicUrl) throw new Error("Não foi possível obter a URL da imagem.");
-    return data.publicUrl;
+function aplicarFiltros(){
+  let lista=[...trabalhosCache];
+  if(filtroAtual.tipo)lista=lista.filter(t=>t.tipo===filtroAtual.tipo);
+  if(filtroAtual.pessoa)lista=lista.filter(t=>(t.nome||"").split(",").map(s=>s.trim()).includes(filtroAtual.pessoa));
+  lista.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  renderizarTrabalhos(lista);
 }
 
-/* ---------- publicar ---------- */
-publishButton.addEventListener("click", publicarTrabalho);
-
-async function publicarTrabalho() {
-    if (!selectedType) { alert("Escolha o tipo de trabalho."); return; }
-    const nomes = obterAlunosSelecionados();
-    if (nomes.length === 0) { alert("Selecione pelo menos um aluno."); return; }
-    let conteudo = "";
-    let arquivoImagem = null;
-    if (selectedType === "texto") {
-        conteudo = textContent.value.trim();
-        if (!conteudo) { alert("Digite o conteúdo do trabalho."); return; }
-    }
-    if (selectedType === "imagem") {
-        arquivoImagem = imageFile.files[0];
-        if (!arquivoImagem) { alert("Escolha uma imagem antes de publicar."); return; }
-        if (!arquivoImagem.type.startsWith("image/")) { alert("O arquivo selecionado não é uma imagem."); return; }
-    }
-    if (selectedType === "video") {
-        conteudo = videoUrl.value.trim();
-        if (!conteudo) { alert("Digite a URL do vídeo."); return; }
-        if (!conteudo.includes("youtube.com") && !conteudo.includes("youtu.be")) { alert("Digite uma URL válida do YouTube."); return; }
-    }
-
-    publishButton.disabled = true;
-    publishButton.textContent = selectedType === "imagem" ? "Enviando imagem..." : "Publicando...";
-
-    try {
-        if (selectedType === "imagem") conteudo = await enviarImagemStorage(arquivoImagem);
-        const { error } = await supabaseClient.from("trabalhos").insert({
-            nome: nomes.join(", "),
-            tipo: selectedType,
-            conteudo,
-            aprovado: false,
-            created_at: new Date().toISOString()
-        });
-        if (error) { console.error(error); alert("Não foi possível publicar o trabalho.\n\n" + error.message); return; }
-        alert("Trabalho enviado para aprovação!");
-        limparFormulario();
-        await carregarTrabalhos();
-        await carregarEstatisticas();
-    } catch (error) {
-        console.error(error);
-        alert("Ocorreu um erro ao enviar o trabalho.\n\n" + (error.message || error));
-    } finally {
-        publishButton.disabled = false;
-        publishButton.textContent = "Publicar Trabalho";
-    }
+/* ===== RENDERIZAR ===== */
+function transformarYoutubeUrl(url){
+  const m=url.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([a-zA-Z0-9_-]{11})/);
+  return m?`https://www.youtube.com/embed/${m[1]}`:url;
 }
 
-/* ---------- limpar formulário ---------- */
-function limparFormulario() {
-    textContent.value = "";
-    videoUrl.value = "";
-    imageFile.value = "";
-    imagePreview.src = "";
-    imagePreview.classList.remove("visible");
-    imageUploadStatus.textContent = "Selecione uma imagem do seu dispositivo.";
-    studentSelectContainer.innerHTML = "";
-    const row = document.createElement("div"); row.className = "student-row";
-    const select = document.createElement("select"); select.className = "student-select"; criarOpcoesAluno(select);
-    row.appendChild(select); studentSelectContainer.appendChild(row);
-    selectedType = null;
-    typeButtons.forEach(button => button.classList.remove("selected"));
-    workFields.classList.remove("visible");
-    textField.classList.remove("visible");
-    imageField.classList.remove("visible");
-    videoField.classList.remove("visible");
-}
-
-/* =========================================================
-   LOGIN ADMINISTRADOR (unchanged)
-======================================================== */
-
-adminButton.addEventListener("click", abrirLoginAdmin);
-
-function abrirLoginAdmin() {
-    if (isAdmin) { sairAdministrador(); return; }
-    adminModal.classList.add("visible");
-}
-cancelAdminLogin.addEventListener("click", () => adminModal.classList.remove("visible"));
-
-async function fazerLoginAdmin() {
-    googleAdminLogin.disabled = true;
-    googleAdminLogin.textContent = "Abrindo Google...";
-    try {
-       const { data, error } = await supabaseClient.auth.signInWithOAuth({
-            provider: "google",
-            options: { redirectTo: "https://adrianf-f.github.io/Revista_Digital/" }
-       });
-       if (error) { console.error(error); alert("Não foi possível iniciar o login com Google.\n\n" + error.message); }
-    } catch (error) {
-        console.error(error); alert("Não foi possível realizar o login com Google.\n\n" + error.message);
-    } finally {
-        googleAdminLogin.disabled = false;
-        googleAdminLogin.textContent = "🔐 Entrar com Google";
-    }
-}
-googleAdminLogin.addEventListener("click", fazerLoginAdmin);
-
-/* ---------- sair administrador ---------- */
-async function sairAdministrador() {
-    await supabaseClient.auth.signOut();
-    isAdmin = false;
-    adminButton.textContent = "Entrar como administrador";
-    filtroAtual.tipo = null; filtroAtual.pessoa = null;
-    await carregarTrabalhos();
-}
-
-/* ---------- sessão ---------- */
-async function verificarSessao() {
-    const { data } = await supabaseClient.auth.getSession();
-    const session = data.session;
-    if (!session || !session.user) {
-        isAdmin = false;
-        adminButton.textContent = "Entrar como administrador";
-        return;
-    }
-    const email = (session.user.email || "").trim().toLowerCase();
-    if (!ADMIN_EMAILS.includes(email)) {
-        await supabaseClient.auth.signOut();
-        isAdmin = false;
-        adminButton.textContent = "Entrar como administrador";
-        alert("Esta conta do Google não possui acesso de administrador.");
-        return;
-    }
-    isAdmin = true;
-    adminButton.textContent = "Sair do administrador";
-}
-supabaseClient.auth.onAuthStateChange(async (event, session) => {
-    if (event === "SIGNED_OUT") { isAdmin = false; adminButton.textContent = "Entrar como administrador"; return; }
-    if (session && session.user) {
-        const email = (session.user.email || "").trim().toLowerCase();
-        if (ADMIN_EMAILS.includes(email)) {
-            isAdmin = true;
-            adminButton.textContent = "Sair do administrador";
-            adminModal.classList.remove("visible");
-            await carregarTrabalhos();
-        } else {
-            isAdmin = false;
-            await supabaseClient.auth.signOut();
-            alert("Esta conta do Google não possui acesso de administrador.");
-        }
-    }
-});
-
-/* =========================================================
-   CARREGAR TRABALHOS (minor change: call atualizarCarousel)
-======================================================== */
-
-async function carregarTrabalhos() {
-    try {
-        let query = supabaseClient.from("trabalhos").select("*");
-        if (!isAdmin) query = query.eq("aprovado", true);
-        query = query.order("created_at", { ascending: false });
-        const { data, error } = await query;
-        if (error) { console.error(error); return; }
-        trabalhosCache = data || [];
-        atualizarFiltros();
-        aplicarFiltros();
-        // <-- added: keep carousel in sync
-        atualizarCarousel();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-/* =========================================================
-   FILTROS, APLICAR E RENDER (kept as-is)
-   aplicarFiltros(), renderizarTrabalhos(), criarControlesAdmin(), aprovarTrabalho(), editarTrabalho(), apagarTrabalho()
-   (unchanged except for the earlier carousel injection)
-======================================================== */
-
-/* ... (the functions aplicarFiltros, renderizarTrabalhos, criarControlesAdmin,
-       aprovarTrabalho, editarTrabalho, apagarTrabalho, transformarYoutubeUrl,
-       carregarEstatisticas and related helper functions remain exactly as in your original file)
-       For brevity they are not duplicated here; in your local file they remain unchanged.
-*/
-
-/* To keep this reply concise I've omitted re-pasting unmodified large functions.
-   Important: when you paste this updated index.html replace the original script block
-   and keep all original functions — only ensure the three small additions above are present:
-     - fabAddWork event listener
-     - call atualizarCarousel() after aplicarFiltros() in carregarTrabalhos()
-     - the carousel helper functions (below)
-*/
-
-/* =========================================================
-   CAROUSEL FUNCTIONS (added; minimal, self-contained)
-======================================================== */
-
-let carouselState = { currentIndex: 0, timer: null, slidesCount: 0, paused: false, delay: 4000 };
-
-function buildImageSlides() {
-  return (trabalhosCache || []).filter(t => t.tipo === 'imagem' && (isAdmin ? true : t.aprovado));
-}
-
-function atualizarCarousel() {
-  const track = document.querySelector('.carousel-track');
-  const section = document.getElementById('carouselSection');
-  if (!track || !section) return;
-  const slides = buildImageSlides();
-  if (!slides || slides.length === 0) {
-    section.style.display = 'none';
-    clearInterval(carouselState.timer);
+function renderizarTrabalhos(lista){
+  worksArea.innerHTML="";
+  if(!lista.length){
+    worksArea.innerHTML=`<div class="empty-state"><h1>Trabalhos postados</h1><p>Os trabalhos aprovados aparecerão aqui.</p></div>`;
     return;
   }
-  section.style.display = '';
-  track.innerHTML = '';
-  slides.forEach(s => {
-    const slide = document.createElement('div');
-    slide.className = 'carousel-slide';
-    const img = document.createElement('img');
-    img.src = s.conteudo || '';
-    img.alt = s.nome || '';
+  lista.forEach(t=>{
+    const card=document.createElement("div");
+    card.className="work-card";
+    const data=new Date(t.created_at).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
+    const tipoLabel=t.tipo==="texto"?"📝 Texto":t.tipo==="imagem"?"🖼️ Imagem":"▶️ Vídeo";
+
+    const header=document.createElement("div");
+    header.className="work-header";
+    header.innerHTML=`<div><div class="work-author"></div><div class="work-date">${data}</div></div><div class="work-type">${tipoLabel}</div>`;
+    header.querySelector(".work-author").textContent=t.nome;
+    card.appendChild(header);
+
+    if(!t.aprovado){
+      const badge=document.createElement("span");
+      badge.className="pending-badge";
+      badge.textContent="⏳ Pendente de aprovação";
+      card.appendChild(badge);
+    }
+
+    if(t.tipo==="texto"){
+      const p=document.createElement("p");
+      p.className="work-text";
+      p.textContent=t.conteudo;
+      card.appendChild(p);
+    }else if(t.tipo==="imagem"){
+      const img=document.createElement("img");
+      img.className="work-image";
+      img.src=t.conteudo;
+      img.alt=t.nome||"";
+      card.appendChild(img);
+    }else{
+      const iframe=document.createElement("iframe");
+      iframe.className="work-video";
+      iframe.src=transformarYoutubeUrl(t.conteudo);
+      iframe.allowFullscreen=true;
+      card.appendChild(iframe);
+    }
+
+    if(isAdmin)card.appendChild(criarControlesAdmin(t));
+    worksArea.appendChild(card);
+  });
+}
+
+function criarControlesAdmin(t){
+  const div=document.createElement("div");
+  div.className="admin-controls";
+  if(!t.aprovado){
+    const aprovar=document.createElement("button");
+    aprovar.className="approve-button";
+    aprovar.textContent="✔ Aprovar";
+    aprovar.addEventListener("click",()=>aprovarTrabalho(t.id));
+    div.appendChild(aprovar);
+  }
+  const editar=document.createElement("button");
+  editar.className="edit-button";
+  editar.textContent="✎ Editar";
+  editar.addEventListener("click",()=>editarTrabalho(t));
+  div.appendChild(editar);
+  const apagar=document.createElement("button");
+  apagar.className="delete-button";
+  apagar.textContent="🗑 Apagar";
+  apagar.addEventListener("click",()=>apagarTrabalho(t.id));
+  div.appendChild(apagar);
+  return div;
+}
+
+async function aprovarTrabalho(id){
+  const{error}=await supabaseClient.from("trabalhos").update({aprovado:true}).eq("id",id);
+  if(error){alert("Erro ao aprovar: "+error.message);return;}
+  await carregarTrabalhos();
+  await carregarEstatisticas();
+}
+
+async function editarTrabalho(t){
+  if(t.tipo==="imagem"){
+    alert("Para trocar a imagem, apague este trabalho e publique novamente.");
+    return;
+  }
+  const label=t.tipo==="texto"?"Editar texto:":"Editar URL do vídeo:";
+  const novoConteudo=prompt(label,t.conteudo);
+  if(novoConteudo===null)return;
+  const novoNome=prompt("Editar nome(s) do(s) aluno(s):",t.nome);
+  if(novoNome===null)return;
+  const{error}=await supabaseClient.from("trabalhos").update({conteudo:novoConteudo.trim(),nome:novoNome.trim()}).eq("id",t.id);
+  if(error){alert("Erro ao editar: "+error.message);return;}
+  await carregarTrabalhos();
+  await carregarEstatisticas();
+}
+
+async function apagarTrabalho(id){
+  if(!confirm("Tem certeza que deseja apagar este trabalho?"))return;
+  const{error}=await supabaseClient.from("trabalhos").delete().eq("id",id);
+  if(error){alert("Erro ao apagar: "+error.message);return;}
+  await carregarTrabalhos();
+  await carregarEstatisticas();
+}
+
+/* ===== ESTATÍSTICAS ===== */
+async function carregarEstatisticas(){
+  const{data,error}=await supabaseClient.from("trabalhos").select("*").eq("aprovado",true);
+  if(error){console.error(error);return;}
+  const porAluno={};
+  alunos.forEach(a=>porAluno[a]={texto:false,imagem:false,video:false});
+  (data||[]).forEach(t=>{
+    (t.nome||"").split(",").map(s=>s.trim()).forEach(nome=>{
+      if(porAluno[nome])porAluno[nome][t.tipo]=true;
+    });
+  });
+  statisticsBody.innerHTML="";
+  alunos.forEach(nome=>{
+    const st=porAluno[nome];
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td class="statistics-name"></td>
+      <td><div class="statistics-status ${st.texto?"completed":"missing"}"></div></td>
+      <td><div class="statistics-status ${st.imagem?"completed":"missing"}"></div></td>
+      <td><div class="statistics-status ${st.video?"completed":"missing"}"></div></td>`;
+    tr.querySelector(".statistics-name").textContent=nome;
+    statisticsBody.appendChild(tr);
+  });
+}
+
+/* ===== CARROSSEL ===== */
+let carouselState={currentIndex:0,timer:null,slidesCount:0,paused:false,delay:4000};
+
+function buildImageSlides(){
+  return trabalhosCache.filter(t=>t.tipo==="imagem"&&(isAdmin||t.aprovado));
+}
+function atualizarCarousel(){
+  const track=document.querySelector(".carousel-track");
+  const section=document.getElementById("carouselSection");
+  if(!track||!section)return;
+  const slides=buildImageSlides();
+  clearInterval(carouselState.timer);
+  if(!slides.length){section.style.display="none";return;}
+  section.style.display="";
+  track.innerHTML="";
+  slides.forEach(s=>{
+    const slide=document.createElement("div");
+    slide.className="carousel-slide";
+    const img=document.createElement("img");
+    img.src=s.conteudo||"";
+    img.alt=s.nome||"";
     slide.appendChild(img);
     track.appendChild(slide);
   });
-  carouselState.slidesCount = slides.length;
-  carouselState.currentIndex = 0;
+  carouselState.slidesCount=slides.length;
+  carouselState.currentIndex=0;
   updateCarouselUI();
   startCarouselTimer();
 }
-
-function updateCarouselUI() {
-  const track = document.querySelector('.carousel-track');
-  if (!track) return;
-  track.style.transform = `translateX(${ -carouselState.currentIndex * 100 }%)`;
+function updateCarouselUI(){
+  const track=document.querySelector(".carousel-track");
+  if(track)track.style.transform=`translateX(${-carouselState.currentIndex*100}%)`;
 }
-
-function nextSlide() {
-  if (carouselState.slidesCount === 0) return;
-  carouselState.currentIndex = (carouselState.currentIndex + 1) % carouselState.slidesCount;
+function nextSlide(){
+  if(!carouselState.slidesCount)return;
+  carouselState.currentIndex=(carouselState.currentIndex+1)%carouselState.slidesCount;
   updateCarouselUI();
 }
-
-function prevSlide() {
-  if (carouselState.slidesCount === 0) return;
-  carouselState.currentIndex = (carouselState.currentIndex - 1 + carouselState.slidesCount) % carouselState.slidesCount;
+function prevSlide(){
+  if(!carouselState.slidesCount)return;
+  carouselState.currentIndex=(carouselState.currentIndex-1+carouselState.slidesCount)%carouselState.slidesCount;
   updateCarouselUI();
 }
-
-function startCarouselTimer() {
+function startCarouselTimer(){
   clearInterval(carouselState.timer);
-  carouselState.timer = setInterval(() => { if (!carouselState.paused) nextSlide(); }, carouselState.delay);
+  carouselState.timer=setInterval(()=>{if(!carouselState.paused)nextSlide();},carouselState.delay);
 }
-
-document.addEventListener('click', (e) => {
-  if (e.target.matches('.carousel-next')) { nextSlide(); startCarouselTimer(); }
-  if (e.target.matches('.carousel-prev')) { prevSlide(); startCarouselTimer(); }
+document.addEventListener("click",e=>{
+  if(e.target.matches(".carousel-next")){nextSlide();startCarouselTimer();}
+  if(e.target.matches(".carousel-prev")){prevSlide();startCarouselTimer();}
 });
-document.addEventListener('mouseover', (e) => { if (e.target.closest && e.target.closest('#imageCarousel')) carouselState.paused = true; });
-document.addEventListener('mouseout', (e) => { if (e.target.closest && e.target.closest('#imageCarousel')) carouselState.paused = false; });
+document.addEventListener("mouseover",e=>{if(e.target.closest?.("#imageCarousel"))carouselState.paused=true;});
+document.addEventListener("mouseout",e=>{if(e.target.closest?.("#imageCarousel"))carouselState.paused=false;});
 
-/* =========================================================
-   FILTROS (atualizarFiltros kept)
-======================================================== */
-
-function atualizarFiltros() {
-    peopleFilterList.innerHTML = "";
-    alunos.forEach(aluno => {
-        const button = document.createElement("button");
-        button.className = "filter-subbutton";
-        button.textContent = aluno;
-        button.addEventListener("click", () => {
-            filtroAtual.pessoa = aluno;
-            filtroAtual.tipo = null;
-            filtroAtual.ordenacao = "recentes";
-            document.querySelectorAll("#peopleFilterList .filter-subbutton").forEach(item => item.classList.remove("selected"));
-            button.classList.add("selected");
-            document.querySelectorAll("[data-work-type]").forEach(item => item.classList.remove("selected"));
-            aplicarFiltros();
-        });
-        peopleFilterList.appendChild(button);
-    });
-}
-
-/* =========================================================
-   INICIAR SISTEMA (unchanged, calls verificarSessao, carregarTrabalhos, carregarEstatisticas)
-======================================================== */
-
-async function iniciarSistema() {
-    await verificarSessao();
-    await carregarTrabalhos();
-    await carregarEstatisticas();
-    atualizarFiltros();
+/* ===== INICIAR ===== */
+async function iniciarSistema(){
+  await verificarSessao();
+  await carregarTrabalhos();
+  await carregarEstatisticas();
 }
 iniciarSistema();
-
 </script>
-
 </body>
-
 </html>
