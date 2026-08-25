@@ -10,16 +10,17 @@
   --blue:#0878d1;--blue-light:#6aa8ff;--green:#00a889;--green-dark:#007d70;
   --background:#202526;--background-dark:#111313;--card:#111111;--card-light:#181919;
   --border:#343a3b;--text:#d4e0eb;--text-muted:#8996a2;--danger:#b53a3a;--warning:#f0b429;
+  --font-scale:1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;background:radial-gradient(circle at top left,rgba(8,120,209,.08),transparent 35%),var(--background);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body{min-height:100vh;background:radial-gradient(circle at top left,rgba(8,120,209,.08),transparent 35%),var(--background);color:var(--text);font-family:Arial,Helvetica,sans-serif;zoom:var(--font-scale)}
 
 /* topo */
-.topbar{width:100%;min-height:110px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:25px;padding:10px 4%;background:linear-gradient(110deg,#0878d1,#0796ad,#00a889);border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar{width:100%;min-height:110px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:25px;padding:10px 4%;background:linear-gradient(110deg,var(--blue),var(--green));border-bottom:1px solid rgba(255,255,255,.08)}
 .school-logo{display:flex;align-items:center;justify-content:flex-start}
 .school-logo img{height:86px;width:auto;max-width:300px;object-fit:contain;display:block;border:2px solid #000;border-radius:10px;background:white}
 .site-title{color:white;font-size:34px;font-weight:800;letter-spacing:1px;text-align:center;white-space:nowrap;text-shadow:0 2px 5px rgba(0,0,0,.2)}
-.admin-area{display:flex;justify-content:flex-end}
+.admin-area{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
 .admin-button{border:none;border-radius:30px;padding:15px 25px;background:#101313;color:#00c59e;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
 .admin-button:hover{transform:translateY(-2px);background:#080909;color:#5ee6c4}
 
@@ -45,14 +46,14 @@ body{min-height:100vh;background:radial-gradient(circle at top left,rgba(8,120,2
 .work-form h2{margin-bottom:22px;color:var(--blue-light);font-size:24px}
 .form-section{margin-bottom:20px}
 .form-section label{display:block;margin-bottom:8px;color:#b8c8d7;font-size:14px;font-weight:bold}
-.type-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.type-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px}
 .type-button{border:1px solid var(--border);border-radius:10px;padding:15px;background:var(--card-light);color:#b7c6d4;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
 .type-button:hover{border-color:var(--green)}
 .type-button.selected{background:rgba(0,168,137,.18);border-color:#00c7a5;color:#4edabd}
 .work-fields{display:none}
 .work-fields.visible{display:block}
-#textField,#imageField,#videoField{display:none}
-#textField.visible,#imageField.visible,#videoField.visible{display:block}
+#textField,#imageField,#videoField,#carouselField{display:none}
+#textField.visible,#imageField.visible,#videoField.visible,#carouselField.visible{display:block}
 input,select,textarea{width:100%;border:1px solid var(--border);border-radius:9px;background:#181919;color:white;outline:none;font-family:inherit;font-size:15px}
 input,select{height:46px;padding:0 13px}
 textarea{min-height:180px;padding:13px;resize:vertical}
@@ -67,6 +68,12 @@ select option{background:#181919;color:white}
 .image-preview{display:none;margin-top:5px;max-width:100%;max-height:450px;border-radius:12px;object-fit:contain;border:1px solid var(--border);background:#080808}
 .image-preview.visible{display:block}
 .image-upload-status{color:var(--text-muted);font-size:13px}
+
+/* miniaturas do carrossel (formulário) */
+.carousel-thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.carousel-thumb{position:relative;width:90px;height:90px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#080808}
+.carousel-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.carousel-thumb button{position:absolute;top:2px;right:2px;width:22px;height:22px;border:none;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-weight:bold;cursor:pointer;font-size:13px;line-height:1}
 
 /* alunos */
 .student-select-container{display:flex;flex-direction:column;gap:10px}
@@ -86,6 +93,7 @@ select option{background:#181919;color:white}
 .work-author{color:#dbe8f4;font-size:20px;font-weight:bold}
 .work-date{margin-top:5px;color:var(--text-muted);font-size:13px}
 .work-type{padding:8px 12px;border-radius:20px;background:rgba(8,120,209,.15);color:#78baff;font-size:13px;font-weight:bold}
+.work-title{color:#52d5b8;font-size:18px;font-weight:bold;margin-bottom:14px}
 .work-text{color:#c2d0dc;font-size:17px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
 .work-video{display:block;width:100%;aspect-ratio:16/9;border:none;border-radius:12px;background:#000}
 .work-image{display:block;width:100%;max-height:700px;object-fit:contain;border-radius:12px;background:#080808}
@@ -137,15 +145,26 @@ select option{background:#181919;color:white}
 /* login */
 .admin-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);z-index:1000}
 .admin-modal.visible{display:flex}
-.admin-modal-box{width:100%;max-width:400px;padding:28px;background:#111313;border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.admin-modal-box{width:100%;max-width:400px;padding:28px;background:#111313;border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5);max-height:90vh;overflow-y:auto}
 .admin-modal-box h2{color:var(--blue-light);font-size:24px;margin-bottom:8px}
 .admin-login-description{color:var(--text-muted);font-size:14px;margin-bottom:22px}
-.admin-modal-buttons{display:flex;gap:10px;margin-top:22px}
-.admin-modal-buttons button{flex:1;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:bold;cursor:pointer}
-#cancelAdminLogin{background:#272b2c;color:#b7c3cc}
+.admin-modal-buttons{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.admin-modal-buttons button{flex:1;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:bold;cursor:pointer;min-width:120px}
+#cancelAdminLogin,#cancelTheme,#cancelTitleModal,#resetTheme{background:#272b2c;color:#b7c3cc}
 .google-admin-button{width:100%;border:1px solid var(--border);border-radius:10px;padding:14px;background:white;color:#202124;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
 .google-admin-button:hover{filter:brightness(.96);transform:translateY(-1px)}
 .google-admin-button:disabled{opacity:.65;cursor:wait}
+
+/* aparência (tema) */
+.theme-modal-box{max-width:560px}
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0 20px}
+.theme-field{display:flex;flex-direction:column;gap:6px}
+.theme-field label{font-size:13px;color:#b8c8d7;font-weight:bold}
+.theme-field input[type=color]{height:42px;padding:3px;cursor:pointer;border:1px solid var(--border);border-radius:8px;background:#181919}
+.color-row{display:flex;gap:8px}
+.color-row input[type=color]{flex:1;height:42px}
+.color-row input[type=number]{width:80px;height:42px;text-align:center}
+@media(max-width:600px){.theme-grid{grid-template-columns:1fr}}
 
 /* admin */
 .admin-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
@@ -155,12 +174,11 @@ select option{background:#181919;color:white}
 .delete-button{background:var(--danger);color:white}
 .pending-badge{display:inline-block;margin-bottom:15px;padding:7px 10px;border-radius:7px;background:rgba(240,180,41,.10);color:var(--warning);font-size:13px;font-weight:bold}
 
-/* carrossel */
-.carousel-section{max-width:1100px;margin:28px auto;padding:0 12px}
-.image-carousel{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
+/* carrossel dentro do card de trabalho */
+.work-carousel{position:relative;overflow:hidden;border-radius:12px;background:#080808}
 .carousel-track{display:flex;transition:transform .42s ease;will-change:transform}
 .carousel-slide{min-width:100%;display:flex;align-items:center;justify-content:center}
-.carousel-slide img{max-width:100%;max-height:420px;object-fit:contain;border-radius:8px}
+.carousel-slide img{width:100%;max-height:600px;object-fit:contain;border-radius:8px;display:block}
 .carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:white;border:none;width:44px;height:44px;border-radius:8px;cursor:pointer}
 .carousel-prev{left:12px}.carousel-next{right:12px}
 
@@ -177,7 +195,7 @@ select option{background:#181919;color:white}
   .school-logo{justify-content:center}
   .school-logo img{height:75px}
   .site-title{font-size:25px;white-space:normal}
-  .admin-area{width:100%;justify-content:center}
+  .admin-area{width:100%;justify-content:center;flex-wrap:wrap;gap:8px}
   .layout{display:flex;flex-direction:column;padding:15px}
   .left-sidebar{order:1;padding:0}
   .main-navigation{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
@@ -204,6 +222,8 @@ select option{background:#181919;color:white}
   <div class="school-logo"><img src="Logo da escola.png" alt="Logo da escola"></div>
   <div class="site-title">Revista Digital</div>
   <div class="admin-area">
+    <button class="admin-button" id="themeButton" style="display:none">🎨 Aparência</button>
+    <button class="admin-button" id="titleButton" style="display:none">🏷️ Títulos</button>
     <button class="admin-button" id="adminButton">Entrar como administrador</button>
   </div>
 </header>
@@ -229,6 +249,7 @@ select option{background:#181919;color:white}
             <button type="button" class="type-button" data-type="texto">📝 Texto</button>
             <button type="button" class="type-button" data-type="imagem">🖼️ Imagem</button>
             <button type="button" class="type-button" data-type="video">▶️ Vídeo</button>
+            <button type="button" class="type-button" data-type="carrossel" id="carouselTypeButton" style="display:none">🎠 Carrossel</button>
           </div>
         </div>
 
@@ -260,6 +281,15 @@ select option{background:#181919;color:white}
           <div class="form-section" id="videoField">
             <label for="videoUrl">URL do vídeo do YouTube</label>
             <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+          </div>
+
+          <div class="form-section" id="carouselField">
+            <label for="carouselFiles">Escolher imagens do carrossel</label>
+            <div class="image-upload-area">
+              <input type="file" id="carouselFiles" class="image-file-input" accept="image/*" multiple>
+              <div class="image-upload-status" id="carouselUploadStatus">Selecione uma ou mais imagens do seu dispositivo.</div>
+              <div class="carousel-thumbs" id="carouselThumbs"></div>
+            </div>
           </div>
 
           <button type="button" class="publish-button" id="publishButton">Publicar Trabalho</button>
@@ -339,18 +369,10 @@ select option{background:#181919;color:white}
       <button class="filter-subbutton" data-work-type="texto">📝 Texto</button>
       <button class="filter-subbutton" data-work-type="imagem">🖼️ Imagem</button>
       <button class="filter-subbutton" data-work-type="video">▶️ Vídeo</button>
+      <button class="filter-subbutton" data-work-type="carrossel">🎠 Carrossel</button>
     </div>
   </aside>
 </main>
-
-<section class="carousel-section" id="carouselSection" aria-label="Galeria de imagens dos trabalhos" style="display:none">
-  <h2 style="text-align:center;margin-bottom:12px;color:var(--blue-light)">Galeria de imagens</h2>
-  <div class="image-carousel" id="imageCarousel" aria-live="polite">
-    <div class="carousel-track" role="list"></div>
-    <button class="carousel-prev" aria-label="Imagem anterior">‹</button>
-    <button class="carousel-next" aria-label="Próxima imagem">›</button>
-  </div>
-</section>
 
 <button id="fabAddWork" class="fab" title="Adicionar trabalho">+</button>
 
@@ -365,8 +387,119 @@ select option{background:#181919;color:white}
   </div>
 </div>
 
+<div class="admin-modal" id="themeModal">
+  <div class="admin-modal-box theme-modal-box">
+    <h2>Aparência do site</h2>
+    <p class="admin-login-description">Personalize as cores, a fonte e o tamanho da letra do site.</p>
+    <div class="theme-grid">
+      <div class="theme-field">
+        <label for="themeBgType">Tipo de fundo</label>
+        <select id="themeBgType">
+          <option value="solido">Cor sólida</option>
+          <option value="gradiente">Gradiente</option>
+        </select>
+      </div>
+      <div class="theme-field" id="themeBgSolidField">
+        <label for="themeBgColor">Cor de fundo</label>
+        <input type="color" id="themeBgColor" value="#202526">
+      </div>
+      <div class="theme-field" id="themeBgGradientFields" style="display:none">
+        <label>Gradiente de fundo (cor 1, cor 2 e ângulo)</label>
+        <div class="color-row">
+          <input type="color" id="themeBgGrad1" value="#202526">
+          <input type="color" id="themeBgGrad2" value="#0878d1">
+          <input type="number" id="themeBgAngle" value="135" min="0" max="360">
+        </div>
+      </div>
+      <div class="theme-field">
+        <label for="themeColorAccent1">Cor de destaque 1 (cabeçalho/botões)</label>
+        <input type="color" id="themeColorAccent1" value="#0878d1">
+      </div>
+      <div class="theme-field">
+        <label for="themeColorAccent2">Cor de destaque 2 (cabeçalho/botões)</label>
+        <input type="color" id="themeColorAccent2" value="#00a889">
+      </div>
+      <div class="theme-field">
+        <label for="themeTextColor">Cor da escrita</label>
+        <input type="color" id="themeTextColor" value="#d4e0eb">
+      </div>
+      <div class="theme-field">
+        <label for="themeCardColor">Cor dos cartões</label>
+        <input type="color" id="themeCardColor" value="#111111">
+      </div>
+      <div class="theme-field">
+        <label for="themeFontFamily">Fonte</label>
+        <select id="themeFontFamily">
+          <option value="Arial, Helvetica, sans-serif">Arial</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Times New Roman', serif">Times New Roman</option>
+          <option value="system-ui, sans-serif">Padrão do sistema</option>
+        </select>
+      </div>
+      <div class="theme-field">
+        <label>Tamanho da letra: <span id="themeFontSizeValue">100%</span></label>
+        <input type="range" id="themeFontSize" min="85" max="130" value="100">
+      </div>
+    </div>
+    <div class="admin-modal-buttons">
+      <button type="button" id="cancelTheme">Cancelar</button>
+      <button type="button" id="resetTheme">Restaurar padrão</button>
+      <button type="button" class="google-admin-button" id="saveTheme">Salvar aparência</button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-modal" id="titleModal">
+  <div class="admin-modal-box">
+    <h2>Títulos das publicações</h2>
+    <p class="admin-login-description">Defina um título fixo que aparecerá em todos os trabalhos de um determinado tipo.</p>
+    <div class="form-section">
+      <label for="titleTypeSelect">Tipo de trabalho</label>
+      <select id="titleTypeSelect">
+        <option value="texto">📝 Texto</option>
+        <option value="imagem">🖼️ Imagem</option>
+        <option value="video">▶️ Vídeo</option>
+        <option value="carrossel">🎠 Carrossel</option>
+      </select>
+    </div>
+    <div class="form-section">
+      <label for="titleTextInput">Título</label>
+      <input type="text" id="titleTextInput" placeholder="Ex: Mapa mental - Turma 9A">
+    </div>
+    <div class="admin-modal-buttons">
+      <button type="button" id="cancelTitleModal">Cancelar</button>
+      <button type="button" class="google-admin-button" id="saveTitleModal">Salvar título</button>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+/*
+  ===== TABELA "configuracoes" NO SUPABASE =====
+  Este arquivo passa a depender de uma nova tabela para guardar a aparência
+  do site e os títulos por tipo de trabalho. Ela precisa ser criada UMA VEZ
+  no editor SQL do Supabase (o assistente não tem acesso ao seu projeto):
+
+  create table if not exists configuracoes (
+    id integer primary key default 1,
+    tema jsonb not null default '{}'::jsonb,
+    titulos jsonb not null default '{}'::jsonb,
+    updated_at timestamptz not null default now()
+  );
+  insert into configuracoes (id) values (1) on conflict (id) do nothing;
+
+  alter table configuracoes enable row level security;
+  create policy "Leitura publica configuracoes" on configuracoes for select using (true);
+  create policy "Escrita publica configuracoes" on configuracoes for all using (true) with check (true);
+
+  Ajuste as políticas de escrita conforme as políticas que você já usa na
+  tabela "trabalhos", caso queira restringir a gravação apenas às contas
+  de administrador.
+*/
+
 /* ===== SUPABASE ===== */
 const SUPABASE_URL = "https://tcertncsuhrtldeojqfx.supabase.co";
 const SUPABASE_KEY = "sb_publishable_6ojNocYnMs6HKTx6kEmsVQ_x_IbL-1E";
@@ -382,9 +515,11 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const addWorkButton=document.getElementById("addWorkButton"),workForm=document.getElementById("workForm"),
 typeButtons=document.querySelectorAll(".type-button"),workFields=document.getElementById("workFields"),
 textField=document.getElementById("textField"),imageField=document.getElementById("imageField"),videoField=document.getElementById("videoField"),
+carouselField=document.getElementById("carouselField"),carouselTypeButton=document.getElementById("carouselTypeButton"),
 textContent=document.getElementById("textContent"),imageFile=document.getElementById("imageFile"),
 imagePreview=document.getElementById("imagePreview"),imageUploadStatus=document.getElementById("imageUploadStatus"),
 videoUrl=document.getElementById("videoUrl"),publishButton=document.getElementById("publishButton"),
+carouselFiles=document.getElementById("carouselFiles"),carouselUploadStatus=document.getElementById("carouselUploadStatus"),carouselThumbs=document.getElementById("carouselThumbs"),
 worksArea=document.getElementById("worksArea"),homeSection=document.getElementById("homeSection"),
 statisticsSection=document.getElementById("statisticsSection"),instructionsSection=document.getElementById("instructionsSection"),
 statisticsBody=document.getElementById("statisticsBody"),studentSelectContainer=document.getElementById("studentSelectContainer"),
@@ -393,11 +528,26 @@ adminButton=document.getElementById("adminButton"),adminModal=document.getElemen
 googleAdminLogin=document.getElementById("googleAdminLogin"),cancelAdminLogin=document.getElementById("cancelAdminLogin"),
 homeButton=document.getElementById("homeButton"),statisticsButton=document.getElementById("statisticsButton"),
 instructionsButton=document.getElementById("instructionsButton"),peopleFilterList=document.getElementById("peopleFilterList"),
-fabAddWork=document.getElementById("fabAddWork");
+fabAddWork=document.getElementById("fabAddWork"),
+themeButton=document.getElementById("themeButton"),themeModal=document.getElementById("themeModal"),
+cancelTheme=document.getElementById("cancelTheme"),saveTheme=document.getElementById("saveTheme"),resetTheme=document.getElementById("resetTheme"),
+themeBgType=document.getElementById("themeBgType"),themeBgSolidField=document.getElementById("themeBgSolidField"),themeBgGradientFields=document.getElementById("themeBgGradientFields"),
+themeBgColor=document.getElementById("themeBgColor"),themeBgGrad1=document.getElementById("themeBgGrad1"),themeBgGrad2=document.getElementById("themeBgGrad2"),themeBgAngle=document.getElementById("themeBgAngle"),
+themeColorAccent1=document.getElementById("themeColorAccent1"),themeColorAccent2=document.getElementById("themeColorAccent2"),
+themeTextColor=document.getElementById("themeTextColor"),themeCardColor=document.getElementById("themeCardColor"),
+themeFontFamily=document.getElementById("themeFontFamily"),themeFontSize=document.getElementById("themeFontSize"),themeFontSizeValue=document.getElementById("themeFontSizeValue"),
+titleButton=document.getElementById("titleButton"),titleModal=document.getElementById("titleModal"),
+titleTypeSelect=document.getElementById("titleTypeSelect"),titleTextInput=document.getElementById("titleTextInput"),
+cancelTitleModal=document.getElementById("cancelTitleModal"),saveTitleModal=document.getElementById("saveTitleModal");
 
 /* ===== ESTADO ===== */
 let selectedType=null,isAdmin=false,trabalhosCache=[];
 let filtroAtual={tipo:null,pessoa:null};
+let carouselFilesArray=[];
+let titulosAtuais={};
+
+const DEFAULT_TEMA={bgType:"solido",bgColor:"#202526",bgGrad1:"#202526",bgGrad2:"#0878d1",bgAngle:135,accent1:"#0878d1",accent2:"#00a889",textColor:"#d4e0eb",cardColor:"#111111",fontFamily:"Arial, Helvetica, sans-serif",fontSize:100};
+let temaAtual={...DEFAULT_TEMA};
 
 const alunos=["Adrian Felipe","Ana Gabryella","Ana Lara","Atailton","Caio","Camila","Elieder","Emanuelly","Haniel","Iago", "Isabela", "Isadora","Joao Pedro","Joao Victor","Jose Adriano", "Jullia", "Kethelyn","Kelly","Lucas", "Luiz Eduardo", "Luiz Gustavo","Maria Heloísa","Milena","Miguel Felipe","Miguel Fernando","Pedro","Samira"];
 
@@ -475,10 +625,11 @@ typeButtons.forEach(button=>{
     button.classList.add("selected");
     selectedType=button.dataset.type;
     workFields.classList.add("visible");
-    [textField,imageField,videoField].forEach(f=>f.classList.remove("visible"));
+    [textField,imageField,videoField,carouselField].forEach(f=>f.classList.remove("visible"));
     if(selectedType==="texto")textField.classList.add("visible");
     if(selectedType==="imagem")imageField.classList.add("visible");
     if(selectedType==="video")videoField.classList.add("visible");
+    if(selectedType==="carrossel")carouselField.classList.add("visible");
   });
 });
 
@@ -492,6 +643,36 @@ imageFile.addEventListener("change",()=>{
   reader.onload=e=>{imagePreview.src=e.target.result;imagePreview.classList.add("visible");};
   reader.readAsDataURL(arquivo);
 });
+
+/* ===== SELEÇÃO DE IMAGENS DO CARROSSEL ===== */
+carouselFiles.addEventListener("change",()=>{
+  const novos=Array.from(carouselFiles.files||[]).filter(f=>f.type.startsWith("image/"));
+  carouselFilesArray=carouselFilesArray.concat(novos);
+  carouselFiles.value="";
+  renderizarThumbsCarousel();
+});
+
+function renderizarThumbsCarousel(){
+  carouselThumbs.innerHTML="";
+  if(!carouselFilesArray.length){
+    carouselUploadStatus.textContent="Selecione uma ou mais imagens do seu dispositivo.";
+    return;
+  }
+  carouselUploadStatus.textContent=carouselFilesArray.length+" imagem(ns) selecionada(s).";
+  carouselFilesArray.forEach((file,idx)=>{
+    const thumb=document.createElement("div");
+    thumb.className="carousel-thumb";
+    const img=document.createElement("img");
+    const reader=new FileReader();
+    reader.onload=e=>{img.src=e.target.result;};
+    reader.readAsDataURL(file);
+    const removeBtn=document.createElement("button");
+    removeBtn.type="button";removeBtn.textContent="×";
+    removeBtn.addEventListener("click",()=>{carouselFilesArray.splice(idx,1);renderizarThumbsCarousel();});
+    thumb.append(img,removeBtn);
+    carouselThumbs.appendChild(thumb);
+  });
+}
 
 async function enviarImagemStorage(arquivo){
   const ext=arquivo.name.split(".").pop().toLowerCase();
@@ -509,7 +690,7 @@ publishButton.addEventListener("click",publicarTrabalho);
 async function publicarTrabalho(){
   if(!selectedType){alert("Escolha o tipo de trabalho.");return;}
   const nomes=obterAlunosSelecionados();
-  if(nomes.length===0){alert("Selecione pelo menos um aluno.");return;}
+  if(nomes.length===0 && selectedType!=="carrossel"){alert("Selecione pelo menos um aluno.");return;}
   let conteudo="",arquivoImagem=null;
   if(selectedType==="texto"){
     conteudo=textContent.value.trim();
@@ -525,13 +706,23 @@ async function publicarTrabalho(){
     if(!conteudo){alert("Digite a URL do vídeo.");return;}
     if(!conteudo.includes("youtube.com")&&!conteudo.includes("youtu.be")){alert("Digite uma URL válida do YouTube.");return;}
   }
+  if(selectedType==="carrossel"){
+    if(carouselFilesArray.length===0){alert("Selecione pelo menos uma imagem para o carrossel.");return;}
+  }
   publishButton.disabled=true;
-  publishButton.textContent=selectedType==="imagem"?"Enviando imagem...":"Publicando...";
+  publishButton.textContent=selectedType==="imagem"?"Enviando imagem...":selectedType==="carrossel"?"Enviando imagens...":"Publicando...";
   try{
     if(selectedType==="imagem")conteudo=await enviarImagemStorage(arquivoImagem);
-    const{error}=await supabaseClient.from("trabalhos").insert({nome:nomes.join(", "),tipo:selectedType,conteudo,aprovado:false,created_at:new Date().toISOString()});
+    if(selectedType==="carrossel"){
+      const urls=[];
+      for(const arquivo of carouselFilesArray){urls.push(await enviarImagemStorage(arquivo));}
+      conteudo=JSON.stringify(urls);
+    }
+    const nomeFinal=nomes.length?nomes.join(", "):(selectedType==="carrossel"?"Administração":"");
+    const aprovadoInicial=selectedType==="carrossel"?true:false;
+    const{error}=await supabaseClient.from("trabalhos").insert({nome:nomeFinal,tipo:selectedType,conteudo,aprovado:aprovadoInicial,created_at:new Date().toISOString()});
     if(error){alert("Não foi possível publicar o trabalho.\n\n"+error.message);return;}
-    alert("Trabalho enviado para aprovação!");
+    alert(selectedType==="carrossel"?"Carrossel publicado!":"Trabalho enviado para aprovação!");
     limparFormulario();
     await carregarTrabalhos();
     await carregarEstatisticas();
@@ -547,6 +738,8 @@ function limparFormulario(){
   textContent.value="";videoUrl.value="";imageFile.value="";
   imagePreview.src="";imagePreview.classList.remove("visible");
   imageUploadStatus.textContent="Selecione uma imagem do seu dispositivo.";
+  carouselFilesArray=[];carouselThumbs.innerHTML="";
+  carouselUploadStatus.textContent="Selecione uma ou mais imagens do seu dispositivo.";
   studentSelectContainer.innerHTML="";
   const row=document.createElement("div");row.className="student-row";
   const select=document.createElement("select");select.className="student-select";
@@ -555,7 +748,14 @@ function limparFormulario(){
   selectedType=null;
   typeButtons.forEach(b=>b.classList.remove("selected"));
   workFields.classList.remove("visible");
-  [textField,imageField,videoField].forEach(f=>f.classList.remove("visible"));
+  [textField,imageField,videoField,carouselField].forEach(f=>f.classList.remove("visible"));
+}
+
+/* ===== VISIBILIDADE DE RECURSOS DE ADMIN ===== */
+function atualizarVisibilidadeAdmin(){
+  themeButton.style.display=isAdmin?"":"none";
+  titleButton.style.display=isAdmin?"":"none";
+  carouselTypeButton.style.display=isAdmin?"":"none";
 }
 
 /* ===== LOGIN ADMIN ===== */
@@ -583,6 +783,7 @@ async function sairAdministrador(){
   await supabaseClient.auth.signOut();
   isAdmin=false;
   adminButton.textContent="Entrar como administrador";
+  atualizarVisibilidadeAdmin();
   filtroAtual={tipo:null,pessoa:null};
   await carregarTrabalhos();
 }
@@ -590,24 +791,26 @@ async function sairAdministrador(){
 async function verificarSessao(){
   const{data}=await supabaseClient.auth.getSession();
   const session=data.session;
-  if(!session?.user){isAdmin=false;adminButton.textContent="Entrar como administrador";return;}
+  if(!session?.user){isAdmin=false;adminButton.textContent="Entrar como administrador";atualizarVisibilidadeAdmin();return;}
   const email=(session.user.email||"").trim().toLowerCase();
   if(!ADMIN_EMAILS.includes(email)){
     await supabaseClient.auth.signOut();
-    isAdmin=false;adminButton.textContent="Entrar como administrador";
+    isAdmin=false;adminButton.textContent="Entrar como administrador";atualizarVisibilidadeAdmin();
     alert("Esta conta do Google não possui acesso de administrador.");
     return;
   }
   isAdmin=true;
   adminButton.textContent="Sair do administrador";
+  atualizarVisibilidadeAdmin();
 }
 supabaseClient.auth.onAuthStateChange(async(event,session)=>{
-  if(event==="SIGNED_OUT"){isAdmin=false;adminButton.textContent="Entrar como administrador";return;}
+  if(event==="SIGNED_OUT"){isAdmin=false;adminButton.textContent="Entrar como administrador";atualizarVisibilidadeAdmin();return;}
   if(session?.user){
     const email=(session.user.email||"").trim().toLowerCase();
     if(ADMIN_EMAILS.includes(email)){
       isAdmin=true;
       adminButton.textContent="Sair do administrador";
+      atualizarVisibilidadeAdmin();
       adminModal.classList.remove("visible");
       await carregarTrabalhos();
       await carregarEstatisticas();
@@ -630,7 +833,6 @@ async function carregarTrabalhos(){
     trabalhosCache=data||[];
     atualizarFiltros();
     aplicarFiltros();
-    atualizarCarousel();
   }catch(error){console.error(error);}
 }
 
@@ -697,7 +899,7 @@ function renderizarTrabalhos(lista){
     const card=document.createElement("div");
     card.className="work-card";
     const data=new Date(t.created_at).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
-    const tipoLabel=t.tipo==="texto"?"📝 Texto":t.tipo==="imagem"?"🖼️ Imagem":"▶️ Vídeo";
+    const tipoLabel=t.tipo==="texto"?"📝 Texto":t.tipo==="imagem"?"🖼️ Imagem":t.tipo==="video"?"▶️ Vídeo":"🎠 Carrossel";
 
     const header=document.createElement("div");
     header.className="work-header";
@@ -712,6 +914,14 @@ function renderizarTrabalhos(lista){
       card.appendChild(badge);
     }
 
+    const tituloTipo=(titulosAtuais&&titulosAtuais[t.tipo])?String(titulosAtuais[t.tipo]).trim():"";
+    if(tituloTipo){
+      const tituloEl=document.createElement("div");
+      tituloEl.className="work-title";
+      tituloEl.textContent=tituloTipo;
+      card.appendChild(tituloEl);
+    }
+
     if(t.tipo==="texto"){
       const p=document.createElement("p");
       p.className="work-text";
@@ -723,18 +933,59 @@ function renderizarTrabalhos(lista){
       img.src=t.conteudo;
       img.alt=t.nome||"";
       card.appendChild(img);
-    }else{
+    }else if(t.tipo==="video"){
       const iframe=document.createElement("iframe");
       iframe.className="work-video";
       iframe.src=transformarYoutubeUrl(t.conteudo);
       iframe.allowFullscreen=true;
       card.appendChild(iframe);
+    }else if(t.tipo==="carrossel"){
+      let urls=[];
+      try{urls=JSON.parse(t.conteudo)||[];}catch(e){urls=[];}
+      const wrap=document.createElement("div");
+      wrap.className="work-carousel";
+      wrap.dataset.index="0";
+      const track=document.createElement("div");
+      track.className="carousel-track";
+      urls.forEach(u=>{
+        const slide=document.createElement("div");
+        slide.className="carousel-slide";
+        const img=document.createElement("img");
+        img.src=u;img.alt=t.nome||"";
+        slide.appendChild(img);
+        track.appendChild(slide);
+      });
+      wrap.appendChild(track);
+      if(urls.length>1){
+        const prev=document.createElement("button");
+        prev.type="button";prev.className="carousel-prev";prev.textContent="‹";prev.setAttribute("aria-label","Imagem anterior");
+        const next=document.createElement("button");
+        next.type="button";next.className="carousel-next";next.textContent="›";next.setAttribute("aria-label","Próxima imagem");
+        wrap.append(prev,next);
+      }
+      card.appendChild(wrap);
     }
 
     if(isAdmin)card.appendChild(criarControlesAdmin(t));
     worksArea.appendChild(card);
   });
 }
+
+/* navegação dos carrosséis dentro dos cards */
+document.addEventListener("click",e=>{
+  const prevBtn=e.target.closest(".carousel-prev");
+  const nextBtn=e.target.closest(".carousel-next");
+  if(!prevBtn&&!nextBtn)return;
+  const container=e.target.closest(".work-carousel");
+  if(!container)return;
+  const track=container.querySelector(".carousel-track");
+  const total=track.children.length;
+  if(!total)return;
+  let idx=parseInt(container.dataset.index||"0",10);
+  idx=nextBtn?(idx+1)%total:(idx-1+total)%total;
+  container.dataset.index=idx;
+  track.style.transform=`translateX(${-idx*100}%)`;
+});
 
 function criarControlesAdmin(t){
   const div=document.createElement("div");
@@ -767,8 +1018,8 @@ async function aprovarTrabalho(id){
 }
 
 async function editarTrabalho(t){
-  if(t.tipo==="imagem"){
-    alert("Para trocar a imagem, apague este trabalho e publique novamente.");
+  if(t.tipo==="imagem"||t.tipo==="carrossel"){
+    alert("Para trocar as imagens, apague este trabalho e publique novamente.");
     return;
   }
   const label=t.tipo==="texto"?"Editar texto:":"Editar URL do vídeo:";
@@ -798,7 +1049,7 @@ async function carregarEstatisticas(){
   alunos.forEach(a=>porAluno[a]={texto:false,imagem:false,video:false});
   (data||[]).forEach(t=>{
     (t.nome||"").split(",").map(s=>s.trim()).forEach(nome=>{
-      if(porAluno[nome])porAluno[nome][t.tipo]=true;
+      if(porAluno[nome]&&porAluno[nome][t.tipo]!==undefined)porAluno[nome][t.tipo]=true;
     });
   });
   statisticsBody.innerHTML="";
@@ -814,62 +1065,122 @@ async function carregarEstatisticas(){
   });
 }
 
-/* ===== CARROSSEL ===== */
-let carouselState={currentIndex:0,timer:null,slidesCount:0,paused:false,delay:4000};
+/* ===== APARÊNCIA (TEMA) ===== */
+function aplicarTema(tema){
+  const t={...DEFAULT_TEMA,...(tema||{})};
+  const root=document.documentElement.style;
+  root.setProperty("--blue",t.accent1);
+  root.setProperty("--green",t.accent2);
+  root.setProperty("--text",t.textColor);
+  root.setProperty("--card",t.cardColor);
+  root.setProperty("--card-light",t.cardColor);
+  root.setProperty("--background",t.bgType==="gradiente"?t.bgGrad1:t.bgColor);
+  root.setProperty("--font-scale",(t.fontSize/100));
+  document.body.style.fontFamily=t.fontFamily;
+  document.body.style.backgroundImage=t.bgType==="gradiente"?`linear-gradient(${t.bgAngle}deg, ${t.bgGrad1}, ${t.bgGrad2})`:"";
+  temaAtual=t;
+}
 
-function buildImageSlides(){
-  return trabalhosCache.filter(t=>t.tipo==="imagem"&&(isAdmin||t.aprovado));
+function preencherFormularioTema(t){
+  themeBgType.value=t.bgType;
+  themeBgColor.value=t.bgColor;
+  themeBgGrad1.value=t.bgGrad1;
+  themeBgGrad2.value=t.bgGrad2;
+  themeBgAngle.value=t.bgAngle;
+  themeColorAccent1.value=t.accent1;
+  themeColorAccent2.value=t.accent2;
+  themeTextColor.value=t.textColor;
+  themeCardColor.value=t.cardColor;
+  themeFontFamily.value=t.fontFamily;
+  themeFontSize.value=t.fontSize;
+  themeFontSizeValue.textContent=t.fontSize+"%";
+  themeBgSolidField.style.display=t.bgType==="gradiente"?"none":"flex";
+  themeBgGradientFields.style.display=t.bgType==="gradiente"?"flex":"none";
 }
-function atualizarCarousel(){
-  const track=document.querySelector(".carousel-track");
-  const section=document.getElementById("carouselSection");
-  if(!track||!section)return;
-  const slides=buildImageSlides();
-  clearInterval(carouselState.timer);
-  if(!slides.length){section.style.display="none";return;}
-  section.style.display="";
-  track.innerHTML="";
-  slides.forEach(s=>{
-    const slide=document.createElement("div");
-    slide.className="carousel-slide";
-    const img=document.createElement("img");
-    img.src=s.conteudo||"";
-    img.alt=s.nome||"";
-    slide.appendChild(img);
-    track.appendChild(slide);
-  });
-  carouselState.slidesCount=slides.length;
-  carouselState.currentIndex=0;
-  updateCarouselUI();
-  startCarouselTimer();
-}
-function updateCarouselUI(){
-  const track=document.querySelector(".carousel-track");
-  if(track)track.style.transform=`translateX(${-carouselState.currentIndex*100}%)`;
-}
-function nextSlide(){
-  if(!carouselState.slidesCount)return;
-  carouselState.currentIndex=(carouselState.currentIndex+1)%carouselState.slidesCount;
-  updateCarouselUI();
-}
-function prevSlide(){
-  if(!carouselState.slidesCount)return;
-  carouselState.currentIndex=(carouselState.currentIndex-1+carouselState.slidesCount)%carouselState.slidesCount;
-  updateCarouselUI();
-}
-function startCarouselTimer(){
-  clearInterval(carouselState.timer);
-  carouselState.timer=setInterval(()=>{if(!carouselState.paused)nextSlide();},carouselState.delay);
-}
-document.addEventListener("click",e=>{
-  if(e.target.matches(".carousel-next")){nextSlide();startCarouselTimer();}
-  if(e.target.matches(".carousel-prev")){prevSlide();startCarouselTimer();}
+
+themeBgType.addEventListener("change",()=>{
+  themeBgSolidField.style.display=themeBgType.value==="gradiente"?"none":"flex";
+  themeBgGradientFields.style.display=themeBgType.value==="gradiente"?"flex":"none";
 });
-document.addEventListener("mouseover",e=>{if(e.target.closest?.("#imageCarousel"))carouselState.paused=true;});
-document.addEventListener("mouseout",e=>{if(e.target.closest?.("#imageCarousel"))carouselState.paused=false;});
+themeFontSize.addEventListener("input",()=>{themeFontSizeValue.textContent=themeFontSize.value+"%";});
+
+themeButton.addEventListener("click",()=>{preencherFormularioTema(temaAtual);themeModal.classList.add("visible");});
+cancelTheme.addEventListener("click",()=>themeModal.classList.remove("visible"));
+
+saveTheme.addEventListener("click",async()=>{
+  const novoTema={
+    bgType:themeBgType.value,bgColor:themeBgColor.value,bgGrad1:themeBgGrad1.value,bgGrad2:themeBgGrad2.value,
+    bgAngle:parseInt(themeBgAngle.value,10)||135,accent1:themeColorAccent1.value,accent2:themeColorAccent2.value,
+    textColor:themeTextColor.value,cardColor:themeCardColor.value,fontFamily:themeFontFamily.value,fontSize:parseInt(themeFontSize.value,10)||100
+  };
+  saveTheme.disabled=true;saveTheme.textContent="Salvando...";
+  try{
+    const{error}=await supabaseClient.from("configuracoes").upsert({id:1,tema:novoTema,titulos:titulosAtuais,updated_at:new Date().toISOString()});
+    if(error){alert("Erro ao salvar aparência: "+error.message);return;}
+    aplicarTema(novoTema);
+    themeModal.classList.remove("visible");
+  }catch(error){
+    alert("Erro ao salvar aparência.\n\n"+(error.message||error));
+  }finally{
+    saveTheme.disabled=false;saveTheme.textContent="Salvar aparência";
+  }
+});
+
+resetTheme.addEventListener("click",async()=>{
+  if(!confirm("Restaurar as cores, fonte e tamanho de letra padrão do site?"))return;
+  resetTheme.disabled=true;
+  try{
+    const{error}=await supabaseClient.from("configuracoes").upsert({id:1,tema:{},titulos:titulosAtuais,updated_at:new Date().toISOString()});
+    if(error){alert("Erro ao restaurar: "+error.message);return;}
+    aplicarTema({});
+    preencherFormularioTema(temaAtual);
+  }catch(error){
+    alert("Erro ao restaurar.\n\n"+(error.message||error));
+  }finally{
+    resetTheme.disabled=false;
+  }
+});
+
+/* ===== TÍTULOS POR TIPO ===== */
+function preencherCampoTitulo(){
+  titleTextInput.value=titulosAtuais[titleTypeSelect.value]||"";
+}
+titleButton.addEventListener("click",()=>{preencherCampoTitulo();titleModal.classList.add("visible");});
+cancelTitleModal.addEventListener("click",()=>titleModal.classList.remove("visible"));
+titleTypeSelect.addEventListener("change",preencherCampoTitulo);
+
+saveTitleModal.addEventListener("click",async()=>{
+  const tipo=titleTypeSelect.value;
+  const valor=titleTextInput.value.trim();
+  const novosTitulos={...titulosAtuais,[tipo]:valor};
+  saveTitleModal.disabled=true;saveTitleModal.textContent="Salvando...";
+  try{
+    const{error}=await supabaseClient.from("configuracoes").upsert({id:1,tema:temaAtual,titulos:novosTitulos,updated_at:new Date().toISOString()});
+    if(error){alert("Erro ao salvar título: "+error.message);return;}
+    titulosAtuais=novosTitulos;
+    titleModal.classList.remove("visible");
+    await carregarTrabalhos();
+  }catch(error){
+    alert("Erro ao salvar título.\n\n"+(error.message||error));
+  }finally{
+    saveTitleModal.disabled=false;saveTitleModal.textContent="Salvar título";
+  }
+});
+
+async function carregarConfiguracoes(){
+  try{
+    const{data,error}=await supabaseClient.from("configuracoes").select("*").eq("id",1).maybeSingle();
+    if(error){console.error(error);return;}
+    if(data){
+      aplicarTema(data.tema||{});
+      titulosAtuais=data.titulos||{};
+    }
+  }catch(error){console.error(error);}
+}
 
 /* ===== INICIAR ===== */
 async function iniciarSistema(){
+  await carregarConfiguracoes();
   await verificarSessao();
   await carregarTrabalhos();
   await carregarEstatisticas();
